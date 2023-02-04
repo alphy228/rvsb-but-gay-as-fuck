@@ -4,6 +4,7 @@ import arc.Events;
 import arc.util.CommandHandler;
 
 import mindustry.Vars;
+import mindustry.content.UnitTypes;
 import mindustry.game.EventType;
 import mindustry.game.Team;
 import mindustry.gen.Call;
@@ -24,6 +25,10 @@ public class RedVsBluePlugin extends Plugin {
     private final HashMap<String, PlayerData> players = new HashMap<>();
 
     private int stage = 0;
+
+    public static int getRandomInt(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
 
     public void init() {
         Events.on(EventType.PlayerConnect.class, event -> {
@@ -48,6 +53,16 @@ public class RedVsBluePlugin extends Plugin {
 
         Events.on(EventType.WaveEvent.class, event -> {
             stage = (int) Math.floor(Vars.state.wave / 6f) + 1;
+
+            if (Vars.state.wave % 6 == 0 && stage > 1) {
+                if (playerCount(Team.crux) >= 5) {
+                    Unit boss = UnitTypes.antumbra.spawn(Team.crux, 8 * 8, 8 * 8);
+                    boss.health(14000);
+                    Player player = getRandomPlayer(Team.crux);
+                    Call.unitControl(player, boss);
+                    sendBundled("game.boss.spawn", player.name());
+                }
+            }
         });
 
         Events.run(EventType.Trigger.update, () -> Groups.player.each(player -> {
@@ -79,5 +94,34 @@ public class RedVsBluePlugin extends Plugin {
             Locale locale = Bundle.findLocale(p.locale());
             p.sendMessage(Bundle.get(key, locale));
         });
+    }
+
+    public int playerCount(Team team) {
+        final int[] i = {0};
+        Groups.player.each(p -> {
+            if (p.team() == team) i[0]++;
+        });
+        return i[0];
+    }
+
+    public static int playerCount() {
+        return Groups.player.size();
+    }
+
+    public Player getRandomPlayer(Team team) {
+        Player[] teamPlayers = new Player[playerCount(team)];
+        final int[] i = {0};
+        Groups.player.each(player -> {
+            if (player.team() == team) {
+                teamPlayers[i[0]] = player;
+                i[0]++;
+            }
+        });
+
+        return teamPlayers[getRandomInt(0, teamPlayers.length - 1)];
+    }
+
+    public Player getRandomPlayer() {
+        return Groups.player.index(getRandomInt(0, Groups.player.size() - 1));
     }
 }
