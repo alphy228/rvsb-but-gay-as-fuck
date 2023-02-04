@@ -16,6 +16,7 @@ import net.voiddustry.redvsblue.Admin.LogTypes.UnitKillEntry;
 import net.voiddustry.redvsblue.Admin.Logs;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 import static net.voiddustry.redvsblue.Admin.Logs.*;
 
@@ -53,7 +54,7 @@ public class RedVsBluePlugin extends Plugin {
             Unit unit = player.unit();
             PlayerData data = players.get(player.uuid());
 
-            Call.setHudText(player.con(), Bundle.format("game.hud", Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), stage));
+            Call.setHudText(player.con(), Bundle.format("game.hud", Bundle.findLocale(player.locale()), Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), stage));
         }));
     }
 
@@ -64,5 +65,19 @@ public class RedVsBluePlugin extends Plugin {
                 player.sendMessage(Bundle.get("commands.no-admin", player.locale));
             } else openLogs(player);
         }));
+    }
+
+    private void sendBundled(String key, Object... format) {
+        Groups.player.forEach(p -> {
+            Locale locale = Bundle.findLocale(p.locale());
+            p.sendMessage(Bundle.format(key, locale, format));
+        });
+    }
+
+    private void sendBundled(String key) {
+        Groups.player.forEach(p -> {
+            Locale locale = Bundle.findLocale(p.locale());
+            p.sendMessage(Bundle.get(key, locale));
+        });
     }
 }
