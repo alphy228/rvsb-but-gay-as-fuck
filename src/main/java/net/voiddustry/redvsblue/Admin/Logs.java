@@ -5,12 +5,23 @@ import mindustry.gen.Player;
 import mindustry.ui.Menus;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Logs {
 
-    public static ArrayList<Integer> logs = new ArrayList<>();
-    // Logs
+    private static final ArrayList<LogEntry> logs = new ArrayList<>();
+
+    public static void addLogEntry(LogEntry entry) {
+        logs.add(entry);
+    }
+
+    public static LogEntry getLogEntry(int index) {
+        return logs.get(index);
+    }
+
+    public static ArrayList<LogEntry> getLogs() {
+        return logs;
+    }
+
     public static void openLogs(Player player) {
         int menu = Menus.registerMenu((playerInMenu, option) -> {
             switch (option) {
