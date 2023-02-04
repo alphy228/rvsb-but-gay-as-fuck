@@ -3,6 +3,7 @@ package net.voiddustry.redvsblue;
 import arc.Events;
 import arc.util.CommandHandler;
 
+import mindustry.Vars;
 import mindustry.game.EventType;
 import mindustry.game.Team;
 import mindustry.gen.Call;
@@ -21,6 +22,8 @@ import static net.voiddustry.redvsblue.Admin.Logs.*;
 public class RedVsBluePlugin extends Plugin {
     private final HashMap<String, PlayerData> players = new HashMap<>();
 
+    private int stage = 0;
+
     public void init() {
         Events.on(EventType.PlayerConnect.class, event -> {
             if (!players.containsKey(event.player.uuid())) {
@@ -33,18 +36,24 @@ public class RedVsBluePlugin extends Plugin {
                 LogEntry entry = new UnitKillEntry(event.unit, killer);
                 Logs.addLogEntry(entry);
 
-                players.get(killer.getPlayer().uuid()).addScore(2);
+                if (killer.isPlayer()) {
+                    players.get(killer.getPlayer().uuid()).addScore(2);
+                }
                 if (event.unit.team() == Team.blue) {
                     event.unit.team(Team.crux);
                 }
             }
         });
 
+        Events.on(EventType.WaveEvent.class, event -> {
+            stage = (int) Math.floor(Vars.state.wave / 6f) + 1;
+        });
+
         Events.run(EventType.Trigger.update, () -> Groups.player.each(player -> {
             Unit unit = player.unit();
             PlayerData data = players.get(player.uuid());
 
-            Call.setHudText(player.con(), Bundle.format("game.hud", Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore()));
+            Call.setHudText(player.con(), Bundle.format("game.hud", Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), stage));
         }));
     }
 
