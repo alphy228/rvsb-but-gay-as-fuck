@@ -3,15 +3,15 @@ package net.voiddustry.redvsblue;
 import arc.Events;
 import arc.util.CommandHandler;
 
+import arc.util.Timer;
 import mindustry.Vars;
+import mindustry.content.Blocks;
 import mindustry.content.UnitTypes;
 import mindustry.game.EventType;
 import mindustry.game.Team;
-import mindustry.gen.Call;
-import mindustry.gen.Player;
-import mindustry.gen.Unit;
-import mindustry.gen.Groups;
+import mindustry.gen.*;
 import mindustry.mod.Plugin;
+import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Admin.LogEntry;
 import net.voiddustry.redvsblue.Admin.LogTypes.UnitKillEntry;
 import net.voiddustry.redvsblue.Admin.Logs;
@@ -24,6 +24,8 @@ import static net.voiddustry.redvsblue.Admin.Logs.*;
 public class RedVsBluePlugin extends Plugin {
     private final HashMap<String, PlayerData> players = new HashMap<>();
 
+    private float blueSpawnX, blueSpawnY, redSpawnX, redSpawnY;
+
     private int stage = 0;
 
     public static int getRandomInt(int min, int max) {
@@ -31,9 +33,21 @@ public class RedVsBluePlugin extends Plugin {
     }
 
     public void init() {
-        Events.on(EventType.PlayerConnect.class, event -> {
-            if (!players.containsKey(event.player.uuid())) {
-                players.put(event.player.uuid(), new PlayerData(event.player));
+        Events.on(EventType.PlayerJoin.class, event -> {
+            Player player = event.player;
+            if (players.containsKey(player.uuid())) {
+                PlayerData data = players.get(player.uuid());
+                player.team(data.getTeam());
+            } else {
+                Unit unit = UnitTypes.nova.spawn(Team.blue, blueSpawnX, blueSpawnY);
+
+                if (!unit.dead) {
+                    Call.unitControl(player, unit);
+
+                    unit.spawnedByCore(true);
+                }
+
+                players.put(player.uuid(), new PlayerData(player));
             }
         });
 
@@ -43,10 +57,16 @@ public class RedVsBluePlugin extends Plugin {
                 Logs.addLogEntry(entry);
 
                 if (killer.isPlayer()) {
-                    players.get(killer.getPlayer().uuid()).addScore(2);
+                    players.get(killer.getPlayer().uuid()).addScore(killer.team() == Team.blue? 2 : 1);
                 }
-                if (event.unit.team() == Team.blue) {
-                    event.unit.team(Team.crux);
+
+                if (event.unit.isPlayer()) {
+                    if (event.unit.team() == Team.blue) {
+                        event.unit.getPlayer().team(Team.crux);
+                        PlayerData data = players.get(event.unit.getPlayer().uuid());
+                        data.setTeam(Team.crux);
+                        data.setScore(0);
+                    }
                 }
             }
         });
@@ -64,6 +84,43 @@ public class RedVsBluePlugin extends Plugin {
                 }
             }
         });
+
+        Events.on(EventType.WorldLoadEvent.class, event -> Timer.schedule(() -> {
+            Vars.state.rules.canGameOver = false;
+            Vars.state.rules.unitCap = 32;
+
+            Building core = Vars.state.teams.cores(Team.blue).first();
+
+            blueSpawnX = core.x();
+            blueSpawnY = core.y();
+
+            Vars.state.teams.cores(Team.blue).each(Building::kill);
+
+            for (int x = 0; x < Vars.state.map.width; x++) {
+                for (int y = 0; y < Vars.state.map.height; y++) {
+                    Tile tile = Vars.world.tile(x, y);
+                    if (tile.overlay() == Blocks.spawn) {
+                        redSpawnX = tile.getX();
+                        redSpawnY = tile.getY();
+                        break;
+                    }
+                }
+            }
+
+            Groups.player.each(player -> {
+                if (player != null) {
+                    player.team(Team.blue);
+
+                    Unit unit = UnitTypes.nova.spawn(Team.blue, blueSpawnX, blueSpawnY);
+
+                    if (!unit.dead) {
+                        Call.unitControl(player, unit);
+
+                        unit.spawnedByCore(true);
+                    }
+                }
+            });
+        }, 1));
 
         Events.run(EventType.Trigger.update, () -> Groups.player.each(player -> {
             Unit unit = player.unit();
