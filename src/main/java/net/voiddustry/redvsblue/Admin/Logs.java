@@ -33,11 +33,18 @@ public class Logs {
 
         String[][] buttonsRow  = {
                 {
-                        "[scarlet]Kills",
-                        "[lime]Purchases"
+                    "[scarlet]",
+                    "[lime]"
+                },
+                {
+                    ""
+                },
+                {
+                    ""
                 }
         };
 
-        Call.menu(player.con, menu, "[cyan]Logs", "", buttonsRow);
+        Call.menu(player.con, menu, " PlayerData", "", buttonsRow);
+
     }
 }
