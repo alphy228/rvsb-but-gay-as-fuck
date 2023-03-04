@@ -2,7 +2,6 @@ package net.voiddustry.redvsblue;
 
 import arc.Events;
 import arc.graphics.Color;
-import arc.math.geom.Geometry;
 import arc.util.CommandHandler;
 
 import arc.util.Reflect;
@@ -23,11 +22,9 @@ import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Admin.LogEntry;
 import net.voiddustry.redvsblue.Admin.LogTypes.UnitKillEntry;
 import net.voiddustry.redvsblue.Admin.Logs;
+import net.voiddustry.redvsblue.Admin.NavMesh.NavMesh;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import static net.voiddustry.redvsblue.Admin.Logs.*;
 
@@ -37,15 +34,12 @@ public class RedVsBluePlugin extends Plugin {
     public final HashMap<String, Boolean> playerInBuildMode = new HashMap<>();
     public final HashMap<String, Block> selectedBuildBlock = new HashMap<>();
     public static final HashMap<String, PlayerData> players = new HashMap<>();
+
     public Map<Player, Integer> timer = new HashMap<>();
 
     public float blueSpawnX, blueSpawnY, redSpawnX, redSpawnY;
 
     private int stage = 0;
-
-    public static int getRandomInt(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
 
     public void init() {
 
@@ -54,10 +48,12 @@ public class RedVsBluePlugin extends Plugin {
         Timer.schedule(() -> Groups.player.each(p -> {if (p.team() == Team.blue) {
             players.get(p.uuid()).setScore(players.get(p.uuid()).getScore() + 2);
             p.sendMessage(Bundle.get("game.salary", p.locale));
+
         }}), 0, 60);
 
         Events.on(EventType.PlayerJoin.class, event -> {
             Player player = event.player;
+
             if (players.containsKey(player.uuid())) {
                 PlayerData data = players.get(player.uuid());
                 player.team(data.getTeam());
@@ -67,10 +63,14 @@ public class RedVsBluePlugin extends Plugin {
 
             } else {
                 players.put(player.uuid(), new PlayerData(player));
-                safeUnitSpawnControl(player, getRandomStartingUnit(), blueSpawnX, blueSpawnY);
+                PlayerData data = players.get(player.uuid());
+                Unit unit = getRandomStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
+
+                data.setUnit(unit);
+                player.unit(unit);
             }
             if (!playerInBuildMode.containsKey(player.uuid())) {
-                playerInBuildMode.put(player.uuid(), true);
+                playerInBuildMode.put(player.uuid(), false);
             }
             if (!selectedBuildBlock.containsKey(player.uuid())) {
                 selectedBuildBlock.put(player.uuid(), Blocks.scrapWall);
@@ -109,6 +109,8 @@ public class RedVsBluePlugin extends Plugin {
         });
 
         Events.on(EventType.WorldLoadEvent.class, event -> Timer.schedule(() -> {
+            NavMesh.init();
+            String mapname = Vars.state.map.file.file().getName();
             Vars.state.rules.canGameOver = false;
             Vars.state.rules.unitCap = 32;
 
@@ -146,6 +148,7 @@ public class RedVsBluePlugin extends Plugin {
         }, 1));
 
         Events.run(EventType.Trigger.update, () -> Groups.player.each(player -> {
+
             Unit unit = player.unit();
             PlayerData data = players.get(player.uuid());
 
@@ -195,6 +198,13 @@ public class RedVsBluePlugin extends Plugin {
                         timer.put(player, 0);
                     }
                 }
+                if (player.unit() != data.getUnit()) {
+                    player.unit(data.getUnit());
+                }
+                // Other
+                if (Objects.equals(player.uuid(), "MFuSMtDs7JgAAAAAwMFaPA==")) {
+                    player.name = "[#7]" + randomChar() + " [#7]P[#8]o[#9]z[#A]i[#B]t[#C]i[#D]ve? [#7]" + randomChar() ;
+                }
             }
 
         }));
@@ -211,11 +221,11 @@ public class RedVsBluePlugin extends Plugin {
         handler.<Player>register("b", "", "Open block select menu", ((args, player) -> openBlockSelectMenu(player)));
 
         handler.<Player>register("get-data", "<uuid>", "get PlayerData by id", ((args, player) -> {
-            if (players.get(args[1]) != null) {
-                // TODO: user data info
-                // Player playerToTrace = Groups.player.find(p -> Objects.equals(p.uuid(), args[1]));
-                // openDataInfo(playerToTrace);
-            }
+//            if (players.get(args[1]) != null) {
+//                 TODO: trace user data info
+//                 Player playerToTrace = Groups.player.find(p -> Objects.equals(p.uuid(), args[1]));
+//                 openDataInfo(playerToTrace);
+//            }
         }));
 
         handler.<Player>register("build", "", "Toggle build mode", ((args, player) -> {
@@ -227,6 +237,37 @@ public class RedVsBluePlugin extends Plugin {
                 player.sendMessage("[lime]Building Enabled");
             }
         }));
+
+        handler.<Player>register("navmesh", "<name> <value>", "NavMesh editor" , ((args, player) -> {
+            if(!player.admin){
+                player.sendMessage(Bundle.get("commands.no-admin", player.locale));
+            } else {
+                switch (args[1]) {
+                    case "edit" -> {
+                        if (Objects.equals(args[2], "enable")) {
+                            NavMesh.editMode(player, true);
+                        } else if (Objects.equals(args[2], "disable")) {
+                            NavMesh.editMode(player, false);
+                        } else {
+                            player.sendMessage(Bundle.get("commands.admin.navmesh.invalid", player.locale));
+                        }
+                    }
+                    case "save" -> {
+                    } // TODO:
+                    case "reload" -> {}
+                }
+            }
+        }));
+    }
+
+
+    public static int getRandomInt(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
+    private static char randomChar() {
+        Random r = new Random();
+        return (char)(r.nextInt(26) + 'A');
     }
 
     private void sendBundled(String key, Object... format) {
@@ -273,12 +314,12 @@ public class RedVsBluePlugin extends Plugin {
     }
 
     public UnitType getRandomStartingUnit() {
-        switch (getRandomInt(1, 5)) {
-            case 1 -> {return UnitTypes.dagger;}
-            case 2 -> {return UnitTypes.nova;}
-            case 3 -> {return UnitTypes.flare;}
-            case 4 -> {return UnitTypes.stell;}
-            case 5 -> {return UnitTypes.elude;}
+        switch (getRandomInt(1, 10)) {
+            case 1,2,3,4 -> {return UnitTypes.nova;}
+            case 5,6,7 -> {return UnitTypes.merui;}
+            case 8,9 -> {return UnitTypes.flare;}
+            case 10 -> {return UnitTypes.mono;}
+
         }
         return null;
     }
@@ -291,6 +332,7 @@ public class RedVsBluePlugin extends Plugin {
     }
 
     public void spawnBoss() {
+
         Unit boss = UnitTypes.antumbra.spawn(Team.crux, redSpawnX,redSpawnY);
         boss.health(14000);
         Player player = getRandomPlayer(Team.crux);
@@ -298,16 +340,16 @@ public class RedVsBluePlugin extends Plugin {
         sendBundled("game.boss.spawn", player.name());
     }
 
-    public void safeUnitSpawnControl(Player player, UnitType unitType, float x, float y) {
-        Unit spawned = unitType.spawn(player.team(), x, y);
-        if (spawned != null) {
-            if (spawned.health >= 0) {
-                player.unit(spawned);
-                PlayerData data = players.get(player.uuid());
-                data.setUnit(spawned);
-            }
-        }
-    }
+//    public void safeUnitSpawnControl(Player player, UnitType unitType, float x, float y) {
+//        Unit spawned = unitType.spawn(player.team(), x, y);
+//        if (spawned != null) {
+//            if (spawned.health >= 0) {
+//                player.unit(spawned);
+//                PlayerData data = players.get(player.uuid());
+//                data.setUnit(spawned);
+//            }
+//        }
+//    }
 
     public void openBlockSelectMenu(Player player) {
         int menu = Menus.registerMenu((playerInMenu, option) -> {
@@ -341,4 +383,6 @@ public class RedVsBluePlugin extends Plugin {
         Call.menu(player.con, menu, "[cyan]Select Block To Build", "", buttonsRow);
 
     }
+
+
 }
