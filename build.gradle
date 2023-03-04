@@ -27,3 +27,5 @@ jar {
         configurations.runtimeClasspath.collect{it.isDirectory() ? it : zipTree(it) }
     }
 }
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
