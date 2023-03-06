@@ -1,8 +1,8 @@
-package Units;
+package net.voiddustry.redvsblue.Units;
 
 
-import Units.Tier.FirstTier;
-import Units.Tier.SecondTier;
+import net.voiddustry.redvsblue.Units.Tier.FirstTier;
+import net.voiddustry.redvsblue.Units.Tier.SecondTier;
 import arc.struct.ObjectMap;
 
 @SuppressWarnings("unused")
