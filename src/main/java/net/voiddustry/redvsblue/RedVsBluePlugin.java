@@ -19,14 +19,9 @@ import mindustry.type.UnitType;
 import mindustry.ui.Menus;
 import mindustry.world.Block;
 import mindustry.world.Tile;
-import net.voiddustry.redvsblue.Admin.LogEntry;
-import net.voiddustry.redvsblue.Admin.LogTypes.UnitKillEntry;
-import net.voiddustry.redvsblue.Admin.Logs;
 import net.voiddustry.redvsblue.Admin.NavMesh.NavMesh;
 
 import java.util.*;
-
-import static net.voiddustry.redvsblue.Admin.Logs.*;
 
 @SuppressWarnings("unused")
 public class RedVsBluePlugin extends Plugin {
@@ -84,9 +79,6 @@ public class RedVsBluePlugin extends Plugin {
 
         Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
-                LogEntry entry = new UnitKillEntry(event.unit, killer);
-                Logs.addLogEntry(entry);
-
                 if (killer.isPlayer()) {
                     players.get(killer.getPlayer().uuid()).addScore(killer.team() == Team.blue ? 2 : 1);
                 }
@@ -215,22 +207,7 @@ public class RedVsBluePlugin extends Plugin {
 
     @Override
     public void registerClientCommands(CommandHandler handler) {
-        handler.<Player>register("logs", "Open Logs, only for admins", ((args, player) -> {
-            if (!player.admin) {
-                player.sendMessage(Bundle.get("commands.no-admin", player.locale));
-            } else
-                openLogs(player);
-        }));
-
         handler.<Player>register("b", "", "Open block select menu", ((args, player) -> openBlockSelectMenu(player)));
-
-        handler.<Player>register("get-data", "<uuid>", "get PlayerData by id", ((args, player) -> {
-            //            if (players.get(args[1]) != null) {
-            //                 TODO: trace user data info
-            //                 Player playerToTrace = Groups.player.find(p -> Objects.equals(p.uuid(), args[1]));
-            //                 openDataInfo(playerToTrace);
-            //            }
-        }));
 
         handler.<Player>register("build", "", "Toggle build mode", ((args, player) -> {
             if (playerInBuildMode.get(player.uuid())) {
