@@ -43,13 +43,15 @@ public class RedVsBluePlugin extends Plugin {
 
     public void init() {
 
-        Timer.schedule(() -> timer.replaceAll((player, time) -> time = time + 1), 0, 1);
+        Timer.schedule(() -> timer.replaceAll((player, time) -> time++), 0, 1);
 
-        Timer.schedule(() -> Groups.player.each(p -> {if (p.team() == Team.blue) {
-            players.get(p.uuid()).setScore(players.get(p.uuid()).getScore() + 2);
-            p.sendMessage(Bundle.get("game.salary", p.locale));
+        Timer.schedule(() -> Groups.player.each(p -> {
+            if (p.team() == Team.blue) {
+                players.get(p.uuid()).setScore(players.get(p.uuid()).getScore() + 2);
+                p.sendMessage(Bundle.get("game.salary", p.locale));
 
-        }}), 0, 60);
+            }
+        }), 0, 60);
 
         Events.on(EventType.PlayerJoin.class, event -> {
             Player player = event.player;
@@ -86,7 +88,7 @@ public class RedVsBluePlugin extends Plugin {
                 Logs.addLogEntry(entry);
 
                 if (killer.isPlayer()) {
-                    players.get(killer.getPlayer().uuid()).addScore(killer.team() == Team.blue? 2 : 1);
+                    players.get(killer.getPlayer().uuid()).addScore(killer.team() == Team.blue ? 2 : 1);
                 }
 
                 if (event.unit.isPlayer()) {
@@ -104,7 +106,8 @@ public class RedVsBluePlugin extends Plugin {
             stage = (int) Math.floor(Vars.state.wave / 6f) + 1;
 
             if (Vars.state.wave % 6 == 0 && stage > 1) {
-                if (playerCount(Team.crux) >= 5) spawnBoss();
+                if (playerCount(Team.crux) >= 5)
+                    spawnBoss();
             }
         });
 
@@ -157,13 +160,13 @@ public class RedVsBluePlugin extends Plugin {
             Call.setHudText(player.con(), Bundle.format("game.hud", Bundle.findLocale(player.locale()), Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), stage));
 
             if (playerInBuildMode.get(player.uuid())) {
-                Tile position = Vars.world.tile(Math.round(player.mouseX/8), Math.round(player.mouseY/8));
+                Tile position = Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8));
 
                 String text = "[gray][\uE805]";
-                String textAnnounce = "[gray]" ;
+                String textAnnounce = "[gray]";
 
                 if (selectedBuildBlock.get(player.uuid()) != Blocks.air) {
-                    if (Objects.equals(position.block().name, "air")){
+                    if (Objects.equals(position.block().name, "air")) {
                         if (timer.get(player) >= 2) {
                             text = "[lime][\uE805]";
                             textAnnounce = String.valueOf(selectedBuildBlock.get(player.uuid()));
@@ -184,17 +187,17 @@ public class RedVsBluePlugin extends Plugin {
                     }
                 }
 
-                Call.label(player.con, text,0.1F, (float) ((Math.round(player.mouseX/8))*8), (float) ((Math.round(player.mouseY/8))*8));
-                Call.label(player.con, textAnnounce,0.1F, (float) ((Math.round(player.mouseX/8))*8), (float) (((Math.round(player.mouseY/8))*8)-5));
+                Call.label(player.con, text, 0.1F, (float) ((Math.round(player.mouseX / 8)) * 8), (float) ((Math.round(player.mouseY / 8)) * 8));
+                Call.label(player.con, textAnnounce, 0.1F, (float) ((Math.round(player.mouseX / 8)) * 8), (float) (((Math.round(player.mouseY / 8)) * 8) - 5));
 
                 if (player.shooting && timer.get(player) >= 2) {
                     if (Objects.equals(position.block().name, "air")) {
-                        Vars.world.tile(Math.round(player.mouseX/8), Math.round(player.mouseY/8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
-                        Call.effect(Reflect.get(Fx.class, "dynamicExplosion"), position.x*8, position.y*8, 0.5F, Color.blue);
+                        Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
+                        Call.effect(Reflect.get(Fx.class, "dynamicExplosion"), position.x * 8, position.y * 8, 0.5F, Color.blue);
                         timer.put(player, 0);
                     } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
-                        Vars.world.tile(Math.round(player.mouseX/8), Math.round(player.mouseY/8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
-                        Call.effect(Reflect.get(Fx.class, "heal"), position.x*8, position.y*8, 1, Color.blue);
+                        Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
+                        Call.effect(Reflect.get(Fx.class, "heal"), position.x * 8, position.y * 8, 1, Color.blue);
                         timer.put(player, 0);
                     }
                 }
@@ -203,7 +206,7 @@ public class RedVsBluePlugin extends Plugin {
                 }
                 // Other
                 if (Objects.equals(player.uuid(), "MFuSMtDs7JgAAAAAwMFaPA==")) {
-                    player.name = "[#7]" + randomChar() + " [#7]P[#8]o[#9]z[#A]i[#B]t[#C]i[#D]ve? [#7]" + randomChar() ;
+                    player.name = "[#7]" + randomChar() + " [#7]P[#8]o[#9]z[#A]i[#B]t[#C]i[#D]ve? [#7]" + randomChar();
                 }
             }
 
@@ -215,17 +218,18 @@ public class RedVsBluePlugin extends Plugin {
         handler.<Player>register("logs", "Open Logs, only for admins", ((args, player) -> {
             if (!player.admin) {
                 player.sendMessage(Bundle.get("commands.no-admin", player.locale));
-            } else openLogs(player);
+            } else
+                openLogs(player);
         }));
 
         handler.<Player>register("b", "", "Open block select menu", ((args, player) -> openBlockSelectMenu(player)));
 
         handler.<Player>register("get-data", "<uuid>", "get PlayerData by id", ((args, player) -> {
-//            if (players.get(args[1]) != null) {
-//                 TODO: trace user data info
-//                 Player playerToTrace = Groups.player.find(p -> Objects.equals(p.uuid(), args[1]));
-//                 openDataInfo(playerToTrace);
-//            }
+            //            if (players.get(args[1]) != null) {
+            //                 TODO: trace user data info
+            //                 Player playerToTrace = Groups.player.find(p -> Objects.equals(p.uuid(), args[1]));
+            //                 openDataInfo(playerToTrace);
+            //            }
         }));
 
         handler.<Player>register("build", "", "Toggle build mode", ((args, player) -> {
@@ -238,8 +242,8 @@ public class RedVsBluePlugin extends Plugin {
             }
         }));
 
-        handler.<Player>register("navmesh", "<name> <value>", "NavMesh editor" , ((args, player) -> {
-            if(!player.admin){
+        handler.<Player>register("navmesh", "<name> <value>", "NavMesh editor", ((args, player) -> {
+            if (!player.admin) {
                 player.sendMessage(Bundle.get("commands.no-admin", player.locale));
             } else {
                 switch (args[1]) {
@@ -254,7 +258,8 @@ public class RedVsBluePlugin extends Plugin {
                     }
                     case "save" -> {
                     } // TODO:
-                    case "reload" -> {}
+                    case "reload" -> {
+                    }
                 }
             }
         }));
@@ -267,7 +272,7 @@ public class RedVsBluePlugin extends Plugin {
 
     private static char randomChar() {
         Random r = new Random();
-        return (char)(r.nextInt(26) + 'A');
+        return (char) (r.nextInt(26) + 'A');
     }
 
     private void sendBundled(String key, Object... format) {
@@ -285,9 +290,10 @@ public class RedVsBluePlugin extends Plugin {
     }
 
     public int playerCount(Team team) {
-        final int[] i = {0};
+        final int[] i = { 0 };
         Groups.player.each(p -> {
-            if (p.team() == team) i[0]++;
+            if (p.team() == team)
+                i[0]++;
         });
         return i[0];
     }
@@ -298,7 +304,7 @@ public class RedVsBluePlugin extends Plugin {
 
     public Player getRandomPlayer(Team team) {
         Player[] teamPlayers = new Player[playerCount(team)];
-        final int[] i = {0};
+        final int[] i = { 0 };
         Groups.player.each(player -> {
             if (player.team() == team) {
                 teamPlayers[i[0]] = player;
@@ -315,10 +321,18 @@ public class RedVsBluePlugin extends Plugin {
 
     public UnitType getRandomStartingUnit() {
         switch (getRandomInt(1, 10)) {
-            case 1,2,3,4 -> {return UnitTypes.nova;}
-            case 5,6,7 -> {return UnitTypes.merui;}
-            case 8,9 -> {return UnitTypes.flare;}
-            case 10 -> {return UnitTypes.mono;}
+            case 1, 2, 3, 4 -> {
+                return UnitTypes.nova;
+            }
+            case 5, 6, 7 -> {
+                return UnitTypes.merui;
+            }
+            case 8, 9 -> {
+                return UnitTypes.flare;
+            }
+            case 10 -> {
+                return UnitTypes.mono;
+            }
 
         }
         return null;
@@ -332,24 +346,27 @@ public class RedVsBluePlugin extends Plugin {
     }
 
     public void spawnBoss() {
+        Unit boss = UnitTypes.antumbra.spawn(Team.crux, redSpawnX, redSpawnY);
 
-        Unit boss = UnitTypes.antumbra.spawn(Team.crux, redSpawnX,redSpawnY);
         boss.health(14000);
+
         Player player = getRandomPlayer(Team.crux);
+
         Call.unitControl(player, boss);
+
         sendBundled("game.boss.spawn", player.name());
     }
 
-//    public void safeUnitSpawnControl(Player player, UnitType unitType, float x, float y) {
-//        Unit spawned = unitType.spawn(player.team(), x, y);
-//        if (spawned != null) {
-//            if (spawned.health >= 0) {
-//                player.unit(spawned);
-//                PlayerData data = players.get(player.uuid());
-//                data.setUnit(spawned);
-//            }
-//        }
-//    }
+    //    public void safeUnitSpawnControl(Player player, UnitType unitType, float x, float y) {
+    //        Unit spawned = unitType.spawn(player.team(), x, y);
+    //        if (spawned != null) {
+    //            if (spawned.health >= 0) {
+    //                player.unit(spawned);
+    //                PlayerData data = players.get(player.uuid());
+    //                data.setUnit(spawned);
+    //            }
+    //        }
+    //    }
 
     public void openBlockSelectMenu(Player player) {
         int menu = Menus.registerMenu((playerInMenu, option) -> {
@@ -366,19 +383,19 @@ public class RedVsBluePlugin extends Plugin {
             }
         });
         String[][] buttonsRow = {
-                {
-                    "\uF8A0", // scrap-wall
-                    "\uF8AE", // copper-wall
-                    "\uF8AC", // titanium-wall
-                },
-                {
-                    "\uF8A8", // thorium-wall
-                    "\uF8A2", // door-wall
-                    "\uF8A6" // phase-wall
-                },
-                {
-                    "[scarlet]Destroy Wall"
-                }
+            {
+                "\uF8A0", // scrap-wall
+                "\uF8AE", // copper-wall
+                "\uF8AC", // titanium-wall
+            },
+            {
+                "\uF8A8", // thorium-wall
+                "\uF8A2", // door-wall
+                "\uF8A6" // phase-wall
+            },
+            {
+                "[scarlet]Destroy Wall"
+            }
         };
         Call.menu(player.con, menu, "[cyan]Select Block To Build", "", buttonsRow);
 
