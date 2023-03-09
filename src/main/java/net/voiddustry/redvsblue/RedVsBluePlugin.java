@@ -324,26 +324,16 @@ public class RedVsBluePlugin extends Plugin {
 
     public void spawnBoss() {
         Unit boss = UnitTypes.antumbra.spawn(Team.crux, redSpawnX, redSpawnY);
-
         boss.health(14000);
 
         Player player = getRandomPlayer(Team.crux);
 
-        Call.unitControl(player, boss);
+        if (!boss.dead()) {
+            Call.unitControl(player, boss);
 
-        sendBundled("game.boss.spawn", player.name());
+            sendBundled("game.boss.spawn", player.name());
+        }
     }
-
-    //    public void safeUnitSpawnControl(Player player, UnitType unitType, float x, float y) {
-    //        Unit spawned = unitType.spawn(player.team(), x, y);
-    //        if (spawned != null) {
-    //            if (spawned.health >= 0) {
-    //                player.unit(spawned);
-    //                PlayerData data = players.get(player.uuid());
-    //                data.setUnit(spawned);
-    //            }
-    //        }
-    //    }
 
     public void openBlockSelectMenu(Player player) {
         int menu = Menus.registerMenu((playerInMenu, option) -> {
