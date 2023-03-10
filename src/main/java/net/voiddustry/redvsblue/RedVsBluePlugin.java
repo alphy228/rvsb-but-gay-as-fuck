@@ -196,10 +196,6 @@ public class RedVsBluePlugin extends Plugin {
                 if (player.unit() != data.getUnit()) {
                     player.unit(data.getUnit());
                 }
-                // Other
-                if (Objects.equals(player.uuid(), "MFuSMtDs7JgAAAAAwMFaPA==")) {
-                    player.name = "[#7]" + randomChar() + " [#7]P[#8]o[#9]z[#A]i[#B]t[#C]i[#D]ve? [#7]" + randomChar();
-                }
             }
 
         }));
