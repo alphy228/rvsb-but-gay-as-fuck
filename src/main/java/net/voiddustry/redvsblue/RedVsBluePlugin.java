@@ -36,6 +36,12 @@ public class RedVsBluePlugin extends Plugin {
 
     private int stage = 0;
 
+    private final int evolutionMenu = Menus.registerMenu((playerInMenu, option) -> {
+        switch (option) {
+            // 0 -> evolve
+        }
+    });
+
     public void init() {
 
         Timer.schedule(() -> timer.replaceAll((player, time) -> time++), 0, 1);
@@ -213,6 +219,17 @@ public class RedVsBluePlugin extends Plugin {
                 playerInBuildMode.put(player.uuid(), true);
                 player.sendMessage("[lime]Building Enabled");
             }
+        }));
+
+        handler.<Player>register("e", "Open evolution menu", ((args, player) -> {
+            Locale locale = Bundle.findLocale(player.locale());
+
+            String[][] buttons = {
+                {
+                    Bundle.format("menu.evolution.evolve", locale, "[purple]void[]", "50")
+                }
+            };
+            Call.menu(player.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(player.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale), "[object Object]"), buttons);
         }));
 
         handler.<Player>register("navmesh", "<name> <value>", "NavMesh editor", ((args, player) -> {

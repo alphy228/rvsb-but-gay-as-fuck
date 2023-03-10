@@ -7,7 +7,7 @@ import mindustry.type.UnitType;
 @SuppressWarnings("unused")
 public enum SecondTier {
 
-    NACE(UnitTypes.mace, 20),
+    MACE(UnitTypes.mace, 20),
     PULSAR(UnitTypes.pulsar, 30),
     RISSO(UnitTypes.risso, 50),
     POLY(UnitTypes.poly, 40),
