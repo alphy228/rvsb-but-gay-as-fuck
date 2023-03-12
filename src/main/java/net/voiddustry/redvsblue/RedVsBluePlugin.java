@@ -158,6 +158,7 @@ public class RedVsBluePlugin extends Plugin {
             Groups.player.each(player -> {
                 if (player != null) {
                     player.team(Team.blue);
+                    players.put(player.uuid(), new PlayerData(player));
 
                     Unit unit = getRandomStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
 
