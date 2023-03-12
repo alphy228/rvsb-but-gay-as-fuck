@@ -3,10 +3,10 @@ package net.voiddustry.redvsblue;
 import arc.Events;
 import arc.graphics.Color;
 import arc.util.CommandHandler;
-
 import arc.util.Reflect;
 import arc.util.Timer;
 import mindustry.Vars;
+import mindustry.ai.Pathfinder;
 import mindustry.content.Blocks;
 import mindustry.content.Fx;
 import mindustry.content.UnitTypes;
@@ -15,18 +15,26 @@ import mindustry.game.Team;
 import mindustry.gen.*;
 import mindustry.mod.Plugin;
 import mindustry.type.UnitType;
-
 import mindustry.ui.Menus;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Admin.NavMesh.NavMesh;
-import net.voiddustry.redvsblue.evolution.Evolutions;
+import net.voiddustry.redvsblue.ai.BluePlayerTarget;
+import net.voiddustry.redvsblue.ai.StalkerGroundAI;
+import net.voiddustry.redvsblue.ai.StalkerSuicideAI;
 import net.voiddustry.redvsblue.evolution.Evolution;
+import net.voiddustry.redvsblue.evolution.Evolutions;
 
 import java.util.*;
 
 @SuppressWarnings("unused")
 public class RedVsBluePlugin extends Plugin {
+    public static final int bluePlayerTargeting;
+
+    static {
+        Pathfinder.fieldTypes.add(BluePlayerTarget::new);
+        bluePlayerTargeting = Pathfinder.fieldTypes.size - 1;
+    }
 
     public final HashMap<String, Boolean> playerInBuildMode = new HashMap<>();
     public final HashMap<String, Block> selectedBuildBlock = new HashMap<>();
@@ -62,7 +70,15 @@ public class RedVsBluePlugin extends Plugin {
         }
     });
 
+    @Override
     public void init() {
+        for (UnitType unit : Vars.content.units()) {
+            if (unit == UnitTypes.crawler) {
+                unit.aiController = StalkerSuicideAI::new;
+            } else if (!unit.flying) {
+                unit.aiController = StalkerGroundAI::new;
+            }
+        }
 
         Timer.schedule(() -> timer.replaceAll((player, time) -> time++), 0, 1);
 
