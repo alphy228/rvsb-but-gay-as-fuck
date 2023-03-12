@@ -20,6 +20,8 @@ import mindustry.ui.Menus;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Admin.NavMesh.NavMesh;
+import net.voiddustry.redvsblue.evolution.Evolutions;
+import net.voiddustry.redvsblue.evolution.Evolution;
 
 import java.util.*;
 
@@ -36,9 +38,27 @@ public class RedVsBluePlugin extends Plugin {
 
     private int stage = 0;
 
-    private final int evolutionMenu = Menus.registerMenu((playerInMenu, option) -> {
-        switch (option) {
-            // 0 -> evolve
+    private final int evolutionMenu = Menus.registerMenu((player, option) -> {
+        if (option == -1) return;
+
+        Evolution evolution = Evolutions.evolutions.get(player.unit().type().name);
+        Evolution evolutionOption = Evolutions.evolutions.get(evolution.evolutions[option]);
+
+        PlayerData playerData = players.get(player.uuid());
+
+        if (playerData.getScore() >= evolutionOption.cost) {
+            Unit unit = evolutionOption.unitType.spawn(Team.blue, player.x(), player.y());
+
+            if (!unit.dead()) {
+                playerData.setUnit(unit);
+                player.unit(unit);
+                unit.spawnedByCore(true);
+
+                playerData.subtractScore(evolutionOption.cost);
+                playerData.setEvolutionStage(evolutionOption.tier);
+
+                sendBundled("game.evolved", player.name(), evolution.evolutions[option]);
+            }
         }
     });
 
@@ -71,6 +91,8 @@ public class RedVsBluePlugin extends Plugin {
 
                 data.setUnit(unit);
                 player.unit(unit);
+
+                unit.spawnedByCore(true);
             }
             if (!playerInBuildMode.containsKey(player.uuid())) {
                 playerInBuildMode.put(player.uuid(), false);
@@ -222,14 +244,19 @@ public class RedVsBluePlugin extends Plugin {
         }));
 
         handler.<Player>register("e", "Open evolution menu", ((args, player) -> {
+            if (player.team() != Team.blue) return;
+
             Locale locale = Bundle.findLocale(player.locale());
 
-            String[][] buttons = {
-                {
-                    Bundle.format("menu.evolution.evolve", locale, "[purple]void[]", "50")
-                }
-            };
-            Call.menu(player.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(player.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale), "[object Object]"), buttons);
+            Evolution evolution = Evolutions.evolutions.get(player.unit().type().name);
+
+            String[][] buttons = new String[evolution.evolutions.length][1];
+
+            for (int i = 0; i < evolution.evolutions.length; i++) {
+                buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i], Evolutions.evolutions.get(evolution.evolutions[i]).cost);
+            }
+
+            Call.menu(player.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(player.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
         }));
 
         handler.<Player>register("navmesh", "<name> <value>", "NavMesh editor", ((args, player) -> {
