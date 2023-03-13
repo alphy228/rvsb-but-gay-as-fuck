@@ -18,14 +18,19 @@ import mindustry.type.UnitType;
 import mindustry.ui.Menus;
 import mindustry.world.Block;
 import mindustry.world.Tile;
-import net.voiddustry.redvsblue.Admin.NavMesh.NavMesh;
+
+import net.voiddustry.redvsblue.util.Utils;
 import net.voiddustry.redvsblue.ai.BluePlayerTarget;
 import net.voiddustry.redvsblue.ai.StalkerGroundAI;
 import net.voiddustry.redvsblue.ai.StalkerSuicideAI;
 import net.voiddustry.redvsblue.evolution.Evolution;
 import net.voiddustry.redvsblue.evolution.Evolutions;
+import net.voiddustry.redvsblue.util.WebHook;
 
 import java.util.*;
+
+import static net.voiddustry.redvsblue.util.Utils.*;
+import static net.voiddustry.redvsblue.util.WebHook.*;
 
 @SuppressWarnings("unused")
 public class RedVsBluePlugin extends Plugin {
@@ -36,15 +41,19 @@ public class RedVsBluePlugin extends Plugin {
         bluePlayerTargeting = Pathfinder.fieldTypes.size - 1;
     }
 
-    public final HashMap<String, Boolean> playerInBuildMode = new HashMap<>();
-    public final HashMap<String, Block> selectedBuildBlock = new HashMap<>();
+    public static final HashMap<String, Boolean> playerInBuildMode = new HashMap<>();
+    public static final HashMap<String, Block> selectedBuildBlock = new HashMap<>();
     public static final HashMap<String, PlayerData> players = new HashMap<>();
 
     public Map<Player, Integer> timer = new HashMap<>();
 
-    public float blueSpawnX, blueSpawnY, redSpawnX, redSpawnY;
+    public float blueSpawnX;
+    public float blueSpawnY;
+    public static float redSpawnX;
+    public static float redSpawnY;
 
     private int stage = 0;
+    public static boolean playing = false;
 
     private final int evolutionMenu = Menus.registerMenu((player, option) -> {
         if (option == -1) return;
@@ -65,22 +74,29 @@ public class RedVsBluePlugin extends Plugin {
                 playerData.subtractScore(evolutionOption.cost);
                 playerData.setEvolutionStage(evolutionOption.tier);
 
-                sendBundled("game.evolved", player.name(), evolution.evolutions[option]);
+                Utils.sendBundled("game.evolved", player.name(), evolution.evolutions[option]);
             }
         }
     });
 
     @Override
     public void init() {
+
+        Thread serverStartThread = new Thread(WebHook::serverStartWebHook);
+        serverStartThread.start();
+
         for (UnitType unit : Vars.content.units()) {
             if (unit == UnitTypes.crawler) {
                 unit.aiController = StalkerSuicideAI::new;
             } else if (!unit.flying) {
                 unit.aiController = StalkerGroundAI::new;
             }
+            if (unit instanceof WaterMovec) {
+                unit.flying = true;
+            }
         }
 
-        Timer.schedule(() -> timer.replaceAll((player, time) -> time++), 0, 1);
+        Timer.schedule(() -> timer.replaceAll((player, time) -> time = time + 1), 0, 1);
 
         Timer.schedule(() -> Groups.player.each(p -> {
             if (p.team() == Team.blue) {
@@ -89,6 +105,13 @@ public class RedVsBluePlugin extends Plugin {
 
             }
         }), 0, 60);
+
+        Events.on(EventType.UnitChangeEvent.class, event -> {
+            if (event.player.unit() == null) {
+                PlayerData data = players.get(event.player.uuid());
+                data.setTeam(Team.crux);
+            }
+        });
 
         Events.on(EventType.PlayerJoin.class, event -> {
             Player player = event.player;
@@ -103,7 +126,7 @@ public class RedVsBluePlugin extends Plugin {
             } else {
                 players.put(player.uuid(), new PlayerData(player));
                 PlayerData data = players.get(player.uuid());
-                Unit unit = getRandomStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
+                Unit unit = UnitTypes.nova.spawn(Team.blue, blueSpawnX, blueSpawnY);
 
                 data.setUnit(unit);
                 player.unit(unit);
@@ -119,12 +142,30 @@ public class RedVsBluePlugin extends Plugin {
             if (!timer.containsKey(player)) {
                 timer.put(player, 0);
             }
+
+            Thread thread = new Thread(() -> playerJoinWebHook(player.plainName()));
+            thread.start();
+        });
+
+        Events.on(EventType.PlayerLeave.class, event -> {
+            Thread thread = new Thread(() -> playerLeaveWebHook(event.player.plainName()));
+            thread.start();
+        });
+
+        Events.on(EventType.PlayerChatEvent.class, event -> {
+            Thread thread = new Thread(() -> playerSendMessageWebHook(event.message, event.player.plainName()));
+            thread.start();
         });
 
         Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
                 if (killer.isPlayer()) {
                     players.get(killer.getPlayer().uuid()).addScore(killer.team() == Team.blue ? 2 : 1);
+                    Call.label(killer.getPlayer().con, killer.team() == Team.blue ? "[lime]+2" : "[lime]+1", 2, event.unit.x, event.unit.y);
+                    if (event.unit.isPlayer()) {
+                        Thread thread = new Thread(() -> playerDiedWebHook(killer.getPlayer().plainName(), event.unit.getPlayer().plainName()));
+                        thread.start();
+                    }
                 }
 
                 if (event.unit.isPlayer()) {
@@ -136,6 +177,7 @@ public class RedVsBluePlugin extends Plugin {
                     }
                 }
             }
+            gameOverCheck();
         });
 
         Events.on(EventType.WaveEvent.class, event -> {
@@ -143,12 +185,17 @@ public class RedVsBluePlugin extends Plugin {
 
             if (Vars.state.wave % 6 == 0 && stage > 1) {
                 if (playerCount(Team.crux) >= 5)
-                    spawnBoss();
+                    Utils.spawnBoss();
             }
         });
 
+        Events.on(EventType.GameOverEvent.class, event -> {
+            Thread thread = new Thread(WebHook::gameOverWebHook);
+            thread.start();
+        });
+
         Events.on(EventType.WorldLoadEvent.class, event -> Timer.schedule(() -> {
-            NavMesh.init();
+            Call.soundAt(Sounds.getSound(26), 100, 100, 100, 5);
             String mapname = Vars.state.map.file.file().getName();
             Vars.state.rules.canGameOver = false;
             Vars.state.rules.unitCap = 32;
@@ -176,15 +223,14 @@ public class RedVsBluePlugin extends Plugin {
                     player.team(Team.blue);
                     players.put(player.uuid(), new PlayerData(player));
 
-                    Unit unit = getRandomStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
-
-                    if (!unit.dead) {
-                        Call.unitControl(player, unit);
-
-                        unit.spawnedByCore(true);
-                    }
+                    Unit unit = UnitTypes.nova.spawn(Team.blue, blueSpawnX, blueSpawnY);
+                    PlayerData data = players.get(player.uuid());
+                    data.setUnit(unit);
                 }
             });
+            playing = true;
+            Thread thread = new Thread(WebHook::newGameWebHook);
+            thread.start();
         }, 1));
 
         Events.run(EventType.Trigger.update, () -> Groups.player.each(player -> {
@@ -201,46 +247,56 @@ public class RedVsBluePlugin extends Plugin {
 
                 String text = "[gray][\uE805]";
                 String textAnnounce = "[gray]";
-
-                if (selectedBuildBlock.get(player.uuid()) != Blocks.air) {
-                    if (Objects.equals(position.block().name, "air")) {
+                if (position.dst2(player.tileOn()) >= 16) {
+                    if (selectedBuildBlock.get(player.uuid()) != Blocks.air) {
+                        if (Objects.equals(position.block().name, "air")) {
+                            if (timer.get(player) >= 2) {
+                                text = "[lime][\uE805]";
+                                textAnnounce = String.valueOf(selectedBuildBlock.get(player.uuid()));
+                            } else {
+                                text = "[yellow][\uE805]";
+                                textAnnounce = Bundle.get("build.cooldown", player.locale);
+                            }
+                        } else {
+                            text = "[scarlet][\uE868]";
+                        }
+                    } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
                         if (timer.get(player) >= 2) {
-                            text = "[lime][\uE805]";
-                            textAnnounce = String.valueOf(selectedBuildBlock.get(player.uuid()));
+                            if (position.build.team == Team.blue) {
+                                text = "[lime][\uE805]";
+                                textAnnounce = Bundle.get("build.destroy-wall", player.locale);
+                            } else {
+                                text = "[scarlet][\uE868]";
+                            }
                         } else {
                             text = "[yellow][\uE805]";
                             textAnnounce = Bundle.get("build.cooldown", player.locale);
                         }
-                    } else {
-                        text = "[scarlet][\uE868]";
                     }
-                } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
-                    if (timer.get(player) >= 2) {
-                        text = "[lime][\uE805]";
-                        textAnnounce = Bundle.get("build.destroy-wall", player.locale);
-                    } else {
-                        text = "[yellow][\uE805]";
-                        textAnnounce = Bundle.get("build.cooldown", player.locale);
-                    }
+                } else {
+                    text = "[scarlet][\uE868]";
                 }
 
-                Call.label(player.con, text, 0.1F, (float) ((Math.round(player.mouseX / 8)) * 8), (float) ((Math.round(player.mouseY / 8)) * 8));
-                Call.label(player.con, textAnnounce, 0.1F, (float) ((Math.round(player.mouseX / 8)) * 8), (float) (((Math.round(player.mouseY / 8)) * 8) - 5));
-
-                if (player.shooting && timer.get(player) >= 2) {
-                    if (Objects.equals(position.block().name, "air")) {
-                        Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
-                        Call.effect(Reflect.get(Fx.class, "dynamicExplosion"), position.x * 8, position.y * 8, 0.5F, Color.blue);
-                        timer.put(player, 0);
-                    } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
-                        Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
-                        Call.effect(Reflect.get(Fx.class, "heal"), position.x * 8, position.y * 8, 1, Color.blue);
-                        timer.put(player, 0);
+                Call.label(player.con, text, 0.01F, (float) ((Math.round(player.mouseX / 8)) * 8), (float) ((Math.round(player.mouseY / 8)) * 8));
+                Call.label(player.con, textAnnounce, 0.01F, (float) ((Math.round(player.mouseX / 8)) * 8), (float) (((Math.round(player.mouseY / 8)) * 8) - 5));
+                if (position.dst(player.tileOn()) <= 10) {
+                    if (player.shooting && timer.get(player) >= 2) {
+                        if (Objects.equals(position.block().name, "air")) {
+                            Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
+                            Call.effect(Reflect.get(Fx.class, "dynamicExplosion"), position.x * 8, position.y * 8, 0.5F, Color.blue);
+                            timer.put(player, 0);
+                        } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
+                            Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
+                            Call.effect(Reflect.get(Fx.class, "heal"), position.x * 8, position.y * 8, 1, Color.blue);
+                            timer.put(player, 0);
+                        }
                     }
                 }
-                if (player.unit() != data.getUnit()) {
-                    player.unit(data.getUnit());
-                }
+            }
+
+            if (playing && player.unit() != data.getUnit() || player.team() != data.getTeam()) {
+                player.unit(data.getUnit());
+                player.team(data.getTeam());
             }
 
         }));
@@ -248,7 +304,7 @@ public class RedVsBluePlugin extends Plugin {
 
     @Override
     public void registerClientCommands(CommandHandler handler) {
-        handler.<Player>register("b", "", "Open block select menu", ((args, player) -> openBlockSelectMenu(player)));
+        handler.<Player>register("b", "Open block select menu", ((args, player) -> Utils.openBlockSelectMenu(player)));
 
         handler.<Player>register("build", "", "Toggle build mode", ((args, player) -> {
             if (playerInBuildMode.get(player.uuid())) {
@@ -276,154 +332,26 @@ public class RedVsBluePlugin extends Plugin {
             Call.menu(player.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(player.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
         }));
 
-        handler.<Player>register("navmesh", "<name> <value>", "NavMesh editor", ((args, player) -> {
-            if (!player.admin) {
-                player.sendMessage(Bundle.get("commands.no-admin", player.locale));
-            } else {
-                switch (args[1]) {
-                    case "edit" -> {
-                        if (Objects.equals(args[2], "enable")) {
-                            NavMesh.editMode(player, true);
-                        } else if (Objects.equals(args[2], "disable")) {
-                            NavMesh.editMode(player, false);
-                        } else {
-                            player.sendMessage(Bundle.get("commands.admin.navmesh.invalid", player.locale));
-                        }
-                    }
-                    case "save" -> {
-                    } // TODO:
-                    case "reload" -> {
-                    }
-                }
-            }
-        }));
-    }
+        handler.<Player>register("set-score", "<count>", "set score to your balance. Rich.", (args, player) -> {
+            PlayerData data = players.get(player.uuid());
+            if (player.admin) data.addScore(Integer.parseInt(args[0]));
+        });
 
-
-    public static int getRandomInt(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
-
-    private static char randomChar() {
-        Random r = new Random();
-        return (char) (r.nextInt(26) + 'A');
-    }
-
-    private void sendBundled(String key, Object... format) {
-        Groups.player.forEach(p -> {
-            Locale locale = Bundle.findLocale(p.locale());
-            p.sendMessage(Bundle.format(key, locale, format));
+        handler.<Player>register("gameover", "lmao", (args, player) -> {
+            if (player.admin) Events.fire(new EventType.GameOverEvent(Team.crux));
         });
     }
 
-    private void sendBundled(String key) {
-        Groups.player.forEach(p -> {
-            Locale locale = Bundle.findLocale(p.locale());
-            p.sendMessage(Bundle.get(key, locale));
-        });
+    public static void gameOverCheck() {
+        if (playerCount(Team.blue) == 0) gameOver(Team.crux);
     }
 
-    public int playerCount(Team team) {
-        final int[] i = { 0 };
-        Groups.player.each(p -> {
-            if (p.team() == team)
-                i[0]++;
-        });
-        return i[0];
-    }
-
-    public static int playerCount() {
-        return Groups.player.size();
-    }
-
-    public Player getRandomPlayer(Team team) {
-        Player[] teamPlayers = new Player[playerCount(team)];
-        final int[] i = { 0 };
-        Groups.player.each(player -> {
-            if (player.team() == team) {
-                teamPlayers[i[0]] = player;
-                i[0]++;
-            }
-        });
-
-        return teamPlayers[getRandomInt(0, teamPlayers.length - 1)];
-    }
-
-    public Player getRandomPlayer() {
-        return Groups.player.index(getRandomInt(0, Groups.player.size() - 1));
-    }
-
-    public UnitType getRandomStartingUnit() {
-        switch (getRandomInt(1, 10)) {
-            case 1, 2, 3, 4 -> {
-                return UnitTypes.nova;
-            }
-            case 5, 6, 7 -> {
-                return UnitTypes.merui;
-            }
-            case 8, 9 -> {
-                return UnitTypes.flare;
-            }
-            case 10 -> {
-                return UnitTypes.mono;
-            }
-
-        }
-        return null;
-    }
-
-    // Events | Logic
-
-    public void initRules() {
-        Vars.state.rules.hideBannedBlocks = true;
-        Vars.state.rules.bannedBlocks.addAll();
-    }
-
-    public void spawnBoss() {
-        Unit boss = UnitTypes.antumbra.spawn(Team.crux, redSpawnX, redSpawnY);
-        boss.health(14000);
-
-        Player player = getRandomPlayer(Team.crux);
-
-        if (!boss.dead()) {
-            Call.unitControl(player, boss);
-
-            sendBundled("game.boss.spawn", player.name());
+    public static void gameOver(Team winner) {
+        if (winner == Team.crux) {
+            RedVsBluePlugin.playing = false;
+            Events.fire(new EventType.GameOverEvent(Team.crux));
+        } else if (winner == Team.blue) {
+            // TODO:
         }
     }
-
-    public void openBlockSelectMenu(Player player) {
-        int menu = Menus.registerMenu((playerInMenu, option) -> {
-            switch (option) {
-                case 0 -> selectedBuildBlock.put(player.uuid(), Blocks.scrapWall);
-                case 1 -> selectedBuildBlock.put(player.uuid(), Blocks.copperWall);
-                case 2 -> selectedBuildBlock.put(player.uuid(), Blocks.titaniumWall);
-
-                case 3 -> selectedBuildBlock.put(player.uuid(), Blocks.thoriumWall);
-                case 4 -> selectedBuildBlock.put(player.uuid(), Blocks.door);
-                case 5 -> selectedBuildBlock.put(player.uuid(), Blocks.phaseWall);
-
-                case 6 -> selectedBuildBlock.put(player.uuid(), Blocks.air);
-            }
-        });
-        String[][] buttonsRow = {
-            {
-                "\uF8A0", // scrap-wall
-                "\uF8AE", // copper-wall
-                "\uF8AC", // titanium-wall
-            },
-            {
-                "\uF8A8", // thorium-wall
-                "\uF8A2", // door-wall
-                "\uF8A6" // phase-wall
-            },
-            {
-                "[scarlet]Destroy Wall"
-            }
-        };
-        Call.menu(player.con, menu, "[cyan]Select Block To Build", "", buttonsRow);
-
-    }
-
-
 }
