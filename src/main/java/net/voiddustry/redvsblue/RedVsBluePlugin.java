@@ -88,7 +88,7 @@ public class RedVsBluePlugin extends Plugin {
             } else if (!unit.flying) {
                 unit.aiController = StalkerGroundAI::new;
             }
-            if (unit instanceof WaterMovec) {
+            if (unit.naval) {
                 unit.flying = true;
             }
         }
