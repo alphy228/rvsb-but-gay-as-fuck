@@ -42,7 +42,7 @@ public class WebhookUtils {
         if (webhookUrl.equals("")) return;
 
         Webhook webhook = new Webhook(webhookUrl);
-        webhook.setContent("@ everyone");
+        webhook.setContent("@everyone");
         webhook.addEmbed(new Embed()
                 .setTitle("Report on " + reportedName)
                 .setDescription("Text: " + text[1] + "\n\nReport by " + player.plainName() + "\nuuid: " + player.uuid())
