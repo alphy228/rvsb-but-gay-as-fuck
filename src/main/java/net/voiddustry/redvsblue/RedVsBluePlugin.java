@@ -274,9 +274,13 @@ public class RedVsBluePlugin extends Plugin {
                         Call.effect(Reflect.get(Fx.class, "dynamicExplosion"), position.x * 8, position.y * 8, 0.5F, Color.blue);
                         timer.put(player, 0);
                     } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
-                        Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
-                        Call.effect(Reflect.get(Fx.class, "heal"), position.x * 8, position.y * 8, 1, Color.blue);
-                        timer.put(player, 0);
+                        if (position.build != null) {
+                            if (position.build.team == Team.blue) {
+                                Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
+                                Call.effect(Reflect.get(Fx.class, "heal"), position.x * 8, position.y * 8, 1, Color.blue);
+                                timer.put(player, 0);
+                            }
+                        }
                     }
                 }
             }

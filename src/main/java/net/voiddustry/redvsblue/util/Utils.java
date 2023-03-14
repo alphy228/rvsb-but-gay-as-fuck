@@ -2,6 +2,7 @@ package net.voiddustry.redvsblue.util;
 
 import mindustry.Vars;
 import mindustry.content.Blocks;
+import mindustry.content.Items;
 import mindustry.content.UnitTypes;
 import mindustry.game.Team;
 import mindustry.gen.Call;
@@ -81,27 +82,31 @@ public class Utils {
     public static void openBlockSelectMenu(Player player) {
         int menu = Menus.registerMenu((playerInMenu, option) -> {
             switch (option) {
-                case 0 -> selectedBuildBlock.put(player.uuid(), Blocks.scrapWall);
-                case 1 -> selectedBuildBlock.put(player.uuid(), Blocks.copperWall);
-                case 2 -> selectedBuildBlock.put(player.uuid(), Blocks.titaniumWall);
+                case 0 -> selectedBuildBlock.put(player.uuid(), Blocks.titaniumWall);
+                case 1 -> selectedBuildBlock.put(player.uuid(), Blocks.door);
+                case 2 -> selectedBuildBlock.put(player.uuid(), Blocks.powerNode);
 
-                case 3 -> selectedBuildBlock.put(player.uuid(), Blocks.thoriumWall);
-                case 4 -> selectedBuildBlock.put(player.uuid(), Blocks.door);
-                case 5 -> selectedBuildBlock.put(player.uuid(), Blocks.phaseWall);
+                case 3 -> selectedBuildBlock.put(player.uuid(), Blocks.combustionGenerator);
+                case 4 -> selectedBuildBlock.put(player.uuid(), Blocks.mender);
+                case 5 -> selectedBuildBlock.put(player.uuid(), Blocks.battery);
 
-                case 6 -> selectedBuildBlock.put(player.uuid(), Blocks.air);
+                case 6 -> player.unit().addItem(Items.coal, 5);
+                case 7 -> selectedBuildBlock.put(player.uuid(), Blocks.air);
             }
         });
         String[][] buttonsRow = {
                 {
-                        "\uF8A0", // scrap-wall
-                        "\uF8AE", // copper-wall
                         "\uF8AC", // titanium-wall
+                        "\uF8A2", // door
+                        "\uF87E", // power-node
                 },
                 {
-                        "\uF8A8", // thorium-wall
-                        "\uF8A2", // door-wall
-                        "\uF8A6" // phase-wall
+                        "\uF879", // combustionGenerator
+                        "\uF89B", // mender
+                        "\uF87B" // battery
+                },
+                {
+                        "[gray]Buy 5 Coal"
                 },
                 {
                         "[scarlet]Destroy Wall"
