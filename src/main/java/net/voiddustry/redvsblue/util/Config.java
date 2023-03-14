@@ -10,6 +10,10 @@ import mindustry.Vars;
 public class Config {
     @Getter
     private static String discordUrl = "";
+    @Getter
+    private static String discordBansUrl = "";
+    @Getter
+    private static String discordReportsUrl = "";
 
     static {
         Json json = new Json();
@@ -19,6 +23,9 @@ public class Config {
         if (configFile.exists()) {
             JsonValue jsonValue = json.fromJson(null, configFile);
             Config.discordUrl = json.readValue("discordUrl", String.class, jsonValue);
+            Config.discordBansUrl = json.readValue("discordBansUrl", String.class, jsonValue);
+            Config.discordReportsUrl = json.readValue("discordReportsUrl", String.class, jsonValue);
         }
     }
+
 }
