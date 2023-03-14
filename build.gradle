@@ -14,11 +14,18 @@ ext {
 
     versions = [:]
     versions.mindustry = 'v' + plugin.minGameVersion
+    versions.lombok = '1.18.26'
+    versions.discordWebhook = "v1.6"
 }
 
 dependencies {
     compileOnly "com.github.Anuken.Arc:arc-core:$versions.mindustry"
     compileOnly ("com.github.Anuken.Mindustry:core:$versions.mindustry") { exclude module: 'flabel' }
+
+    compileOnly "org.projectlombok:lombok:$versions.lombok"
+    annotationProcessor "org.projectlombok:lombok:$versions.lombok"
+
+    implementation "com.github.thedimasNetwork:DiscordWebhook:$versions.discordWebhook"
 }
 
 jar {

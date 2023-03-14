@@ -25,12 +25,11 @@ import net.voiddustry.redvsblue.ai.StalkerGroundAI;
 import net.voiddustry.redvsblue.ai.StalkerSuicideAI;
 import net.voiddustry.redvsblue.evolution.Evolution;
 import net.voiddustry.redvsblue.evolution.Evolutions;
-import net.voiddustry.redvsblue.util.WebHook;
 
 import java.util.*;
 
 import static net.voiddustry.redvsblue.util.Utils.*;
-import static net.voiddustry.redvsblue.util.WebHook.*;
+import static net.voiddustry.redvsblue.util.WebhookUtils.*;
 
 @SuppressWarnings("unused")
 public class RedVsBluePlugin extends Plugin {
@@ -81,9 +80,7 @@ public class RedVsBluePlugin extends Plugin {
 
     @Override
     public void init() {
-
-        Thread serverStartThread = new Thread(WebHook::serverStartWebHook);
-        serverStartThread.start();
+        sendServerStartMessage();
 
         for (UnitType unit : Vars.content.units()) {
             if (unit == UnitTypes.crawler) {
@@ -143,18 +140,15 @@ public class RedVsBluePlugin extends Plugin {
                 timer.put(player, 0);
             }
 
-            Thread thread = new Thread(() -> playerJoinWebHook(player.plainName()));
-            thread.start();
+           sendPlayerJoinMessage(player.plainName());
         });
 
         Events.on(EventType.PlayerLeave.class, event -> {
-            Thread thread = new Thread(() -> playerLeaveWebHook(event.player.plainName()));
-            thread.start();
+            sendPlayerLeaveMessage(event.player.plainName());
         });
 
         Events.on(EventType.PlayerChatEvent.class, event -> {
-            Thread thread = new Thread(() -> playerSendMessageWebHook(event.message, event.player.plainName()));
-            thread.start();
+            sendPlayerChatMessage(event.message, event.player.plainName());
         });
 
         Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
@@ -163,8 +157,7 @@ public class RedVsBluePlugin extends Plugin {
                     players.get(killer.getPlayer().uuid()).addScore(killer.team() == Team.blue ? 2 : 1);
                     Call.label(killer.getPlayer().con, killer.team() == Team.blue ? "[lime]+2" : "[lime]+1", 2, event.unit.x, event.unit.y);
                     if (event.unit.isPlayer()) {
-                        Thread thread = new Thread(() -> playerDiedWebHook(killer.getPlayer().plainName(), event.unit.getPlayer().plainName()));
-                        thread.start();
+                        sendPlayerKillMessage(killer.getPlayer().plainName(), event.unit.getPlayer().plainName());
                     }
                 }
 
@@ -190,8 +183,7 @@ public class RedVsBluePlugin extends Plugin {
         });
 
         Events.on(EventType.GameOverEvent.class, event -> {
-            Thread thread = new Thread(WebHook::gameOverWebHook);
-            thread.start();
+            sendGameOverMessage();
         });
 
         Events.on(EventType.WorldLoadEvent.class, event -> Timer.schedule(() -> {
@@ -229,8 +221,7 @@ public class RedVsBluePlugin extends Plugin {
                 }
             });
             playing = true;
-            Thread thread = new Thread(WebHook::newGameWebHook);
-            thread.start();
+            sendGameStartMessage();
         }, 1));
 
         Events.run(EventType.Trigger.update, () -> Groups.player.each(player -> {
