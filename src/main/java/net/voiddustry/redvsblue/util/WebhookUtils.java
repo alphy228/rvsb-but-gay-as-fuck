@@ -1,5 +1,7 @@
 package net.voiddustry.redvsblue.util;
 
+import mindustry.Vars;
+import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import webhook.Webhook;
 import webhook.embed.Embed;
@@ -78,7 +80,11 @@ public class WebhookUtils {
     }
 
     public static void sendGameStartMessage() {
-        send("New game has been started with " + playerCount() + " players", Color.WHITE, "");
+        send("New game has been started on map" + Vars.state.map.name() + " with " + playerCount() + " players", Color.WHITE, "");
+    }
+
+    public static void sendGameWinMessage() {
+        send("Blue Reached 102 Wave And Won The Game!!!", Color.BLUE, "");
     }
 
     // Admin Events

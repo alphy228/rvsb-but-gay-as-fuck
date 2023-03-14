@@ -1,7 +1,9 @@
 package net.voiddustry.redvsblue;
 
+import arc.Core;
 import arc.Events;
 import arc.graphics.Color;
+import arc.math.geom.Geometry;
 import arc.util.CommandHandler;
 import arc.util.Log;
 import arc.util.Reflect;
@@ -20,6 +22,7 @@ import mindustry.ui.Menus;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 
+import net.voiddustry.redvsblue.ai.AirAI;
 import net.voiddustry.redvsblue.util.Utils;
 import net.voiddustry.redvsblue.ai.BluePlayerTarget;
 import net.voiddustry.redvsblue.ai.StalkerGroundAI;
@@ -52,7 +55,7 @@ public class RedVsBluePlugin extends Plugin {
     public static float redSpawnX;
     public static float redSpawnY;
 
-    private int stage = 0;
+    public static int stage = 0;
     public static boolean playing = false;
 
     private final int evolutionMenu = Menus.registerMenu((player, option) -> {
@@ -86,8 +89,12 @@ public class RedVsBluePlugin extends Plugin {
         for (UnitType unit : Vars.content.units()) {
             if (unit == UnitTypes.crawler) {
                 unit.aiController = StalkerSuicideAI::new;
-            } else if (!unit.flying) {
+            }
+            if (!unit.flying) {
                 unit.aiController = StalkerGroundAI::new;
+            }
+            if (unit.flying) {
+                unit.aiController = AirAI::new;
             }
             if (unit.naval) {
                 unit.flying = true;
@@ -134,6 +141,10 @@ public class RedVsBluePlugin extends Plugin {
                 timer.put(player, 0);
             }
 
+            if (player.team() == Team.crux) {
+                spawnUnitForCrux(event.player);
+            }
+
            sendPlayerJoinMessage(player.plainName());
         });
 
@@ -162,9 +173,17 @@ public class RedVsBluePlugin extends Plugin {
                     PlayerData data = players.get(event.unit.getPlayer().uuid());
                     data.setTeam(Team.crux);
                     data.setScore(0);
+                } else if (event.unit.getPlayer().team() == Team.crux) {
+                    spawnUnitForCrux(event.unit.getPlayer());
                 }
             }
             gameOverCheck();
+        });
+
+        Events.on(EventType.UnitChangeEvent.class, event -> {
+            if (event.player.team() == Team.crux) {
+                spawnUnitForCrux(event.player);
+            }
         });
 
         Events.on(EventType.WaveEvent.class, event -> {
@@ -173,6 +192,9 @@ public class RedVsBluePlugin extends Plugin {
             if (Vars.state.wave % 6 == 0 && stage > 1) {
                 if (playerCount(Team.crux) >= 5)
                     Utils.spawnBoss();
+            }
+            if (Vars.state.wave == 102) {
+                sendGameWinMessage();
             }
         });
 
@@ -289,12 +311,17 @@ public class RedVsBluePlugin extends Plugin {
                 }
             }
 
-            if (playing && player.unit() != data.getUnit() || player.team() != data.getTeam()) {
-                player.unit(data.getUnit());
+            if (playing && player.team() != data.getTeam()) {
                 player.team(data.getTeam());
             }
 
+            if (playing && !data.getUnit().dead) {
+                player.unit(data.getUnit());
+            }
+
         }));
+
+
     }
 
     @Override

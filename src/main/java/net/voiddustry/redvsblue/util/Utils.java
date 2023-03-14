@@ -16,11 +16,11 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Random;
 
-import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
-import static net.voiddustry.redvsblue.RedVsBluePlugin.selectedBuildBlock;
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
+
+import static net.voiddustry.redvsblue.RedVsBluePlugin.*;
 
 public class Utils {
 
@@ -44,11 +44,6 @@ public class Utils {
         });
 
         return teamPlayers[getRandomInt(0, teamPlayers.length - 1)];
-    }
-
-    private static char randomChar() {
-        Random r = new Random();
-        return (char) (r.nextInt(26) + 'A');
     }
 
     public static Player getRandomPlayer() {
@@ -138,6 +133,123 @@ public class Utils {
             Locale locale = Bundle.findLocale(p.locale());
             p.sendMessage(Bundle.get(key, locale));
         });
+    }
+
+    public static void spawnUnitForCrux(Player player) { // TODO: Переписать
+        if (player.unit().dead) {
+            switch (RedVsBluePlugin.stage) {
+                case 1,2 -> { // Stage 1, 2
+                    switch (getRandomInt(1, 3)) {
+                        case 1 -> {
+                            Unit spawned = UnitTypes.crawler.spawn(Team.crux, redSpawnX, redSpawnY);
+                            Call.unitControl(player, spawned);
+                            spawned.spawnedByCore = true;
+                        }
+                        case 2 -> {
+                            Unit spawned = UnitTypes.dagger.spawn(Team.crux, redSpawnX, redSpawnY);
+                            Call.unitControl(player, spawned);
+                            spawned.spawnedByCore = true;
+                        }
+                    }
+                }
+                case 3,4 -> { // Stage 3, 4
+                    switch (getRandomInt(1,4)) {
+                        case 1 -> {
+                            Unit spawned = UnitTypes.mace.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            spawned.health = 350;
+                            Call.unitControl(player, spawned);
+                        }
+                        case 2 -> {
+                            Unit spawned = UnitTypes.crawler.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            Call.unitControl(player, spawned);
+                        }
+                        case 3 -> {
+                            Unit spawned = UnitTypes.dagger.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            Call.unitControl(player, spawned);
+                        }
+                    }
+                }
+                case 5,6 -> { // Stage 5, 6
+                    switch (getRandomInt(1,4)) {
+                        case 1 -> {
+                            Unit spawned = UnitTypes.stell.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            Call.unitControl(player, spawned);
+                        }
+                        case 2 -> {
+                            Unit spawned = UnitTypes.mace.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            Call.unitControl(player, spawned);
+                        }
+                        case 3 -> {
+                            Unit spawned = UnitTypes.atrax.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            spawned.health = 400;
+                            Call.unitControl(player, spawned);
+                        }
+                    }
+                }
+                case 7,8,9 -> {
+                    switch (getRandomInt(1,4)) {
+                        case 1 -> {
+                            Unit spawned = UnitTypes.fortress.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            spawned.health = 500;
+                            Call.unitControl(player, spawned);
+                        }
+                        case 2 -> {
+                            Unit spawned = UnitTypes.atrax.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            Call.unitControl(player, spawned);
+                        }
+                        case 3 -> {
+                            Unit spawned = UnitTypes.cleroi.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            spawned.health = 800;
+                            Call.unitControl(player, spawned);
+                        }
+                    }
+                }
+                case 10,11,12,13 -> {
+                    switch (getRandomInt(1,3)) {
+                        case 1 -> {
+                            Unit spawned = UnitTypes.anthicus.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            spawned.health = 1000;
+                            Call.unitControl(player, spawned);
+                        }
+                        case 2 -> {
+                            Unit spawned = UnitTypes.spiroct.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            Call.unitControl(player, spawned);
+                        }
+                    }
+                }
+                case 14,15,16 -> {
+                    switch (getRandomInt(1,3)) {
+                        case 1 -> {
+                            Unit spawned = UnitTypes.precept.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            spawned.health = 3000;
+                            Call.unitControl(player, spawned);
+                        }
+                        case 2 -> {
+                            Unit spawned = UnitTypes.quasar.spawn(Team.crux, redSpawnX, redSpawnY);
+                            spawned.spawnedByCore = true;
+                            Call.unitControl(player, spawned);
+                        }
+                    }
+                }
+                case 17,18,19,20 -> {
+                    Unit spawned = UnitTypes.arkyid.spawn(Team.crux, redSpawnX, redSpawnY);
+                    spawned.spawnedByCore = true;
+                    Call.unitControl(player, spawned);
+                }
+            }
+        }
     }
 
 }
