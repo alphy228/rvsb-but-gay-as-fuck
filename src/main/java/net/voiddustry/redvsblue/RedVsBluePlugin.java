@@ -103,13 +103,6 @@ public class RedVsBluePlugin extends Plugin {
             }
         }), 0, 60);
 
-        Events.on(EventType.UnitChangeEvent.class, event -> {
-            if (event.player.unit() == null) {
-                PlayerData data = players.get(event.player.uuid());
-                data.setTeam(Team.crux);
-            }
-        });
-
         Events.on(EventType.PlayerJoin.class, event -> {
             Player player = event.player;
 
@@ -134,7 +127,7 @@ public class RedVsBluePlugin extends Plugin {
                 playerInBuildMode.put(player.uuid(), false);
             }
             if (!selectedBuildBlock.containsKey(player.uuid())) {
-                selectedBuildBlock.put(player.uuid(), Blocks.scrapWall);
+                selectedBuildBlock.put(player.uuid(), Blocks.titaniumWall);
             }
             if (!timer.containsKey(player)) {
                 timer.put(player, 0);
@@ -235,53 +228,58 @@ public class RedVsBluePlugin extends Plugin {
                 Tile position = Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8));
 
                 String text = "[gray][\uE805]";
-                String textAnnounce = "[gray]";
+                String textAnnounce = Bundle.get("build.not-enough-money", player.locale);
 
-                if (selectedBuildBlock.get(player.uuid()) != Blocks.air) {
-                    if (Objects.equals(position.block().name, "air")) {
+                if (data.getScore() >= 3 ) {
+                    if (selectedBuildBlock.get(player.uuid()) != Blocks.air) {
+                        if (Objects.equals(position.block().name, "air")) {
+                            if (timer.get(player) >= 2) {
+                                text = "[lime][\uE805]";
+                                textAnnounce = String.valueOf(selectedBuildBlock.get(player.uuid()));
+                            } else {
+                                text = "[yellow][\uE805]";
+                                textAnnounce = Bundle.get("build.cooldown", player.locale);
+                            }
+                        } else {
+                            text = "[scarlet][\uE868]";
+                            textAnnounce = "";
+                        }
+                    } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
                         if (timer.get(player) >= 2) {
-                            text = "[lime][\uE805]";
-                            textAnnounce = String.valueOf(selectedBuildBlock.get(player.uuid()));
+                            if (position.build != null) {
+                                if (position.build.team == Team.blue) {
+                                    text = "[lime][\uE805]";
+                                    textAnnounce = Bundle.get("build.destroy-wall", player.locale);
+                                } else {
+                                    text = "[scarlet][\uE868]";
+                                    textAnnounce = "";
+                                }
+                            }
                         } else {
                             text = "[yellow][\uE805]";
                             textAnnounce = Bundle.get("build.cooldown", player.locale);
                         }
-                    } else {
-                        text = "[scarlet][\uE868]";
                     }
-                } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
-                    if (timer.get(player) >= 2) {
-                        if (position.build != null) {
-                            if (position.build.team == Team.blue) {
-                                text = "[lime][\uE805]";
-                                textAnnounce = Bundle.get("build.destroy-wall", player.locale);
-                            } else {
-                                text = "[scarlet][\uE868]";
+
+                    if (player.shooting && timer.get(player) >= 2) {
+                        if (Objects.equals(position.block().name, "air")) {
+                            Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
+                            Call.effect(Reflect.get(Fx.class, "dynamicExplosion"), position.x * 8, position.y * 8, 0.5F, Color.blue);
+                            timer.put(player, 0);
+                            data.setScore(data.getScore() - 3);
+                        } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
+                            if (position.build != null) {
+                                if (position.build.team == Team.blue) {
+                                    Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
+                                    Call.effect(Reflect.get(Fx.class, "heal"), position.x * 8, position.y * 8, 1, Color.blue);
+                                    timer.put(player, 0);
+                                }
                             }
                         }
-                    } else {
-                        text = "[yellow][\uE805]";
-                        textAnnounce = Bundle.get("build.cooldown", player.locale);
                     }
                 }
-
                 Call.label(player.con, text, 0.01F, (float) ((Math.round(player.mouseX / 8)) * 8), (float) ((Math.round(player.mouseY / 8)) * 8));
                 Call.label(player.con, textAnnounce, 0.01F, (float) ((Math.round(player.mouseX / 8)) * 8), (float) (((Math.round(player.mouseY / 8)) * 8) - 5));
-                if (player.shooting && timer.get(player) >= 2) {
-                    if (Objects.equals(position.block().name, "air")) {
-                        Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
-                        Call.effect(Reflect.get(Fx.class, "dynamicExplosion"), position.x * 8, position.y * 8, 0.5F, Color.blue);
-                        timer.put(player, 0);
-                    } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
-                        if (position.build != null) {
-                            if (position.build.team == Team.blue) {
-                                Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
-                                Call.effect(Reflect.get(Fx.class, "heal"), position.x * 8, position.y * 8, 1, Color.blue);
-                                timer.put(player, 0);
-                            }
-                        }
-                    }
-                }
             }
 
             if (playing && player.unit() != data.getUnit() || player.team() != data.getTeam()) {
@@ -333,7 +331,7 @@ public class RedVsBluePlugin extends Plugin {
             if (player.admin) data.addScore(Integer.parseInt(args[0]));
         });
 
-        handler.<Player>register("gameover", "lmao", (args, player) -> {
+        handler.<Player>register("gameover", "Only for admins", (args, player) -> {
             if (player.admin) Events.fire(new EventType.GameOverEvent(Team.crux));
         });
     }

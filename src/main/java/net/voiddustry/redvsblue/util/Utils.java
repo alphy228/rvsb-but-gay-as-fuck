@@ -16,8 +16,10 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Random;
 
+import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
 import static net.voiddustry.redvsblue.RedVsBluePlugin.selectedBuildBlock;
 import net.voiddustry.redvsblue.Bundle;
+import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
 
 public class Utils {
@@ -90,7 +92,15 @@ public class Utils {
                 case 4 -> selectedBuildBlock.put(player.uuid(), Blocks.mender);
                 case 5 -> selectedBuildBlock.put(player.uuid(), Blocks.battery);
 
-                case 6 -> player.unit().addItem(Items.coal, 5);
+                case 6 -> {
+                    PlayerData data = players.get(player.uuid());
+                    if (data.getScore() < 3) {
+                        player.sendMessage(Bundle.get("build.not-enough-money", player.locale));
+                    } else {
+                        player.unit().addItem(Items.coal, 5);
+                        data.setScore(data.getScore() - 3);
+                    }
+                }
                 case 7 -> selectedBuildBlock.put(player.uuid(), Blocks.air);
             }
         });
