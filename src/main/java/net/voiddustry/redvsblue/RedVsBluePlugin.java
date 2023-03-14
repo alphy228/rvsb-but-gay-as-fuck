@@ -124,7 +124,7 @@ public class RedVsBluePlugin extends Plugin {
             } else {
                 players.put(player.uuid(), new PlayerData(player));
                 PlayerData data = players.get(player.uuid());
-                Unit unit = UnitTypes.nova.spawn(Team.blue, blueSpawnX, blueSpawnY);
+                Unit unit = getStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
 
                 data.setUnit(unit);
                 player.unit(unit);
@@ -229,7 +229,7 @@ public class RedVsBluePlugin extends Plugin {
                     player.team(Team.blue);
                     players.put(player.uuid(), new PlayerData(player));
 
-                    Unit unit = UnitTypes.nova.spawn(Team.blue, blueSpawnX, blueSpawnY);
+                    Unit unit = getStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
                     PlayerData data = players.get(player.uuid());
                     data.setUnit(unit);
                 }

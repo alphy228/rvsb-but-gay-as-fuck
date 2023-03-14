@@ -9,6 +9,7 @@ import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import mindustry.gen.Unit;
+import mindustry.type.UnitType;
 import mindustry.ui.Menus;
 
 import java.awt.*;
@@ -133,6 +134,24 @@ public class Utils {
             Locale locale = Bundle.findLocale(p.locale());
             p.sendMessage(Bundle.get(key, locale));
         });
+    }
+
+    public static UnitType getStartingUnit() {
+        switch (getRandomInt(1,10)) {
+            case 1, 2, 3, 4 -> {
+                return UnitTypes.nova;
+            }
+            case 5,6,7 -> {
+                return UnitTypes.merui;
+            }
+            case 8,9 -> {
+                return UnitTypes.flare;
+            }
+            case 10 -> {
+                return UnitTypes.mono;
+            }
+        }
+        return null;
     }
 
     public static void spawnUnitForCrux(Player player) { // TODO: Переписать
