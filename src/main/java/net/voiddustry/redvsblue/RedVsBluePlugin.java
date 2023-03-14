@@ -143,13 +143,9 @@ public class RedVsBluePlugin extends Plugin {
            sendPlayerJoinMessage(player.plainName());
         });
 
-        Events.on(EventType.PlayerLeave.class, event -> {
-            sendPlayerLeaveMessage(event.player.plainName());
-        });
+        Events.on(EventType.PlayerLeave.class, event -> sendPlayerLeaveMessage(event.player.plainName()));
 
-        Events.on(EventType.PlayerChatEvent.class, event -> {
-            sendPlayerChatMessage(event.message, event.player.plainName());
-        });
+        Events.on(EventType.PlayerChatEvent.class, event -> sendPlayerChatMessage(event.message, event.player.plainName()));
 
         Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
@@ -160,14 +156,16 @@ public class RedVsBluePlugin extends Plugin {
                         sendPlayerKillMessage(killer.getPlayer().plainName(), event.unit.getPlayer().plainName());
                     }
                 }
+            }
+        });
 
-                if (event.unit.isPlayer()) {
-                    if (event.unit.team() == Team.blue) {
-                        event.unit.getPlayer().team(Team.crux);
-                        PlayerData data = players.get(event.unit.getPlayer().uuid());
-                        data.setTeam(Team.crux);
-                        data.setScore(0);
-                    }
+        Events.on(EventType.UnitDestroyEvent.class, event -> {
+            if (event.unit.isPlayer()) {
+                if (event.unit.team() == Team.blue) {
+                    event.unit.getPlayer().team(Team.crux);
+                    PlayerData data = players.get(event.unit.getPlayer().uuid());
+                    data.setTeam(Team.crux);
+                    data.setScore(0);
                 }
             }
             gameOverCheck();
@@ -182,9 +180,7 @@ public class RedVsBluePlugin extends Plugin {
             }
         });
 
-        Events.on(EventType.GameOverEvent.class, event -> {
-            sendGameOverMessage();
-        });
+        Events.on(EventType.GameOverEvent.class, event -> sendGameOverMessage());
 
         Events.on(EventType.WorldLoadEvent.class, event -> Timer.schedule(() -> {
             Call.soundAt(Sounds.getSound(26), 100, 100, 100, 5);
