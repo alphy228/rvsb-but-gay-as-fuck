@@ -41,10 +41,11 @@ public class WebhookUtils {
 
     public static void sendReport(String reportedName, Player player, String[] text) {
         String webhookUrl = Config.getDiscordReportsUrl();
+        String pingRoleID = Config.getDiscordReportsRoleID();
         if (webhookUrl.equals("")) return;
 
         Webhook webhook = new Webhook(webhookUrl);
-        webhook.setContent("@everyone");
+        webhook.setContent("<@&" + pingRoleID + ">");
         webhook.addEmbed(new Embed()
                 .setTitle("Report on " + reportedName)
                 .setDescription("Text: " + text[1] + "\n\nReport by " + player.plainName() + "\nuuid: " + player.uuid())

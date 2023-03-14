@@ -14,6 +14,8 @@ public class Config {
     private static String discordBansUrl = "";
     @Getter
     private static String discordReportsUrl = "";
+    @Getter
+    private static String discordReportsRoleID = "";
 
     static {
         Json json = new Json();
@@ -25,6 +27,7 @@ public class Config {
             Config.discordUrl = json.readValue("discordUrl", String.class, jsonValue);
             Config.discordBansUrl = json.readValue("discordBansUrl", String.class, jsonValue);
             Config.discordReportsUrl = json.readValue("discordReportsUrl", String.class, jsonValue);
+            Config.discordReportsRoleID = json.readValue("discordReportsRoleID", String.class, jsonValue);
         }
     }
 
