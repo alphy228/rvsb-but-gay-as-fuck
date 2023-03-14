@@ -225,7 +225,7 @@ public class RedVsBluePlugin extends Plugin {
             Unit unit = player.unit();
             PlayerData data = players.get(player.uuid());
 
-            Groups.unit.each(u -> Call.label(player.con, "[scarlet]+", 0.01F, u.x, u.y));
+            Call.label(player.con, "[scarlet]+", 0.01F, player.x, player.y);
 
             Call.setHudText(player.con(), Bundle.format("game.hud", Bundle.findLocale(player.locale()), Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), stage));
 
