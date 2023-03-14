@@ -91,9 +91,6 @@ public class RedVsBluePlugin extends Plugin {
             if (unit.naval) {
                 unit.flying = true;
             }
-            if (unit.canBoost) {
-                unit.canBoost = false;
-            }
         }
 
         Timer.schedule(() -> timer.replaceAll((player, time) -> time = time + 1), 0, 1);
