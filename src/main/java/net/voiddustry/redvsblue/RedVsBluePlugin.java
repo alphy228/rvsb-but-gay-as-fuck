@@ -159,6 +159,8 @@ public class RedVsBluePlugin extends Plugin {
             }
         });
 
+        Events.on(EventType.PlayerBanEvent.class, event -> sendPlayerBanMessage(event.player));
+
         Events.on(EventType.UnitDestroyEvent.class, event -> {
             if (event.unit.isPlayer()) {
                 if (event.unit.team() == Team.blue) {
@@ -292,6 +294,12 @@ public class RedVsBluePlugin extends Plugin {
 
     @Override
     public void registerClientCommands(CommandHandler handler) {
+        handler.<Player>register("report", "<player> <reason...>","[white]<player-name> <text> [gray]- Report player to discord server. For false report you will get ban.", ((args, player) -> {
+            if (Objects.equals(args[0], " ")) return;
+            sendReport(args[0], player, args);
+            player.sendMessage(Bundle.get("report.reportSend", player.locale));
+        }));
+
         handler.<Player>register("b", "Open block select menu", ((args, player) -> Utils.openBlockSelectMenu(player)));
 
         handler.<Player>register("build", "", "Toggle build mode", ((args, player) -> {
