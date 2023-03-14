@@ -80,7 +80,7 @@ public class WebhookUtils {
     }
 
     public static void sendGameStartMessage() {
-        send("New game has been started on map" + Vars.state.map.name() + " with " + playerCount() + " players", Color.WHITE, "");
+        send("New game has been started on map " + Vars.state.map.name() + " with " + playerCount() + " players", Color.WHITE, "");
     }
 
     public static void sendGameWinMessage() {

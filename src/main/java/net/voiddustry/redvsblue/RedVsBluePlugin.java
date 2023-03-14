@@ -1,11 +1,8 @@
 package net.voiddustry.redvsblue;
 
-import arc.Core;
 import arc.Events;
 import arc.graphics.Color;
-import arc.math.geom.Geometry;
 import arc.util.CommandHandler;
-import arc.util.Log;
 import arc.util.Reflect;
 import arc.util.Timer;
 import mindustry.Vars;
@@ -70,9 +67,11 @@ public class RedVsBluePlugin extends Plugin {
             Unit unit = evolutionOption.unitType.spawn(Team.blue, player.x(), player.y());
 
             if (!unit.dead()) {
+                Unit oldUnit = playerData.getUnit();
                 playerData.setUnit(unit);
+
                 player.unit(unit);
-                unit.spawnedByCore(true);
+                oldUnit.kill();
 
                 playerData.subtractScore(evolutionOption.cost);
                 playerData.setEvolutionStage(evolutionOption.tier);
@@ -85,6 +84,7 @@ public class RedVsBluePlugin extends Plugin {
     @Override
     public void init() {
         sendServerStartMessage();
+        initStats();
 
         for (UnitType unit : Vars.content.units()) {
             if (unit == UnitTypes.crawler) {
@@ -128,8 +128,6 @@ public class RedVsBluePlugin extends Plugin {
 
                 data.setUnit(unit);
                 player.unit(unit);
-
-                unit.spawnedByCore(true);
             }
             if (!playerInBuildMode.containsKey(player.uuid())) {
                 playerInBuildMode.put(player.uuid(), false);
@@ -141,7 +139,7 @@ public class RedVsBluePlugin extends Plugin {
                 timer.put(player, 0);
             }
 
-            if (player.team() == Team.crux) {
+            if (playing && player.team() == Team.crux) {
                 spawnUnitForCrux(event.player);
             }
 
@@ -173,17 +171,11 @@ public class RedVsBluePlugin extends Plugin {
                     PlayerData data = players.get(event.unit.getPlayer().uuid());
                     data.setTeam(Team.crux);
                     data.setScore(0);
-                } else if (event.unit.getPlayer().team() == Team.crux) {
+                } else if (playing && event.unit.getPlayer().team() == Team.crux) {
                     spawnUnitForCrux(event.unit.getPlayer());
                 }
             }
             gameOverCheck();
-        });
-
-        Events.on(EventType.UnitChangeEvent.class, event -> {
-            if (event.player.team() == Team.crux) {
-                spawnUnitForCrux(event.player);
-            }
         });
 
         Events.on(EventType.WaveEvent.class, event -> {
@@ -199,6 +191,8 @@ public class RedVsBluePlugin extends Plugin {
         });
 
         Events.on(EventType.GameOverEvent.class, event -> sendGameOverMessage());
+
+        Events.on(EventType.WorldLoadEvent.class, event -> initRules());
 
         Events.on(EventType.WorldLoadEvent.class, event -> Timer.schedule(() -> {
             Call.soundAt(Sounds.getSound(26), 100, 100, 100, 5);
@@ -232,8 +226,10 @@ public class RedVsBluePlugin extends Plugin {
                     Unit unit = getStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
                     PlayerData data = players.get(player.uuid());
                     data.setUnit(unit);
+
                 }
             });
+
             playing = true;
             sendGameStartMessage();
         }, 1));

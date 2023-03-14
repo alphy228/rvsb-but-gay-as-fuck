@@ -25,9 +25,20 @@ import static net.voiddustry.redvsblue.RedVsBluePlugin.*;
 
 public class Utils {
 
-    public void initRules() {
+    public static void initRules() {
         Vars.state.rules.hideBannedBlocks = true;
         Vars.state.rules.bannedBlocks.addAll();
+    }
+
+    public static void initStats() {
+        // Health
+
+        UnitTypes.stell.health = 1200;
+        UnitTypes.mono.health = 1000;
+
+        // Damage
+
+        // UnitTypes.stell.weapons.each(w -> w.name.equals("stell-weapon"), w -> w.bullet.damage = 65);
     }
 
     public static int getRandomInt(int min, int max) {
@@ -151,7 +162,7 @@ public class Utils {
                 return UnitTypes.mono;
             }
         }
-        return null;
+        return UnitTypes.alpha;
     }
 
     public static void spawnUnitForCrux(Player player) { // TODO: Переписать
