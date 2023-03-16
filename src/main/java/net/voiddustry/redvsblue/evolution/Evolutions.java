@@ -17,7 +17,7 @@ public class Evolutions {
         "risso", Evolution.RISSO,
         "poly", Evolution.POLY,
 
-        "stell", Evolution.STELL,
+        "mace", Evolution.MACE,
         "quasar", Evolution.QUASAR,
         "cleroi", Evolution.CLEROI,
         "zenith", Evolution.ZENITH,
@@ -48,7 +48,7 @@ public class Evolutions {
         "quad", Evolution.QUAD,
 
         "vanquish", Evolution.VANQUISH,
-        "anthicus", Evolution.ANTHICUS,
+        "nuke boy", Evolution.ANTHICUS,
         "collaris", Evolution.COLLARIS,
         "antumbra", Evolution.ANTUMBRA,
         "obviate", Evolution.OBVIATE,

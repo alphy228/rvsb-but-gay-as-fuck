@@ -4,18 +4,18 @@ import mindustry.content.UnitTypes;
 import mindustry.type.UnitType;
 
 public enum Evolution {
-    NOVA(UnitTypes.nova, 1, 3, new String[] { "dagger", "pulsar", "atrax", "risso","poly" }),
-    MERUI(UnitTypes.merui, 1, 5, new String[] { "dagger", "pulsar", "atrax", "risso", "poly" }),
-    FLARE(UnitTypes.flare, 1, 10, new String[] { "dagger", "pulsar", "atrax", "risso", "poly" }),
-    MONO(UnitTypes.mono, 1, 8, new String[] { "dagger", "pulsar", "atrax", "risso", "poly" }),
+    NOVA(UnitTypes.nova, 1, 3, new String[] { "nova", "merui", "flare", "dagger", "pulsar", "atrax", "risso","poly" }),
+    MERUI(UnitTypes.merui, 1, 5, new String[] { "nova", "merui", "flare", "dagger", "pulsar", "atrax", "risso", "poly" }),
+    FLARE(UnitTypes.flare, 1, 10, new String[] { "nova", "merui", "flare", "dagger", "pulsar", "atrax", "risso", "poly" }),
+    MONO(UnitTypes.mono, 1, 8, new String[] { "nova", "merui", "flare", "dagger", "pulsar", "atrax", "risso", "poly" }),
 
-    DAGGER(UnitTypes.dagger, 2, 5, new String[] { "stell" }),
+    DAGGER(UnitTypes.dagger, 2, 5, new String[] { "mace" }),
     PULSAR(UnitTypes.pulsar, 2, 30, new String[] { "quasar" }),
     ATRAX(UnitTypes.atrax, 2, 30, new String[] { "cleroi" }),
     RISSO(UnitTypes.risso, 2, 50, new String[] { "zenith" }),
     POLY(UnitTypes.poly, 2, 40, new String[] { "retusa" }),
 
-    STELL(UnitTypes.stell, 3, 40, new String[] { "fortress" }),
+    MACE(UnitTypes.mace, 3, 30, new String[] { "fortress" }),
     QUASAR(UnitTypes.quasar, 3, 50, new String[] { "vela" }),
     CLEROI(UnitTypes.cleroi, 3, 30, new String[] { "spiroct" }),
     ZENITH(UnitTypes.zenith, 3, 100, new String[] { "minke" }),
@@ -41,7 +41,7 @@ public enum Evolution {
 
     SCEPTER(UnitTypes.scepter, 7, 80, new String[] { "vanquish" }),
     NAVANAX(UnitTypes.navanax, 7, 500, new String[] {}),
-    TOXOPID(UnitTypes.toxopid, 7, 350, new String[] { "anthicus", "collaris" }),
+    TOXOPID(UnitTypes.toxopid, 7, 350, new String[] { "nuke boy", "collaris" }),
     BRYDE(UnitTypes.bryde, 7, 200, new String[] { "antumbra", "obviate" }),
     QUAD(UnitTypes.quad, 7, 200, new String[] { "oct" }),
 
