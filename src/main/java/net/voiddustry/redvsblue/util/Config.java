@@ -8,6 +8,7 @@ import lombok.Getter;
 import mindustry.Vars;
 
 public class Config {
+
     @Getter
     private static String discordUrl = "";
     @Getter

@@ -1,9 +1,9 @@
 package net.voiddustry.redvsblue;
 
+import arc.Core;
 import arc.Events;
 import arc.graphics.Color;
-import arc.util.CommandHandler;
-import arc.util.Reflect;
+import arc.util.*;
 import arc.util.Timer;
 import mindustry.Vars;
 import mindustry.ai.Pathfinder;
@@ -20,6 +20,7 @@ import mindustry.world.Block;
 import mindustry.world.Tile;
 
 import net.voiddustry.redvsblue.ai.AirAI;
+import net.voiddustry.redvsblue.util.UnitsConfig;
 import net.voiddustry.redvsblue.util.Utils;
 import net.voiddustry.redvsblue.ai.BluePlayerTarget;
 import net.voiddustry.redvsblue.ai.StalkerGroundAI;
@@ -91,6 +92,7 @@ public class RedVsBluePlugin extends Plugin {
                 unit.aiController = StalkerSuicideAI::new;
             }
             if (!unit.flying) {
+                unit.physics = false;
                 unit.aiController = StalkerGroundAI::new;
             }
             if (unit.flying) {
@@ -148,13 +150,23 @@ public class RedVsBluePlugin extends Plugin {
 
         Events.on(EventType.PlayerLeave.class, event -> sendPlayerLeaveMessage(event.player.plainName()));
 
-        Events.on(EventType.PlayerChatEvent.class, event -> sendPlayerChatMessage(event.message, event.player.plainName()));
+        Events.on(EventType.PlayerChatEvent.class, event -> {
+            sendPlayerChatMessage(event.message, event.player.plainName());
+            if (Utils.voting) {
+                if (Strings.canParseInt(event.message)) {
+
+                }
+            }
+        });
 
         Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
                 if (killer.isPlayer()) {
-                    players.get(killer.getPlayer().uuid()).addScore(killer.team() == Team.blue ? 2 : 1);
-                    Call.label(killer.getPlayer().con, killer.team() == Team.blue ? "[lime]+2" : "[lime]+1", 2, event.unit.x, event.unit.y);
+                    PlayerData data = players.get(killer.getPlayer().uuid());
+                    players.get(killer.getPlayer().uuid()).addScore(killer.team() == Team.blue ? data.getLevel() : 1);
+                    Call.label(killer.getPlayer().con, killer.team() == Team.blue ? "[lime]+" + data.getLevel() : "[lime]+1", 2, event.unit.x, event.unit.y);
+                    data.addExp(1);
+                    processLevel(killer.getPlayer(), data);
                     if (event.unit.isPlayer()) {
                         sendPlayerKillMessage(killer.getPlayer().plainName(), event.unit.getPlayer().plainName());
                     }
@@ -192,10 +204,17 @@ public class RedVsBluePlugin extends Plugin {
 
         Events.on(EventType.GameOverEvent.class, event -> sendGameOverMessage());
 
-        Events.on(EventType.WorldLoadEvent.class, event -> initRules());
+        Events.on(EventType.WorldLoadEvent.class, event -> {
+            initRules();
+            Groups.player.each(p -> {
+                PlayerData data = players.get(p.uuid());
+                data.setUnit(null);
+                data.setExp(0);
+                data.setLevel(1);
+            });
+        });
 
         Events.on(EventType.WorldLoadEvent.class, event -> Timer.schedule(() -> {
-            Call.soundAt(Sounds.getSound(26), 100, 100, 100, 5);
             String mapname = Vars.state.map.file.file().getName();
             Vars.state.rules.canGameOver = false;
             Vars.state.rules.unitCap = 32;
@@ -232,16 +251,25 @@ public class RedVsBluePlugin extends Plugin {
 
             playing = true;
             sendGameStartMessage();
-        }, 1));
+            initRules();
+
+            Call.setRules(Vars.state.rules);
+        }, 5));
 
         Events.run(EventType.Trigger.update, () -> Groups.player.each(player -> {
 
             Unit unit = player.unit();
             PlayerData data = players.get(player.uuid());
 
+//            Vars.maps.all().each(m -> {
+//                if (m.)
+//            });
+
+            String textHud = "[accent]" + data.getExp() + " / " + data.getMaxExp();
+
             Call.label(player.con, "[scarlet]+", 0.01F, player.x, player.y);
 
-            Call.setHudText(player.con(), Bundle.format("game.hud", Bundle.findLocale(player.locale()), Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), stage));
+            Call.setHudText(player.con(), Bundle.format("game.hud", Bundle.findLocale(player.locale()), Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), stage, data.getLevel(), textHud));
 
             if (playerInBuildMode.get(player.uuid())) {
                 Tile position;
@@ -288,6 +316,7 @@ public class RedVsBluePlugin extends Plugin {
                                 Call.effect(Reflect.get(Fx.class, "dynamicExplosion"), position.x * 8, position.y * 8, 0.5F, Color.blue);
                                 timer.put(player, 0);
                                 data.setScore(data.getScore() - 3);
+                                data.addExp(1);
                             } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
                                 if (position.build != null) {
                                     if (position.build.team == Team.blue) {
@@ -314,6 +343,7 @@ public class RedVsBluePlugin extends Plugin {
             if (playing && !data.getUnit().dead) {
                 player.unit(data.getUnit());
             }
+
 
         }));
 
@@ -366,6 +396,16 @@ public class RedVsBluePlugin extends Plugin {
         });
     }
 
+    @Override
+    public void registerServerCommands(CommandHandler handler) {
+        handler.register("reload", "<config-name>", "Reload config", (args) -> {
+            if (Objects.equals(args[0], "units")) {
+                int multipler = UnitsConfig.getPrices_multipler();
+                Log.info(multipler);
+            }
+        });
+    }
+
     public static void gameOverCheck() {
         if (playerCount(Team.blue) == 0) gameOver(Team.crux);
     }
@@ -374,6 +414,7 @@ public class RedVsBluePlugin extends Plugin {
         if (winner == Team.crux) {
             RedVsBluePlugin.playing = false;
             Events.fire(new EventType.GameOverEvent(Team.crux));
+//            callMapVoting();
         } else if (winner == Team.blue) {
             // TODO:
         }

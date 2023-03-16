@@ -1,6 +1,7 @@
 package net.voiddustry.redvsblue.util;
 
-import arc.util.Timer;
+import arc.util.Log;
+
 import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.content.Items;
@@ -10,25 +11,33 @@ import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import mindustry.gen.Unit;
+
+import mindustry.maps.MapException;
+import mindustry.net.WorldReloader;
 import mindustry.type.UnitType;
 import mindustry.ui.Menus;
-
-import java.awt.*;
-import java.io.IOException;
 import java.util.Locale;
-import java.util.Random;
 
+import mindustry.world.Block;
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
 
+import static mindustry.Vars.*;
 import static net.voiddustry.redvsblue.RedVsBluePlugin.*;
 
 public class Utils {
 
+    public static boolean voting;
+
     public static void initRules() {
-        Vars.state.rules.hideBannedBlocks = true;
-        Vars.state.rules.bannedBlocks.addAll();
+        for ( Block block : Vars.content.blocks()) {
+            state.rules.bannedBlocks.add(block);
+        }
+        state.rules.hideBannedBlocks = true;
+        state.rules.teams.get(Team.malis).blockHealthMultiplier = 999;
+
+        Call.setRules(state.rules);
     }
 
     public static void initStats() {
@@ -39,7 +48,19 @@ public class Utils {
 
         // Damage
 
-        UnitTypes.stell.weapons.each(w -> w.name.equals("stell-weapon"), w -> w.bullet.damage = 65);
+        UnitTypes.anthicus.weapons.each(w -> w.name.equals("anthicus-weapon"), w -> w.bullet.damage = 0);
+    }
+
+    public static void processLevel(Player player, PlayerData data) {
+        if (data.getExp() >= data.getMaxExp()) {
+            int expLimit = data.getExp();
+            int expLimitToSet = expLimit + expLimit/4;
+            Log.info(expLimitToSet);
+            data.setMaxExp(expLimitToSet);
+            data.setExp(0);
+            data.setLevel(data.getLevel() + 1);
+            sendBundled("game.level-up", player.name);
+        }
     }
 
     public static int getRandomInt(int min, int max) {
@@ -149,7 +170,7 @@ public class Utils {
     }
 
     public static UnitType getStartingUnit() {
-        switch (getRandomInt(1,11)) {
+        switch (getRandomInt(1,10)) {
             case 1, 2, 3, 4 -> {
                 return UnitTypes.nova;
             }
@@ -167,7 +188,7 @@ public class Utils {
     }
 
     public static void spawnUnitForCrux(Player player) { // TODO: Переписать
-        Timer.schedule(() -> {
+
             if (player.unit().dead) {
                 switch (RedVsBluePlugin.stage) {
                     case 1, 2 -> { // Stage 1, 2
@@ -282,8 +303,20 @@ public class Utils {
                     }
                 }
             }
-        }, 2);
-
     }
 
+    public static void reloadWorld(Runnable runnable) {
+        try {
+            var reloader = new WorldReloader();
+            reloader.begin();
+
+            runnable.run();
+            state.rules = state.map.applyRules(state.rules.mode());
+            logic.play();
+
+            reloader.end();
+        } catch (MapException e) {
+            Log.err("@: @", e.map.name(), e.getMessage());
+        }
+    }
 }

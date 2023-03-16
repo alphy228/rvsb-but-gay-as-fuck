@@ -12,8 +12,11 @@ public class PlayerData {
     private Unit unit;
     private Team team;
     private int evolutionStage;
+    private int level;
+    private int exp;
+    private int maxExp;
 
-    public PlayerData(String name, String uuid, String ip, Unit unit, Team team, Integer evolutionStage) {
+    public PlayerData(String name, String uuid, String ip, Unit unit, Team team, Integer evolutionStage, Integer level, Integer exp, Integer maxExp) {
         this.name = name;
         this.uuid = uuid;
         this.ip = ip;
@@ -21,10 +24,13 @@ public class PlayerData {
         this.score = 10;
         this.team = team;
         this.evolutionStage = 1;
+        this.level = 1;
+        this.exp = 0;
+        this.maxExp = 20;
     }
 
     public PlayerData(Player player) {
-        this(player.name(), player.uuid(), player.ip(), null, player.team(), 0);
+        this(player.name(), player.uuid(), player.ip(), null, player.team(), 0, 1, 0, 20);
     }
 
     public String getName() {
@@ -77,5 +83,34 @@ public class PlayerData {
 
     public int getEvolutionStage() {
         return evolutionStage;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void addExp(int amount) {
+        this.exp += amount;
+    }
+
+    public void setExp(int amount) {
+        this.exp = amount;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+
+    public int getMaxExp() {
+        return maxExp;
+    }
+
+    public void setMaxExp(int amount) {
+        this.maxExp = amount;
     }
 }
