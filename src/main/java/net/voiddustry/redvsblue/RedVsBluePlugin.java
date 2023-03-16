@@ -358,7 +358,7 @@ public class RedVsBluePlugin extends Plugin {
 
         handler.<Player>register("set-score", "<count>", "set score to your balance. Rich.", (args, player) -> {
             PlayerData data = players.get(player.uuid());
-            if (player.admin) data.addScore(Integer.parseInt(args[0]));
+            if (player.admin) data.setScore(Integer.parseInt(args[0]));
         });
 
         handler.<Player>register("gameover", "Only for admins", (args, player) -> {
