@@ -21,7 +21,7 @@ public class Config {
         Json json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);
         json.setUsePrototypes(false);
-        Fi configFile = Vars.modDirectory.child("RedVsBlue.json");
+        Fi configFile = Vars.modDirectory.child("RedVsBlue/RedVsBlue.json");
         if (configFile.exists()) {
             JsonValue jsonValue = json.fromJson(null, configFile);
             Config.discordUrl = json.readValue("discordUrl", String.class, jsonValue);
