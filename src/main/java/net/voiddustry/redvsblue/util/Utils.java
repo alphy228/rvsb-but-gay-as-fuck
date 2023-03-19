@@ -29,6 +29,7 @@ import static net.voiddustry.redvsblue.RedVsBluePlugin.*;
 public class Utils {
 
     public static boolean voting;
+    public static boolean gameover;
 
     public static void initRules() {
         for ( Block block : Vars.content.blocks()) {

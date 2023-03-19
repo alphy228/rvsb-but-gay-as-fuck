@@ -1,5 +1,6 @@
 package net.voiddustry.redvsblue.util;
 
+import arc.util.Strings;
 import mindustry.Vars;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
@@ -11,6 +12,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 
+import static net.voiddustry.redvsblue.util.Utils.getRandomPlayer;
 import static net.voiddustry.redvsblue.util.Utils.playerCount;
 
 public class WebhookUtils {
@@ -81,7 +83,9 @@ public class WebhookUtils {
     }
 
     public static void sendGameStartMessage() {
-        send("New game has been started on map " + Vars.state.map.name() + " with " + playerCount() + " players", Color.WHITE, "");
+
+        send("New game has been started on map " + Strings.stripColors(Vars.state.map.name()) + " with " + playerCount() + " players", Color.WHITE, "");
+
     }
 
     public static void sendGameWinMessage() {

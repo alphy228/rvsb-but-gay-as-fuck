@@ -1,6 +1,5 @@
 package net.voiddustry.redvsblue;
 
-import arc.Core;
 import arc.Events;
 import arc.graphics.Color;
 import arc.util.*;
@@ -20,6 +19,7 @@ import mindustry.world.Block;
 import mindustry.world.Tile;
 
 import net.voiddustry.redvsblue.ai.AirAI;
+import net.voiddustry.redvsblue.util.MapVote;
 import net.voiddustry.redvsblue.util.UnitsConfig;
 import net.voiddustry.redvsblue.util.Utils;
 import net.voiddustry.redvsblue.ai.BluePlayerTarget;
@@ -30,6 +30,7 @@ import net.voiddustry.redvsblue.evolution.Evolutions;
 
 import java.util.*;
 
+import static net.voiddustry.redvsblue.util.MapVote.callMapVoting;
 import static net.voiddustry.redvsblue.util.Utils.*;
 import static net.voiddustry.redvsblue.util.WebhookUtils.*;
 
@@ -154,7 +155,7 @@ public class RedVsBluePlugin extends Plugin {
             sendPlayerChatMessage(event.message, event.player.plainName());
             if (Utils.voting) {
                 if (Strings.canParseInt(event.message)) {
-
+                    MapVote.registerVote(event.player, Integer.valueOf(event.message));
                 }
             }
         });
@@ -250,6 +251,7 @@ public class RedVsBluePlugin extends Plugin {
             });
 
             playing = true;
+            gameover = false;
             sendGameStartMessage();
             initRules();
 
@@ -260,10 +262,6 @@ public class RedVsBluePlugin extends Plugin {
 
             Unit unit = player.unit();
             PlayerData data = players.get(player.uuid());
-
-//            Vars.maps.all().each(m -> {
-//                if (m.)
-//            });
 
             String textHud = "[accent]" + data.getExp() + " / " + data.getMaxExp();
 
@@ -336,7 +334,8 @@ public class RedVsBluePlugin extends Plugin {
                 }
             }
 
-            if (playing && player.team() != data.getTeam()) {
+            if (playing && data.getUnit().dead) {
+                data.setTeam(Team.crux);
                 player.team(data.getTeam());
             }
 
@@ -407,14 +406,18 @@ public class RedVsBluePlugin extends Plugin {
     }
 
     public static void gameOverCheck() {
-        if (playerCount(Team.blue) == 0) gameOver(Team.crux);
+        if (playerCount(Team.blue) == 0) {
+            gameOver(Team.crux);
+        }
     }
 
     public static void gameOver(Team winner) {
         if (winner == Team.crux) {
             RedVsBluePlugin.playing = false;
-            Events.fire(new EventType.GameOverEvent(Team.crux));
-//            callMapVoting();
+            if (!gameover) {
+                gameover = true;
+                callMapVoting();
+            }
         } else if (winner == Team.blue) {
             // TODO:
         }
