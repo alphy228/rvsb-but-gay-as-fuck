@@ -9,7 +9,7 @@ public enum Evolution {
     NOVA(UnitTypes.nova, 1, 3*multp, new String[] { "pulsar", "merui", "flare", "dagger", "mono" }),
     MERUI(UnitTypes.merui, 1, 5*multp, new String[] { "atrax", "nova", "flare", "dagger", "mono" }),
     FLARE(UnitTypes.flare, 1, 10*multp, new String[] { "risso", "nova", "merui", "dagger", "mono" }),
-    MONO(UnitTypes.mono, 1, 900*multp, new String[] { "poly", "nova", "merui", "dagger", "flare"}),
+    MONO(UnitTypes.mono, 1, 900*multp, new String[] { "poly" }),
 
     DAGGER(UnitTypes.dagger, 2, 3*multp, new String[] { "mace" }),
     PULSAR(UnitTypes.pulsar, 2, 18*multp, new String[] { "quasar" }),
@@ -50,7 +50,7 @@ public enum Evolution {
     VANQUISH(UnitTypes.vanquish, 8, 180*multp, new String[] { "reign", "nuke boy" }),
     ANTHICUS(UnitTypes.anthicus, 8, 694*multp, new String[] { "nova", "flare", "dagger", "mono" }),
     COLLARIS(UnitTypes.collaris, 8, 1170*multp, new String[] { "nuke boy", "nova", "flare", "dagger", "mono" }),
-    ANTUMBRA(UnitTypes.antumbra, 8, 180*multp, new String[] { "sei"}),
+    ANTUMBRA(UnitTypes.antumbra, 8, 180*multp, new String[] { "sei" }),
     OBVIATE(UnitTypes.obviate, 8, 90*multp, new String[] { "quell" }),
     OCT(UnitTypes.oct, 8, 1800*multp, new String[] { "merui", "nova", "flare", "dagger" }),
 

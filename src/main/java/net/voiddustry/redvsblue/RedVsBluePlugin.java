@@ -1,6 +1,7 @@
 package net.voiddustry.redvsblue;
 
 import arc.Events;
+import arc.audio.Sound;
 import arc.graphics.Color;
 import arc.util.*;
 import arc.util.Timer;
@@ -18,6 +19,7 @@ import mindustry.ui.Menus;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 
+import net.voiddustry.redvsblue.admin.Admin;
 import net.voiddustry.redvsblue.ai.AirAI;
 import net.voiddustry.redvsblue.util.MapVote;
 import net.voiddustry.redvsblue.util.UnitsConfig;
@@ -153,9 +155,10 @@ public class RedVsBluePlugin extends Plugin {
 
         Events.on(EventType.PlayerChatEvent.class, event -> {
             sendPlayerChatMessage(event.message, event.player.plainName());
+            Call.sound(Sounds.chatMessage, 2, 2, 1);
             if (Utils.voting) {
                 if (Strings.canParseInt(event.message)) {
-                    MapVote.registerVote(event.player, Integer.valueOf(event.message));
+                    MapVote.registerVote(event.player, Strings.parseInt(event.message));
                 }
             }
         });
@@ -345,8 +348,6 @@ public class RedVsBluePlugin extends Plugin {
 
 
         }));
-
-
     }
 
     @Override
@@ -385,13 +386,25 @@ public class RedVsBluePlugin extends Plugin {
             Call.menu(player.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(player.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
         }));
 
-        handler.<Player>register("set-score", "<count>", "set score to your balance. Rich.", (args, player) -> {
-            PlayerData data = players.get(player.uuid());
-            if (player.admin) data.setScore(Integer.parseInt(args[0]));
+        handler.<Player>register("vote", "<map-number>", "Vote for specific map", (args, player) -> {
+            if (Strings.canParseInt(args[0])) {
+                MapVote.registerVote(player, Integer.valueOf(args[0]));
+            } else {
+                player.sendMessage(Bundle.get("not-a-number", player.locale));
+            }
+        });
+
+        handler.<Player>register("ap", "Open a Admin Panel, only for admins", (args, player) -> {
+            if (player.admin) {
+                Admin.openAdminPanelMenu(player);
+            } else {
+
+            }
+
         });
 
         handler.<Player>register("gameover", "Only for admins", (args, player) -> {
-            if (player.admin) Events.fire(new EventType.GameOverEvent(Team.crux));
+            callMapVoting();
         });
     }
 

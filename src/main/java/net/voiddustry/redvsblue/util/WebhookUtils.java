@@ -92,7 +92,7 @@ public class WebhookUtils {
         send("Blue Reached 102 Wave And Won The Game!!!", Color.BLUE, "");
     }
 
-    // Admin Events
+    // Admin.class Events
 
     public static void sendPlayerBanMessage(Player player) {
         sendBan("Player Banned.\nPlayer name: `" + player.name + "`\n\nPlayer plain name: `" + player.plainName() + "`\n\nPlayer UUID: `" + player.uuid() + "`");

@@ -6,6 +6,7 @@ import arc.util.Timer;
 import mindustry.Vars;
 import mindustry.gen.Call;
 import mindustry.gen.Player;
+import mindustry.gen.Sounds;
 import mindustry.maps.MapException;
 import mindustry.net.WorldReloader;
 
@@ -35,11 +36,10 @@ public class MapVote {
                 int[] mapVotes = getMapVotes();
                 for (int j = 0; j < getMaps().size; j++) {
                     int mapNumber = j + 1;
-                    mapsList.append("\n[lightgray]" + mapNumber + " [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append(maps.get(j).file.name());
+                    mapsList.append("\n[lightgray]" + mapNumber + " [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append(maps.get(j).file.name().replace(".msav", ""));
                 }
 
-                Call.infoPopup("[gray][ [royal]Vote []]\n[gray][ [cyan]Say []<map number> []in [gray]]\n[ chat to vote for map [gray]]\n" + mapsList + "\n\n[gold]Time left: " + Arrays.toString(i), 1, 0, 0, 400, 0, 0);
-
+                Call.infoPopup("[gray][ [royal]Vote []]\n[gray][ [cyan]Say []<map number> []in [gray]]\n[ chat to vote for map [gray]]\n" + mapsList + "\n\n[gold]Time left: " + Arrays.toString(i), 1, 0, 0, 600, 0, 0);
                 i[0]--;
                 if (i[0] == 0) {
                     this.cancel();
@@ -81,7 +81,7 @@ public class MapVote {
                 playersVotesMap.put(player.uuid(), voteNumber-1);
             }
         } else {
-            // player sendMessage you alredy voted!
+
         }
     }
 

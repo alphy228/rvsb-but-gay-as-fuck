@@ -36,7 +36,6 @@ public class Utils {
             state.rules.bannedBlocks.add(block);
         }
         state.rules.hideBannedBlocks = true;
-        state.rules.teams.get(Team.malis).blockHealthMultiplier = 999;
 
         Call.setRules(state.rules);
     }
@@ -171,7 +170,7 @@ public class Utils {
     }
 
     public static UnitType getStartingUnit() {
-        switch (getRandomInt(1,10)) {
+        switch (getRandomInt(1,11)) {
             case 1, 2, 3, 4 -> {
                 return UnitTypes.nova;
             }
