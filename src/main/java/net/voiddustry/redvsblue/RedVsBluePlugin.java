@@ -21,6 +21,8 @@ import mindustry.world.Tile;
 
 import net.voiddustry.redvsblue.admin.Admin;
 import net.voiddustry.redvsblue.ai.AirAI;
+import net.voiddustry.redvsblue.game.Miner;
+import net.voiddustry.redvsblue.game.MinerData;
 import net.voiddustry.redvsblue.util.MapVote;
 import net.voiddustry.redvsblue.util.UnitsConfig;
 import net.voiddustry.redvsblue.util.Utils;
@@ -89,7 +91,8 @@ public class RedVsBluePlugin extends Plugin {
     public void init() {
         sendServerStartMessage();
         initStats();
-
+        Miner.initTimer();
+//        Vars.state.rules.ambientLight = new Color();Call.setRules(Vars.state.rules);
         for (UnitType unit : Vars.content.units()) {
             if (unit == UnitTypes.crawler) {
                 unit.aiController = StalkerSuicideAI::new;
@@ -209,6 +212,7 @@ public class RedVsBluePlugin extends Plugin {
         Events.on(EventType.GameOverEvent.class, event -> sendGameOverMessage());
 
         Events.on(EventType.WorldLoadEvent.class, event -> {
+            Miner.clearMiners();
             initRules();
             Groups.player.each(p -> {
                 PlayerData data = players.get(p.uuid());
@@ -280,7 +284,7 @@ public class RedVsBluePlugin extends Plugin {
                     String text = "[gray][\uE805]";
                     String textAnnounce = Bundle.get("build.not-enough-money", player.locale);
 
-                    if (data.getScore() >= 3 ) {
+                    if (data.getScore() >= 2) {
                         if (selectedBuildBlock.get(player.uuid()) != Blocks.air) {
                             if (Objects.equals(position.block().name, "air")) {
                                 if (timer.get(player) >= 2) {
@@ -316,7 +320,7 @@ public class RedVsBluePlugin extends Plugin {
                                 Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
                                 Call.effect(Reflect.get(Fx.class, "dynamicExplosion"), position.x * 8, position.y * 8, 0.5F, Color.blue);
                                 timer.put(player, 0);
-                                data.setScore(data.getScore() - 3);
+                                data.setScore(data.getScore() - 2);
                                 data.addExp(1);
                             } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
                                 if (position.build != null) {
@@ -386,7 +390,7 @@ public class RedVsBluePlugin extends Plugin {
             Call.menu(player.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(player.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
         }));
 
-        handler.<Player>register("vote", "<map-number>", "Vote for specific map", (args, player) -> {
+        handler.<Player>register("vote-map", "<map-number>", "Vote for specific map", (args, player) -> {
             if (Strings.canParseInt(args[0])) {
                 MapVote.registerVote(player, Integer.valueOf(args[0]));
             } else {
@@ -403,8 +407,10 @@ public class RedVsBluePlugin extends Plugin {
 
         });
 
-        handler.<Player>register("gameover", "Only for admins", (args, player) -> {
-            callMapVoting();
+        handler.<Player>register("gameover", "Only for admins", (args, player) -> callMapVoting());
+
+        handler.<Player>register("c", "Buy a miner!", (args, player) -> {
+            Miner.buyMiner(player);
         });
     }
 
