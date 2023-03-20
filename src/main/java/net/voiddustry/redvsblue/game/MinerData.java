@@ -1,8 +1,6 @@
 package net.voiddustry.redvsblue.game;
 
-import mindustry.game.Team;
 import mindustry.gen.Player;
-import mindustry.gen.Unit;
 import mindustry.world.Tile;
 
 public class MinerData {
@@ -22,7 +20,7 @@ public class MinerData {
     }
 
     public MinerData(Player owner, Tile tileOn) {
-        this(owner, tileOn, 0, 5, 1);
+        this(owner, tileOn, 0, 15, 1);
     }
 
     public Player getOwner() {
