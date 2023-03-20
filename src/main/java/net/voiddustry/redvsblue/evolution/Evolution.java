@@ -9,7 +9,7 @@ public enum Evolution {
     NOVA(UnitTypes.nova, 1, 3*multp, new String[] { "pulsar", "merui", "flare", "dagger", "mono" }),
     MERUI(UnitTypes.merui, 1, 5*multp, new String[] { "atrax", "nova", "flare", "dagger", "mono" }),
     FLARE(UnitTypes.flare, 1, 10*multp, new String[] { "risso", "nova", "merui", "dagger", "mono" }),
-    MONO(UnitTypes.mono, 1, 900*multp, new String[] { "poly" }),
+    MONO(UnitTypes.mono, 1, 900*multp, new String[] { "poly", "nova", "merui", "dagger" }),
 
     DAGGER(UnitTypes.dagger, 2, 3*multp, new String[] { "mace" }),
     PULSAR(UnitTypes.pulsar, 2, 18*multp, new String[] { "quasar" }),
@@ -31,7 +31,7 @@ public enum Evolution {
 
     LOCUS(UnitTypes.locus, 5, 27*multp, new String[] { "precept", "nuke boy" }),
     CORVUS(UnitTypes.corvus, 5, 360*multp, new String[] { "aegires", "nuke boy" }),
-    TECTA(UnitTypes.tecta, 5, 126*multp, new String[] { "arkyid", "nuke boy" }),
+    TECTA(UnitTypes.tecta, 5, 186*multp, new String[] { "arkyid", "nuke boy" }),
     ELUDE(UnitTypes.elude, 5, 18*multp, new String[] { "avert" }),
     MEGA(UnitTypes.mega, 5, 135*multp, new String[] { "cyerce" }),
 
