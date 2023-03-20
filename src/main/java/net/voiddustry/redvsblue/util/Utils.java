@@ -1,24 +1,29 @@
 package net.voiddustry.redvsblue.util;
 
+import arc.graphics.Color;
+import arc.math.Mathf;
+import arc.math.Rand;
 import arc.util.Log;
 
+import arc.util.Timer;
 import mindustry.Vars;
 import mindustry.content.Blocks;
+import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.UnitTypes;
 import mindustry.game.Team;
-import mindustry.gen.Call;
-import mindustry.gen.Groups;
-import mindustry.gen.Player;
-import mindustry.gen.Unit;
+import mindustry.gen.*;
 
+import mindustry.logic.LExecutor;
 import mindustry.maps.MapException;
 import mindustry.net.WorldReloader;
 import mindustry.type.UnitType;
 import mindustry.ui.Menus;
 import java.util.Locale;
+import java.util.Random;
 
 import mindustry.world.Block;
+import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
@@ -30,6 +35,8 @@ public class Utils {
 
     public static boolean voting;
     public static boolean gameover;
+    public static boolean hardcore;
+    public static int money_per_min = 2;
 
     public static void initRules() {
         for ( Block block : Vars.content.blocks()) {
@@ -37,25 +44,30 @@ public class Utils {
         }
         state.rules.hideBannedBlocks = true;
 
+        state.rules.teams.get(Team.malis).blockHealthMultiplier = 2;
+
         Call.setRules(state.rules);
     }
 
     public static void initStats() {
         // Health
 
-        UnitTypes.stell.health = 1200;
+        UnitTypes.stell.health = 400;
         UnitTypes.mono.health = 1000;
 
         // Damage
 
-        UnitTypes.anthicus.weapons.each(w -> w.name.equals("anthicus-weapon"), w -> w.bullet.damage = 0);
+//        UnitTypes.anthicus.weapons.each(w -> w.name.equals("anthicus-weapon"), w -> w.bullet.damage = 0);
+
+        // Blocks
+
+        Blocks.combustionGenerator.health = 320;
     }
 
     public static void processLevel(Player player, PlayerData data) {
         if (data.getExp() >= data.getMaxExp()) {
             int expLimit = data.getExp();
             int expLimitToSet = expLimit + expLimit/4;
-            Log.info(expLimitToSet);
             data.setMaxExp(expLimitToSet);
             data.setExp(0);
             data.setLevel(data.getLevel() + 1);
@@ -113,21 +125,21 @@ public class Utils {
     public static void openBlockSelectMenu(Player player) {
         int menu = Menus.registerMenu((playerInMenu, option) -> {
             switch (option) {
-                case 0 -> selectedBuildBlock.put(player.uuid(), Blocks.titaniumWall);
+                case 0 -> selectedBuildBlock.put(player.uuid(), Blocks.thoriumWall);
                 case 1 -> selectedBuildBlock.put(player.uuid(), Blocks.door);
                 case 2 -> selectedBuildBlock.put(player.uuid(), Blocks.powerNode);
 
-                case 3 -> selectedBuildBlock.put(player.uuid(), Blocks.combustionGenerator);
+                case 3 -> selectedBuildBlock.put(player.uuid(), Blocks.repairPoint);
                 case 4 -> selectedBuildBlock.put(player.uuid(), Blocks.mender);
                 case 5 -> selectedBuildBlock.put(player.uuid(), Blocks.battery);
 
                 case 6 -> {
                     PlayerData data = players.get(player.uuid());
-                    if (data.getScore() < 3) {
+                    if (data.getScore() < 2) {
                         player.sendMessage(Bundle.get("build.not-enough-money", player.locale));
                     } else {
-                        player.unit().addItem(Items.coal, 5);
-                        data.setScore(data.getScore() - 3);
+                        player.unit().addItem(Items.coal, 10);
+                        data.setScore(data.getScore() - 2);
                     }
                 }
                 case 7 -> selectedBuildBlock.put(player.uuid(), Blocks.air);
@@ -135,12 +147,12 @@ public class Utils {
         });
         String[][] buttonsRow = {
                 {
-                        "\uF8AC", // titanium-wall
+                        "\uF8A8", // thorium-wall
                         "\uF8A2", // door
                         "\uF87E", // power-node
                 },
                 {
-                        "\uF879", // combustionGenerator
+                        "\uF848", // repair-point
                         "\uF89B", // mender
                         "\uF87B" // battery
                 },
@@ -187,6 +199,43 @@ public class Utils {
         return UnitTypes.alpha;
     }
 
+    private static Tile randomTile() {
+        int x = Mathf.random(0, Vars.world.width() - 1);
+        int y = Mathf.random(0, Vars.world.height() - 1);
+        Tile tile = Vars.world.tile(x, y);
+        if (tile == null || tile.build != null || !tile.block().isAir() || tile.floor().isLiquid) {
+            return randomTile();
+        }
+        return tile;
+    }
+
+    public static void enableHardCore() {
+        hardcore = true;
+        Vars.state.rules.ambientLight.set(0.2F, 0F, 0F, 0.95F);
+        Vars.state.rules.waveSpacing = 1200;
+        money_per_min = 6;
+
+        final int[] i = {0};
+        Call.setRules(Vars.state.rules);
+
+        Call.announce("[scarlet]HARDCORE mode has been enabled.");
+
+        Timer.Task sounds = new Timer.Task() {
+            @Override
+            public void run() {
+                i[0]++;
+                Call.sound(Sounds.explosionbig, 20, 1, 1);
+                Call.effect(Fx.dynamicExplosion, randomTile().x*8, randomTile().y*8, 7, Color.red);
+                if (i[0] >= 7) {
+                    this.cancel();
+                }
+            }
+        };
+
+        Timer.schedule(sounds, 0, 0.3F);
+
+    }
+
     public static void spawnUnitForCrux(Player player) { // TODO: Переписать
 
             if (player.unit().dead) {
@@ -195,6 +244,7 @@ public class Utils {
                         switch (getRandomInt(1, 3)) {
                             case 1 -> {
                                 Unit spawned = UnitTypes.crawler.spawn(Team.crux, redSpawnX, redSpawnY);
+
                                 Call.unitControl(player, spawned);
                                 spawned.spawnedByCore = true;
                             }
@@ -305,18 +355,4 @@ public class Utils {
             }
     }
 
-    public static void reloadWorld(Runnable runnable) {
-        try {
-            var reloader = new WorldReloader();
-            reloader.begin();
-
-            runnable.run();
-            state.rules = state.map.applyRules(state.rules.mode());
-            logic.play();
-
-            reloader.end();
-        } catch (MapException e) {
-            Log.err("@: @", e.map.name(), e.getMessage());
-        }
-    }
 }
