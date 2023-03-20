@@ -35,7 +35,7 @@ public class RepairPoint {
                         String text = pointData.getOwner().name + "[gold]'s\n[cyan]Repair Point";
                         Call.label(text, 1, centerX*8, centerY*8);
                     } else {
-                        Call.effect(Fx.greenCloud, centerX + (x * 3) * 8, centerY + (y * 3) * 8, 0, Color.red);
+                        Call.effect(Fx.healWaveDynamic, centerX + (x * 3) * 8, centerY + (y * 3) * 8, 1, Color.red);
                     }
                 }
             }
