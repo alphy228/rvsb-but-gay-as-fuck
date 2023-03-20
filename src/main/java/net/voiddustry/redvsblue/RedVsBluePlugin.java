@@ -23,6 +23,7 @@ import net.voiddustry.redvsblue.admin.Admin;
 import net.voiddustry.redvsblue.ai.AirAI;
 import net.voiddustry.redvsblue.game.Miner;
 import net.voiddustry.redvsblue.game.MinerData;
+import net.voiddustry.redvsblue.game.RepairPoint;
 import net.voiddustry.redvsblue.util.MapVote;
 import net.voiddustry.redvsblue.util.UnitsConfig;
 import net.voiddustry.redvsblue.util.Utils;
@@ -92,6 +93,7 @@ public class RedVsBluePlugin extends Plugin {
         sendServerStartMessage();
         initStats();
         Miner.initTimer();
+        RepairPoint.initTimer();
 //        Vars.state.rules.ambientLight = new Color();Call.setRules(Vars.state.rules);
         for (UnitType unit : Vars.content.units()) {
             if (unit == UnitTypes.crawler) {
@@ -107,14 +109,16 @@ public class RedVsBluePlugin extends Plugin {
             if (unit.naval) {
                 unit.flying = true;
             }
+
+
         }
 
         Timer.schedule(() -> timer.replaceAll((player, time) -> time = time + 1), 0, 1);
 
         Timer.schedule(() -> Groups.player.each(p -> {
             if (p.team() == Team.blue) {
-                players.get(p.uuid()).setScore(players.get(p.uuid()).getScore() + 2);
-                p.sendMessage(Bundle.get("game.salary", p.locale));
+                players.get(p.uuid()).setScore(players.get(p.uuid()).getScore() + money_per_min);
+                p.sendMessage(Bundle.format("game.salary", Bundle.findLocale(p.locale), money_per_min));
 
             }
         }), 0, 60);
@@ -141,7 +145,7 @@ public class RedVsBluePlugin extends Plugin {
                 playerInBuildMode.put(player.uuid(), false);
             }
             if (!selectedBuildBlock.containsKey(player.uuid())) {
-                selectedBuildBlock.put(player.uuid(), Blocks.titaniumWall);
+                selectedBuildBlock.put(player.uuid(), Blocks.thoriumWall);
             }
             if (!timer.containsKey(player)) {
                 timer.put(player, 0);
@@ -170,8 +174,8 @@ public class RedVsBluePlugin extends Plugin {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
                 if (killer.isPlayer()) {
                     PlayerData data = players.get(killer.getPlayer().uuid());
-                    players.get(killer.getPlayer().uuid()).addScore(killer.team() == Team.blue ? data.getLevel() : 1);
-                    Call.label(killer.getPlayer().con, killer.team() == Team.blue ? "[lime]+" + data.getLevel() : "[lime]+1", 2, event.unit.x, event.unit.y);
+                    players.get(killer.getPlayer().uuid()).addScore(killer.team() == Team.blue ? (hardcore ? data.getLevel()*2 : 1) : 1);
+                    Call.label(killer.getPlayer().con, killer.team() == Team.blue ? "[lime]+" + (hardcore ? data.getLevel()*2 : 1) : "[lime]+1", 2, event.unit.x, event.unit.y);
                     data.addExp(1);
                     processLevel(killer.getPlayer(), data);
                     if (event.unit.isPlayer()) {
@@ -213,6 +217,7 @@ public class RedVsBluePlugin extends Plugin {
 
         Events.on(EventType.WorldLoadEvent.class, event -> {
             Miner.clearMiners();
+            RepairPoint.clearPoints();
             initRules();
             Groups.player.each(p -> {
                 PlayerData data = players.get(p.uuid());
@@ -409,8 +414,37 @@ public class RedVsBluePlugin extends Plugin {
 
         handler.<Player>register("gameover", "Only for admins", (args, player) -> callMapVoting());
 
-        handler.<Player>register("c", "Buy a miner!", (args, player) -> {
+        handler.<Player>register("miner", "Buy a miner!", (args, player) -> {
             Miner.buyMiner(player);
+        });
+
+        handler.<Player>register("repair-point", "Buy a repair point!", (args, player) -> {
+            RepairPoint.buyRepairPoint(player);
+        });
+
+        handler.<Player>register("redeem", "<uuid>", "redeem player", (args, player) -> {
+            if (player.admin) {
+                PlayerData data = players.get(args[0]);
+                data.setTeam(Team.blue);
+                data.setUnit(getStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY));
+                sendBundled("game.redeem", data.getName());
+            }
+        });
+
+        handler.<Player>register("hardcore", "Enable [scarlet]HARDCORE[] mode. Only for admins.", (args, player) -> {
+            if (player.admin) {
+                enableHardCore();
+            }
+        });
+
+        handler.<Player>register("set-score", "<amount>","setscore", (args, player) -> {
+            if (player.admin) {
+                players.get(player.uuid()).setScore(Integer.parseInt(args[0]));
+            }
+        });
+
+        handler.<Player>register("discord","Join to discord server", (args, player) -> {
+            Call.openURI(player.con, "https://discord.gg/KkBjRmb5Db");
         });
     }
 
@@ -422,6 +456,7 @@ public class RedVsBluePlugin extends Plugin {
                 Log.info(multipler);
             }
         });
+
     }
 
     public static void gameOverCheck() {
