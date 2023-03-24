@@ -43,8 +43,11 @@ public class Utils {
             state.rules.bannedBlocks.add(block);
         }
         state.rules.hideBannedBlocks = true;
+        state.rules.unitAmmo = true;
 
         state.rules.teams.get(Team.malis).blockHealthMultiplier = 2;
+
+        money_per_min = 2;
 
         Call.setRules(state.rules);
     }
@@ -127,37 +130,20 @@ public class Utils {
             switch (option) {
                 case 0 -> selectedBuildBlock.put(player.uuid(), Blocks.thoriumWall);
                 case 1 -> selectedBuildBlock.put(player.uuid(), Blocks.door);
-                case 2 -> selectedBuildBlock.put(player.uuid(), Blocks.powerNode);
 
-                case 3 -> selectedBuildBlock.put(player.uuid(), Blocks.repairPoint);
-                case 4 -> selectedBuildBlock.put(player.uuid(), Blocks.mender);
-                case 5 -> selectedBuildBlock.put(player.uuid(), Blocks.battery);
-
-                case 6 -> {
-                    PlayerData data = players.get(player.uuid());
-                    if (data.getScore() < 2) {
-                        player.sendMessage(Bundle.get("build.not-enough-money", player.locale));
-                    } else {
-                        player.unit().addItem(Items.coal, 10);
-                        data.setScore(data.getScore() - 2);
-                    }
-                }
-                case 7 -> selectedBuildBlock.put(player.uuid(), Blocks.air);
+                case 2 -> selectedBuildBlock.put(player.uuid(), Blocks.mender);
+                case 3 -> selectedBuildBlock.put(player.uuid(), Blocks.powerNode);
+                case 4 -> selectedBuildBlock.put(player.uuid(), Blocks.air);
             }
         });
         String[][] buttonsRow = {
                 {
                         "\uF8A8", // thorium-wall
                         "\uF8A2", // door
-                        "\uF87E", // power-node
                 },
                 {
-                        "\uF848", // repair-point
                         "\uF89B", // mender
-                        "\uF87B" // battery
-                },
-                {
-                        "[gray]Buy 5 Coal"
+                        "\uF87E", // power-node
                 },
                 {
                         "[scarlet]Destroy Wall"
@@ -199,7 +185,7 @@ public class Utils {
         return UnitTypes.alpha;
     }
 
-    private static Tile randomTile() {
+    public static Tile randomTile() {
         int x = Mathf.random(0, Vars.world.width() - 1);
         int y = Mathf.random(0, Vars.world.height() - 1);
         Tile tile = Vars.world.tile(x, y);
