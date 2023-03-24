@@ -1,4 +1,4 @@
-package net.voiddustry.redvsblue.game;
+package net.voiddustry.redvsblue.game.stations;
 
 import arc.graphics.Color;
 import arc.util.Timer;
