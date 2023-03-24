@@ -1,11 +1,11 @@
-package net.voiddustry.redvsblue.game;
+package net.voiddustry.redvsblue.game.stations;
 
 import mindustry.gen.Player;
 import mindustry.world.Tile;
 
 public class RepairPointData {
-    private Player owner;
-    private Tile tileOn;
+    private final Player owner;
+    private final Tile tileOn;
 
     public RepairPointData(Player owner, Tile tileOn) {
         this.owner = owner;

@@ -1,4 +1,4 @@
-package net.voiddustry.redvsblue.game;
+package net.voiddustry.redvsblue.game.stations;
 
 import arc.graphics.Color;
 import arc.util.Timer;
@@ -6,10 +6,12 @@ import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.content.Fx;
 import mindustry.game.Team;
+import mindustry.gen.Building;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
 
+import mindustry.world.Build;
 import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
@@ -33,7 +35,7 @@ public class RepairPoint {
                 for (int y = -1; y <= 1; y++) {
                     if (x == 0 && y == 0) {
                         String text = pointData.getOwner().name + "[gold]'s\n[cyan]Repair Point";
-                        Call.label(text, 1, centerX*8, centerY*8);
+                        Call.label(text, 1, centerX, centerY);
                     } else {
                         Call.effect(Fx.healWaveDynamic, centerX + (x * 3) * 8, centerY + (y * 3) * 8, 1, Color.red);
                     }
@@ -70,7 +72,7 @@ public class RepairPoint {
                         Call.constructFinish(tileUnderPlayer, Blocks.mender, null, (byte) 0, Team.blue, null);
                         Call.effect(Fx.regenParticle, tileUnderPlayer.x*8, tileUnderPlayer.y*8, 0, Color.red);
                     }
-                    players.get(player.uuid()).subtractScore(20);
+                    players.get(player.uuid()).subtractScore(15);
                 }
             }
         }
