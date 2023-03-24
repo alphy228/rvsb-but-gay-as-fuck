@@ -12,6 +12,7 @@ public class PlayerData {
     private Unit unit;
     private Team team;
     private int evolutionStage;
+    private boolean canEvolve;
     private int level;
     private int exp;
     private int maxExp;
@@ -21,9 +22,10 @@ public class PlayerData {
         this.uuid = uuid;
         this.ip = ip;
         this.unit = unit;
-        this.score = 10;
+        this.score = 15;
         this.team = team;
         this.evolutionStage = 1;
+        this.canEvolve = false;
         this.level = 1;
         this.exp = 0;
         this.maxExp = 20;
@@ -83,6 +85,14 @@ public class PlayerData {
 
     public int getEvolutionStage() {
         return evolutionStage;
+    }
+
+    public void setCanEvolve(boolean mode) {
+        this.canEvolve = mode;
+    }
+
+    public boolean isCanEvolve() {
+        return canEvolve;
     }
 
     public void setLevel(int level) {
