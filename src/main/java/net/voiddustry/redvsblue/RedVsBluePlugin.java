@@ -1,13 +1,13 @@
 package net.voiddustry.redvsblue;
 
 import arc.Events;
-import arc.graphics.Color;
-import arc.util.*;
+import arc.util.CommandHandler;
+import arc.util.Log;
+import arc.util.Strings;
 import arc.util.Timer;
 import mindustry.Vars;
 import mindustry.ai.Pathfinder;
 import mindustry.content.Blocks;
-import mindustry.content.Fx;
 import mindustry.content.UnitTypes;
 import mindustry.game.EventType;
 import mindustry.game.Team;
@@ -18,21 +18,25 @@ import mindustry.type.UnitType;
 import mindustry.ui.Menus;
 import mindustry.world.Block;
 import mindustry.world.Tile;
-
 import net.voiddustry.redvsblue.admin.Admin;
 import net.voiddustry.redvsblue.ai.AirAI;
-import net.voiddustry.redvsblue.game.StationsMenu;
-import net.voiddustry.redvsblue.game.stations.*;
-import net.voiddustry.redvsblue.util.MapVote;
-import net.voiddustry.redvsblue.util.UnitsConfig;
-import net.voiddustry.redvsblue.util.Utils;
 import net.voiddustry.redvsblue.ai.BluePlayerTarget;
 import net.voiddustry.redvsblue.ai.StalkerGroundAI;
 import net.voiddustry.redvsblue.ai.StalkerSuicideAI;
 import net.voiddustry.redvsblue.evolution.Evolution;
 import net.voiddustry.redvsblue.evolution.Evolutions;
+import net.voiddustry.redvsblue.game.StationsMenu;
+import net.voiddustry.redvsblue.game.building.BuildBlock;
+import net.voiddustry.redvsblue.game.building.BuildTicket;
+import net.voiddustry.redvsblue.game.stations.*;
+import net.voiddustry.redvsblue.util.MapVote;
+import net.voiddustry.redvsblue.util.UnitsConfig;
+import net.voiddustry.redvsblue.util.Utils;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 import static net.voiddustry.redvsblue.util.MapVote.callMapVoting;
 import static net.voiddustry.redvsblue.util.Utils.*;
@@ -93,13 +97,10 @@ public class RedVsBluePlugin extends Plugin {
     @Override
     public void init() {
         sendServerStartMessage();
-        initStats();
 
-        Miner.initTimer();
-        RepairPoint.initTimer();
-        AmmoBox.initTimer();
-        Turret.initTimer();
-        Laboratory.initTimer();
+        Utils.initStats();
+        Utils.initTimers();
+        Utils.loadContent();
 
         for (UnitType unit : Vars.content.units()) {
             if (unit == UnitTypes.crawler) {
@@ -159,6 +160,8 @@ public class RedVsBluePlugin extends Plugin {
             if (playing && player.team() == Team.crux) {
                 spawnUnitForCrux(event.player);
             }
+
+            Call.openURI(player.con, "https://discord.gg/KkBjRmb5Db");
 
            sendPlayerJoinMessage(player.plainName());
         });
@@ -297,110 +300,38 @@ public class RedVsBluePlugin extends Plugin {
                     }
                     PlayerData data = players.get(player.uuid());
 
-                    String textHud = "[accent]" + data.getExp() + " / " + data.getMaxExp();
+                    String textHud = (data.getLevel() == 5)? "[scarlet]Max" : "[accent]" + data.getExp() + " / " + data.getMaxExp();
 
                     Call.label(player.con, "[scarlet]+", 0.01F, player.x, player.y);
 
                     Call.setHudText(player.con(), Bundle.format("game.hud", Bundle.findLocale(player.locale()), Administration.Config.serverName.get(), Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), stage, data.getLevel(), textHud));
 
-                    if (playerInBuildMode.get(player.uuid())) {
-                        Tile position;
-                        if (player.mouseX >= 0 && player.mouseX <= (Vars.state.map.width-1)*8 && player.mouseY >= 0 && player.mouseY <= (Vars.state.map.height-1)*8) {
-                            position = Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8));
-
-                            String text = "[gray][\uE805]";
-                            String textAnnounce = Bundle.get("build.not-enough-money", player.locale);
-
-                            if (data.getScore() >= 2) {
-                                if (selectedBuildBlock.get(player.uuid()) != Blocks.air) {
-                                    if (Objects.equals(position.block().name, "air")) {
-                                        if (timer.get(player) >= 2) {
-                                            text = "[lime][\uE805]";
-                                            textAnnounce = String.valueOf(selectedBuildBlock.get(player.uuid()));
-                                        } else {
-                                            text = "[yellow][\uE805]";
-                                            textAnnounce = Bundle.get("build.cooldown", player.locale);
-                                        }
-                                    } else {
-                                        text = "[scarlet][\uE868]";
-                                        textAnnounce = "";
-                                    }
-                                } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
-                                    if (timer.get(player) >= 2) {
-                                        if (position.build != null) {
-                                            if (position.build.team == Team.blue) {
-                                                text = "[lime][\uE805]";
-                                                textAnnounce = Bundle.get("build.destroy-wall", player.locale);
-                                            } else {
-                                                text = "[scarlet][\uE868]";
-                                                textAnnounce = "";
-                                            }
-                                        }
-                                    } else {
-                                        text = "[yellow][\uE805]"; // \uE805
-                                        textAnnounce = Bundle.get("build.cooldown", player.locale);
-                                    }
-                                }
-
-                                if (player.shooting && timer.get(player) >= 2) {
-                                    if (Objects.equals(position.block().name, "air")) {
-                                        Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
-                                        Call.effect(Reflect.get(Fx.class, "dynamicExplosion"), position.x * 8, position.y * 8, 0.5F, Color.blue);
-                                        timer.put(player, 0);
-                                        data.setScore(data.getScore() - 2);
-                                        data.addExp(1);
-                                    } else if (selectedBuildBlock.get(player.uuid()) == Blocks.air) {
-                                        if (position.build != null) {
-                                            if (position.build.team == Team.blue || Objects.equals(position.block().name, "build1") || Objects.equals(position.block().name, "build2") || Objects.equals(position.block().name, "build3") || Objects.equals(position.block().name, "build4")) {
-                                                Vars.world.tile(Math.round(player.mouseX / 8), Math.round(player.mouseY / 8)).setNet(selectedBuildBlock.get(player.uuid()), player.team(), 0);
-                                                Call.effect(Reflect.get(Fx.class, "heal"), position.x * 8, position.y * 8, 1, Color.blue);
-                                                timer.put(player, 0);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            Call.label(player.con, text, 0.01F, (float) ((Math.round(player.mouseX / 8)) * 8), (float) ((Math.round(player.mouseY / 8)) * 8));
-                            Call.label(player.con, textAnnounce, 0.01F, (float) ((Math.round(player.mouseX / 8)) * 8), (float) (((Math.round(player.mouseY / 8)) * 8) - 5));
-
-                        } else {
-                            Call.announce(player.con, Bundle.get("build.player-mouse-out-of-bounds-of-map", player.locale));
+                    if (playing && data.getUnit() != null) {
+                        if (data.getUnit().dead) {
+                            data.setTeam(Team.crux);
+                            player.team(data.getTeam());
                         }
                     }
 
-                    if (playing && data.getUnit().dead) {
-                        data.setTeam(Team.crux);
-                        player.team(data.getTeam());
-                    }
-
-                    if (playing && !data.getUnit().dead) {
-                        player.unit(data.getUnit());
+                    if (playing && data.getUnit() != null) {
+                        if (!data.getUnit().dead) {
+                            player.unit(data.getUnit());
+                        }
                     }
 
 
                 });
             }
         });
+
     }
 
     @Override
     public void registerClientCommands(CommandHandler handler) {
-        handler.<Player>register("report", "<player> <reason...>","[white]<player-name> <text> [gray]- Report player to discord server. For false report you will get ban.", ((args, player) -> {
+        handler.<Player>register("report", "<player> <text...>","[cyan]- Report player to discord server. For false report you will get ban.", ((args, player) -> {
             if (Objects.equals(args[0], " ")) return;
             sendReport(args[0], player, args);
             player.sendMessage(Bundle.get("report.reportSend", player.locale));
-        }));
-
-        handler.<Player>register("b", "Open block select menu", ((args, player) -> Utils.openBlockSelectMenu(player)));
-
-        handler.<Player>register("build", "", "Toggle build mode", ((args, player) -> {
-            if (playerInBuildMode.get(player.uuid())) {
-                playerInBuildMode.put(player.uuid(), false);
-                player.sendMessage("[scarlet]Building Disabled");
-            } else {
-                playerInBuildMode.put(player.uuid(), true);
-                player.sendMessage("[lime]Building Enabled");
-            }
         }));
 
         handler.<Player>register("e", "Open evolution menu", ((args, player) -> {
@@ -423,7 +354,13 @@ public class RedVsBluePlugin extends Plugin {
             } else {
                 player.sendMessage(Bundle.get("evolution.no-lab", player.locale));
             }
-            }));
+        }));
+
+        handler.<Player>register("b", "Open Building menu", (args, player) -> {
+            if (playing) {
+                BuildBlock.add(new BuildTicket(player, Blocks.berylliumWall, true, false, 2));
+            }
+        });
 
         handler.<Player>register("s", "Open stations selecting menu", (args, player) -> {
             StationsMenu.openMenu(player);
@@ -482,9 +419,14 @@ public class RedVsBluePlugin extends Plugin {
             if (!gameover) {
                 gameover = true;
                 callMapVoting();
+                Groups.player.each(p -> {
+                    int randomInt = getRandomInt(1, 255);
+                    players.get(p.uuid()).setTeam(Team.get(randomInt));
+                    p.team(Team.get(randomInt));
+                });
             }
         } else if (winner == Team.blue) {
-            // TODO:
+            // TODO: sudo rm rf
         }
     }
 }
