@@ -27,6 +27,9 @@ import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
+import net.voiddustry.redvsblue.game.building.BlocksTypes;
+import net.voiddustry.redvsblue.game.building.BuildBlock;
+import net.voiddustry.redvsblue.game.stations.*;
 
 import static mindustry.Vars.*;
 import static net.voiddustry.redvsblue.RedVsBluePlugin.*;
@@ -42,6 +45,8 @@ public class Utils {
         for ( Block block : Vars.content.blocks()) {
             state.rules.bannedBlocks.add(block);
         }
+        state.rules.bannedUnits.add(UnitTypes.alpha);
+
         state.rules.hideBannedBlocks = true;
         state.rules.unitAmmo = true;
 
@@ -67,14 +72,29 @@ public class Utils {
         Blocks.combustionGenerator.health = 320;
     }
 
+    public static void loadContent() {
+        BlocksTypes.load();
+    }
+
+    public static void initTimers() {
+        Miner.initTimer();
+        RepairPoint.initTimer();
+        AmmoBox.initTimer();
+        Turret.initTimer();
+        Laboratory.initTimer();
+        BuildBlock.init();
+    }
+
     public static void processLevel(Player player, PlayerData data) {
-        if (data.getExp() >= data.getMaxExp()) {
-            int expLimit = data.getExp();
-            int expLimitToSet = expLimit + expLimit/4;
-            data.setMaxExp(expLimitToSet);
-            data.setExp(0);
-            data.setLevel(data.getLevel() + 1);
-            sendBundled("game.level-up", player.name);
+        if (data.getLevel() < 5) {
+            if (data.getExp() >= data.getMaxExp()) {
+                int expLimit = data.getExp();
+                int expLimitToSet = expLimit + expLimit/4;
+                data.setMaxExp(expLimitToSet);
+                data.setExp(0);
+                data.setLevel(data.getLevel() + 1);
+                sendBundled("game.level-up", player.name);
+            }
         }
     }
 
