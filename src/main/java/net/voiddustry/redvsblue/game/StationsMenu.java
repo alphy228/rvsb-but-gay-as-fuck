@@ -5,10 +5,7 @@ import mindustry.gen.Call;
 import mindustry.gen.Player;
 import mindustry.ui.Menus;
 import net.voiddustry.redvsblue.Bundle;
-import net.voiddustry.redvsblue.game.stations.AmmoBox;
-import net.voiddustry.redvsblue.game.stations.Laboratory;
-import net.voiddustry.redvsblue.game.stations.Miner;
-import net.voiddustry.redvsblue.game.stations.RepairPoint;
+import net.voiddustry.redvsblue.game.stations.*;
 
 public class StationsMenu {
     public static void openMenu(Player player) {
@@ -19,6 +16,8 @@ public class StationsMenu {
                     case 1 -> RepairPoint.buyRepairPoint(player);
                     case 2 -> AmmoBox.buyAmmoBox(player);
                     case 3 -> Laboratory.buyLab(player);
+                    case 4 -> Turret.buyTurret(player);
+                    case 5 -> Turret.buyClip(player);
                 }
             });
 
@@ -30,6 +29,8 @@ public class StationsMenu {
                     { Bundle.get("stations.buttons.repair-point", player.locale) },
                     { Bundle.get("stations.buttons.ammo-box", player.locale)},
                     { Bundle.get("stations.buttons.lab", player.locale)},
+                    { Bundle.get("stations.buttons.turret", player.locale)},
+                    { Bundle.get("stations.buttons.turret-ammo", player.locale)},
                     { Bundle.get("stations.buttons.close", player.locale)}
             };
 

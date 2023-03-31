@@ -12,9 +12,12 @@ import mindustry.gen.Player;
 import mindustry.type.Item;
 import mindustry.world.Block;
 import mindustry.world.Tile;
+import net.voiddustry.redvsblue.Bundle;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
 
 public class Turret {
     private static Map<String, TurretData> turretsMap = new ConcurrentHashMap<>();
@@ -43,18 +46,28 @@ public class Turret {
     }
 
     public static void buyClip(Player player) {
-        turretsMap.get(player.uuid()).addAmmoClips(1);
+        if (players.get(player.uuid()).getScore() < 1) {
+            player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 1));
+        } else {
+            turretsMap.get(player.uuid()).addAmmoClips(1);
+            players.get(player.uuid()).subtractScore(1);
+        }
     }
 
     public static void buyTurret(Player player) {
-        if (!turretsMap.containsKey(player.uuid())) {
-            Tile playerTileOn = player.tileOn();
-            Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
+        if (players.get(player.uuid()).getScore() < 15) {
+            player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 15));
+        } else {
+            if (!turretsMap.containsKey(player.uuid())) {
+                Tile playerTileOn = player.tileOn();
+                Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
 
-            Call.constructFinish(tileUnderPlayer, Blocks.duo, null, (byte) 0, Team.blue, null);
+                Call.constructFinish(tileUnderPlayer, Blocks.duo, null, (byte) 0, Team.blue, null);
 
-            TurretData turretData = new TurretData(player, tileUnderPlayer);
-            turretsMap.put(player.uuid(), turretData);
+                TurretData turretData = new TurretData(player, tileUnderPlayer);
+                turretsMap.put(player.uuid(), turretData);
+                players.get(player.uuid()).subtractScore(15);
+            }
         }
     }
 
