@@ -31,7 +31,7 @@ public class Miner {
             if (minerData.getExp() >= minerData.getMaxExp()) {
                 minerData.addLvl();
                 int expLimit = minerData.getMaxExp();
-                int expLimitToSet = expLimit + expLimit/4;
+                int expLimitToSet = expLimit + expLimit/2;
                 minerData.setMaxExp(expLimitToSet);
                 minerData.setExp(0);
             }
@@ -53,8 +53,8 @@ public class Miner {
                         minersMap.put(player.uuid(), minerData);
                         Call.constructFinish(tileUnderPlayer, Blocks.combustionGenerator, null, (byte) 0, Team.blue, null);
                         Call.effect(Fx.explosion, tileUnderPlayer.x*8, tileUnderPlayer.y*8, 5, Color.red);
+                        players.get(player.uuid()).subtractScore(20);
                     }
-                    players.get(player.uuid()).subtractScore(20);
                 }
             }
         }

@@ -78,8 +78,8 @@ public class AmmoBox {
                         ammoBoxesMap.put(player.uuid(), ammoBoxData);
                         Call.constructFinish(tileUnderPlayer, Blocks.berylliumWall, null, (byte) 0, Team.blue, null);
                         Call.effect(Fx.regenParticle, tileUnderPlayer.x*8, tileUnderPlayer.y*8, 0, Color.red);
+                        players.get(player.uuid()).subtractScore(5);
                     }
-                    players.get(player.uuid()).subtractScore(5);
                 }
             }
         }

@@ -22,17 +22,35 @@ import java.util.concurrent.ConcurrentHashMap;
 import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
 
 public class Laboratory {
-    private static Map<String, LaboratoryData> labsMap = new ConcurrentHashMap<>();
+    private static final Map<String, LaboratoryData> labsMap = new ConcurrentHashMap<>();
 
     public static void initTimer() {
 
         Timer.schedule(() -> {
             renderLabs();
+
+            Groups.player.each(p -> {
+                PlayerData data = players.get(p.uuid());
+                final boolean[] canEvolve = {false};
+                labsMap.forEach((uuid, lab) -> {
+                    int centerX = lab.getTileOn().x * 8;
+                    int centerY = lab.getTileOn().y * 8;
+
+                    if (p.team() == Team.blue) {
+                        if (p.x >= (centerX-(4*8)) && p.x <= (centerX+(3*8)) && p.y >= (centerY-(3*8)) && p.y <= (centerY+(4*8))) {
+                            canEvolve[0] = true;
+                            Call.infoPopup(p.con, Bundle.get("evolution.evolution-available", p.locale), 0.5F, 0, 0, 0, -200, 0);
+                        }
+                    }
+                });
+                if (canEvolve[0]) {
+                    data.setCanEvolve(true);
+                } else {
+                    data.setCanEvolve(false);
+                }
+            });
+
             labsMap.forEach((uuid, lab) -> {
-
-                lab.getTileOn().build.liquids.add(Liquids.slag, 400);
-                lab.getTileOn().build.liquids.add(Liquids.arkycite, 800);
-
 
                 int centerX = lab.getTileOn().x * 8;
                 int centerY = lab.getTileOn().y * 8;
@@ -43,23 +61,10 @@ public class Laboratory {
                             String text = lab.getOwner().name + "[gold]'s\n[purple]Lab";
                             Call.label(text, 1, centerX, centerY);
                         } else {
-                            Call.effect(Fx.vaporSmall, centerX + (x * 4) * 8, centerY + (y * 4) * 8, 1, Color.purple);
+                            Call.effect(Fx.vaporSmall, centerX + (x * 3) * 8, centerY + (y * 3) * 8, 1, Color.purple);
                         }
                     }
                 }
-
-                Groups.player.each(p -> {
-                    PlayerData data = players.get(p.uuid());
-                    if (p.team() == Team.blue) {
-                        if (p.x >= (centerX-(4*8)) && p.x <= (centerX+(4*8)) && p.y >= (centerY-(4*8)) && p.y <= (centerY+(4*8))) {
-                            data.setCanEvolve(true);
-                            Call.infoPopup(p.con, Bundle.get("evolution.evolution-available", p.locale), 0.5F, 0, 0, 0, -200, 0);
-                        } else {
-                            data.setCanEvolve(false);
-                        }
-                    }
-                });
-
             });
         }, 0, 0.5F);
     }
@@ -71,15 +76,15 @@ public class Laboratory {
             if (!labsMap.containsKey(player.uuid())) {
                 if (!player.dead()) {
                     Tile playerTileOn = player.tileOn();
-                    Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 2);
+                    Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
 
                     if (!player.dead() && player.team() == Team.blue && tileUnderPlayer.block().isAir()) {
                         LaboratoryData laboratoryData = new LaboratoryData(player, tileUnderPlayer);
                         labsMap.put(player.uuid(), laboratoryData);
-                        Call.constructFinish(tileUnderPlayer, Blocks.pyrolysisGenerator, null, (byte) 0, Team.blue, null);
+                        Call.constructFinish(tileUnderPlayer, Blocks.microProcessor, null, (byte) 0, Team.blue, null);
                         Call.effect(Fx.regenParticle, tileUnderPlayer.x*8, tileUnderPlayer.y*8, 0, Color.red);
+                        players.get(player.uuid()).subtractScore(4);
                     }
-                    players.get(player.uuid()).subtractScore(4);
                 }
             }
         }

@@ -3,22 +3,23 @@ package net.voiddustry.redvsblue.util;
 import arc.graphics.Color;
 import arc.math.Mathf;
 import arc.math.Rand;
+import arc.struct.Seq;
 import arc.util.Log;
 
 import arc.util.Timer;
 import mindustry.Vars;
-import mindustry.content.Blocks;
-import mindustry.content.Fx;
-import mindustry.content.Items;
-import mindustry.content.UnitTypes;
+import mindustry.content.*;
 import mindustry.game.Team;
 import mindustry.gen.*;
 
 import mindustry.logic.LExecutor;
+import mindustry.maps.Map;
 import mindustry.maps.MapException;
 import mindustry.net.WorldReloader;
 import mindustry.type.UnitType;
 import mindustry.ui.Menus;
+
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Random;
 
@@ -37,6 +38,7 @@ import static net.voiddustry.redvsblue.RedVsBluePlugin.*;
 public class Utils {
 
     public static boolean voting;
+    public static boolean gameRun;
     public static boolean gameover;
     public static boolean hardcore;
     public static int money_per_min = 2;
@@ -45,6 +47,9 @@ public class Utils {
         for ( Block block : Vars.content.blocks()) {
             state.rules.bannedBlocks.add(block);
         }
+
+        state.rules.waveSpacing = Integer.MAX_VALUE;
+        state.rules.waves = true;
         state.rules.bannedUnits.add(UnitTypes.alpha);
 
         state.rules.hideBannedBlocks = true;
@@ -57,11 +62,29 @@ public class Utils {
         Call.setRules(state.rules);
     }
 
+    public static void launchGameStartTimer() {
+        int[] i = {60};
+        Timer.Task task = new Timer.Task() {
+            @Override
+            public void run() {
+                announceBundled("game.game-starts-soon", 1, i[0]);
+                i[0]--;
+                if (i[0] <= 0) {
+                    gameRun = true;
+                    this.cancel();
+                }
+            }
+        };
+        Timer timer = new Timer();
+        timer.scheduleTask(task, 0, 1);
+    }
+
     public static void initStats() {
         // Health
 
         UnitTypes.stell.health = 400;
         UnitTypes.mono.health = 1000;
+        UnitTypes.retusa.health = 570;
 
         // Damage
 
@@ -145,34 +168,6 @@ public class Utils {
         return Groups.player.size();
     }
 
-    public static void openBlockSelectMenu(Player player) {
-        int menu = Menus.registerMenu((playerInMenu, option) -> {
-            switch (option) {
-                case 0 -> selectedBuildBlock.put(player.uuid(), Blocks.thoriumWall);
-                case 1 -> selectedBuildBlock.put(player.uuid(), Blocks.door);
-
-                case 2 -> selectedBuildBlock.put(player.uuid(), Blocks.mender);
-                case 3 -> selectedBuildBlock.put(player.uuid(), Blocks.powerNode);
-                case 4 -> selectedBuildBlock.put(player.uuid(), Blocks.air);
-            }
-        });
-        String[][] buttonsRow = {
-                {
-                        "\uF8A8", // thorium-wall
-                        "\uF8A2", // door
-                },
-                {
-                        "\uF89B", // mender
-                        "\uF87E", // power-node
-                },
-                {
-                        "[scarlet]Destroy Wall"
-                }
-        };
-        Call.menu(player.con, menu, "[cyan]Select Block To Build", "", buttonsRow);
-
-    }
-
     public static void sendBundled(String key, Object... format) {
         Groups.player.forEach(p -> {
             Locale locale = Bundle.findLocale(p.locale());
@@ -202,7 +197,7 @@ public class Utils {
                 return UnitTypes.mono;
             }
         }
-        return UnitTypes.alpha;
+        return UnitTypes.nova;
     }
 
     public static Tile randomTile() {
@@ -217,6 +212,7 @@ public class Utils {
 
     public static void enableHardCore() {
         hardcore = true;
+        state.rules.lighting = true;
         Vars.state.rules.ambientLight.set(0.2F, 0F, 0F, 0.95F);
         Vars.state.rules.waveSpacing = 1200;
         money_per_min = 6;
@@ -242,123 +238,20 @@ public class Utils {
 
     }
 
-    public static void spawnUnitForCrux(Player player) { // TODO: Переписать
+    public static void announceBundled(String key, int duration) {
+        Groups.player.forEach(p -> {
+            Locale locale = Bundle.findLocale(p.locale);
+            String text = Bundle.get(key, locale);
+            Call.infoPopup(p.con, text, duration, 0, 0, 0, -200, 0);
+        });
+    }
 
-            if (player.unit().dead) {
-                switch (RedVsBluePlugin.stage) {
-                    case 1, 2 -> { // Stage 1, 2
-                        switch (getRandomInt(1, 3)) {
-                            case 1 -> {
-                                Unit spawned = UnitTypes.crawler.spawn(Team.crux, redSpawnX, redSpawnY);
-
-                                Call.unitControl(player, spawned);
-                                spawned.spawnedByCore = true;
-                            }
-                            case 2 -> {
-                                Unit spawned = UnitTypes.dagger.spawn(Team.crux, redSpawnX, redSpawnY);
-                                Call.unitControl(player, spawned);
-                                spawned.spawnedByCore = true;
-                            }
-                        }
-                    }
-                    case 3, 4 -> { // Stage 3, 4
-                        switch (getRandomInt(1, 4)) {
-                            case 1 -> {
-                                Unit spawned = UnitTypes.mace.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                spawned.health = 350;
-                                Call.unitControl(player, spawned);
-                            }
-                            case 2 -> {
-                                Unit spawned = UnitTypes.crawler.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                Call.unitControl(player, spawned);
-                            }
-                            case 3 -> {
-                                Unit spawned = UnitTypes.dagger.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                Call.unitControl(player, spawned);
-                            }
-                        }
-                    }
-                    case 5, 6 -> { // Stage 5, 6
-                        switch (getRandomInt(1, 4)) {
-                            case 1 -> {
-                                Unit spawned = UnitTypes.stell.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                Call.unitControl(player, spawned);
-                            }
-                            case 2 -> {
-                                Unit spawned = UnitTypes.mace.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                Call.unitControl(player, spawned);
-                            }
-                            case 3 -> {
-                                Unit spawned = UnitTypes.atrax.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                spawned.health = 400;
-                                Call.unitControl(player, spawned);
-                            }
-                        }
-                    }
-                    case 7, 8, 9 -> {
-                        switch (getRandomInt(1, 4)) {
-                            case 1 -> {
-                                Unit spawned = UnitTypes.fortress.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                spawned.health = 500;
-                                Call.unitControl(player, spawned);
-                            }
-                            case 2 -> {
-                                Unit spawned = UnitTypes.atrax.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                Call.unitControl(player, spawned);
-                            }
-                            case 3 -> {
-                                Unit spawned = UnitTypes.cleroi.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                spawned.health = 800;
-                                Call.unitControl(player, spawned);
-                            }
-                        }
-                    }
-                    case 10, 11, 12, 13 -> {
-                        switch (getRandomInt(1, 3)) {
-                            case 1 -> {
-                                Unit spawned = UnitTypes.anthicus.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                spawned.health = 1000;
-                                Call.unitControl(player, spawned);
-                            }
-                            case 2 -> {
-                                Unit spawned = UnitTypes.spiroct.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                Call.unitControl(player, spawned);
-                            }
-                        }
-                    }
-                    case 14, 15, 16 -> {
-                        switch (getRandomInt(1, 3)) {
-                            case 1 -> {
-                                Unit spawned = UnitTypes.precept.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                spawned.health = 3000;
-                                Call.unitControl(player, spawned);
-                            }
-                            case 2 -> {
-                                Unit spawned = UnitTypes.quasar.spawn(Team.crux, redSpawnX, redSpawnY);
-                                spawned.spawnedByCore = true;
-                                Call.unitControl(player, spawned);
-                            }
-                        }
-                    }
-                    case 17, 18, 19, 20 -> {
-                        Unit spawned = UnitTypes.arkyid.spawn(Team.crux, redSpawnX, redSpawnY);
-                        spawned.spawnedByCore = true;
-                        Call.unitControl(player, spawned);
-                    }
-                }
-            }
+    public static void announceBundled(String key, int duration, Object... format) {
+        Groups.player.forEach(p -> {
+            Locale locale = Bundle.findLocale(p.locale);
+            String text = Bundle.format(key, locale, format);
+            Call.infoPopup(p.con, text, duration, 0, 0, 0, -200, 0);
+        });
     }
 
 }

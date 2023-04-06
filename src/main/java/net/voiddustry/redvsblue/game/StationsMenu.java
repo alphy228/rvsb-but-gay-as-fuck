@@ -12,7 +12,10 @@ public class StationsMenu {
         if (!player.dead() && player.team() == Team.blue) {
             int menu = Menus.registerMenu((player1, option) -> {
                 switch (option) {
-                    case 0 -> Miner.buyMiner(player);
+                    case 0 -> {
+                        Miner.buyMiner(player);
+
+                    }
                     case 1 -> RepairPoint.buyRepairPoint(player);
                     case 2 -> AmmoBox.buyAmmoBox(player);
                     case 3 -> Laboratory.buyLab(player);
@@ -20,6 +23,7 @@ public class StationsMenu {
                     case 5 -> Turret.buyClip(player);
                 }
             });
+
 
             String title = Bundle.get("stations.title", player.locale);
             String text = Bundle.get("stations.text", player.locale);
