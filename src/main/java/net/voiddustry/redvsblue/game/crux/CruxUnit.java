@@ -29,6 +29,8 @@ public class CruxUnit {
                     unit.health = 130;
                 } else if (unit.type == UnitTypes.dagger) {
                     unit.health = 90;
+                } else {
+                    unit.health = unit.type.health;
                 }
 
             }, 2);
