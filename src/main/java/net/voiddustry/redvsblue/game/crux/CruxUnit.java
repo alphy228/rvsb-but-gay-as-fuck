@@ -25,9 +25,12 @@ public class CruxUnit {
                 } else if (unit.type == UnitTypes.merui) {
                     unit.health = 100;
                     unit.addItem(Items.pyratite, 99);
-                } if (unit.type == UnitTypes.mace) {
-                    unit.health = 200;
+                } else if (unit.type == UnitTypes.mace) {
+                    unit.health = 130;
+                } else if (unit.type == UnitTypes.dagger) {
+                    unit.health = 90;
                 }
+
             }, 2);
 
             player.unit(unit);
