@@ -36,6 +36,7 @@ public class CruxUnit {
             }, 2);
 
             player.unit(unit);
+            unit.spawnedByCore = true;
         }
     }
 
