@@ -18,7 +18,12 @@ public class CruxUnit {
         if (type != null) {
            
             Unit unit = type.spawn(Team.crux, RedVsBluePlugin.redSpawnX, RedVsBluePlugin.redSpawnY);
+        } else {
+            unit = null;
         }
+
+        
+
 
         if (unit != null && !unit.dead) {
             unit.health = Integer.MAX_VALUE;
