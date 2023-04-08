@@ -13,7 +13,12 @@ import net.voiddustry.redvsblue.util.Utils;
 
 public class CruxUnit {
     public static void callSpawn(Player player) {
-        Unit unit = ClassChooseMenu.selectedUnit.get(player.uuid()).spawn(Team.crux, RedVsBluePlugin.redSpawnX, RedVsBluePlugin.redSpawnY);
+        
+        UnitType type = ClassChooseMenu.selectedUnit.get(player.uuid());
+        if (type != null) {
+           
+            Unit unit = type.spawn(Team.crux, RedVsBluePlugin.redSpawnX, RedVsBluePlugin.redSpawnY);
+        }
 
         if (unit != null && !unit.dead) {
             unit.health = Integer.MAX_VALUE;
