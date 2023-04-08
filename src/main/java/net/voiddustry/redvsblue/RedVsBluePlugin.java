@@ -211,7 +211,7 @@ public class RedVsBluePlugin extends Plugin {
 
                     ClassChooseMenu.selectedUnit.put(event.unit.getPlayer().uuid(), UnitTypes.crawler);
                     CruxUnit.callSpawn(event.unit.getPlayer());
-                } else if (event.unit.getPlayer().team == Team.crux) {
+                } else if (event.unit.getPlayer().team() == Team.crux) {
                   CruxUnit.callSpawn(event.unit.getPlayer());
                 }
             }
