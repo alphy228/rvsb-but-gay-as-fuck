@@ -44,11 +44,11 @@ public class BuildMenu {
                         openMenu(player);
                     }
                     case 7 -> {
-                        selectedBlock.put(player, BlocksTypes.tungstenWall);
+                        selectedBlock.put(player, BlocksTypes.thoriumWall);
                         openMenu(player);
                     }
                     case 8 -> {
-                        selectedBlock.put(player, BlocksTypes.tungstenWallLarge);
+                        selectedBlock.put(player, BlocksTypes.thoriumWallLarge);
                         openMenu(player);
                     }
                     case 9 -> {
@@ -83,8 +83,8 @@ public class BuildMenu {
                     },
                     {BlocksTypes.berylliumWall.color + BlocksTypes.berylliumWall.name},
                     {BlocksTypes.berylliumWallLarge.color + BlocksTypes.berylliumWallLarge.name},
-                    {BlocksTypes.tungstenWall.color + BlocksTypes.tungstenWall.name},
-                    {BlocksTypes.tungstenWallLarge.color + BlocksTypes.berylliumWallLarge.name},
+                    {BlocksTypes.thoriumWall.color + BlocksTypes.thoriumWallLarge.name},
+                    {BlocksTypes.thoriumWallLarge.color + BlocksTypes.thoriumWallLarge.name},
                     {BlocksTypes.doorLarge.color + BlocksTypes.doorLarge.name},
                     {BlocksTypes.drill.color + BlocksTypes.drill.name},
                     {BlocksTypes.mine.color + BlocksTypes.mine.name}

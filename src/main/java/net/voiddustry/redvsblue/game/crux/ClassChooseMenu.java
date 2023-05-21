@@ -1,8 +1,6 @@
 package net.voiddustry.redvsblue.game.crux;
 
 import arc.struct.ObjectMap;
-import mindustry.Vars;
-import mindustry.core.GameState;
 import mindustry.gen.Call;
 import mindustry.gen.Player;
 import mindustry.type.UnitType;
@@ -48,6 +46,9 @@ public class ClassChooseMenu {
             case 3 -> units.putAll(StageUnits.thirdStage);
             case 4,5 -> units.putAll(StageUnits.fourthAndFifrhStage);
             case 6 -> units.putAll(StageUnits.sixthStage);
+            case 7 -> units.putAll(StageUnits.sevenStage);
+            case 8,9 -> units.putAll(StageUnits.eighthAndNinthStage);
+            case 10,11 -> units.putAll(StageUnits.tenthStage);
         }
     }
 }

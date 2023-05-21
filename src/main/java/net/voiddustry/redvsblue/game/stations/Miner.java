@@ -7,11 +7,13 @@ import mindustry.content.Blocks;
 import mindustry.content.Fx;
 import mindustry.game.Team;
 import mindustry.gen.Call;
+import mindustry.gen.Groups;
 import mindustry.gen.Player;
 
 import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
+import net.voiddustry.redvsblue.game.stations.stationData.MinerData;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -69,8 +71,12 @@ public class Miner {
                         miner.getTileOn().build.kill();
                     }
                 } else {
-                    String text = miner.getOwner().name + "[gold]'s Miner\n[gray][ [gold]" + miner.getLvl() + "[] | [accent]" + miner.getExp() + " / " + miner.getMaxExp() + "[gray] ]";
-                    Call.label(text, 1, miner.getTileOn().centerX()*8, (miner.getTileOn().centerY()+1)*8);
+                    Groups.player.each(p -> {
+                        if (Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) == miner.getTileOn()) {
+                            String text = miner.getOwner().name + "[gold]'s Miner\n[gray][ [gold]" + miner.getLvl() + "[] | [accent]" + miner.getExp() + " / " + miner.getMaxExp() + "[gray] ]";
+                            StationUtils.drawStationName(miner.getOwner().con, miner.getTileOn(), text, 1F);
+                        }
+                    });
                 }
             }
         });

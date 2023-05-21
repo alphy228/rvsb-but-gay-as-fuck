@@ -15,44 +15,41 @@ public class CruxUnit {
     public static void callSpawn(Player player) {
         
         UnitType type = ClassChooseMenu.selectedUnit.get(player.uuid());
+
         if (type != null) {
-           
             Unit unit = type.spawn(Team.crux, RedVsBluePlugin.redSpawnX, RedVsBluePlugin.redSpawnY);
-        } else {
-            unit = null;
-        }
 
-        
+            if (unit != null && !unit.dead) {
+                unit.health = Integer.MAX_VALUE;
 
+                Timer.schedule(() -> {
+                    if (unit.type == UnitTypes.crawler) {
+                        unit.health = 10;
+                        unit.addItem(Items.pyratite, 10);
+                    } else if (unit.type == UnitTypes.merui) {
+                        unit.health = 100;
+                        unit.addItem(Items.pyratite, 99);
+                    } else if (unit.type == UnitTypes.mace) {
+                        unit.health = 130;
+                    } else if (unit.type == UnitTypes.dagger) {
+                        unit.health = 90;
+                    } else {
+                        unit.health = unit.type.health;
+                    }
 
-        if (unit != null && !unit.dead) {
-            unit.health = Integer.MAX_VALUE;
+                }, 2);
 
-            Timer.schedule(() -> {
-                if (unit.type == UnitTypes.crawler) {
-                    unit.health = 10;
-                    unit.addItem(Items.pyratite, 10);
-                } else if (unit.type == UnitTypes.merui) {
-                    unit.health = 100;
-                    unit.addItem(Items.pyratite, 99);
-                } else if (unit.type == UnitTypes.mace) {
-                    unit.health = 130;
-                } else if (unit.type == UnitTypes.dagger) {
-                    unit.health = 90;
-                } else {
-                    unit.health = unit.type.health;
-                }
-
-            }, 2);
-
-            player.unit(unit);
-            unit.spawnedByCore = true;
+                player.unit(unit);
+                unit.spawnedByCore = true;
+            }
         }
     }
 
     private static void spawnCrux() {
-
-        UnitType unitType = ClassChooseMenu.units.keys().toSeq().get(Utils.getRandomInt(0, ClassChooseMenu.units.size)); //Utils.getRandomInt(0, ClassChooseMenu.units.size)
+        UnitType unitType = UnitTypes.alpha;
+        if (!ClassChooseMenu.units.isEmpty()) {
+            unitType = ClassChooseMenu.units.keys().toSeq().get(Utils.getRandomInt(0, ClassChooseMenu.units.size)); //Utils.getRandomInt(0, ClassChooseMenu.units.size)
+        }
 
         Unit unit = unitType.spawn(Team.crux, RedVsBluePlugin.redSpawnX, RedVsBluePlugin.redSpawnY);
 
@@ -62,7 +59,13 @@ public class CruxUnit {
                 unit.addItem(Items.pyratite, 10);
             } else if (unit.type == UnitTypes.merui) {
                 unit.health = 100;
-                unit.addItem(Items.pyratite, 10);
+                unit.addItem(Items.pyratite, 99);
+            } else if (unit.type == UnitTypes.mace) {
+                unit.health = 130;
+            } else if (unit.type == UnitTypes.dagger) {
+                unit.health = 90;
+            } else {
+                unit.health = unit.type.health;
             }
         }, 2);
     };

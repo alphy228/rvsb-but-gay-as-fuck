@@ -15,13 +15,13 @@ public enum Evolution {
     PULSAR(UnitTypes.pulsar, 2, 18*multp, new String[] { "quasar" }),
     ATRAX(UnitTypes.atrax, 2, 18*multp, new String[] { "cleroi" }),
     RISSO(UnitTypes.risso, 2, 36*multp, new String[] { "zenith" }),
-    POLY(UnitTypes.poly, 2, 27*multp, new String[] { "retusa" }),
+    POLY(UnitTypes.poly, 2, 21*multp, new String[] { "retusa" }),
 
     MACE(UnitTypes.mace, 3, 20*multp, new String[] { "fortress"}),
     QUASAR(UnitTypes.quasar, 3, 45*multp, new String[] { "vela" }),
     CLEROI(UnitTypes.cleroi, 3, 45*multp, new String[] { "spiroct" }),
     ZENITH(UnitTypes.zenith, 3, 70*multp, new String[] { "minke" }),
-    RETUSA(UnitTypes.retusa, 3, 90*multp, new String[] { "oxynoe" }),
+    RETUSA(UnitTypes.retusa, 3, 15*multp, new String[] { "oxynoe" }),
 
     FORTRESS(UnitTypes.fortress, 4, 35*multp, new String[] { "locus" }),
     VELA(UnitTypes.vela, 4, 90*multp, new String[] { "corvus" }),

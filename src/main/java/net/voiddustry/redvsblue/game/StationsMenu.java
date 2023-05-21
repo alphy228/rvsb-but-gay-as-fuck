@@ -12,15 +12,11 @@ public class StationsMenu {
         if (!player.dead() && player.team() == Team.blue) {
             int menu = Menus.registerMenu((player1, option) -> {
                 switch (option) {
-                    case 0 -> {
-                        Miner.buyMiner(player);
-
-                    }
+                    case 0 -> Miner.buyMiner(player);
                     case 1 -> RepairPoint.buyRepairPoint(player);
                     case 2 -> AmmoBox.buyAmmoBox(player);
+                    //case 3 -> UnitConstructor.buy(player);
                     case 3 -> Laboratory.buyLab(player);
-                    case 4 -> Turret.buyTurret(player);
-                    case 5 -> Turret.buyClip(player);
                 }
             });
 
@@ -32,9 +28,8 @@ public class StationsMenu {
                     { Bundle.get("stations.buttons.miner", player.locale) },
                     { Bundle.get("stations.buttons.repair-point", player.locale) },
                     { Bundle.get("stations.buttons.ammo-box", player.locale)},
+                    //{ Bundle.get("stations.buttons.constructor", player.locale)},
                     { Bundle.get("stations.buttons.lab", player.locale)},
-                    { Bundle.get("stations.buttons.turret", player.locale)},
-                    { Bundle.get("stations.buttons.turret-ammo", player.locale)},
                     { Bundle.get("stations.buttons.close", player.locale)}
             };
 

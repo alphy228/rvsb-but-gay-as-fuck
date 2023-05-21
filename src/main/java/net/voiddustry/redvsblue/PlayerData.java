@@ -3,7 +3,6 @@ package net.voiddustry.redvsblue;
 import mindustry.game.Team;
 import mindustry.gen.Player;
 import mindustry.gen.Unit;
-import mindustry.type.UnitType;
 
 @SuppressWarnings("unused")
 public class PlayerData {
@@ -13,6 +12,7 @@ public class PlayerData {
     private Team team;
     private int evolutionStage;
     private boolean canEvolve;
+    private boolean canConstruct;
     private int level;
     private int exp;
     private int maxExp;
@@ -26,6 +26,7 @@ public class PlayerData {
         this.team = team;
         this.evolutionStage = 1;
         this.canEvolve = false;
+        this.canConstruct = false;
         this.level = 1;
         this.exp = 0;
         this.maxExp = 20;
@@ -93,6 +94,14 @@ public class PlayerData {
 
     public boolean isCanEvolve() {
         return canEvolve;
+    }
+
+    public void setCanConstruct(boolean mode) {
+        this.canConstruct = mode;
+    }
+
+    public boolean CanConstruct() {
+        return canConstruct;
     }
 
     public void setLevel(int level) {

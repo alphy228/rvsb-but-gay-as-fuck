@@ -2,34 +2,26 @@ package net.voiddustry.redvsblue.util;
 
 import arc.graphics.Color;
 import arc.math.Mathf;
-import arc.math.Rand;
-import arc.struct.Seq;
-import arc.util.Log;
 
+import arc.struct.Seq;
 import arc.util.Timer;
 import mindustry.Vars;
 import mindustry.content.*;
 import mindustry.game.Team;
 import mindustry.gen.*;
 
-import mindustry.logic.LExecutor;
-import mindustry.maps.Map;
-import mindustry.maps.MapException;
-import mindustry.net.WorldReloader;
 import mindustry.type.UnitType;
-import mindustry.ui.Menus;
-
-import java.util.Arrays;
 import java.util.Locale;
-import java.util.Random;
 
 import mindustry.world.Block;
 import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
-import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.game.building.BlocksTypes;
 import net.voiddustry.redvsblue.game.building.BuildBlock;
+import net.voiddustry.redvsblue.game.crux.StageUnits;
+import net.voiddustry.redvsblue.game.starting_menu.StartingItems;
+import net.voiddustry.redvsblue.game.starting_menu.StartingMenu;
 import net.voiddustry.redvsblue.game.stations.*;
 
 import static mindustry.Vars.*;
@@ -41,7 +33,7 @@ public class Utils {
     public static boolean gameRun;
     public static boolean gameover;
     public static boolean hardcore;
-    public static int money_per_min = 2;
+    public static int money_per_min = 3;
 
     public static void initRules() {
         for ( Block block : Vars.content.blocks()) {
@@ -57,13 +49,11 @@ public class Utils {
 
         state.rules.teams.get(Team.malis).blockHealthMultiplier = 2;
 
-        money_per_min = 2;
-
         Call.setRules(state.rules);
     }
 
     public static void launchGameStartTimer() {
-        int[] i = {60};
+        int[] i = {120};
         Timer.Task task = new Timer.Task() {
             @Override
             public void run() {
@@ -72,6 +62,7 @@ public class Utils {
                 if (i[0] <= 0) {
                     gameRun = true;
                     this.cancel();
+                    StartingMenu.canOpenMenu = false;
                 }
             }
         };
@@ -84,28 +75,79 @@ public class Utils {
 
         UnitTypes.stell.health = 400;
         UnitTypes.mono.health = 1000;
-        UnitTypes.retusa.health = 570;
+        UnitTypes.locus.health = 540;
+        UnitTypes.avert.health = 450;
+        UnitTypes.retusa.health = 800;
 
         // Damage
 
-//        UnitTypes.anthicus.weapons.each(w -> w.name.equals("anthicus-weapon"), w -> w.bullet.damage = 0);
+        UnitTypes.mace.weapons.each(w -> w.name.equals("flamethrower"), w -> w.bullet.damage = 17);
+        UnitTypes.avert.weapons.each(w -> w.name.equals("avert-weapon"), w -> w.bullet.damage = 15);
 
         // Blocks
 
         Blocks.combustionGenerator.health = 320;
+        Blocks.mender.health = 120;
+
+        Blocks.tungstenWall.targetable = false;
+        Blocks.tungstenWall.health = 99999;
+        Blocks.tungstenWallLarge.targetable = false;
+        Blocks.tungstenWallLarge.health = 99999;
     }
 
     public static void loadContent() {
         BlocksTypes.load();
+        StartingItems.load();
     }
 
     public static void initTimers() {
         Miner.initTimer();
         RepairPoint.initTimer();
         AmmoBox.initTimer();
-        Turret.initTimer();
         Laboratory.initTimer();
         BuildBlock.init();
+        UnitConstructor.initTimer();
+
+        Timer.schedule(() -> {
+            if (playing) {
+                Groups.player.each(p -> {
+                    if (p.team() == Team.blue) {
+                        players.get(p.uuid()).setScore(players.get(p.uuid()).getScore() + money_per_min);
+                        p.sendMessage(Bundle.format("game.salary", Bundle.findLocale(p.locale), money_per_min));
+
+                    }
+                });
+            }
+        }, 0, 60);
+
+        Timer.schedule(() -> stageTimer--, 0, 1);
+
+        Timer.schedule(() -> Groups.player.each(player -> {
+            if (player.tileOn() != null && player.team() == Team.blue && player.unit() != null) {
+                if (player.tileOn().build != null && player.tileOn().build.team != Team.blue) {
+                    if (player.unit().health <= 1) {
+                        player.unit().kill();
+                    }
+                    player.unit().health -= player.unit().type.health/100;
+                    Call.effect(Fx.burning, player.x, player.y, 1, Color.red);
+
+                } else if (!player.tileOn().block().isAir() || player.tileOn().isDarkened()) {
+                    if (player.unit().health <= 1) {
+                        player.unit().kill();
+                    }
+                    if (!player.tileOn().block().canBeBuilt()) {
+                        player.unit().health -= player.unit().type.health/100;
+                        Call.effect(Fx.burning, player.x, player.y, 1, Color.red);
+                    }
+                }
+            } else if (player.tileOn() == null && player.unit() != null) {
+                if (player.unit().health <= 1) {
+                    player.unit().kill();
+                }
+                player.unit().health -= player.unit().type.health/100;
+                Call.effect(Fx.burning, player.x, player.y, 1, Color.red);
+            }
+        }), 0, 0.1F);
     }
 
     public static void processLevel(Player player, PlayerData data) {
@@ -126,16 +168,13 @@ public class Utils {
     }
 
     public static Player getRandomPlayer(Team team) {
-        Player[] teamPlayers = new Player[playerCount(team)];
-        final int[] i = { 0 };
-        Groups.player.each(player -> {
-            if (player.team() == team) {
-                teamPlayers[i[0]] = player;
-                i[0]++;
+        Seq<Player> playerSeq = new Seq<>();
+        Groups.player.each(p -> {
+            if (p.team() == team) {
+                playerSeq.add(p);
             }
         });
-
-        return teamPlayers[getRandomInt(0, teamPlayers.length - 1)];
+        return playerSeq.random();
     }
 
     public static Player getRandomPlayer() {
@@ -143,15 +182,15 @@ public class Utils {
     }
 
     public static void spawnBoss() {
-        Unit boss = UnitTypes.antumbra.spawn(Team.crux, RedVsBluePlugin.redSpawnX, RedVsBluePlugin.redSpawnY);
-        boss.health(14000);
-
-        Player player = getRandomPlayer(Team.crux);
+        Unit boss = StageUnits.bosses.get(stage).spawn(Team.crux, redSpawnX, redSpawnY);
+        boss.health = boss.type.health + boss.type.health/3;
 
         if (!boss.dead()) {
-            Call.unitControl(player, boss);
-
-            sendBundled("game.boss.spawn", player.name());
+            Player player = getRandomPlayer(Team.crux);
+            if (player != null) {
+                Call.unitControl(player, boss);
+                sendBundled("game.boss.spawn", player.name());
+            }
         }
     }
 
@@ -210,39 +249,11 @@ public class Utils {
         return tile;
     }
 
-    public static void enableHardCore() {
-        hardcore = true;
-        state.rules.lighting = true;
-        Vars.state.rules.ambientLight.set(0.2F, 0F, 0F, 0.95F);
-        Vars.state.rules.waveSpacing = 1200;
-        money_per_min = 6;
-
-        final int[] i = {0};
-        Call.setRules(Vars.state.rules);
-
-        Call.announce("[scarlet]HARDCORE mode has been enabled.");
-
-        Timer.Task sounds = new Timer.Task() {
-            @Override
-            public void run() {
-                i[0]++;
-                Call.sound(Sounds.explosionbig, 20, 1, 1);
-                Call.effect(Fx.dynamicExplosion, randomTile().x*8, randomTile().y*8, 7, Color.red);
-                if (i[0] >= 7) {
-                    this.cancel();
-                }
-            }
-        };
-
-        Timer.schedule(sounds, 0, 0.3F);
-
-    }
-
     public static void announceBundled(String key, int duration) {
         Groups.player.forEach(p -> {
             Locale locale = Bundle.findLocale(p.locale);
             String text = Bundle.get(key, locale);
-            Call.infoPopup(p.con, text, duration, 0, 0, 0, -200, 0);
+            Call.infoPopup(p.con,  text, duration, 0, 0, 0, -200, 0);
         });
     }
 
@@ -253,5 +264,6 @@ public class Utils {
             Call.infoPopup(p.con, text, duration, 0, 0, 0, -200, 0);
         });
     }
+
 
 }
