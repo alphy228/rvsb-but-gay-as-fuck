@@ -20,7 +20,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
 
 public class RepairPoint {
-
     private static final Map<String, StationData> repairPointsMap = new ConcurrentHashMap<>();
 
     public static void initTimer() {
@@ -28,25 +27,26 @@ public class RepairPoint {
             int centerX = pointData.tileOn().x * 8;
             int centerY = pointData.tileOn().y * 8;
 
-            for (int x = -1; x <= 1; x++) {
-                for (int y = -1; y <= 1; y++) {
-                    if (x != 0 && y != 0) {
-
-                        Call.effect(Fx.healWaveDynamic, centerX + (x * 3) * 8, centerY + (y * 3) * 8, 1, Color.red);
-                    }
-                }
+            for (int i = 0; i < 19; i++) {
+                Call.effect(Fx.healWaveDynamic, (float) (centerX + Math.sin(i) * 32), (float) (centerY + Math.cos(i) * 32), 1, Color.red);
             }
+
+            String text = pointData.owner().name + "[gold]'s\n[cyan]Repair Point";
+            StationUtils.drawStationName(pointData.tileOn(), text, 1.1F);
 
             Groups.player.each(p -> {
                 if (p.team() == Team.blue) {
-                    if (p.x >= (centerX-(3*8)) && p.x <= (centerX+(3*8)) && p.y >= (centerY-(3*8)) && p.y <= (centerY+(3*8))) {
+                    if (p.dst(centerX, centerY) <= 32) {
                         if (p.unit().health <= p.unit().type.health) {
-                            p.unit().health += 3;
-                            Call.label("[lime]+3", 1, p.x, p.y);
-                        }
-                        if (Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) == pointData.tileOn()) {
-                            String text = pointData.owner().name + "[gold]'s\n[cyan]Repair Point";
-                            StationUtils.drawStationName(pointData.owner().con, pointData.tileOn(), text, 1F);
+                            float add = p.unit().type.health/100;
+                            if (p.unit().type.health >= 8200) {
+                                add = p.unit().type.health/400;
+                            } else if (p.unit().type.health <= 130) {
+                                add = p.unit().type.health/50;
+                            }
+
+                            p.unit().health += add;
+                            Call.label("[lime]+" + add, 1, p.x, p.y);
                         }
                     }
                 }

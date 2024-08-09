@@ -1,9 +1,9 @@
 package net.voiddustry.redvsblue.util;
 
 import arc.graphics.Color;
-import arc.math.Mathf;
 
 import arc.struct.Seq;
+import arc.util.Time;
 import arc.util.Timer;
 import mindustry.Vars;
 import mindustry.content.*;
@@ -14,7 +14,7 @@ import mindustry.type.UnitType;
 import java.util.Locale;
 
 import mindustry.world.Block;
-import mindustry.world.Tile;
+
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.game.building.BlocksTypes;
@@ -45,7 +45,6 @@ public class Utils {
         state.rules.bannedUnits.add(UnitTypes.alpha);
 
         state.rules.hideBannedBlocks = true;
-        state.rules.unitAmmo = true;
 
         state.rules.teams.get(Team.malis).blockHealthMultiplier = 2;
 
@@ -76,13 +75,18 @@ public class Utils {
         UnitTypes.stell.health = 400;
         UnitTypes.mono.health = 1000;
         UnitTypes.locus.health = 540;
-        UnitTypes.avert.health = 450;
         UnitTypes.retusa.health = 800;
+        UnitTypes.pulsar.health = 500;
+        UnitTypes.pulsar.armor = 6;
+        // Inventory
 
+        UnitTypes.mono.itemCapacity = 40;
+        UnitTypes.pulsar.itemCapacity = 40;
         // Damage
 
         UnitTypes.mace.weapons.each(w -> w.name.equals("flamethrower"), w -> w.bullet.damage = 17);
-        UnitTypes.avert.weapons.each(w -> w.name.equals("avert-weapon"), w -> w.bullet.damage = 15);
+        UnitTypes.avert.weapons.each(w -> w.name.equals("avert-weapon"), w -> w.bullet.damage = 35);
+        UnitTypes.mega.weapons.each(w -> w.bullet.damage = 30);
 
         // Blocks
 
@@ -103,10 +107,12 @@ public class Utils {
     public static void initTimers() {
         Miner.initTimer();
         RepairPoint.initTimer();
-        AmmoBox.initTimer();
         Laboratory.initTimer();
+        Booster.initTimer();
+        ArmorWorkbench.initTimer();
+        Recycler.initTimer();
+        SuppressorTower.initTimer();
         BuildBlock.init();
-        UnitConstructor.initTimer();
 
         Timer.schedule(() -> {
             if (playing) {
@@ -124,7 +130,10 @@ public class Utils {
 
         Timer.schedule(() -> Groups.player.each(player -> {
             if (player.tileOn() != null && player.team() == Team.blue && player.unit() != null) {
-                if (player.tileOn().build != null && player.tileOn().build.team != Team.blue) {
+                if (player.tileOn().block() != null && player.tileOn().block().id >= 98 && player.tileOn().block().id <= 125) {
+                    return;
+                }
+                if (player.tileOn().build != null && player.tileOn().build.team != Team.blue ) {
                     if (player.unit().health <= 1) {
                         player.unit().kill();
                     }
@@ -163,6 +172,19 @@ public class Utils {
         }
     }
 
+    public static void label(float x, float y, String text, float time, float fontsize) {
+        WorldLabel label = WorldLabel.create();
+        label.x(x);
+        label.y(y + 4);
+
+        label.fontSize = fontsize;
+        label.text = text;
+
+        label.add();
+
+        Time.run(time, label::hide);
+    }
+
     public static int getRandomInt(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
@@ -182,7 +204,7 @@ public class Utils {
     }
 
     public static void spawnBoss() {
-        Unit boss = StageUnits.bosses.get(stage).spawn(Team.crux, redSpawnX, redSpawnY);
+        Unit boss = StageUnits.bosses.get(stage).spawn(Team.crux, redSpawns.random());
         boss.health = boss.type.health + boss.type.health/3;
 
         if (!boss.dead()) {
@@ -237,16 +259,6 @@ public class Utils {
             }
         }
         return UnitTypes.nova;
-    }
-
-    public static Tile randomTile() {
-        int x = Mathf.random(0, Vars.world.width() - 1);
-        int y = Mathf.random(0, Vars.world.height() - 1);
-        Tile tile = Vars.world.tile(x, y);
-        if (tile == null || tile.build != null || !tile.block().isAir() || tile.floor().isLiquid) {
-            return randomTile();
-        }
-        return tile;
     }
 
     public static void announceBundled(String key, int duration) {

@@ -1,0 +1,90 @@
+package net.voiddustry.redvsblue.game.stations;
+
+import arc.graphics.Color;
+import arc.util.Timer;
+import mindustry.Vars;
+import mindustry.content.Blocks;
+import mindustry.content.Fx;
+import mindustry.game.Team;
+import mindustry.gen.Call;
+import mindustry.gen.Groups;
+import mindustry.gen.Player;
+import mindustry.world.Tile;
+import net.voiddustry.redvsblue.Bundle;
+import net.voiddustry.redvsblue.game.stations.stationData.StationData;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
+
+public class ArmorWorkbench {
+    private static final Map<String, StationData> workbenches = new ConcurrentHashMap<>();
+
+    public static void initTimer() {
+        Timer.schedule(() -> workbenches.forEach((owner, pointData) -> {
+            int centerX = pointData.tileOn().x * 8;
+            int centerY = pointData.tileOn().y * 8;
+
+            for (int i = 0; i < 19; i++) {
+                Call.effect(Fx.pointHit, (float) (centerX + Math.sin(i) * 32), (float) (centerY + Math.cos(i) * 32), 1, Color.blue);
+            }
+            String text = pointData.owner().name + "[gold]'s\n[blue]Workbench";
+            StationUtils.drawStationName(pointData.tileOn(), text, 0.4F);
+        }), 0, 0.25F);
+        Timer.schedule(() -> workbenches.forEach((owner, pointData) -> {
+            int centerX = pointData.tileOn().x * 8;
+            int centerY = pointData.tileOn().y * 8;
+
+            Groups.player.each(p -> {
+                if (p.team() == Team.blue) {
+                    if (p.dst(centerX, centerY) <= 32) {
+                        if (p.unit().shield >= 0 && p.unit().shield <= 50) {
+                            p.unit().shield += 25;
+                            Call.label("[blue]+25", 2, p.x, p.y);
+                        }
+                    }
+                }
+            });
+        }), 0, 5);
+        Timer.schedule(ArmorWorkbench::renderWorkbenches, 0, 1);
+    }
+
+    public static void buyWorkbench(Player player) {
+        if (players.get(player.uuid()).getScore() < 8) {
+            player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 8));
+        } else {
+            if (!workbenches.containsKey(player.uuid())) {
+                if (!player.dead()) {
+                    Tile playerTileOn = player.tileOn();
+                    Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
+
+                    if (!player.dead() && player.team() == Team.blue && tileUnderPlayer.block().isAir()) {
+                        StationData workbenchData = new StationData(player, tileUnderPlayer);
+                        workbenches.put(player.uuid(), workbenchData);
+                        Call.constructFinish(tileUnderPlayer, Blocks.radar, null, (byte) 0, Team.blue, null);
+                        Call.effect(Fx.regenParticle, tileUnderPlayer.x * 8, tileUnderPlayer.y * 8, 0, Color.red);
+                        players.get(player.uuid()).subtractScore(8);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void renderWorkbenches() {
+        workbenches.forEach((owner, workbench) -> {
+            if (workbench != null) {
+                if (workbench.tileOn().block() == Blocks.air || workbench.owner().team() != Team.blue) {
+                    workbenches.remove(owner);
+                    if (workbench.tileOn().block() == Blocks.radar) {
+                        workbench.tileOn().build.kill();
+                    }
+                }
+            }
+        });
+    }
+
+    public static void clearWorkbenches() {
+        workbenches.clear();
+    }
+}

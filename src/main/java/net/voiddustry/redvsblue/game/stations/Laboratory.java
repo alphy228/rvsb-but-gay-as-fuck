@@ -26,7 +26,7 @@ import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
 public class Laboratory {
     private static final Map<String, StationData> labsMap = new ConcurrentHashMap<>();
 
-    private static final int evolutionMenu = Menus.registerMenu((player, option) -> {
+    public static final int evolutionMenu = Menus.registerMenu((player, option) -> {
         if (option == -1) return;
 
         Evolution evolution = Evolutions.evolutions.get(player.unit().type().name);
@@ -60,47 +60,48 @@ public class Laboratory {
         Timer.schedule(() -> {
             renderLabs();
 
-            Groups.player.each(p -> labsMap.forEach((uuid, lab) -> {
-                int centerX = lab.tileOn().x * 8;
-                int centerY = lab.tileOn().y * 8;
 
-                if (p.team() == Team.blue) {
-                    if (p.x >= (centerX-(6*8)) && p.x <= (centerX+(5*8)) && p.y >= (centerY-(5*8)) && p.y <= (centerY+(6*8))) {
-                        if(Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) != null) {
-                            if (Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)).block() == Blocks.carbideWall) {
-                                if (p.shooting) {
-                                    Locale locale = Bundle.findLocale(p.locale());
-
-                                    Evolution evolution = Evolutions.evolutions.get(p.unit().type().name);
-
-                                    String[][] buttons = new String[evolution.evolutions.length][1];
-
-                                    for (int i = 0; i < evolution.evolutions.length; i++) {
-                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i], Evolutions.evolutions.get(evolution.evolutions[i]).cost);
-                                    }
-
-                                    Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
-                                }
-                                StationUtils.drawStationName(p.con, lab.tileOn(), lab.owner().name + "[gold]'s\n[purple]Lab", 0.5F);
-                            }
-                        }
-                        Call.infoPopup(p.con, Bundle.get("evolution.evolution-available", p.locale), 0.5F, 0, 0, 0, -200, 0);
-                    }
+            Groups.player.each(p -> {
+                if (players.containsKey(p.uuid())) {
+                    players.get(p.uuid()).setCanEvolve(false);
                 }
-            }));
+
+                labsMap.forEach((uuid, lab) -> {
+                    int centerX = lab.tileOn().x * 8;
+                    int centerY = lab.tileOn().y * 8;
+
+                    if (p.team() == Team.blue) {
+                        if (p.dst(centerX, centerY) <= 48) {
+                            if(Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) != null && Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)).block() == Blocks.carbideWall && p.shooting) {
+                                Locale locale = Bundle.findLocale(p.locale());
+
+                                Evolution evolution = Evolutions.evolutions.get(p.unit().type().name);
+
+                                String[][] buttons = new String[evolution.evolutions.length][1];
+
+                                for (int i = 0; i < evolution.evolutions.length; i++) {
+                                    buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i], Evolutions.evolutions.get(evolution.evolutions[i]).cost);
+                                }
+
+                                Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
+                            }
+
+                            players.get(p.uuid()).setCanEvolve(true);
+                            Call.infoPopup(p.con, Bundle.get("evolution.evolution-available", p.locale), 0.5F, 0, 0, 0, -200, 0);
+                        }
+                    }
+                });
+            });
 
             labsMap.forEach((uuid, lab) -> {
 
                 int centerX = lab.tileOn().x * 8;
                 int centerY = lab.tileOn().y * 8;
 
-                for (int x = -1; x <= 1; x++) {
-                    for (int y = -1; y <= 1; y++) {
-                        if (x != 0 && y != 0) {
-                            Call.effect(Fx.vaporSmall, centerX + (x * 5) * 8, centerY + (y * 5) * 8, 1, Color.purple);
-                        }
-                    }
+                for (int i = 0; i < 19; i++) {
+                    Call.effect(Fx.vaporSmall, (float) (centerX + Math.sin(i) * 48), (float) (centerY + Math.cos(i) * 48), 1, Color.purple);
                 }
+                StationUtils.drawStationName(lab.tileOn(), lab.owner().name + "[gold]'s\n[purple]Lab", 0.6F);
             });
         }, 0, 0.5F);
     }

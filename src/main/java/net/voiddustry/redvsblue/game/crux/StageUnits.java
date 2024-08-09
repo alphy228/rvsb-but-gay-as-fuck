@@ -13,7 +13,8 @@ public class StageUnits {
 
     public final static ObjectMap<UnitType, String> secondStage = ObjectMap.of(
             UnitTypes.crawler, "units.crux.menu.crawler",
-            UnitTypes.dagger, "units.crux.menu.dagger"
+            UnitTypes.dagger, "units.crux.menu.dagger",
+            UnitTypes.mace, "units.crux.menu.mace"
     );
 
     public final static ObjectMap<UnitType, String> thirdStage = ObjectMap.of(
@@ -31,6 +32,7 @@ public class StageUnits {
     );
 
     public final static ObjectMap<UnitType, String> sixthStage = ObjectMap.of(
+            UnitTypes.crawler, "units.crux.menu.crawler",
             UnitTypes.elude, "units.crux.menu.atrax",
             UnitTypes.merui, "units.crux.menu.merui",
             UnitTypes.dagger, "units.crux.menu.dagger",
@@ -39,6 +41,7 @@ public class StageUnits {
     );
 
     public final static ObjectMap<UnitType, String> sevenStage = ObjectMap.of(
+            UnitTypes.cleroi, "units.crux.menu.cleroi",
             UnitTypes.flare, "units.crux.menu.flare",
             UnitTypes.horizon, "units.crux.menu.horizon",
             UnitTypes.elude, "units.crux.menu.elude"
@@ -51,19 +54,20 @@ public class StageUnits {
     );
 
     public final static ObjectMap<UnitType, String> tenthStage = ObjectMap.of(
-            UnitTypes.arkyid, "units.crux.menu.arkyid"
+            UnitTypes.obviate, "units.crux.menu.obviate",
+            UnitTypes.precept, "units.crux.menu.precept"
     );
 
     public final static ObjectMap<Integer, UnitType> bosses = ObjectMap.of(
             2, UnitTypes.horizon,
             3, UnitTypes.locus,
-            4, UnitTypes.fortress,
-            5, UnitTypes.quasar,
-            6, UnitTypes.anthicus,
+            4, UnitTypes.quasar,
+            5, UnitTypes.avert,
+            6, UnitTypes.spiroct,
             7, UnitTypes.precept,
-            8, UnitTypes.spiroct,
+            8, UnitTypes.tecta,
             9, UnitTypes.vanquish,
-            10, UnitTypes.collaris,
-            11, UnitTypes.collaris
+            10, UnitTypes.antumbra,
+            11, UnitTypes.navanax
     );
 }

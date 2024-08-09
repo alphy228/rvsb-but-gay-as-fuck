@@ -1,6 +1,7 @@
 package net.voiddustry.redvsblue.ai;
 
 import arc.math.Mathf;
+import arc.util.Log;
 import mindustry.entities.units.AIController;
 import mindustry.game.Team;
 import mindustry.gen.Groups;
@@ -38,6 +39,7 @@ public class StalkerGroundAI extends AIController {
                 }
             }
         } else {
+            Log.debug("PATHFIND TRIGGERES");
             pathfind(bluePlayerTargeting);
             if (unit.type.canBoost && unit.elevation > 0.001f && !unit.onSolid()) {
                 unit.elevation = Mathf.approachDelta(unit.elevation, 0f, unit.type.riseSpeed);

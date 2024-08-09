@@ -31,13 +31,11 @@ public class Evolutions {
 
         "locus", Evolution.LOCUS,
         "corvus", Evolution.CORVUS,
-        "tecta", Evolution.TECTA,
         "elude", Evolution.ELUDE,
         "mega", Evolution.MEGA,
 
         "precept", Evolution.PRECEPT,
         "aegires", Evolution.AEGIRES,
-        "arkyid", Evolution.ARKYID,
         "avert", Evolution.AVERT,
         "cyerce", Evolution.CYERCE,
 
@@ -48,7 +46,6 @@ public class Evolutions {
         "quad", Evolution.QUAD,
 
         "vanquish", Evolution.VANQUISH,
-        "nuke boy", Evolution.ANTHICUS,
         "collaris", Evolution.COLLARIS,
         "antumbra", Evolution.ANTUMBRA,
         "obviate", Evolution.OBVIATE,

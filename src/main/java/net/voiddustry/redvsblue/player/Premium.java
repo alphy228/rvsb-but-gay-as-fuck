@@ -16,22 +16,22 @@ public class Premium {
     private static final Map<String, Boolean> premiumPlayers = new HashMap<>();
 
     public static void init() {
-        Json json = new Json();
-        json.setOutputType(JsonWriter.OutputType.json);
-        Fi configFile = Vars.modDirectory.child("RedVsBlue/premiums.json");
-        JsonValue jsonValue = json.fromJson(null, configFile);
-        String readValue = json.readValue("players", String.class, jsonValue);
-        String[] uuids = readValue.split(",");
-        Log.info("===== (Premium) =====");
-        Log.info("Premium player's uuid's loaded:");
-        Log.info("");
-        for (String uuid : uuids) {
-            Log.info(uuid);
-            premiumPlayers.put(uuid, true);
-        }
+//        Json json = new Json();
+//        json.setOutputType(JsonWriter.OutputType.json);
+//        Fi configFile = Vars.modDirectory.child("RedVsBlue/premiums.json");
+//        JsonValue jsonValue = json.fromJson(null, configFile);
+//        String readValue = json.readValue("players", String.class, jsonValue);
+//        String[] uuids = readValue.split(",");
+//        Log.info("===== (Premium) =====");
+//        Log.info("Premium player's uuid's loaded:");
+//        Log.info("");
+//        for (String uuid : uuids) {
+//            Log.info(uuid);
+//            premiumPlayers.put(uuid, true);
+//        }
     }
 
     public static boolean isPremium(Player player){
-        return premiumPlayers.containsKey(player.uuid());
+        return false;
     }
 }

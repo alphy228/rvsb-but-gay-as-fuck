@@ -14,6 +14,7 @@ import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.game.stations.stationData.MinerData;
+import net.voiddustry.redvsblue.util.Utils;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -29,7 +30,8 @@ public class Miner {
             PlayerData data = players.get(minerData.getOwner().uuid());
             data.addScore(minerData.getLvl());
             minerData.addExp(1);
-            Call.label("[lime]+" + minerData.getLvl(), 5, minerData.getTileOn().centerX()*8, minerData.getTileOn().centerY()*8);
+
+            Utils.label(minerData.getTileOn().centerX()*8, minerData.getTileOn().centerY()*8, "[lime]+" + minerData.getLvl(), 5, 0.8F);
             if (minerData.getExp() >= minerData.getMaxExp()) {
                 minerData.addLvl();
                 int expLimit = minerData.getMaxExp();
@@ -37,7 +39,7 @@ public class Miner {
                 minerData.setMaxExp(expLimitToSet);
                 minerData.setExp(0);
             }
-        }), 0, 30);
+        }), 0, 20);
         Timer.schedule(Miner::renderMiners, 0, 1);
     }
 
@@ -71,12 +73,9 @@ public class Miner {
                         miner.getTileOn().build.kill();
                     }
                 } else {
-                    Groups.player.each(p -> {
-                        if (Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) == miner.getTileOn()) {
-                            String text = miner.getOwner().name + "[gold]'s Miner\n[gray][ [gold]" + miner.getLvl() + "[] | [accent]" + miner.getExp() + " / " + miner.getMaxExp() + "[gray] ]";
-                            StationUtils.drawStationName(miner.getOwner().con, miner.getTileOn(), text, 1F);
-                        }
-                    });
+
+                    String text = miner.getOwner().name + "[gold]'s Miner\n[gray][ [gold]" + miner.getLvl() + "[] | [accent]" + miner.getExp() + " / " + miner.getMaxExp() + "[gray] ]";
+                    StationUtils.drawStationName(miner.getTileOn(), text, 1.1F);
                 }
             }
         });

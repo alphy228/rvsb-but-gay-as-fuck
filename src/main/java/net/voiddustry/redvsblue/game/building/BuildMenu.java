@@ -60,7 +60,31 @@ public class BuildMenu {
                         openMenu(player);
                     }
                     case 11 -> {
-                        selectedBlock.put(player, BlocksTypes.mine);
+                        selectedBlock.put(player, BlocksTypes.laserDrill);
+                        openMenu(player);
+                    }
+                    case 12 -> {
+                        selectedBlock.put(player, BlocksTypes.powerNode);
+                        openMenu(player);
+                    }
+                    case 13 -> {
+                        selectedBlock.put(player, BlocksTypes.battery);
+                        openMenu(player);
+                    }
+                    case 14 -> {
+                        selectedBlock.put(player, BlocksTypes.combustion);
+                        openMenu(player);
+                    }
+                    case 15 -> {
+                        selectedBlock.put(player, BlocksTypes.rtg);
+                        openMenu(player);
+                    }
+                    case 16 -> {
+                        selectedBlock.put(player, BlocksTypes.repair);
+                        openMenu(player);
+                    }
+                    case 17 -> {
+                        selectedBlock.put(player, BlocksTypes.pump);
                         openMenu(player);
                     }
                 }
@@ -87,7 +111,13 @@ public class BuildMenu {
                     {BlocksTypes.thoriumWallLarge.color + BlocksTypes.thoriumWallLarge.name},
                     {BlocksTypes.doorLarge.color + BlocksTypes.doorLarge.name},
                     {BlocksTypes.drill.color + BlocksTypes.drill.name},
-                    {BlocksTypes.mine.color + BlocksTypes.mine.name}
+                    {BlocksTypes.laserDrill.color + BlocksTypes.laserDrill.name},
+                    {BlocksTypes.powerNode.color + BlocksTypes.powerNode.name},
+                    {BlocksTypes.battery.color + BlocksTypes.battery.name},
+                    {BlocksTypes.combustion.color + BlocksTypes.combustion.name},
+                    {BlocksTypes.rtg.color + BlocksTypes.rtg.name},
+                    {BlocksTypes.repair.color + BlocksTypes.repair.name},
+                    {BlocksTypes.pump.color + BlocksTypes.pump.name}
             };
             menu(player.con, menu, text, buttons);
         }

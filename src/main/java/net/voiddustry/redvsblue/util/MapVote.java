@@ -1,5 +1,6 @@
 package net.voiddustry.redvsblue.util;
 
+import arc.Events;
 import arc.struct.Seq;
 import arc.util.Log;
 import arc.util.Timer;
@@ -24,6 +25,7 @@ public class MapVote {
             Utils.voting = true;
             Utils.gameRun = false;
             int[] i = {61};
+            Events.fire("rvsb-world-reload");
 
             Timer.Task task = new Timer.Task() {
                 @Override
@@ -41,6 +43,7 @@ public class MapVote {
                     Groups.player.each(p -> Call.infoPopup(p.con, "[gray][ [royal]Vote []]\n[gray][ [cyan]Say []<map number> []in [gray]]\n[ chat to vote for map [gray]]\n" + mapsList + "\n\n[gold]Time left: " + Arrays.toString(i), 1, 0, 0, (p.con.mobile)? 300 : 600, 0, 0));
 
                     i[0]--;
+
                     if (i[0] == 0) {
                         this.cancel();
                         reloadWorld(() -> {

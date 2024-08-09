@@ -2,12 +2,15 @@ package net.voiddustry.redvsblue.game.crux;
 
 import arc.util.Timer;
 import mindustry.content.Items;
+import mindustry.content.StatusEffects;
 import mindustry.content.UnitTypes;
 import mindustry.game.Team;
+import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import mindustry.gen.Unit;
 import mindustry.type.UnitType;
+import mindustry.world.Tile;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.util.Utils;
 
@@ -17,27 +20,33 @@ public class CruxUnit {
         UnitType type = ClassChooseMenu.selectedUnit.get(player.uuid());
 
         if (type != null) {
-            Unit unit = type.spawn(Team.crux, RedVsBluePlugin.redSpawnX, RedVsBluePlugin.redSpawnY);
+            Tile cruxSpawn = RedVsBluePlugin.redSpawns.random();
+
+            if (cruxSpawn != null && cruxSpawn.block() != null) {
+                Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true);
+            }
+            Unit unit = type.spawn(Team.crux, cruxSpawn);
 
             if (unit != null && !unit.dead) {
                 unit.health = Integer.MAX_VALUE;
+                unit.apply(StatusEffects.overclock, 180);;
 
                 Timer.schedule(() -> {
                     if (unit.type == UnitTypes.crawler) {
-                        unit.health = 10;
+                        unit.health = 20;
                         unit.addItem(Items.pyratite, 10);
                     } else if (unit.type == UnitTypes.merui) {
                         unit.health = 100;
                         unit.addItem(Items.pyratite, 99);
                     } else if (unit.type == UnitTypes.mace) {
-                        unit.health = 130;
+                        unit.health = 100;
                     } else if (unit.type == UnitTypes.dagger) {
-                        unit.health = 90;
+                        unit.health = 100;
                     } else {
                         unit.health = unit.type.health;
                     }
 
-                }, 2);
+                }, 3);
 
                 player.unit(unit);
                 unit.spawnedByCore = true;
@@ -50,24 +59,30 @@ public class CruxUnit {
         if (!ClassChooseMenu.units.isEmpty()) {
             unitType = ClassChooseMenu.units.keys().toSeq().get(Utils.getRandomInt(0, ClassChooseMenu.units.size)); //Utils.getRandomInt(0, ClassChooseMenu.units.size)
         }
+        if (Utils.gameRun) {
+            Tile cruxSpawn = RedVsBluePlugin.redSpawns.random();
 
-        Unit unit = unitType.spawn(Team.crux, RedVsBluePlugin.redSpawnX, RedVsBluePlugin.redSpawnY);
-
-        Timer.schedule(() -> {
-            if (unit.type == UnitTypes.crawler) {
-                unit.health = 10;
-                unit.addItem(Items.pyratite, 10);
-            } else if (unit.type == UnitTypes.merui) {
-                unit.health = 100;
-                unit.addItem(Items.pyratite, 99);
-            } else if (unit.type == UnitTypes.mace) {
-                unit.health = 130;
-            } else if (unit.type == UnitTypes.dagger) {
-                unit.health = 90;
-            } else {
-                unit.health = unit.type.health;
+            if (cruxSpawn != null && cruxSpawn.block() != null) {
+                Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true);
             }
-        }, 2);
+            Unit unit = unitType.spawn(Team.crux, cruxSpawn);
+
+            Timer.schedule(() -> {
+                if (unit.type == UnitTypes.crawler) {
+                    unit.health = 20;
+                    unit.addItem(Items.pyratite, 10);
+                } else if (unit.type == UnitTypes.merui) {
+                    unit.health = 100;
+                    unit.addItem(Items.pyratite, 99);
+                } else if (unit.type == UnitTypes.mace) {
+                    unit.health = 100;
+                } else if (unit.type == UnitTypes.dagger) {
+                    unit.health = 100;
+                } else {
+                    unit.health = unit.type.health;
+                }
+            }, 2);
+        }
     };
 
     public static void checkUnitCount() {

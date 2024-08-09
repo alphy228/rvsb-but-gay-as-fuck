@@ -5,6 +5,7 @@ import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.game.Team;
 import mindustry.gen.Call;
+import mindustry.gen.Groups;
 import mindustry.gen.Player;
 import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Bundle;
@@ -13,8 +14,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
-import static net.voiddustry.redvsblue.RedVsBluePlugin.playing;
+import static net.voiddustry.redvsblue.RedVsBluePlugin.*;
 
 public class BuildBlock {
     public static Map<BuildTicket, Boolean> buildQueue = new ConcurrentHashMap<>();
@@ -36,12 +36,25 @@ public class BuildBlock {
 
                             switch (buildTicket.block().size) {
                                 case 1 -> {
-                                    drawCursor(player, position, 1, text);
+                                    for (Player p : Groups.player) {
+                                        if (p.dst(position.x*8, position.y*8) <= 16) {
+                                            canBuild = false;
+                                        }
+                                    }
+                                    if (canBuild) {
+                                        drawCursor(player, position, 1, text);
+                                    }
                                 }
 
                                 case 2 -> {
                                     int centerX = position.x;
                                     int centerY = position.y;
+
+                                    for (Player p : Groups.player) {
+                                        if (p.dst(centerX*8, centerY*8) <= 16) {
+                                            canBuild = false;
+                                        }
+                                    }
 
                                     for (int x = 0; x <= 1; x++) {
                                         for (int y = 0; y <= 1; y++) {
@@ -55,6 +68,22 @@ public class BuildBlock {
                                     }
                                 }
                                 case 3 -> {
+                                    int centerX = position.x;
+                                    int centerY = position.y;
+
+                                    for (Player p : Groups.player) {
+                                        if (p.dst(centerX*8, centerY*8) <= 24) {
+                                            canBuild = false;
+                                        }
+                                    }
+
+                                    for (int x = -1; x <= 1; x++) {
+                                        for (int y = -1; y <= 1; y++) {
+                                            if (Vars.world.tile(centerX + x, centerY + y) != null && Vars.world.tile(centerX + x, centerY + y).block() != Blocks.air) {
+                                                canBuild = false;
+                                            }
+                                        }
+                                    }
                                     drawCursor(player, position, 3, text);
                                 }
                             }
@@ -77,7 +106,7 @@ public class BuildBlock {
                     }
                 }
             }));
-        }, 0, .01F);
+        }, 0, .09F);
     }
 
     public static void add(BuildTicket buildEntry) {
@@ -119,7 +148,7 @@ public class BuildBlock {
                 }
                 for (int x = 0; x <= 1; x++) {
                     for (int y = 0; y <= 1; y++) {
-                        Call.label(player.con, "[orange]#", 0.01F, centerX + x * 8, centerY + y * 8);
+                        Call.label(player.con, "[orange]#", 0.09F, centerX + x * 8, centerY + y * 8);
                     }
                 }
             }

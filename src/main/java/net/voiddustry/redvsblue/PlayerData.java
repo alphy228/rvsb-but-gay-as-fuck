@@ -1,18 +1,22 @@
 package net.voiddustry.redvsblue;
 
+import mindustry.content.UnitTypes;
 import mindustry.game.Team;
 import mindustry.gen.Player;
 import mindustry.gen.Unit;
+import mindustry.type.UnitType;
 
 @SuppressWarnings("unused")
 public class PlayerData {
     private final String name, uuid, ip;
     private int score;
+    private int kills;
     private Unit unit;
     private Team team;
     private int evolutionStage;
     private boolean canEvolve;
     private boolean canConstruct;
+    private UnitType selectedBoss;
     private int level;
     private int exp;
     private int maxExp;
@@ -23,10 +27,12 @@ public class PlayerData {
         this.ip = ip;
         this.unit = unit;
         this.score = 15;
+        this.kills = 0;
         this.team = team;
         this.evolutionStage = 1;
         this.canEvolve = false;
         this.canConstruct = false;
+        this.selectedBoss = UnitTypes.mace;
         this.level = 1;
         this.exp = 0;
         this.maxExp = 20;
@@ -56,16 +62,36 @@ public class PlayerData {
         return team;
     }
 
-    public int addScore(int amount) {
-        return score += amount;
+    public void addScore(int amount) {
+        score += amount;
     }
 
-    public int subtractScore(int amount) {
-        return score -= amount;
+    public void subtractScore(int amount) {
+        score -= amount;
     }
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public int getKills() {
+        return kills;
+    }
+
+    public void setKills(int kills) {
+        this.kills = kills;
+    }
+
+    public void addKill() {
+        this.kills += 1;
+    }
+
+    public void setSelectedBoss(UnitType selectedBoss) {
+        this.selectedBoss = selectedBoss;
+    }
+
+    public UnitType getSelectedBoss() {
+        return selectedBoss;
     }
 
     public void setTeam(Team team) {
