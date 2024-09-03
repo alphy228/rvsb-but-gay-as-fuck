@@ -56,11 +56,11 @@ public enum Evolution {
     SEI(UnitTypes.sei, 9, 240*multp, new String[] { "eclipse" }),
     QUELL(UnitTypes.quell, 9, 180*multp, new String[] { "disrupt" }),
 
-    CONQUER(UnitTypes.conquer, 10, 450*multp, new String[] { "merui", "nova", "flare" }),
+    CONQUER(UnitTypes.conquer, 10, 450*multp, new String[] { "merui", "nova", "flare", "mono" }),
     ECLIPSE(UnitTypes.eclipse, 10, 270*multp, new String[] { "omura" }),
     DISRUPT(UnitTypes.disrupt, 10, 900*multp, new String[] { "merui", "nova", "flare", "dagger"}),
 
-    OMURA(UnitTypes.omura, 11, 1800*multp, new String[] { "merui", "nova", "dagger" });
+    OMURA(UnitTypes.omura, 11, 1800*multp, new String[] { "merui", "nova", "dagger", "mono" });
 
     public final UnitType unitType;
     public final int tier, cost;
