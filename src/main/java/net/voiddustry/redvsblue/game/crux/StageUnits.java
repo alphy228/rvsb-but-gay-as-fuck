@@ -67,7 +67,7 @@ public class StageUnits {
             7, UnitTypes.precept,
             8, UnitTypes.tecta,
             9, UnitTypes.vanquish,
-            10, UnitTypes.antumbra,
+            10, UnitTypes.eclipse,
             11, UnitTypes.navanax
     );
 }
