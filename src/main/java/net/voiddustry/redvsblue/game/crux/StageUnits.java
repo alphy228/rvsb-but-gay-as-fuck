@@ -33,7 +33,7 @@ public class StageUnits {
 
     public final static ObjectMap<UnitType, String> sixthStage = ObjectMap.of(
             UnitTypes.crawler, "units.crux.menu.crawler",
-            UnitTypes.elude, "units.crux.menu.atrax",
+            UnitTypes.elude, "units.crux.menu.elude",
             UnitTypes.merui, "units.crux.menu.merui",
             UnitTypes.dagger, "units.crux.menu.dagger",
             UnitTypes.nova, "units.crux.menu.nova",
