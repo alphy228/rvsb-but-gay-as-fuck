@@ -20,13 +20,13 @@ public enum Evolution {
 
     MACE(UnitTypes.mace, 3, 20*multp, new String[] { "fortress"}),
     QUASAR(UnitTypes.quasar, 3, 75*multp, new String[] { "vela" }),
-    CLEROI(UnitTypes.cleroi, 3, 45*multp, new String[] { "spiroct" }),
+    CLEROI(UnitTypes.cleroi, 3, 55*multp, new String[] { "spiroct" }),
     ZENITH(UnitTypes.zenith, 3, 70*multp, new String[] { "minke" }),
     RETUSA(UnitTypes.retusa, 3, 15*multp, new String[] { "oxynoe" }),
 
     FORTRESS(UnitTypes.fortress, 4, 35*multp, new String[] { "locus" }),
     VELA(UnitTypes.vela, 4, 180*multp, new String[] { "corvus" }),
-    SPIROCT(UnitTypes.spiroct, 4, 29*multp, new String[] { "toxopid" }),
+    SPIROCT(UnitTypes.spiroct, 4, 95*multp, new String[] { "toxopid" }),
     MINKE(UnitTypes.minke, 4, 90*multp, new String[] { "elude" }),
     OXYNOE(UnitTypes.oxynoe, 4, 35*multp, new String[] { "mega" }),
 
@@ -44,16 +44,16 @@ public enum Evolution {
     NAVANAX(UnitTypes.navanax, 7, 450*multp, new String[] { "flare", "merui", "dagger" }),
     TOXOPID(UnitTypes.toxopid, 7, 415*multp, new String[] { "collaris" }),
     BRYDE(UnitTypes.bryde, 7, 180*multp, new String[] { "antumbra", "obviate" }),
-    QUAD(UnitTypes.quad, 7, 180*multp, new String[] { "oct" }),
+    QUAD(UnitTypes.quad, 7, 480*multp, new String[] { "oct" }),
 
     VANQUISH(UnitTypes.vanquish, 8, 250*multp, new String[] { "reign" }),
     COLLARIS(UnitTypes.collaris, 8, 1170*multp, new String[] { "nova", "flare", "dagger", "mono" }),
     ANTUMBRA(UnitTypes.antumbra, 8, 180*multp, new String[] { "sei" }),
     OBVIATE(UnitTypes.obviate, 8, 90*multp, new String[] { "quell" }),
-    OCT(UnitTypes.oct, 8, 1800*multp, new String[] { "merui", "nova", "flare", "dagger" }),
+    OCT(UnitTypes.oct, 8, 1500*multp, new String[] { "merui", "nova", "flare", "dagger" }),
 
     REIGN(UnitTypes.reign, 9, 450*multp, new String[] { "conquer" }),
-    SEI(UnitTypes.sei, 9, 180*multp, new String[] { "eclipse" }),
+    SEI(UnitTypes.sei, 9, 240*multp, new String[] { "eclipse" }),
     QUELL(UnitTypes.quell, 9, 180*multp, new String[] { "disrupt" }),
 
     CONQUER(UnitTypes.conquer, 10, 450*multp, new String[] { "merui", "nova", "flare" }),
