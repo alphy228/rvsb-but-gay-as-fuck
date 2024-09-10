@@ -246,12 +246,15 @@ public class Utils {
     public static UnitType getStartingUnit() {
         switch (getRandomInt(1,11)) {
             case 1, 2, 3, 4 -> {
+                return UnitTypes.dagger;
+            }
+            case 5, 6 -> {
                 return UnitTypes.nova;
             }
-            case 5,6,7 -> {
-                return UnitTypes.merui;
+            case 7, 8 -> {
+                return UnitTypes.elude;
             }
-            case 8,9 -> {
+            case 9 -> {
                 return UnitTypes.flare;
             }
             case 10 -> {

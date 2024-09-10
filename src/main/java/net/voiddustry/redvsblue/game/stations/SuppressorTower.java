@@ -40,9 +40,13 @@ public class SuppressorTower {
             Groups.unit.each(u -> {
                if (u.team() == Team.crux) {
                     if (u.dst(centerX, centerY) <= 128) {
-                            u.health -= 2;
-                            u.apply(StatusEffects.sapped, 30);
-                            Call.label("[#55557F]-2", 0.5F, u.x, u.y);
+                        float removedHp = u.maxHealth / 125;
+
+                        u.health -= removedHp;
+                        u.apply(StatusEffects.sapped, 50);
+
+                        String removedHpText = "[#55557F]-" + Math.round(removedHp*10)/10;
+                        Call.label(removedHpText, 0.5F, u.x, u.y);
                     }
 
                 }

@@ -7,6 +7,7 @@ import arc.util.*;
 import mindustry.Vars;
 import mindustry.ai.Pathfinder;
 import mindustry.content.Blocks;
+import mindustry.content.StatusEffects;
 import mindustry.content.UnitTypes;
 import mindustry.game.EventType;
 import mindustry.game.Team;
@@ -253,6 +254,9 @@ public class RedVsBluePlugin extends Plugin {
 
                     Unit unit = getStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
                     PlayerData data = players.get(player.uuid());
+                    if(unit.type() == UnitTypes.elude) {
+                        unit.apply(StatusEffects.sporeSlowed, Float.MAX_VALUE);
+                    }
                     data.setUnit(unit);
 
                 }

@@ -7,12 +7,12 @@ import static net.voiddustry.redvsblue.util.UnitsConfig.multp;
 
 public enum Evolution {
 
-    NOVA(UnitTypes.nova, 1, 3*multp, new String[] { "pulsar", "merui", "flare", "dagger", "mono" }),
-    MERUI(UnitTypes.merui, 1, 5*multp, new String[] { "atrax", "nova", "flare", "dagger", "mono" }),
-    FLARE(UnitTypes.flare, 1, 10*multp, new String[] { "risso", "nova", "merui", "dagger", "mono" }),
-    MONO(UnitTypes.mono, 1, 5*multp, new String[] { "poly", "nova", "merui", "dagger" }),
+    DAGGER(UnitTypes.nova, 1, 2*multp, new String[] { "atrax", "mace", "elude", "flare", "nova", "mono" }),
+    NOVA(UnitTypes.nova, 1, 3*multp, new String[] { "pulsar", "elude", "flare", "dagger", "mono" }),
+    ELUDE(UnitTypes.elude, 1, 5*multp, new String[] { "atrax", "nova", "flare", "dagger", "mono" }),
+    FLARE(UnitTypes.flare, 1, 10*multp, new String[] { "risso", "nova", "elude", "dagger", "mono" }),
+    MONO(UnitTypes.mono, 1, 5*multp, new String[] { "poly", "nova", "elude", "dagger" }),
 
-    DAGGER(UnitTypes.dagger, 2, 5*multp, new String[] { "mace" }),
     PULSAR(UnitTypes.pulsar, 2, 10*multp, new String[] { "quasar" }),
     ATRAX(UnitTypes.atrax, 2, 18*multp, new String[] { "cleroi" }),
     RISSO(UnitTypes.risso, 2, 36*multp, new String[] { "zenith" }),
@@ -27,12 +27,11 @@ public enum Evolution {
     FORTRESS(UnitTypes.fortress, 4, 35*multp, new String[] { "locus" }),
     VELA(UnitTypes.vela, 4, 180*multp, new String[] { "corvus" }),
     SPIROCT(UnitTypes.spiroct, 4, 95*multp, new String[] { "toxopid" }),
-    MINKE(UnitTypes.minke, 4, 90*multp, new String[] { "elude" }),
+    MINKE(UnitTypes.minke, 4, 90*multp, new String[] { "avert" }),
     OXYNOE(UnitTypes.oxynoe, 4, 35*multp, new String[] { "mega" }),
 
     LOCUS(UnitTypes.locus, 5, 45*multp, new String[] { "precept" }),
     CORVUS(UnitTypes.corvus, 5, 360*multp, new String[] { "aegires" }),
-    ELUDE(UnitTypes.elude, 5, 18*multp, new String[] { "avert" }),
     MEGA(UnitTypes.mega, 5, 100*multp, new String[] { "cyerce" }),
 
     PRECEPT(UnitTypes.precept, 6, 60*multp, new String[] { "scepter" }),
