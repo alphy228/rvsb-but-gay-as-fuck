@@ -40,7 +40,7 @@ public enum Evolution {
     CYERCE(UnitTypes.cyerce, 6, 130*multp, new String[] { "quad" }),
 
     SCEPTER(UnitTypes.scepter, 7, 105*multp, new String[] { "vanquish" }),
-    NAVANAX(UnitTypes.navanax, 7, 450*multp, new String[] { "flare", "merui", "dagger" }),
+    NAVANAX(UnitTypes.navanax, 7, 450*multp, new String[] { "flare", "elude", "dagger" }),
     TOXOPID(UnitTypes.toxopid, 7, 415*multp, new String[] { "collaris" }),
     BRYDE(UnitTypes.bryde, 7, 180*multp, new String[] { "antumbra", "obviate" }),
     QUAD(UnitTypes.quad, 7, 480*multp, new String[] { "oct" }),
@@ -49,17 +49,17 @@ public enum Evolution {
     COLLARIS(UnitTypes.collaris, 8, 1170*multp, new String[] { "nova", "flare", "dagger", "mono" }),
     ANTUMBRA(UnitTypes.antumbra, 8, 180*multp, new String[] { "sei" }),
     OBVIATE(UnitTypes.obviate, 8, 90*multp, new String[] { "quell" }),
-    OCT(UnitTypes.oct, 8, 1500*multp, new String[] { "merui", "nova", "flare", "dagger" }),
+    OCT(UnitTypes.oct, 8, 1500*multp, new String[] { "elude", "nova", "flare", "dagger" }),
 
     REIGN(UnitTypes.reign, 9, 450*multp, new String[] { "conquer" }),
     SEI(UnitTypes.sei, 9, 240*multp, new String[] { "eclipse" }),
     QUELL(UnitTypes.quell, 9, 180*multp, new String[] { "disrupt" }),
 
-    CONQUER(UnitTypes.conquer, 10, 450*multp, new String[] { "merui", "nova", "flare", "mono" }),
+    CONQUER(UnitTypes.conquer, 10, 450*multp, new String[] { "elude", "nova", "flare", "mono" }),
     ECLIPSE(UnitTypes.eclipse, 10, 270*multp, new String[] { "omura" }),
-    DISRUPT(UnitTypes.disrupt, 10, 900*multp, new String[] { "merui", "nova", "flare", "dagger"}),
+    DISRUPT(UnitTypes.disrupt, 10, 900*multp, new String[] { "nova", "flare", "dagger"}),
 
-    OMURA(UnitTypes.omura, 11, 1800*multp, new String[] { "merui", "nova", "dagger", "mono" });
+    OMURA(UnitTypes.omura, 11, 1800*multp, new String[] { "elude", "nova", "dagger", "mono" });
 
     public final UnitType unitType;
     public final int tier, cost;
