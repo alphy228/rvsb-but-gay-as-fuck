@@ -40,7 +40,7 @@ public class MapVote {
                         mapsList.append("\n[lightgray]").append(mapNumber).append(" [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append(maps.get(j).file.name().replace(".msav", ""));
                     }
 
-                    Groups.player.each(p -> Call.infoPopup(p.con, "[gray][ [royal]Vote []]\n\n" + mapsList + "\n\n[gold]Time left: " + Arrays.toString(i), 1, 0, 0, (p.con.mobile)? 300 : 600, 0, 0));
+                    Groups.player.each(p -> Call.infoPopup(p.con, "[gray][ [royal]Vote []]\n" + mapsList + "\n\n[gold]Time left: " + Arrays.toString(i), 1, 0, 0, (p.con.mobile)? 300 : 600, 0, 0));
 
                     i[0]--;
 
