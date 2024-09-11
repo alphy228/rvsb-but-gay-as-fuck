@@ -7,7 +7,7 @@ import static net.voiddustry.redvsblue.util.UnitsConfig.multp;
 
 public enum Evolution {
 
-    DAGGER(UnitTypes.nova, 1, 2*multp, new String[] { "atrax", "mace", "elude", "flare", "nova", "mono" }),
+    DAGGER(UnitTypes.dagger, 1, 2*multp, new String[] { "atrax", "mace", "elude", "flare", "nova", "mono" }),
     NOVA(UnitTypes.nova, 1, 3*multp, new String[] { "pulsar", "elude", "flare", "dagger", "mono" }),
     ELUDE(UnitTypes.elude, 1, 5*multp, new String[] { "atrax", "nova", "flare", "dagger", "mono" }),
     FLARE(UnitTypes.flare, 1, 10*multp, new String[] { "risso", "nova", "elude", "dagger", "mono" }),
