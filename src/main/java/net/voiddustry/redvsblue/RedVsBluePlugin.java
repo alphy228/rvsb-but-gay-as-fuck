@@ -2,11 +2,13 @@ package net.voiddustry.redvsblue;
 
 import arc.Events;
 
+import arc.graphics.Color;
 import arc.struct.Seq;
 import arc.util.*;
 import mindustry.Vars;
 import mindustry.ai.Pathfinder;
 import mindustry.content.Blocks;
+import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.content.UnitTypes;
 import mindustry.game.EventType;
@@ -56,6 +58,8 @@ public class RedVsBluePlugin extends Plugin {
     public float blueSpawnY;
 
     public static Seq<Tile> redSpawns = new Seq<>();
+
+    private static int tick = 0;
 
     public static int stage = 0;
     public static float stageTimer = 0;
@@ -282,9 +286,17 @@ public class RedVsBluePlugin extends Plugin {
         }, 10));
 
         Events.run(EventType.Trigger.update, () -> {
+            tick++;
             if (playing) {
-
                 Hud.update();
+
+                if(tick%3==0){
+                    Groups.bullet.forEach(bullet -> {
+                        if (bullet.lifetime == 59f){
+                            Call.effect(Fx.shootHeal, bullet.x, bullet.y, bullet.rotation(), Color.cyan);
+                        }
+                    });
+                }
             }
         });
 

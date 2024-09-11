@@ -7,12 +7,14 @@ import arc.util.Time;
 import arc.util.Timer;
 import mindustry.Vars;
 import mindustry.content.*;
+import mindustry.entities.bullet.BasicBulletType;
 import mindustry.game.Team;
 import mindustry.gen.*;
 
 import mindustry.type.UnitType;
 import java.util.Locale;
 
+import mindustry.type.Weapon;
 import mindustry.world.Block;
 
 import net.voiddustry.redvsblue.Bundle;
@@ -73,7 +75,7 @@ public class Utils {
         // Health
 
         UnitTypes.stell.health = 400;
-        UnitTypes.mono.health = 1000;
+        UnitTypes.mono.health = 200;
         UnitTypes.locus.health = 540;
         UnitTypes.retusa.health = 800;
         UnitTypes.pulsar.health = 500;
@@ -87,6 +89,18 @@ public class Utils {
         UnitTypes.mace.weapons.each(w -> w.name.equals("flamethrower"), w -> w.bullet.damage = 17);
         UnitTypes.avert.weapons.each(w -> w.name.equals("avert-weapon"), w -> w.bullet.damage = 35);
         UnitTypes.mega.weapons.each(w -> w.bullet.damage = 30);
+
+        UnitTypes.mono.weapons.add(new Weapon("mount-weapon"){{
+            reload = 30f;
+            rotate = true;
+            ejectEffect = Fx.casing1;
+            bullet = new BasicBulletType(3f, 24){{
+                width = 7f;
+                height = 9f;
+                lifetime = 59f;
+                ammoMultiplier = 2;
+            }};
+        }});
 
         // Blocks
 
@@ -261,7 +275,7 @@ public class Utils {
                 return UnitTypes.mono;
             }
         }
-        return UnitTypes.nova;
+        return UnitTypes.dagger;
     }
 
     public static void announceBundled(String key, int duration) {
