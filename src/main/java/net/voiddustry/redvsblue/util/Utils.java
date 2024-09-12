@@ -76,7 +76,7 @@ public class Utils {
 
         UnitTypes.stell.health = 400;
         UnitTypes.mono.health = 200;
-        UnitTypes.locus.health = 540;
+        UnitTypes.locus.armor = -20;
         UnitTypes.retusa.health = 800;
         UnitTypes.pulsar.health = 500;
         UnitTypes.pulsar.armor = 6;
