@@ -9,14 +9,17 @@ import mindustry.game.Team;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
+import mindustry.ui.Menus;
 import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Bundle;
+import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.game.stations.stationData.StationData;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
+import static net.voiddustry.redvsblue.RedVsBluePlugin.playing;
 
 public class ArmorWorkbench {
     private static final Map<String, StationData> workbenches = new ConcurrentHashMap<>();
@@ -39,14 +42,41 @@ public class ArmorWorkbench {
             Groups.player.each(p -> {
                 if (p.team() == Team.blue) {
                     if (p.dst(centerX, centerY) <= 32) {
-                        if (p.unit().shield >= 0 && p.unit().shield <= 50) {
-                            p.unit().shield += 25;
-                            Call.label("[blue]+25", 2, p.x, p.y);
+                        if (p.unit().shield >= 0 && p.unit().shield < 30) {
+                            p.unit().shield += 10;
+                            Call.label("[blue]+10", 1, p.x, p.y);
+                        }
+
+                        if(Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) != null && Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)).block() == Blocks.radar && p.shooting){
+
+                            int maxShield = (int) p.unit().type.health; // /50;
+
+                            int shieldPerPoint = maxShield/20;
+
+                            int menu = Menus.registerMenu((player, option) -> {
+                                if (option == 0 && players.get(p.uuid()).getScore() >= 1 && p.unit().shield <= maxShield) {
+                                    p.unit().shield = p.unit().shield + shieldPerPoint;
+                                    players.get(p.uuid()).subtractScore(1);
+
+                                    Call.label("[royal]+" + shieldPerPoint, 3, p.x, p.y);
+                                }
+                            });
+
+                            String[][] buttons = new String[][]{
+                                    {
+                                        Bundle.format("stations.workbench.buy-armor", Bundle.findLocale(p.locale), shieldPerPoint),
+                                    },
+                                    {
+                                        Bundle.get("stations.buttons.close", p.locale)
+                                    }
+                            };
+
+                            openMenu(p, menu, buttons);
                         }
                     }
                 }
             });
-        }), 0, 5);
+        }), 0, 1);
         Timer.schedule(ArmorWorkbench::renderWorkbenches, 0, 1);
     }
 
@@ -82,6 +112,10 @@ public class ArmorWorkbench {
                 }
             }
         });
+    }
+
+    private static void openMenu(Player p, int menu, String[][] buttons) {
+        Call.menu(p.con, menu, "[royal]" + Bundle.get("stations.buttons.workbench"), Bundle.format("stations.workbench.unit-armor", Bundle.findLocale(p.locale), p.unit().shield), buttons);
     }
 
     public static void clearWorkbenches() {
