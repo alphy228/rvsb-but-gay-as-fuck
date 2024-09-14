@@ -31,6 +31,7 @@ import net.voiddustry.redvsblue.game.building.BuildBlock;
 import net.voiddustry.redvsblue.game.building.BuildMenu;
 import net.voiddustry.redvsblue.game.starting_menu.StartingMenu;
 import net.voiddustry.redvsblue.game.stations.*;
+import net.voiddustry.redvsblue.game.units.SpecialUnits;
 import net.voiddustry.redvsblue.player.Hud;
 import net.voiddustry.redvsblue.player.Premium;
 import net.voiddustry.redvsblue.util.MapVote;
@@ -90,6 +91,7 @@ public class RedVsBluePlugin extends Plugin {
         Utils.initRules();
         Utils.initTimers();
         Utils.loadContent();
+        SpecialUnits.init();
         SpawnEffect.initEffect();
         Boss.forEachBoss();
         Premium.init();
