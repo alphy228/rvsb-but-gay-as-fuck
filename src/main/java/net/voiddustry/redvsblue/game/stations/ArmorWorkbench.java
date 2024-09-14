@@ -29,8 +29,8 @@ public class ArmorWorkbench {
             int centerX = pointData.tileOn().x * 8;
             int centerY = pointData.tileOn().y * 8;
 
-            for (int i = 0; i < 19; i++) {
-                Call.effect(Fx.pointHit, (float) (centerX + Math.sin(i) * 32), (float) (centerY + Math.cos(i) * 32), 1, Color.blue);
+            for (int i = 0; i < 38; i++) {
+                Call.effect(Fx.pointHit, (float) (centerX + Math.sin(i) * 64), (float) (centerY + Math.cos(i) * 64), 1, Color.blue);
             }
             String text = pointData.owner().name + "[gold]'s\n[blue]Workbench";
             StationUtils.drawStationName(pointData.tileOn(), text, 0.4F);
@@ -41,7 +41,7 @@ public class ArmorWorkbench {
 
             Groups.player.each(p -> {
                 if (p.team() == Team.blue) {
-                    if (p.dst(centerX, centerY) <= 32) {
+                    if (p.dst(centerX, centerY) <= 64) {
                         if (p.unit().shield >= 0 && p.unit().shield < 30) {
                             p.unit().shield += 10;
                             Call.label("[blue]+10", 1, p.x, p.y);
