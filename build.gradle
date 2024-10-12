@@ -16,7 +16,6 @@ ext {
     versions = [:]
     versions.mindustry = 'v' + plugin.minGameVersion
     versions.lombok = '1.18.26'
-    versions.discordWebhook = "v1.6"
 }
 
 dependencies {
@@ -25,8 +24,6 @@ dependencies {
 
     compileOnly "org.projectlombok:lombok:$versions.lombok"
     annotationProcessor "org.projectlombok:lombok:$versions.lombok"
-
-    implementation "com.github.thedimasNetwork:DiscordWebhook:$versions.discordWebhook"
 }
 
 jar {
