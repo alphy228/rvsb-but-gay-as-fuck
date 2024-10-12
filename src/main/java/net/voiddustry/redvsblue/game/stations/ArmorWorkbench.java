@@ -49,9 +49,15 @@ public class ArmorWorkbench {
 
                         if(Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) != null && Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)).block() == Blocks.radar && p.shooting){
 
-                            int maxShield = (int) p.unit().type.health; // /50;
+                            //int maxShield = (int) p.unit().type.health; // /50;
+                            float maxShield = p.unit().type.health;
+                            if (p.unit().type.health >= 17000) {
+                                maxShield = p.unit().type.health/3;
+                            } else if (p.unit().type.health <= 130) {
+                                maxShield = p.unit().type.health*4;
+                            }
 
-                            int shieldPerPoint = maxShield/20;
+                            int shieldPerPoint = (int) maxShield/20;
 
                             int menu = Menus.registerMenu((player, option) -> {
                                 if (option == 0 && players.get(p.uuid()).getScore() >= 1 && p.unit().shield <= maxShield) {
