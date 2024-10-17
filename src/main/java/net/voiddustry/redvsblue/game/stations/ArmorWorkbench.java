@@ -51,7 +51,7 @@ public class ArmorWorkbench {
                             float maxShield = p.unit().type.health;
                             if (p.unit().type.health >= 17000) {
                                 maxShield = p.unit().type.health/3;
-                            } else if (p.unit().type.health <= 130) {
+                            } else if (p.unit().type.health <= 290) {
                                 maxShield = p.unit().type.health*4;
                             }
 
