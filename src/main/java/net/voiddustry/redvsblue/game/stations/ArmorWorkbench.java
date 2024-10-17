@@ -12,14 +12,12 @@ import mindustry.gen.Player;
 import mindustry.ui.Menus;
 import mindustry.world.Tile;
 import net.voiddustry.redvsblue.Bundle;
-import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.game.stations.stationData.StationData;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
-import static net.voiddustry.redvsblue.RedVsBluePlugin.playing;
 
 public class ArmorWorkbench {
     private static final Map<String, StationData> workbenches = new ConcurrentHashMap<>();
@@ -59,8 +57,9 @@ public class ArmorWorkbench {
 
                             int shieldPerPoint = (int) maxShield/20;
 
+                            float finalMaxShield = maxShield;
                             int menu = Menus.registerMenu((player, option) -> {
-                                if (option == 0 && players.get(p.uuid()).getScore() >= 1 && p.unit().shield <= (int) maxShield) {
+                                if (option == 0 && players.get(p.uuid()).getScore() >= 1 && p.unit().shield <= (int) finalMaxShield) {
                                     p.unit().shield = p.unit().shield + shieldPerPoint;
                                     players.get(p.uuid()).subtractScore(1);
 
