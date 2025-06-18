@@ -39,6 +39,7 @@ public class Hud {
         });
 
         Groups.unit.each(u -> Call.label("[orange]X", 0.016F, u.x, u.y));
+        // allow map makers to draw fake hitboxes with erekir liquid routers
         Groups.build.each(b -> {
             if (b.block == Blocks.reinforcedLiquidRouter && b.team == Team.crux) {
                 Call.label("[orange]X", 0.016F, b.x, b.y);
