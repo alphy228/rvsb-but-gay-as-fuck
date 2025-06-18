@@ -40,7 +40,9 @@ public class Hud {
 
         Groups.unit.each(u -> Call.label("[orange]X", 0.016F, u.x, u.y));
         Groups.build.each(b -> {
-            Call.label("[orange]X", 0.016F, b.x, b.y);
+            if (b.block == Blocks.reinforcedLiquidRouter && b.team == Team.crux) {
+                Call.label("[orange]X", 0.016F, b.x, b.y);
+            }
         });
 
         Groups.player.each(player -> {
