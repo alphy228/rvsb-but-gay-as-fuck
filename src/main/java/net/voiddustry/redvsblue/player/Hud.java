@@ -15,7 +15,7 @@ import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.game.crux.CruxUnit;
-import RedVsBluePlugin.redSpawns;
+import net.voiddustry.redvsblue.RedVsBluePlugin.redSpawns;
 
 import static net.voiddustry.redvsblue.util.Utils.playerCount;
 
