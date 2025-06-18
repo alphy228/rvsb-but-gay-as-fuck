@@ -6,7 +6,7 @@ import mindustry.content.UnitTypes;
 import mindustry.game.Team;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
-import static mindustry.Vars.*;
+import static mindustry.Vars;
 
 import mindustry.gen.Unit;
 import mindustry.net.Administration;
