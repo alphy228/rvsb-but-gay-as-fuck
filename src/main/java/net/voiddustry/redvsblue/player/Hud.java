@@ -46,6 +46,23 @@ public class Hud {
             }
         });
 
+
+        //allows mappers to edit 'redSpawns', only changes 'redSpawns',removes the objectiveFlag and the 100 team phase walls placed in order to send coordinates
+        //very cringe code
+        Vars.state.rules.objectiveFlags.each(worldFlag -> {
+            if (worldFlag == 'updateRedSpawns') {
+                Vars.state.rules.objectiveFlags.remove('updateRedSpawns')
+                Groups.build.each(buildus -> {
+                    redSpawns.clear()
+                    if (buildus.block.equals(Blocks.phaseWall) && buildus.team.equals(Team.all[100])) {
+                        redSpawns.add(Vars.world.tile(buildus.x,buildus.y));
+                        Vars.world.tile(buildus.x,buildus.y).setBlock(Blocks.air)
+                    }
+                });  
+            }
+        });
+
+
         Groups.player.each(player -> {
             Unit unit = player.unit();
 
