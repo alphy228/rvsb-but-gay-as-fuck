@@ -51,12 +51,12 @@ public class Hud {
         //very cringe code
         Vars.state.rules.objectiveFlags.each(worldFlag -> {
             if (worldFlag == 'updateRedSpawns') {
-                Vars.state.rules.objectiveFlags.remove('updateRedSpawns')
+                Vars.state.rules.objectiveFlags.remove('updateRedSpawns');
                 Groups.build.each(buildus -> {
-                    redSpawns.clear()
+                    redSpawns.clear();
                     if (buildus.block.equals(Blocks.phaseWall) && buildus.team.equals(Team.all[100])) {
                         redSpawns.add(Vars.world.tile(buildus.x,buildus.y));
-                        Vars.world.tile(buildus.x,buildus.y).setBlock(Blocks.air)
+                        Vars.world.tile(buildus.x,buildus.y).setBlock(Blocks.air);
                     }
                 });  
             }
