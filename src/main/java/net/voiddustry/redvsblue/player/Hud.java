@@ -1,10 +1,12 @@
 package net.voiddustry.redvsblue.player;
 
+
 import mindustry.content.Blocks;
 import mindustry.content.UnitTypes;
 import mindustry.game.Team;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
+import static mindustry.Vars.*;
 
 import mindustry.gen.Unit;
 import mindustry.net.Administration;
@@ -13,6 +15,7 @@ import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.game.crux.CruxUnit;
+import RedVsBluePlugin.redSpawns;
 
 import static net.voiddustry.redvsblue.util.Utils.playerCount;
 
