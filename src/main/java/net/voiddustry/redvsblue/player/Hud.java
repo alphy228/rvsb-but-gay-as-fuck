@@ -57,8 +57,8 @@ public class Hud {
                 RedVsBluePlugin.redSpawns.clear();
                 Groups.build.each(bildeng -> {
                     if (bildeng.block == Blocks.reinforcedLiquidRouter && bildeng.team == Team.all[100]) {
-                        Integer bx = new Integer(bildeng.x);
-                        Integer by = new Integer(bildeng.y);
+                        Integer bx = new Integer((int)bildeng.x);
+                        Integer by = new Integer((int)bildeng.y);
                         RedVsBluePlugin.redSpawns.add(Vars.world.tile(bx,by));
                         Vars.world.tile(by,bx).setBlock(Blocks.air);
                     }
