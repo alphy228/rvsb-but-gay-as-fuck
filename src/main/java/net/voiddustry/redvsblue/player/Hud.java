@@ -55,10 +55,10 @@ public class Hud {
             if (worldFlag == "updateRedSpawns") {
                 Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
                 RedVsBluePlugin.redSpawns.clear();
-                Groups.build.each(b -> {
-                    if (b.block == Blocks.reinforcedLiquidRouter && b.team == Team.all[100]) {
-                        RedVsBluePlugin.redSpawns.add(Vars.world.tile((int)b.x,(int)b.y));
-                        Vars.world.tile((int)b.x,(int)b.y).setBlock(Blocks.air);
+                Groups.build.each(bildeng -> {
+                    if (bildeng.block == Blocks.reinforcedLiquidRouter && bildeng.team == Team.all[100]) {
+                        RedVsBluePlugin.redSpawns.add(Vars.world.tile(bildeng.x,bildeng.y);
+                        Vars.world.tile(bildeng.x,bildeng.y).setBlock(Blocks.air);
                     }
                 });  
             }
