@@ -54,11 +54,11 @@ public class Hud {
         Vars.state.rules.objectiveFlags.each(worldFlag -> {
             if (worldFlag == "updateRedSpawns") {
                 Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
-                Groups.build.each(buildus -> {
-                    RedVsBluePlugin.redSpawns.clear();
-                    if (buildus.block.equals(Blocks.phaseWall) && buildus.team.equals(Team.all[100])) {
-                        RedVsBluePlugin.redSpawns.add(Vars.world.tile(buildus.x,buildus.y));
-                        Vars.world.tile(buildus.x,buildus.y).setBlock(Blocks.air);
+                RedVsBluePlugin.redSpawns.clear();
+                Groups.build.each(b -> {
+                    if (b.block.equals(Blocks.phaseWall) && b.team.equals(Team.all[100])) {
+                        RedVsBluePlugin.redSpawns.add(Vars.world.tile((int)b.x,(int)b.y));
+                        Vars.world.tile((int)b.x,(int)b.y).setBlock(Blocks.air);
                     }
                 });  
             }
