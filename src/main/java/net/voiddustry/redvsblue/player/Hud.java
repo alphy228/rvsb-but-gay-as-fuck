@@ -39,7 +39,11 @@ public class Hud {
         });
 
         Groups.unit.each(u -> Call.label("[orange]X", 0.016F, u.x, u.y));
-        Groups.build.each(bild -> if (bild.block == Blocks.phaseWall && bild.team == Team.crux) {Call.label("[orange]X", 0.016F, bild.x, bild.y) });
+        Groups.build.each(b -> {
+            if (b.block == Blocks.phaseWall && b.team == Team.crux) {
+            Call.label("[orange]X", 0.016F, b.x, b.y);
+            }
+        });
 
         Groups.player.each(player -> {
             Unit unit = player.unit();
