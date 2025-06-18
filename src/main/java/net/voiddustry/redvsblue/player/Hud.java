@@ -56,7 +56,7 @@ public class Hud {
                 Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
                 RedVsBluePlugin.redSpawns.clear();
                 Groups.build.each(b -> {
-                    if (b.block.equals(Blocks.phaseWall) && b.team.equals(Team.all[100])) {
+                    if (b.block == Blocks.phaseWall && b.team == Team.all[100]) {
                         RedVsBluePlugin.redSpawns.add(Vars.world.tile((int)b.x,(int)b.y));
                         Vars.world.tile((int)b.x,(int)b.y).setBlock(Blocks.air);
                     }
