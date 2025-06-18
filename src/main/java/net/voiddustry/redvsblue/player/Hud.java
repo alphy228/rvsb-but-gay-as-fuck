@@ -49,14 +49,14 @@ public class Hud {
         });
 
 
-        //allows mappers to edit 'redSpawns', only changes 'redSpawns',removes the objectiveFlag and the 100 team phase walls placed in order to send coordinates
+        //allows mappers to edit 'redSpawns', only changes 'redSpawns',removes the objectiveFlag and the 100 team erekir liquid junctions placed in order to send coordinates
         //very cringe code
         Vars.state.rules.objectiveFlags.each(worldFlag -> {
             if (worldFlag == "updateRedSpawns") {
                 Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
                 RedVsBluePlugin.redSpawns.clear();
                 Groups.build.each(b -> {
-                    if (b.block == Blocks.phaseWall && b.team == Team.all[100]) {
+                    if (b.block == Blocks.reinforcedLiquidJunction && b.team == Team.all[100]) {
                         RedVsBluePlugin.redSpawns.add(Vars.world.tile((int)b.x,(int)b.y));
                         Vars.world.tile((int)b.x,(int)b.y).setBlock(Blocks.air);
                     }
