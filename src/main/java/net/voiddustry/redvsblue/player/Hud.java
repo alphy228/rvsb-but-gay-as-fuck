@@ -7,6 +7,7 @@ import mindustry.game.Team;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import static mindustry.Vars.*;
+import RedVsBluePlugin.redSpawns;
 
 import mindustry.gen.Unit;
 import mindustry.net.Administration;
@@ -15,7 +16,6 @@ import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.game.crux.CruxUnit;
-import RedVsBluePlugin.redSpawns;
 
 import static net.voiddustry.redvsblue.util.Utils.playerCount;
 
@@ -53,8 +53,8 @@ public class Hud {
         //allows mappers to edit 'redSpawns', only changes 'redSpawns',removes the objectiveFlag and the 100 team phase walls placed in order to send coordinates
         //very cringe code
         Vars.state.rules.objectiveFlags.each(worldFlag -> {
-            if (worldFlag == 'updateRedSpawns') {
-                Vars.state.rules.objectiveFlags.remove('updateRedSpawns');
+            if (worldFlag == "updateRedSpawns") {
+                Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
                 Groups.build.each(buildus -> {
                     redSpawns.clear();
                     if (buildus.block.equals(Blocks.phaseWall) && buildus.team.equals(Team.all[100])) {
