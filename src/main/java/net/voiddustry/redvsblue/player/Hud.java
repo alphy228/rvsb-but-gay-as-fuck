@@ -15,7 +15,6 @@ import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.game.crux.CruxUnit;
-import net.voiddustry.redvsblue.RedVsBluePlugin.redSpawns;
 
 import static net.voiddustry.redvsblue.util.Utils.playerCount;
 
@@ -56,9 +55,9 @@ public class Hud {
             if (worldFlag == "updateRedSpawns") {
                 Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
                 Groups.build.each(buildus -> {
-                    redSpawns.clear();
+                    RedVsBluePlugin.redSpawns.clear();
                     if (buildus.block.equals(Blocks.phaseWall) && buildus.team.equals(Team.all[100])) {
-                        redSpawns.add(Vars.world.tile(buildus.x,buildus.y));
+                        RedVsBluePlugin.redSpawns.add(Vars.world.tile(buildus.x,buildus.y));
                         Vars.world.tile(buildus.x,buildus.y).setBlock(Blocks.air);
                     }
                 });  
