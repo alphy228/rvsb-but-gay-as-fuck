@@ -55,9 +55,8 @@ public class Hud {
             if (worldFlag == "updateRedSpawns") {
                 Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
                 //hopefully no crash due to empty spawns
-                public static lastdeletespawn = RedVsBluePlugin.redSpawns.random();
                 RedVsBluePlugin.redSpawns.each(spawnpoint -> {
-                    if (spawnpoint != lastdeletespawn) {
+                    if (spawnpoint != RedVsBluePlugin.redSpawns.firstOpt()) {
                         RedVsBluePlugin.redSpawns.remove(spawnpoint);
                     }
                 });
@@ -67,7 +66,7 @@ public class Hud {
                         Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)).setBlock(Blocks.air);
                     }
                 });
-                RedVsBluePlugin.redSpawns.remove(lastdeletespawn);  
+                RedVsBluePlugin.redSpawns.remove(RedVsBluePlugin.redSpawns.firstOpt());  
             }
         });
 
