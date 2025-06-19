@@ -53,7 +53,7 @@ public class Hud {
         //very cringe code
         Vars.state.rules.objectiveFlags.each(worldFlag -> {
             if (worldFlag == "updateRedSpawns") {
-                Seq<mindustry.world.Tile> updatedRedSpawns = new Seq<>();
+                arc.struct.Seq<mindustry.world.Tile> updatedRedSpawns = new arc.struct.Seq<>();
                 Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
                 Groups.build.each(bildeng -> {
                     if (bildeng.block == Blocks.reinforcedLiquidRouter && bildeng.team == Team.all[100]) {
