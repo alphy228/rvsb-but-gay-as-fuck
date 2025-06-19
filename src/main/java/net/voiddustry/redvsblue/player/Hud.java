@@ -1,10 +1,12 @@
 package net.voiddustry.redvsblue.player;
 
+
 import mindustry.content.Blocks;
 import mindustry.content.UnitTypes;
 import mindustry.game.Team;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
+import mindustry.Vars;
 
 import mindustry.gen.Unit;
 import mindustry.net.Administration;
@@ -39,6 +41,33 @@ public class Hud {
         });
 
         Groups.unit.each(u -> Call.label("[orange]X", 0.016F, u.x, u.y));
+        // allow map makers to draw fake hitboxes with erekir liquid routers
+        Groups.build.each(b -> {
+            if (b.block == Blocks.reinforcedLiquidRouter && b.team == Team.crux) {
+                Call.label("[orange]X", 0.016F, b.x, b.y);
+            }
+        });
+
+
+        //allows mappers to edit 'redSpawns', only changes 'redSpawns',removes the objectiveFlag and the 100 team erekir liquid routers placed in order to send coordinates
+        //very cringe code
+        if (Vars.state.rules.objectiveFlags.contains("updateRedSpawns")) {
+            Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
+            //hopefully no crash due to empty spawns
+            RedVsBluePlugin.redSpawns.each(spawnpoint -> {
+                if (spawnpoint != RedVsBluePlugin.redSpawns.firstOpt()) {
+                    RedVsBluePlugin.redSpawns.remove(spawnpoint);
+                }
+            });
+            Groups.build.each(bildeng -> {
+                if (bildeng.block == Blocks.reinforcedLiquidRouter && bildeng.team == Team.all[100]) {
+                    RedVsBluePlugin.redSpawns.add(Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)));
+                    Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)).setBlock(Blocks.air);
+                }
+            });
+            RedVsBluePlugin.redSpawns.remove(RedVsBluePlugin.redSpawns.firstOpt());  
+        }
+
 
         Groups.player.each(player -> {
             Unit unit = player.unit();
