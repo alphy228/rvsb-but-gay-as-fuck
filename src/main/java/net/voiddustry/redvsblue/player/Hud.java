@@ -53,16 +53,21 @@ public class Hud {
         //very cringe code
         Vars.state.rules.objectiveFlags.each(worldFlag -> {
             if (worldFlag == "updateRedSpawns") {
-                arc.struct.Seq<mindustry.world.Tile> updatedRedSpawns = new arc.struct.Seq<>();
                 Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
+                //hopefully no crash due to empty spawns
+                lastdeletespawn = RedVsBluePlugin.redSpawns.random()
+                RedVsBluePlugin.redSpawns.each(spawnpoint -> {
+                    if (spawnpoint != lastdeletespawn) {
+                        RedVsBluePlugin.redSpawns.remove(spawnpoint);
+                    }
+                });
                 Groups.build.each(bildeng -> {
                     if (bildeng.block == Blocks.reinforcedLiquidRouter && bildeng.team == Team.all[100]) {
-                        updatedRedSpawns.add(Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)));
+                        RedVsBluePlugin.redSpawns.add(Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)));
                         Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)).setBlock(Blocks.air);
-                RedVsBluePlugin.redSpawns = updatedRedSpawns;
-                updatedRedSpawns.clear();
                     }
-                });  
+                });
+                RedVsBluePlugin.redSpawns.remove(lastdeletespawn)  
             }
         });
 
