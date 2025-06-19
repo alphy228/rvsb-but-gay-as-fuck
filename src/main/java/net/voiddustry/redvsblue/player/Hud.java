@@ -55,7 +55,7 @@ public class Hud {
             if (worldFlag == "updateRedSpawns") {
                 Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
                 //hopefully no crash due to empty spawns
-                lastdeletespawn = RedVsBluePlugin.redSpawns.random();
+                public static lastdeletespawn = RedVsBluePlugin.redSpawns.random();
                 RedVsBluePlugin.redSpawns.each(spawnpoint -> {
                     if (spawnpoint != lastdeletespawn) {
                         RedVsBluePlugin.redSpawns.remove(spawnpoint);
