@@ -44,8 +44,8 @@ public class Quad {
                                 Call.label("[scarlet]-" + damage, 3f, u.x, u.y);
                             }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
     }
