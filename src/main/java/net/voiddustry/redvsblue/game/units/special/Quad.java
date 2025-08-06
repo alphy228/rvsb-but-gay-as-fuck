@@ -16,7 +16,7 @@ public class Quad {
     public static void initAbilities() {
         Groups.unit.forEach(unit -> {
             if(unit.type == UnitTypes.quad && unit.team == Team.blue) {
-                if (unit.x < Vars.world.width && unit.x > 0 && unit.y < Vars.world.height && unit.y > 0) {
+                if (unit.x < Vars.world.width() && unit.x > 0 && unit.y < Vars.world.height() && unit.y > 0) {
                     int centerX = unit.tileOn().x * 8;
                     int centerY = unit.tileOn().y * 8;
 
