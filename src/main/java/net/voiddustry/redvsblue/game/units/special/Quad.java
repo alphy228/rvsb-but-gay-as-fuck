@@ -8,7 +8,7 @@ import mindustry.game.Team;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import net.voiddustry.redvsblue.PlayerData;
-import mindustry.gen.Vars;
+import mindustry.Vars;
 
 import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
 
