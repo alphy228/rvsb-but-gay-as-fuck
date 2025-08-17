@@ -24,7 +24,8 @@ public class MapVote {
     public static void callMapVoting() {
         if (!Utils.voting) {
             Random rand = new Random();
-            avaibleMapnumbers.removeAll();
+            avaibleMapnumbers.add(0);
+            avaibleMapnumbers.clear();
             for (int mapnum = 0; mapnum < 6; mapnum++) {
                 avaibleMapnumbers.add(rand.nextInt(getMaps().size));
             }
