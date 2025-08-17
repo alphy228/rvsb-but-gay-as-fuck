@@ -20,7 +20,7 @@ public class MapVote {
 
     private static final Map<String, Integer> playersVotesMap = new HashMap<>();
     ArrayList<Integer> avaibleMapnumbers = new ArrayList<>();
-    Console.log("sus")
+    Console.log("sus");
 
     public static void callMapVoting() {
         if (!Utils.voting) {
