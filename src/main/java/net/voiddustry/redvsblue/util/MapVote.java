@@ -19,14 +19,12 @@ import java.util.ArrayList;
 public class MapVote {
 
     private static final Map<String, Integer> playersVotesMap = new HashMap<>();
-    private static ArrayList<Integer> avaibleMapnumbers = new ArrayList<>();
+    private static ArrayList<Integer> avaibleMapnumbers = new ArrayList<Integer>();
 
     public static void callMapVoting() {
         if (!Utils.voting) {
             Random rand = new Random();
-            avaibleMapnumbers.add(69420);
             avaibleMapnumbers.clear();
-            avaibleMapnumbers.add(69420);
             for (int mapnum = 0; mapnum < 6; mapnum++) {
                 avaibleMapnumbers.add(rand.nextInt(getMaps().size));
             }
