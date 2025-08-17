@@ -23,8 +23,8 @@ public class MapVote {
 
     public static void callMapVoting() {
         if (!Utils.voting) {
-            avaibleMapnumbers.clear();
             Random rand = new Random();
+            avaibleMapnumbers.removeAll()
             for (int mapnum = 0; mapnum < 6; mapnum++) {
                 avaibleMapnumbers.add(rand.nextInt(getMaps().size));
             }
