@@ -22,7 +22,7 @@ public class MapVote {
 
     public static void callMapVoting() {
         if (!Utils.voting) {
-            ArrayList<int> avaibleMapnumbers = new ArrayList<>();
+            ArrayList<Integer> avaibleMapnumbers = new ArrayList<>();
             avaibleMapnumbers.clear();
             Random rand = new Random();
             for (int mapnum = 0; mapnum < 6; mapnum++) {
@@ -43,7 +43,7 @@ public class MapVote {
 
                     int[] mapVotes = getMapVotes();
                     for (int j = 0; j < getMaps().size; j++) {
-                        if (avaibleMapnumbers.contains(j) || maps.get(j).file.name.startsWith("[blue]")) {
+                        if (avaibleMapnumbers.contains(j) || maps.get(j).file.name().startsWith("[blue]")) {
                             int mapNumber = j + 1;
                             mapsList.append("\n[lightgray]").append(mapNumber).append(" [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append(maps.get(j).file.name().replace(".msav", ""));
                         }
