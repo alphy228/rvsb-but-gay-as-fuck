@@ -22,7 +22,7 @@ public class MapVote {
 
     public static void callMapVoting() {
         if (!Utils.voting) {
-            Seq<mapnumbah> avaibleMapnumbers = new Seq<>();
+            Seq<int> avaibleMapnumbers = new Seq<>();
             avaibleMapnumbers.clear();
             Random rand = new Random();
             for (int mapnum = 0; mapnum < 6; mapnum++) {
