@@ -14,6 +14,9 @@ import mindustry.net.WorldReloader;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
+public int specialMap;
 
 public class MapVote {
 
@@ -21,6 +24,12 @@ public class MapVote {
 
     public static void callMapVoting() {
         if (!Utils.voting) {
+            Seq<mapnumbah> avaibleMapnumbers = new Seq<>();
+            avaibleMapnumbers.clear();
+            Random rand = new Random();
+            for (int mapnum = 0; mapnum < 6; mapnum++) {
+                avaibleMapnumbers.add(rand.nextInt(getMaps().size);
+            }
             playersVotesMap.clear();
             Utils.voting = true;
             Utils.gameRun = false;
@@ -36,9 +45,12 @@ public class MapVote {
 
                     int[] mapVotes = getMapVotes();
                     for (int j = 0; j < getMaps().size; j++) {
-                        int mapNumber = j + 1;
-                        mapsList.append("\n[lightgray]").append(mapNumber).append(" [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append(maps.get(j).file.name().replace(".msav", ""));
+                        if (avaibleMapnumbers.contains(j) || maps.get(j).file.name.startsWith("[blue]")) {
+                            int mapNumber = j + 1;
+                            mapsList.append("\n[lightgray]").append(mapNumber).append(" [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append(maps.get(j).file.name().replace(".msav", ""));
+                        }
                     }
+                    
 
                     Groups.player.each(p -> Call.infoPopup(p.con, "[gray][ [royal]Vote []]\n" + mapsList + "\n\n[gold]Time left: " + Arrays.toString(i), 1, 0, 0, (p.con.mobile)? 300 : 600, 0, 0));
 
@@ -79,7 +91,7 @@ public class MapVote {
 
     public static void registerVote(Player player, Integer voteNumber) {
         if (!playersVotesMap.containsKey(player.uuid())) {
-            if (voteNumber >= 1 && voteNumber <= getMaps().size) {
+            if (avaibleMaps.contains(voteNumber)) {
                 playersVotesMap.put(player.uuid(), voteNumber-1);
             }
         }
