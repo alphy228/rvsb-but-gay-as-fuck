@@ -15,14 +15,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
+import java.util.ArrayList;
 public class MapVote {
 
     private static final Map<String, Integer> playersVotesMap = new HashMap<>();
 
     public static void callMapVoting() {
         if (!Utils.voting) {
-            Seq<int> avaibleMapnumbers = new Seq<>();
+            ArrayList<int> avaibleMapnumbers = new ArrayList<>();
             avaibleMapnumbers.clear();
             Random rand = new Random();
             for (int mapnum = 0; mapnum < 6; mapnum++) {
