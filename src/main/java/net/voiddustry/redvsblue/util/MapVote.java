@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class MapVote {
 
     private static final Map<String, Integer> playersVotesMap = new HashMap<>();
-    ArrayList<Integer> avaibleMapnumbers = new ArrayList<>();
+    private static ArrayList<Integer> avaibleMapnumbers = new ArrayList<>();
 
     public static void callMapVoting() {
         if (!Utils.voting) {
