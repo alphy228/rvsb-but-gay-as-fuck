@@ -19,10 +19,10 @@ import java.util.ArrayList;
 public class MapVote {
 
     private static final Map<String, Integer> playersVotesMap = new HashMap<>();
+    ArrayList<Integer> avaibleMapnumbers = new ArrayList<>();
 
     public static void callMapVoting() {
         if (!Utils.voting) {
-            ArrayList<Integer> avaibleMapnumbers = new ArrayList<>();
             avaibleMapnumbers.clear();
             Random rand = new Random();
             for (int mapnum = 0; mapnum < 6; mapnum++) {
