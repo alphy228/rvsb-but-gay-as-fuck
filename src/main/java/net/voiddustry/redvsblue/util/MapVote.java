@@ -16,8 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public int specialMap;
-
 public class MapVote {
 
     private static final Map<String, Integer> playersVotesMap = new HashMap<>();
