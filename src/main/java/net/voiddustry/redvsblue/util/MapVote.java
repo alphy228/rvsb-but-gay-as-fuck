@@ -28,7 +28,7 @@ public class MapVote {
             avaibleMapnumbers.clear();
             Random rand = new Random();
             for (int mapnum = 0; mapnum < 6; mapnum++) {
-                avaibleMapnumbers.add(rand.nextInt(getMaps().size);
+                avaibleMapnumbers.add(rand.nextInt(getMaps().size));
             }
             playersVotesMap.clear();
             Utils.voting = true;
