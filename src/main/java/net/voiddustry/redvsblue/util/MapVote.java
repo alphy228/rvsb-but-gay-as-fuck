@@ -89,7 +89,7 @@ public class MapVote {
 
     public static void registerVote(Player player, Integer voteNumber) {
         if (!playersVotesMap.containsKey(player.uuid())) {
-            if (avaibleMapnumbers.contains(voteNumber-1)) {
+            if (avaibleMapnumbers.contains(voteNumber-1) || getMaps().get(voteNumber-1).file.name().startsWith("[blue]")) {
                 playersVotesMap.put(player.uuid(), voteNumber-1);
             }
         }
