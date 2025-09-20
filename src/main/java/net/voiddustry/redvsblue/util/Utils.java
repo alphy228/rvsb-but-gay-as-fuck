@@ -147,7 +147,7 @@ public class Utils {
                 if (player.tileOn().block() != null && player.tileOn().block().id >= 98 && player.tileOn().block().id <= 125) {
                     return;
                 }
-                if (player.tileOn().build != null && (player.tileOn().build.team != Team.blue || player.tileOn().build.team != team.derelict)) {
+                if (player.tileOn().build != null && (player.tileOn().build.team != Team.blue || player.tileOn().build.team != Team.derelict)) {
                     if (player.unit().health <= 1) {
                         player.unit().kill();
                     }
