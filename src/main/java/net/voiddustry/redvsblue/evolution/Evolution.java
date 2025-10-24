@@ -46,7 +46,7 @@ public enum Evolution {
     QUAD(UnitTypes.quad, 7, 480*multp, new String[] { "oct" }),
 
     VANQUISH(UnitTypes.vanquish, 8, 250*multp, new String[] { "reign" }),
-    COLLARIS(UnitTypes.collaris, 8, 1100*multp, new String[] { "nova", "flare", "dagger", "mono" }),
+    COLLARIS(UnitTypes.collaris, 8, 1170*multp, new String[] { "nova", "flare", "dagger", "mono" }),
     ANTUMBRA(UnitTypes.antumbra, 8, 180*multp, new String[] { "eclipse" }),
     OBVIATE(UnitTypes.obviate, 8, 90*multp, new String[] { "quell" }),
     OCT(UnitTypes.oct, 8, 1500*multp, new String[] { "elude", "nova", "flare", "dagger" }),
