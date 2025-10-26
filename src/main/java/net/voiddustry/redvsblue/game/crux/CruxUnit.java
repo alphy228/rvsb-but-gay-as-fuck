@@ -93,6 +93,13 @@ public class CruxUnit {
             int cruxUnitsCount = Math.round((players + stage) / (float) 3);
 
             final int[] cruxUnits = {0};
+            final int[] cruxPlayersWithUnits = {0};
+
+            Groups.player.each(p -> {
+                if (p.unit().team == Team.crux) {
+                    cruxPlayersWithUnits[0]++;
+                }
+            });
 
             Groups.unit.each(u -> {
                 if (u.team == Team.crux) {
@@ -100,7 +107,7 @@ public class CruxUnit {
                 }
             });
 
-            if (cruxUnitsCount > cruxUnits[0]) {
+            if (cruxUnitsCount > (cruxUnits[0]-cruxPlayersWithUnits[0])) {
                 spawnCrux();
             }
         }

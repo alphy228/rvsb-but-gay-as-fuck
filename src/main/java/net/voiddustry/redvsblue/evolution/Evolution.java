@@ -47,19 +47,19 @@ public enum Evolution {
 
     VANQUISH(UnitTypes.vanquish, 8, 250*multp, new String[] { "reign" }),
     COLLARIS(UnitTypes.collaris, 8, 1170*multp, new String[] { "nova", "flare", "dagger", "mono" }),
-    ANTUMBRA(UnitTypes.antumbra, 8, 180*multp, new String[] { "sei" }),
+    ANTUMBRA(UnitTypes.antumbra, 8, 180*multp, new String[] { "eclipse" }),
     OBVIATE(UnitTypes.obviate, 8, 90*multp, new String[] { "quell" }),
     OCT(UnitTypes.oct, 8, 1500*multp, new String[] { "elude", "nova", "flare", "dagger" }),
 
     REIGN(UnitTypes.reign, 9, 450*multp, new String[] { "conquer" }),
-    SEI(UnitTypes.sei, 9, 240*multp, new String[] { "eclipse" }),
+    ECLIPSE(UnitTypes.eclipse, 9, 270*multp, new String[] { "sei" }),
     QUELL(UnitTypes.quell, 9, 180*multp, new String[] { "disrupt" }),
 
     CONQUER(UnitTypes.conquer, 10, 450*multp, new String[] { "elude", "nova", "flare", "mono" }),
-    ECLIPSE(UnitTypes.eclipse, 10, 270*multp, new String[] { "omura" }),
+    SEI(UnitTypes.sei, 10, 270*multp, new String[] { "omura" }),
     DISRUPT(UnitTypes.disrupt, 10, 900*multp, new String[] { "nova", "flare", "dagger"}),
 
-    OMURA(UnitTypes.omura, 11, 1800*multp, new String[] { "elude", "nova", "dagger", "mono" });
+    OMURA(UnitTypes.omura, 11, 1650*multp, new String[] { "elude", "nova", "dagger", "mono" });
 
     public final UnitType unitType;
     public final int tier, cost;
