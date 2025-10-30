@@ -96,8 +96,10 @@ public class CruxUnit {
             final int[] cruxPlayersWithUnits = {0};
 
             Groups.player.each(p -> {
-                if (p.unit().team == Team.crux) {
-                    cruxPlayersWithUnits[0]++;
+                if (!(p.unit() == null)) {
+                    if (p.unit().team == Team.crux) {
+                        cruxPlayersWithUnits[0]++;
+                    }
                 }
             });
 
