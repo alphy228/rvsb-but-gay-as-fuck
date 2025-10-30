@@ -41,12 +41,6 @@ public class Hud {
         });
 
         Groups.unit.each(u -> Call.label("[orange]X", 0.016F, u.x, u.y));
-        // allow map makers to draw fake hitboxes with erekir liquid routers
-        Groups.build.each(b -> {
-            if (b.block == Blocks.reinforcedLiquidRouter && b.team == Team.crux) {
-                Call.label("[orange]X", 0.016F, b.x, b.y);
-            }
-        });
 
 
         //allows mappers to edit 'redSpawns', only changes 'redSpawns',removes the objectiveFlag and the 100 team erekir liquid routers placed in order to send coordinates
