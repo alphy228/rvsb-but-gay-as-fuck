@@ -65,31 +65,33 @@ public class Hud {
 
         Groups.player.each(player -> {
             Unit unit = player.unit();
-
-            if(!RedVsBluePlugin.players.containsKey(player.uuid())) {
-                RedVsBluePlugin.players.put(player.uuid(), new PlayerData(player));
-            }
-            PlayerData data = RedVsBluePlugin.players.get(player.uuid());
-
-            String textHud = (data.getLevel() == 5)? "[scarlet]Max" : "[accent]" + data.getExp() + " / " + data.getMaxExp();
-
-            String hudText = Bundle.format("game.hud", Bundle.findLocale(player.locale()), Administration.Config.serverName.get(), Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), RedVsBluePlugin.stage, time, playersText, data.getLevel(), textHud);
-            Call.setHudText(player.con, hudText);
-
-            if (RedVsBluePlugin.playing && data.getUnit() != null) {
-                if (data.getUnit().dead) {
-                    data.setTeam(Team.crux);
-                    player.team(data.getTeam());
+            if (!(unit == null)) {
+    
+                if(!RedVsBluePlugin.players.containsKey(player.uuid())) {
+                    RedVsBluePlugin.players.put(player.uuid(), new PlayerData(player));
                 }
-            }
-
-            if (player.unit().type == UnitTypes.quasar && player.unit().shield >= -10 && player.unit().shield <= 0) {
-                player.unit().shield = 300;
-            }
-
-            if (RedVsBluePlugin.playing && data.getUnit() != null && player.team() == Team.blue) {
-                if (!data.getUnit().dead) {
-                    player.unit(data.getUnit());
+                PlayerData data = RedVsBluePlugin.players.get(player.uuid());
+    
+                String textHud = (data.getLevel() == 5)? "[scarlet]Max" : "[accent]" + data.getExp() + " / " + data.getMaxExp();
+    
+                String hudText = Bundle.format("game.hud", Bundle.findLocale(player.locale()), Administration.Config.serverName.get(), Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), RedVsBluePlugin.stage, time, playersText, data.getLevel(), textHud);
+                Call.setHudText(player.con, hudText);
+    
+                if (RedVsBluePlugin.playing && data.getUnit() != null) {
+                    if (data.getUnit().dead) {
+                        data.setTeam(Team.crux);
+                        player.team(data.getTeam());
+                    }
+                }
+    
+                if (player.unit().type == UnitTypes.quasar && player.unit().shield >= -10 && player.unit().shield <= 0) {
+                    player.unit().shield = 300;
+                }
+    
+                if (RedVsBluePlugin.playing && data.getUnit() != null && player.team() == Team.blue) {
+                    if (!data.getUnit().dead) {
+                        player.unit(data.getUnit());
+                    }
                 }
             }
         });
