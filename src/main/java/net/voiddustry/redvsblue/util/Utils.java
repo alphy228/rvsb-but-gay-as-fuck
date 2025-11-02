@@ -71,48 +71,6 @@ public class Utils {
         timer.scheduleTask(task, 0, 1);
     }
 
-    public static void initStats() {
-        // Health
-
-        UnitTypes.stell.health = 400;
-        UnitTypes.mono.health = 200;
-        UnitTypes.locus.armor = -20;
-        UnitTypes.retusa.health = 800;
-        UnitTypes.pulsar.health = 500;
-        UnitTypes.pulsar.armor = 6;
-        // Inventory
-
-        UnitTypes.mono.itemCapacity = 40;
-        UnitTypes.pulsar.itemCapacity = 40;
-        // Damage
-
-        UnitTypes.mace.weapons.each(w -> w.name.equals("flamethrower"), w -> w.bullet.damage = 17);
-        UnitTypes.avert.weapons.each(w -> w.name.equals("avert-weapon"), w -> w.bullet.damage = 35);
-        UnitTypes.mega.weapons.each(w -> w.bullet.damage = 30);
-
-        UnitTypes.mono.weapons.add(new Weapon("mount-weapon"){{
-            reload = 30f;
-            rotate = true;
-            ejectEffect = Fx.casing1;
-            bullet = new BasicBulletType(3f, 24){{
-                width = 7f;
-                height = 9f;
-                lifetime = 59f;
-                ammoMultiplier = 2;
-            }};
-        }});
-
-        // Blocks
-
-        Blocks.combustionGenerator.health = 320;
-        Blocks.mender.health = 120;
-
-        Blocks.tungstenWall.targetable = false;
-        Blocks.tungstenWall.health = 99999;
-        Blocks.tungstenWallLarge.targetable = false;
-        Blocks.tungstenWallLarge.health = 99999;
-    }
-
     public static void loadContent() {
         BlocksTypes.load();
         StartingItems.load();
