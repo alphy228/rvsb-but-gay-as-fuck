@@ -86,8 +86,7 @@ public class RedVsBluePlugin extends Plugin {
     public void init() {
 
         Log.info("&gRedVsBlue Plugin &rStarted!");
-
-        Utils.initStats();
+        
         Utils.initRules();
         Utils.initTimers();
         Utils.loadContent();
