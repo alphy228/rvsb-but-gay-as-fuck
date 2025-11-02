@@ -1,6 +1,6 @@
 name: rvsb
 
-//mono weapon,no physical weapon because patcher is broken
+//mono weapon,no physical weapon and sound
 unit.mono.faceTarget: true
 unit.mono.rotateSpeed: 99999
 unit.mono.weapons.+: {
@@ -20,6 +20,7 @@ frontColor: ffffff
 healPercent: 5f
 collidesTeam: true
 damage: 20f
+ammoMultiplier: 2
 }
 }
 
