@@ -1,0 +1,55 @@
+name: rvsb
+
+//mono weapon,no physical weapon because patcher is broken
+unit.mono.faceTarget: true
+unit.mono.rotateSpeed: 99999
+unit.mono.weapons.+: {
+top: false
+x: 0
+y: 2.5f
+rotate: false
+shootSound: sounds.lasershoot
+reload: 30
+recoil: 3f
+bullet: {
+speed: 10f
+lifetime: 14f
+type: laserBoltBulletType
+backColor: 99ff99
+frontColor: ffffff
+healPercent: 5f
+collidesTeam: true
+damage: 20f
+}
+}
+
+//update unit and block stats
+// Health
+
+unit.stell.health: 400
+unit.mono.health: 200
+unit.locus.armor: -20
+unit.retusa.health: 800
+unit.pulsar.health: 500
+unit.pulsar.armor: 6
+// Inventory
+
+unit.mono.itemCapacity: 40
+unit.pulsar.itemCapacity: 40
+// Damage
+
+unit.mace.weapons.0.bullet.damage: 17
+unit.mace.weapons.1.bullet.damage: 17
+unit.avert.weapons.0.bullet.damage: 35
+unit.mega.weapons.0.bullet.damage: 30
+unit.mega.weapons.1.bullet.damage: 30
+unit.mega.weapons.2.bullet.damage: 30
+unit.mega.weapons.3.bullet.damage: 30
+//blocks
+block.combustion-generator.health: 320
+block.mender.health: 120
+
+block.tungsten-wall.targetable: false
+block.tungsten-wall.health: 99999
+block.tungsten-wall-large.targetable: false
+block.tungsten-wall-large.health: 99999
