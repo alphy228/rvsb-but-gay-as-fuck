@@ -3,6 +3,7 @@ name: rvsb
 //mono weapon,no physical weapon and sound
 unit.mono.faceTarget: true
 unit.mono.rotateSpeed: 99999
+unit.mono.range: 18
 unit.mono.weapons.+: {
 top: false
 x: 0
