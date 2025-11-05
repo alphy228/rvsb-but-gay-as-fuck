@@ -65,12 +65,12 @@ public class Hud {
 
         Groups.player.each(player -> {
             Unit unit = player.unit();
+            PlayerData data = RedVsBluePlugin.players.get(player.uuid());
             if (!(unit == null)) {
     
                 if(!RedVsBluePlugin.players.containsKey(player.uuid())) {
                     RedVsBluePlugin.players.put(player.uuid(), new PlayerData(player));
                 }
-                PlayerData data = RedVsBluePlugin.players.get(player.uuid());
     
                 String textHud = (data.getLevel() == 5)? "[scarlet]Max" : "[accent]" + data.getExp() + " / " + data.getMaxExp();
     
