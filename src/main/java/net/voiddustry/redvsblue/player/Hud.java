@@ -87,11 +87,10 @@ public class Hud {
                 if (player.unit().type == UnitTypes.quasar && player.unit().shield >= -10 && player.unit().shield <= 0) {
                     player.unit().shield = 300;
                 }
-    
-                if (RedVsBluePlugin.playing && data.getUnit() != null && player.team() == Team.blue) {
-                    if (!data.getUnit().dead) {
-                        player.unit(data.getUnit());
-                    }
+            }
+            if (RedVsBluePlugin.playing && data.getUnit() != null && player.team() == Team.blue) {
+                if (!data.getUnit().dead) {
+                    player.unit(data.getUnit());
                 }
             }
         });
