@@ -1,23 +1,33 @@
 name: rvsb
 
-//mono weapon,no physical weapon and sound
-unit.mono.faceTarget: true
-unit.mono.rotateSpeed: 99999
-unit.mono.range: 18
-unit.mono.maxRange: 18
-unit.mono.weapons.+: {
-  
-// enable when it gets fixed
-//name: "heal-weapon-mount"
+//mono weapon
+unit.mono.faceTarget: false
+unit.mono.range: 144f
+unit.mono.maxRange: 144f
 
-top: false
+unit.mono.weapons.+: {
+top: true
+name: "retusa-weapon"
 x: 0
-y: 2.5f
-rotate: false
+y: -2f
+rotate: true
 shootSound: lasershoot
-reload: 30
-recoil: 3f
+reload: 125f
+cooldownTime: 40f
+useAttackRange: true
+
+recoil: 1.5f
+recoils: 1
+recoilTime: 125f
+
+shoot: {
+firstShotDelay: 0
+shotDelay: 12
+shots: 3
+}
+
 bullet: {
+range: 144f
 speed: 10f
 lifetime: 14f
 type: laserBoltBulletType
