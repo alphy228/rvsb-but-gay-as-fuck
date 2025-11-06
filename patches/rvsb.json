@@ -57,8 +57,7 @@ unit.mega.weapons.3.bullet.damage: 30
 block.combustion-generator.health: 320
 block.mender.health: 120
 
-//tungsten wall health set again in redvsblueplugin.java worldLoadEvent
 block.tungsten-wall.targetable: false
-block.tungsten-wall.health: 1000
+block.tungsten-wall.health: 99999
 block.tungsten-wall-large.targetable: false
-block.tungsten-wall-large.health: 3500
+block.tungsten-wall-large.health: 99999
