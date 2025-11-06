@@ -4,6 +4,7 @@ name: rvsb
 unit.mono.faceTarget: true
 unit.mono.rotateSpeed: 99999
 unit.mono.range: 18
+unit.mono.maxRange: 18
 unit.mono.weapons.+: {
 top: false
 x: 0
@@ -38,8 +39,8 @@ unit.pulsar.armor: 6
 
 unit.mono.itemCapacity: 40
 unit.pulsar.itemCapacity: 40
-// Damage
 
+// Damage
 unit.mace.weapons.0.bullet.damage: 17
 unit.mace.weapons.1.bullet.damage: 17
 unit.avert.weapons.0.bullet.damage: 35
@@ -47,11 +48,13 @@ unit.mega.weapons.0.bullet.damage: 30
 unit.mega.weapons.1.bullet.damage: 30
 unit.mega.weapons.2.bullet.damage: 30
 unit.mega.weapons.3.bullet.damage: 30
+
 //blocks
 block.combustion-generator.health: 320
 block.mender.health: 120
 
+//tungsten wall health set again in redvsblueplugin.java worldLoadEvent
 block.tungsten-wall.targetable: false
-block.tungsten-wall.health: 99999
+block.tungsten-wall.health: 1000
 block.tungsten-wall-large.targetable: false
-block.tungsten-wall-large.health: 99999
+block.tungsten-wall-large.health: 3500
