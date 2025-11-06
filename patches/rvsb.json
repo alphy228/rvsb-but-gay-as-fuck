@@ -1,5 +1,6 @@
 name: rvsb
 
+
 //mono weapon
 unit.mono.faceTarget: false
 unit.mono.range: 144f
@@ -49,6 +50,10 @@ unit.locus.armor: -20
 unit.retusa.health: 800
 unit.pulsar.health: 500
 unit.pulsar.armor: 6
+
+// Health
+unit.elude.health: 300
+
 // Inventory
 
 unit.mono.itemCapacity: 40
