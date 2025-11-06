@@ -6,11 +6,15 @@ unit.mono.rotateSpeed: 99999
 unit.mono.range: 18
 unit.mono.maxRange: 18
 unit.mono.weapons.+: {
+  
+// enable when it gets fixed
+//name: "heal-weapon-mount"
+
 top: false
 x: 0
 y: 2.5f
 rotate: false
-shootSound: sounds.lasershoot
+shootSound: lasershoot
 reload: 30
 recoil: 3f
 bullet: {
