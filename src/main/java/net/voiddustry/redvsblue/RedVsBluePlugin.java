@@ -215,6 +215,10 @@ public class RedVsBluePlugin extends Plugin {
 
             StartingMenu.canOpenMenu = true;
 
+            //tungsten wall real health change,fake change in rvsb.json
+            Blocks.tungstenWall.health = 99999;
+            Blocks.tungstenWallLarge.health = 99999;
+
             Groups.player.each(p -> {
                 PlayerData data = players.get(p.uuid());
                 data.setUnit(null);
