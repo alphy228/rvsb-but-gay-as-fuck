@@ -25,6 +25,7 @@ unit.anthicus.weapons: [
     shootY: 11.75f
     shootSound: torch
     bullet: {
+    status: freezing
     range: 350
     maxRange: 350
     type: railBulletType
@@ -86,7 +87,7 @@ unit.anthicus.weapons: [
     range: 350
     maxRange: 350
     type: lightningBulletType
-    
+    status: freezing
     damage: 70
     
     }
