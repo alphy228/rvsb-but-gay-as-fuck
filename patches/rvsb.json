@@ -18,8 +18,6 @@ unit.anthicus.weapons: [
     damage: 10
     length: 340
     pierceDamageFactor: 999999999
-    
-    
     }
   }
 ]
