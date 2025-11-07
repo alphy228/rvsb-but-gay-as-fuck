@@ -1,7 +1,7 @@
 name: rvsb
 
 //anthicus weapon
-unit.anthicus.faceTarget: false
+unit.anthicus.faceTarget: true
 unit.anthicus.range: 350
 unit.anthicus.maxRange: 350
 unit.anthicus.weapons: [
@@ -13,7 +13,7 @@ unit.anthicus.weapons: [
     }
     name: "tecta-weapon"
     shootStatus: slow
-    shootStatusDuration: 65
+    shootStatusDuration: 135
     rotate: true
     rotateSpeed: 0.75f
     reload: 65f
@@ -46,7 +46,7 @@ unit.anthicus.weapons: [
     }
     rotate: true
     shootStatus: freezing
-    shootStatusDuration: 65
+    shootStatusDuration: 135
     rotateSpeed: 0.75f
     reload: 65f
     recoil: 2f
