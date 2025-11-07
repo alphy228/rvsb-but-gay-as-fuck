@@ -1,7 +1,7 @@
 name: rvsb
 
 //anthicus weapon
-unit.anthicus.faceTarget: true
+unit.anthicus.faceTarget: false
 unit.anthicus.range: 350
 unit.anthicus.maxRange: 350
 unit.anthicus.weapons: [
