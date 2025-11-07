@@ -12,7 +12,7 @@ unit.anthicus.weapons: [
     recoil: 2f
     recoils: 1
     recoilTime: 120f
-    sound
+    loopSound: torch
     bullet: {
     type: railBulletType
     damage: 10
