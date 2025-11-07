@@ -1,5 +1,28 @@
 name: rvsb
 
+//anthicus weapon
+unit.anthicus.faceTarget: flase
+unit.anthicus.weapons: [
+  {
+    name: "tecta-weapon"
+    shoot: {
+      firstShotDelay: 60f
+    }
+    reload: 2
+    recoil: 2f
+    recoils: 1
+    recoilTime: 120f
+    sound
+    bullet: {
+    type: railBulletType
+    damage: 10
+    length: 340
+    pierceDamageFactor: 999999999
+    
+    
+    }
+  }
+]
 
 //mono weapon
 unit.mono.faceTarget: false
