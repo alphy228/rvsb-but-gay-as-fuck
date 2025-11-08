@@ -34,10 +34,10 @@ public class Booster {
             String text = pointData.owner().name + "[gold]'s\n[orange]Booster";
             StationUtils.drawStationName(pointData.tileOn(), text, 1.1F);
 
-            Groups.player.each(p -> {
-                if (p.team() == Team.blue) {
-                    if (p.dst(centerX, centerY) <= 64) {
-                        p.unit().apply(StatusEffects.overclock, 70);
+            Groups.unit.each(u -> {
+                if (u.team == Team.blue) {
+                    if (u.dst(centerX, centerY) <= 64) {
+                        u.apply(StatusEffects.overclock, 70);
                     }
                 }
             });
