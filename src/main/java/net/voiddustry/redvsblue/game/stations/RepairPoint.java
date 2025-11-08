@@ -46,7 +46,7 @@ public class RepairPoint {
                             }
 
                             u.health += add;
-                            Call.label("[lime]+" + add, 1, p.x, p.y);
+                            Call.label("[lime]+" + add, 1, u.x, u.y);
                         }
                     }
                 }
