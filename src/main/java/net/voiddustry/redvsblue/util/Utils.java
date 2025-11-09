@@ -16,6 +16,7 @@ import java.util.Locale;
 
 import mindustry.type.Weapon;
 import mindustry.world.Block;
+import mindustry.world.blocks.environment.Prop;
 
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
@@ -102,7 +103,7 @@ public class Utils {
 
         Timer.schedule(() -> Groups.player.each(player -> {
             if (player.tileOn() != null && player.team() == Team.blue && player.unit() != null) {
-                if ((player.tileOn().block() != null && player.tileOn().block().id >= 98 && player.tileOn().block().id <= 125) ||  player.tileOn().block().id == 4) {
+                if (player.tileOn().block() == null || player.tileOn().block() == Blocks.cliff || player.tileOn().block() == Blocks.air || player.tileOn().block() instanceof Prop) {
                     return;
                 }
                 if (player.tileOn().build != null && player.tileOn().build.team != Team.blue && player.tileOn().build.team != Team.derelict) {
