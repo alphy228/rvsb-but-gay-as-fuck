@@ -409,7 +409,13 @@ public class RedVsBluePlugin extends Plugin {
     }
 
     public static void gameOverCheck() {
-        if (playerCount(Team.blue) == 0 || unitCount(Team.blue) == 0) {
+        int blueUnitCount = 0;
+        Groups.unit.each(u-> {
+            if (u.team == Team.blue) {
+                blueUnitCount = blueUnitCount+1;
+            }
+        });
+        if (playerCount(Team.blue) == 0 || blueUnitCount== 0) {
             gameOver(Team.crux);
         }
     }
