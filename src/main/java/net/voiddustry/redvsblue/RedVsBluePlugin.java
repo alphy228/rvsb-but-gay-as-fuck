@@ -387,7 +387,9 @@ public class RedVsBluePlugin extends Plugin {
                 player.sendMessage(Bundle.get("game.late", player.locale));
             }
         });
+        
         handler.<Player>removeCommand("rtv");
+        
 //        handler.<Player>register("reset-data", "Use that if you blue and dont have unit.", (args, player) -> {
 //            if (player.team() == Team.blue) {
 //                players.put(player.uuid(), new PlayerData(player));
@@ -415,7 +417,7 @@ public class RedVsBluePlugin extends Plugin {
                 blueUnitCount = blueUnitCount+1;
             }
         }
-        if (playerCount(Team.blue) == 0 || blueUnitCount== 0) {
+        if ((playerCount(Team.blue) == 0 || blueUnitCount== 0) && (Groups.player.size != 0)) {
             gameOver(Team.crux);
         }
     }
