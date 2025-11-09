@@ -15,7 +15,7 @@ unit.anthicus.weapons: [
     shootStatus: slow
     shootStatusDuration: 135
     rotate: true
-    rotateSpeed: 0.75f
+    rotateSpeed: 0.25f
     reload: 65f
     recoil: 2f
     recoils: 1
@@ -30,7 +30,7 @@ unit.anthicus.weapons: [
     maxRange: 350
     type: railBulletType
     pierceCap: 1
-    damage: 5
+    damage: 3.5
     length: 340
     pierceDamageFactor: 0.1
     pointEffect: railTrail
@@ -48,7 +48,7 @@ unit.anthicus.weapons: [
     rotate: true
     shootStatus: freezing
     shootStatusDuration: 135
-    rotateSpeed: 0.75f
+    rotateSpeed: 0.25f
     reload: 65f
     recoil: 2f
     recoils: 1
@@ -72,7 +72,7 @@ unit.anthicus.weapons: [
 }
 {
     rotate: true
-    rotateSpeed: 0.75f
+    rotateSpeed: 0.25f
     shoot: {
     shots: 2
     }
