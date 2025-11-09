@@ -31,7 +31,7 @@ unit.anthicus.weapons: [
     maxRange: 350
     type: railBulletType
     pierceCap: 1
-    damage: 3.5
+    damage: 2
     length: 340
     pierceDamageFactor: 0.1
     pointEffect: railTrail
@@ -91,7 +91,7 @@ unit.anthicus.weapons: [
     maxRange: 350
     type: lightningBulletType
     status: freezing
-    damage: 70
+    damage: 20
     
     }
     
