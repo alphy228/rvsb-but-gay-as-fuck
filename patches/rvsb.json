@@ -30,7 +30,7 @@ unit.anthicus.weapons: [
     maxRange: 350
     type: railBulletType
     pierceCap: 1
-    damage: 7
+    damage: 5
     length: 340
     pierceDamageFactor: 0.1
     pointEffect: railTrail
