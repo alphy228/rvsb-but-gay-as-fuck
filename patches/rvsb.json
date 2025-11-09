@@ -16,6 +16,7 @@ unit.anthicus.weapons: [
     shootStatusDuration: 135
     rotate: true
     rotateSpeed: 0.25f
+    ignoreRotation: true
     reload: 65f
     recoil: 2f
     recoils: 1
@@ -49,6 +50,7 @@ unit.anthicus.weapons: [
     shootStatus: freezing
     shootStatusDuration: 135
     rotateSpeed: 0.25f
+    ignoreRotation: true
     reload: 65f
     recoil: 2f
     recoils: 1
@@ -73,6 +75,7 @@ unit.anthicus.weapons: [
 {
     rotate: true
     rotateSpeed: 0.25f
+    ignoreRotation: true
     shoot: {
     shots: 2
     }
