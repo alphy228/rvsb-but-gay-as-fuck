@@ -1,11 +1,11 @@
 {
     "name": "red-vs-blue",
-    "displayName": "Red vs Blue",
+    "displayName": "Red vs Blue V8",
     "description": "Experimental gamemode with zombie-survival elements",
     "author": "VoidDustry",
     "main": "net.voiddustry.redvsblue.RedVsBluePlugin",
     "hidden": false,
     "java": true,
-    "version": "3.06",
-    "minGameVersion": 152
+    "version": "3.08",
+    "minGameVersion": 153
 }
