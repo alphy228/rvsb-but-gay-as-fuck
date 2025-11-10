@@ -103,7 +103,7 @@ public class Utils {
 
         Timer.schedule(() -> Groups.player.each(player -> {
             if (player.tileOn() != null && player.team() == Team.blue && player.unit() != null) {
-                if (player.tileOn().block() == null || player.tileOn().block() == Blocks.cliff || player.tileOn().block() == Blocks.air || player.tileOn().block() instanceof Prop) {
+                if (player.tileOn().block() != null && (player.tileOn().block() == Blocks.cliff || player.tileOn().block() == Blocks.air || player.tileOn().block() instanceof Prop)) {
                     return;
                 }
                 if (player.tileOn().build != null && player.tileOn().build.team != Team.blue && player.tileOn().build.team != Team.derelict) {
