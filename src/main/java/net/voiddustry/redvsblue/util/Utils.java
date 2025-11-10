@@ -101,7 +101,7 @@ public class Utils {
 
         Timer.schedule(() -> stageTimer--, 0, 1);
 
-        Timer.schedule(() -> Groups.player.each(player -> {
+         Timer.schedule(() -> Groups.player.each(player -> {
             if (player.tileOn() != null && player.team() == Team.blue && player.unit() != null) {
                 if (player.tileOn().block() != null && (player.tileOn().block() == Blocks.cliff || player.tileOn().block() instanceof Prop)) {
                     return;
