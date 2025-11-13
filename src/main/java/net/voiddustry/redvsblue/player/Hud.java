@@ -1,6 +1,5 @@
 package net.voiddustry.redvsblue.player;
 
-import java.lang.Runnable;
 import mindustry.content.Blocks;
 import mindustry.content.UnitTypes;
 import mindustry.game.Team;
@@ -18,8 +17,8 @@ import net.voiddustry.redvsblue.game.crux.CruxUnit;
 
 import static net.voiddustry.redvsblue.util.Utils.playerCount;
 
-public class Hud implements Runnable{
-    public void run() {
+public class Hud {
+    public static void update() {
 
         CruxUnit.checkUnitCount();
 
@@ -41,24 +40,6 @@ public class Hud implements Runnable{
         });
 
         Groups.unit.each(u -> Call.label("[orange]X", 0.2F, u.x, u.y));
-
-        //trash
-        if (Vars.state.rules.objectiveFlags.contains("updateRedSpawns")) {
-            Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
-            
-            RedVsBluePlugin.redSpawns.each(spawnpoint -> {
-                if (spawnpoint != RedVsBluePlugin.redSpawns.firstOpt()) {
-                    RedVsBluePlugin.redSpawns.remove(spawnpoint);
-                }
-            });
-            Groups.build.each(bildeng -> {
-                if (bildeng.block == Blocks.reinforcedLiquidRouter && bildeng.team == Team.all[100]) {
-                    RedVsBluePlugin.redSpawns.add(Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)));
-                    Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)).setBlock(Blocks.air);
-                }
-            });
-            RedVsBluePlugin.redSpawns.remove(RedVsBluePlugin.redSpawns.firstOpt());  
-        }
 
 
         Groups.player.each(player -> {
