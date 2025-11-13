@@ -298,6 +298,24 @@ public class RedVsBluePlugin extends Plugin {
             tick++;
             if (playing) {
 
+                //shitty spawn updater moved
+                if (Vars.state.rules.objectiveFlags.contains("updateRedSpawns")) {
+                    Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
+                    
+                    RedVsBluePlugin.redSpawns.each(spawnpoint -> {
+                        if (spawnpoint != RedVsBluePlugin.redSpawns.firstOpt()) {
+                            RedVsBluePlugin.redSpawns.remove(spawnpoint);
+                        }
+                    });
+                    Groups.build.each(bildeng -> {
+                        if (bildeng.block == Blocks.reinforcedLiquidRouter && bildeng.team == Team.all[100]) {
+                            RedVsBluePlugin.redSpawns.add(Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)));
+                            Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)).setBlock(Blocks.air);
+                        }
+                    });
+                    RedVsBluePlugin.redSpawns.remove(RedVsBluePlugin.redSpawns.firstOpt());  
+                }
+
                 if(tick%3==0){
                     Groups.bullet.forEach(bullet -> {
                         if (bullet.lifetime == 59f){
