@@ -199,6 +199,13 @@ public class RedVsBluePlugin extends Plugin {
         });
 
 
+        Timer.schedule(() -> {
+            if (playing) {
+                Hud.update();
+            }
+        },0.2f,0.2f);
+
+
 
         Events.on(EventType.WorldLoadEvent.class, event -> {
             Miner.clearMiners();
@@ -290,7 +297,6 @@ public class RedVsBluePlugin extends Plugin {
         Events.run(EventType.Trigger.update, () -> {
             tick++;
             if (playing) {
-                Hud.update();
 
                 if(tick%3==0){
                     Groups.bullet.forEach(bullet -> {
