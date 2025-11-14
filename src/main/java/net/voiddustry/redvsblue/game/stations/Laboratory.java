@@ -35,7 +35,7 @@ public class Laboratory {
         PlayerData playerData = players.get(player.uuid());
 
         if (playerData.getScore() >= evolutionOption.cost) {
-            if (player.tileOn().block() == Blocks.air) {
+            if (player.unit() != null && (player.tileOn().block() == Blocks.air || player.unit().flying==true)) {
                 Unit unit = evolutionOption.unitType.spawn(Team.blue, player.x(), player.y());
                 unit.health = unit.type.health/2;
 
