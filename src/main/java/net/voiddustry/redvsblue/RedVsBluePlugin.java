@@ -160,7 +160,7 @@ public class RedVsBluePlugin extends Plugin {
                 int mindist = 999999;
                 int dist;
                 Groups.unit.each(unait-> {
-                    dist = Math.round(Math.sqrt((unait.x - unit.x)*(unait.x - unit.x) + (unait.y - unit.y)*(unait.y - unit.y)));
+                    dist = (int)(Math.round(Math.sqrt((unait.x - unit.x)*(unait.x - unit.x) + (unait.y - unit.y)*(unait.y - unit.y))));
                     if (dist<mindist && (unait.type == UnitTypes.disrupt || unait.type == UnitTypes.quell)) {
                         spawnerUnit = unait;
                         mindist = dist;
