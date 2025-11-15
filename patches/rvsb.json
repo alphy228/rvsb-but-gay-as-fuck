@@ -9,7 +9,7 @@ unit.disrupt-missile.weapons: [
   mirror: false
   reload: 1f
   shootSound: plasmaboom
-  shootOnDeath: true
+  shootOnDeath: false
   bullet: {
     type: basicBulletType
     lightning: 1
@@ -50,7 +50,7 @@ unit.quell-missile.weapons: [
   mirror: false
   reload: 1f
   shootSound: plasmaboom
-  shootOnDeath: true
+  shootOnDeath: false
   bullet: {
     type: basicBulletType
     lightning: 1
