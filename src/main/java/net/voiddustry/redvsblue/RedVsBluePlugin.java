@@ -150,12 +150,17 @@ public class RedVsBluePlugin extends Plugin {
 
         Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
-                if (killer.isPlayer() && killer.team == Team.blue) {
-                    PlayerData data = players.get(killer.getPlayer().uuid());
-                    players.get(killer.getPlayer().uuid()).addScore(data.getLevel());
-                    Call.label(killer.getPlayer().con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
+                if ((killer.isPlayer() || spawnedUnitOwnership.get(killer).isPlayer()) && killer.team == Team.blue) {
+                    if (killer.isPlayer()) {
+                        Player killerPlayer = killer.getPlayer();
+                    } else {
+                        Player killerPlayer = spawnedUnitOwnership.get(killer).getPlayer();
+                    }
+                    PlayerData data = players.get(killerPlayer.uuid());
+                    players.get(killerPlayer.uuid()).addScore(data.getLevel());
+                    Call.label(killerPlayer.con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
                     data.addExp(1);
-                    processLevel(killer.getPlayer(), data);
+                    processLevel(killerPlayer, data);
                 } else if (killer.isPlayer() && killer.team == Team.crux) {
                     PlayerData data = players.get(killer.getPlayer().uuid());
                     data.addKill();
@@ -170,6 +175,21 @@ public class RedVsBluePlugin extends Plugin {
 
         Events.on(EventType.BlockDestroyEvent.class, event -> {
         });
+
+        //missile kill credit + elude nerf
+        HashMap<Unit, Unit> spawnedUnitOwnership = new HashMap<>();
+        
+        Events.on(EventType.UnitCreateEvent.class, event -> {
+            Unit unit = event.unit;
+            Unit spawnerUnit = event.spawnerUnit;
+            if (spawnerUnit != null) {
+                spawnedUnitOwnership.put(unit, spawnerUnit);
+            }
+
+            if(unit.type() == UnitTypes.elude) {
+                unit.apply(StatusEffects.sporeSlowed, Float.MAX_VALUE);
+            }
+        }
 
 
         Events.on(EventType.UnitDestroyEvent.class, event -> {
@@ -228,6 +248,7 @@ public class RedVsBluePlugin extends Plugin {
                 data.setUnit(null);
                 data.setExp(0);
                 data.setLevel(1);
+                data.setScore(0);
             });
         });
 
@@ -267,9 +288,6 @@ public class RedVsBluePlugin extends Plugin {
 
                     Unit unit = getStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
                     PlayerData data = players.get(player.uuid());
-                    if(unit.type() == UnitTypes.elude) {
-                        unit.apply(StatusEffects.sporeSlowed, Float.MAX_VALUE);
-                    }
                     data.setUnit(unit);
 
                 }
@@ -290,6 +308,9 @@ public class RedVsBluePlugin extends Plugin {
             initRules();
             launchGameStartTimer();
 
+            spawnedUnitOwnership.clear();
+
+
             Call.setRules(Vars.state.rules);
 
         }, 10));
@@ -298,7 +319,7 @@ public class RedVsBluePlugin extends Plugin {
             tick++;
             if (playing) {
 
-                //shitty spawn updater moved
+                //shitty redspawn updater
                 if (Vars.state.rules.objectiveFlags.contains("updateRedSpawns")) {
                     Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
                     
