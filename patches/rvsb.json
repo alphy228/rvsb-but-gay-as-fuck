@@ -17,7 +17,8 @@ unit.disrupt-missile.weapons: [
     lifetime: 1f
     collidesAir: false
     suppressionRange: 140f
-    size: 24.8f
+    width: 49.6f
+    height: 49.6f
     damage: 90f
     pierce: true
     shootEffect: {
@@ -57,7 +58,8 @@ unit.quell-missile.weapons: [
     lifetime: 1f
     collidesAir: false
     suppressionRange: 140f
-    size: 24.8f
+    width: 49.6f
+    height: 49.6f
     damage: 90f
     pierce: true
     shootEffect: {
