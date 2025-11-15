@@ -2,11 +2,9 @@ name: rvsb
 
 //quell and disrupt missile change for kill reward to work
 unit.disrupt-missile.range: 23
-unit.disupt-missile.maxRange: 23
+unit.disrupt-missile.maxRange: 23
 unit.disrupt-missile.weapons: [ 
   {
-  range: 23
-  maxRange: 23
   shootCone: 360f
   mirror: false
   reload: 1f
