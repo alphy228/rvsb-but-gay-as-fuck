@@ -18,7 +18,7 @@ unit.disrupt-missile.weapons: [
     collidesAir: false
     suppressionRange: 140f
     splashDamageRadius: 24.8f
-    splashDamage: 50f
+    splashDamage: 90f
     shootEffect: {
       type: ExplosionEffect
       lifetime: 50f
@@ -60,7 +60,7 @@ unit.quell-missile.weapons: [
     splashDamage: 50f
     shootEffect: {
       type: ExplosionEffect
-      lifetime: 50f
+      lifetime: 90f
       waveStroke: 5f
       waveLife: 8f
       waveColor: ffffff
