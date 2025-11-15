@@ -335,10 +335,6 @@ public class RedVsBluePlugin extends Plugin {
                         }
                     }
                 }
-    
-                if(unit.type() == UnitTypes.elude) {
-                    unit.apply(StatusEffects.sporeSlowed, Float.MAX_VALUE);
-                }
 
                 //shitty redspawn updater
                 if (Vars.state.rules.objectiveFlags.contains("updateRedSpawns")) {
