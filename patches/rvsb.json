@@ -1,7 +1,8 @@
 name: rvsb
 
 //quell and disrupt missile change for kill reward to work
-unit.disrupt-missile.weapons [ {
+unit.disrupt-missile.weapons: [ 
+  {
   shootCone: 360f
   mirror: false
   reload: 1f
@@ -19,8 +20,8 @@ unit.disrupt-missile.weapons [ {
       waveStroke: 5f
       waveLife: 8f
       waveColor: ffffff
-      sparkColor: Pal.suppress
-      smokeColor: Pal.suppress
+      sparkColor: 665c9f
+      smokeColor: 665c9f
       waveRad: 40f
       smokeSize: 4f
       smokes: 7
