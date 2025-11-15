@@ -317,24 +317,6 @@ public class RedVsBluePlugin extends Plugin {
         Events.run(EventType.Trigger.update, () -> {
             tick++;
             if (playing) {
-                for (Unit unit : Groups.unit) {
-                    if (unit.type instanceof MissileUnitType) {
-                        if (!spawnedUnitOwnership.containsKey(unit)) {
-                            Unit spawnerUnit = null;
-                            int mindist = 999999;
-                            int dist;
-                            for (Unit unait : Groups.unit) {
-                                dist = (int)(Math.round(Math.sqrt((unait.x - unit.x)*(unait.x - unit.x) + (unait.y - unit.y)*(unait.y - unit.y))));
-                                if (dist<mindist && (unait.type == UnitTypes.disrupt || unait.type == UnitTypes.quell)) {
-                                    spawnerUnit = unait;
-                                    mindist = dist;
-                                }
-                            }
-                            Log.info("Missile created by" + spawnerUnit);
-                            spawnedUnitOwnership.put(unit, spawnerUnit);
-                        }
-                    }
-                }
 
                 //shitty redspawn updater
                 if (Vars.state.rules.objectiveFlags.contains("updateRedSpawns")) {
@@ -355,6 +337,25 @@ public class RedVsBluePlugin extends Plugin {
                 }
 
                 if(tick%3==0){
+                    //register missiles
+                    for (Unit unit : Groups.unit) {
+                    if (unit.type instanceof MissileUnitType) {
+                        if (!spawnedUnitOwnership.containsKey(unit)) {
+                            Unit spawnerUnit = null;
+                            int mindist = 999999;
+                            int dist;
+                            for (Unit unait : Groups.unit) {
+                                dist = (int)(Math.round(Math.sqrt((unait.x - unit.x)*(unait.x - unit.x) + (unait.y - unit.y)*(unait.y - unit.y))));
+                                if (dist<mindist && (unait.type == UnitTypes.disrupt || unait.type == UnitTypes.quell)) {
+                                    spawnerUnit = unait;
+                                    mindist = dist;
+                                }
+                            }
+                            spawnedUnitOwnership.put(unit, spawnerUnit);
+                        }
+                    }
+                }
+    
                     Groups.bullet.forEach(bullet -> {
                         if (bullet.lifetime == 59f){
                             Call.effect(Fx.shootHeal, bullet.x, bullet.y, bullet.rotation(), Color.cyan);
