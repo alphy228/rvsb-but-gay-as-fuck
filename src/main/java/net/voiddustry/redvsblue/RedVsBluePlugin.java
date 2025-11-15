@@ -165,7 +165,7 @@ public class RedVsBluePlugin extends Plugin {
 
         Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
-                if ((killer.isPlayer() || (spawnedUnitOwnershit.get(killer) != null && spawnedUnitOwnership.get(killer).isPlayer())) && killer.team == Team.blue) {
+                if ((killer.isPlayer() || (spawnedUnitOwnership.get(killer) != null && spawnedUnitOwnership.get(killer).isPlayer())) && killer.team == Team.blue) {
                     Player killerPlayer;
                     if (killer.isPlayer()) {
                         killerPlayer = killer.getPlayer();
