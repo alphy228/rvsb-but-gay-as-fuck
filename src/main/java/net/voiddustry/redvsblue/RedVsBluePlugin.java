@@ -156,11 +156,11 @@ public class RedVsBluePlugin extends Plugin {
         Events.on(EventType.UnitCreateEvent.class, event -> {
             Unit unit = event.unit;
             Unit spawnerUnit = null;
-            if (unit instanceof MissileUnitType) {
+            if (unit.type instanceof MissileUnitType) {
                 int mindist = 999999;
                 int dist;
                 Groups.unit.each(unait-> {
-                    dist = Math.sqrt((unait.x - unit.x)*(unait.x - unit.x) + (unait.y - unit.y)*(unait.y - unit.y));
+                    dist = Math.round(Math.sqrt((unait.x - unit.x)*(unait.x - unit.x) + (unait.y - unit.y)*(unait.y - unit.y)));
                     if (dist<mindist && (unait.type == UnitTypes.disrupt || unait.type == UnitTypes.quell)) {
                         spawnerUnit = unait;
                         mindist = dist;
