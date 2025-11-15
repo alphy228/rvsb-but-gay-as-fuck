@@ -1,5 +1,44 @@
 name: rvsb
 
+//quell and disrupt missile change for kill reward to work
+unit.disrupt-missile.weapons [ {
+  shootCone: 360f
+  mirror: false
+  reload: 1f
+  shootOnDeath: true
+  bullet: {
+    type: basicBulletType
+    sprite: ""
+    lifetime: 1f
+    collidesAir: false
+    suppressionRange: 140f
+    splashDamageRadius: 24.8f
+    splashDamage: 140f
+    shootEffect: {
+      lifetime: 50f
+      waveStroke: 5f
+      waveLife: 8f
+      waveColor: ffffff
+      sparkColor: Pal.suppress
+      smokeColor: Pal.suppress
+      waveRad: 40f
+      smokeSize: 4f
+      smokes: 7
+      smokeSizeBase: 0f
+      sparks: 10
+      sparkRad: 40f
+      sparkLen: 6f
+      sparkStroke: 2f
+    }
+  }
+}
+]
+
+
+
+
+
+
 //anthicus weapon
 unit.anthicus.faceTarget: false
 unit.anthicus.range: 350
