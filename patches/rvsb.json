@@ -40,6 +40,47 @@ unit.disrupt-missile.weapons: [
 }
 ]
 
+unit.quell-missile.range: 23
+unit.quell-missile.maxRange: 23
+unit.quell-missile.weapons: [ 
+  {
+  shootCone: 360f
+  mirror: false
+  reload: 1f
+  shootSound: plasmaboom
+  shootOnDeath: true
+  bullet: {
+    type: basicBulletType
+    lightning: 1
+    sprite: ""
+    lifetime: 1f
+    collidesAir: false
+    suppressionRange: 140f
+    splashDamageRadius: 24.8f
+    splashDamage: 50f
+    shootEffect: {
+      type: ExplosionEffect
+      lifetime: 50f
+      waveStroke: 5f
+      waveLife: 8f
+      waveColor: ffffff
+      sparkColor: 665c9f
+      smokeColor: 665c9f
+      waveRad: 40f
+      smokeSize: 4f
+      smokes: 7
+      smokeSizeBase: 0f
+      sparks: 10
+      sparkRad: 40f
+      sparkLen: 6f
+      sparkStroke: 2f
+    }
+  }
+}
+]
+
+
+
 
 
 
