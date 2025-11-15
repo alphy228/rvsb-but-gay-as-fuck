@@ -6,6 +6,7 @@ import arc.graphics.Color;
 import arc.struct.Seq;
 import arc.util.*;
 import mindustry.Vars;
+import mindustry.type.unit.*;
 import mindustry.ai.Pathfinder;
 import mindustry.content.Blocks;
 import mindustry.content.Fx;
@@ -41,6 +42,7 @@ import net.voiddustry.redvsblue.util.Utils;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
+import java.lang.Math;
 
 import static net.voiddustry.redvsblue.util.MapVote.callMapVoting;
 import static net.voiddustry.redvsblue.util.Utils.*;
@@ -153,8 +155,17 @@ public class RedVsBluePlugin extends Plugin {
         
         Events.on(EventType.UnitCreateEvent.class, event -> {
             Unit unit = event.unit;
-            Unit spawnerUnit = event.spawnerUnit;
-            if (spawnerUnit != null) {
+            Unit spawnerUnit = null;
+            if (unit instanceof MissileUnitType) {
+                int mindist = 999999;
+                int dist;
+                Groups.unit.each(unait-> {
+                    dist = Math.sqrt((unait.x - unit.x)*(unait.x - unit.x) + (unait.y - unit.y)*(unait.y - unit.y));
+                    if (dist<mindist && (unait.type == UnitTypes.disrupt || unait.type == UnitTypes.quell)) {
+                        spawnerUnit = unait;
+                        mindist = dist;
+                    }
+                });
                 Log.info("Missile created by" + spawnerUnit);
                 spawnedUnitOwnership.put(unit, spawnerUnit);
             }
