@@ -44,6 +44,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 import java.lang.Math;
+import java.lang.reflect.*;
 
 import static net.voiddustry.redvsblue.util.MapVote.callMapVoting;
 import static net.voiddustry.redvsblue.util.Utils.*;
@@ -151,31 +152,8 @@ public class RedVsBluePlugin extends Plugin {
             }
         });
 
-        //missile kill credit,missile explosion is changed to fire the event in rvsb.json + elude nerf
+        //missile kill credit
         HashMap<Unit, Unit> spawnedUnitOwnership = new HashMap<>();
-        
-        Events.on(EventType.UnitSpawnEvent.class, event -> {
-            Unit unit = event.unit;
-            Unit spawnerUnit = null;
-            Log.info("Unit created " + unit);
-            if (unit.type.controller instanceof MissileAI) {
-                int mindist = 999999;
-                int dist;
-                for (Unit unait : Groups.unit) {
-                    dist = (int)(Math.round(Math.sqrt((unait.x - unit.x)*(unait.x - unit.x) + (unait.y - unit.y)*(unait.y - unit.y))));
-                    if (dist<mindist && (unait.type == UnitTypes.disrupt || unait.type == UnitTypes.quell)) {
-                        spawnerUnit = unait;
-                        mindist = dist;
-                    }
-                }
-                Log.info("Missile created by" + spawnerUnit);
-                spawnedUnitOwnership.put(unit, spawnerUnit);
-            }
-
-            if(unit.type() == UnitTypes.elude) {
-                unit.apply(StatusEffects.sporeSlowed, Float.MAX_VALUE);
-            }
-        });
 
         Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
@@ -339,6 +317,28 @@ public class RedVsBluePlugin extends Plugin {
         Events.run(EventType.Trigger.update, () -> {
             tick++;
             if (playing) {
+                for (Unit unit : Groups.unit) {
+                    if (unit.type.controller instanceof MissileAI) {
+                        if (!spawnedUnitOwnership.containsKey(unit)) {
+                            Unit spawnerUnit = null;
+                            int mindist = 999999;
+                            int dist;
+                            for (Unit unait : Groups.unit) {
+                                dist = (int)(Math.round(Math.sqrt((unait.x - unit.x)*(unait.x - unit.x) + (unait.y - unit.y)*(unait.y - unit.y))));
+                                if (dist<mindist && (unait.type == UnitTypes.disrupt || unait.type == UnitTypes.quell)) {
+                                    spawnerUnit = unait;
+                                    mindist = dist;
+                                }
+                            }
+                            Log.info("Missile created by" + spawnerUnit);
+                            spawnedUnitOwnership.put(unit, spawnerUnit);
+                        }
+                    }
+                }
+    
+                if(unit.type() == UnitTypes.elude) {
+                    unit.apply(StatusEffects.sporeSlowed, Float.MAX_VALUE);
+                }
 
                 //shitty redspawn updater
                 if (Vars.state.rules.objectiveFlags.contains("updateRedSpawns")) {
