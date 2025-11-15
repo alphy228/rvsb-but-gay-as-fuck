@@ -8,10 +8,11 @@ unit.disrupt-missile.weapons: [
   shootCone: 360f
   mirror: false
   reload: 1f
-  shootSound: spark
+  shootSound: plasmaboom
   shootOnDeath: true
   bullet: {
     type: basicBulletType
+    lightning: 1
     sprite: ""
     lifetime: 1f
     collidesAir: false
