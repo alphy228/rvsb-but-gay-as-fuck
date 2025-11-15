@@ -8,6 +8,7 @@ import arc.util.*;
 import mindustry.Vars;
 import mindustry.type.unit.*;
 import mindustry.ai.Pathfinder;
+import mindustry.ai.types.*;
 import mindustry.content.Blocks;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
@@ -156,7 +157,7 @@ public class RedVsBluePlugin extends Plugin {
         Events.on(EventType.UnitCreateEvent.class, event -> {
             Unit unit = event.unit;
             Unit spawnerUnit = null;
-            if (unit.type instanceof MissileUnitType) {
+            if (unit.type.controller instanceof MissileAI) {
                 int mindist = 999999;
                 int dist;
                 for (Unit unait : Groups.unit) {
