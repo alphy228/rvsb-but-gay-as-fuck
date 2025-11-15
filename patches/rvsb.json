@@ -1,6 +1,6 @@
 name: rvsb
 
-//quell and disrupt missile change for kill reward to work,yeah they pierce now
+//quell and disrupt missile change for kill reward to work,yeah they pierce now,quell missile is same as disrupt
 unit.disrupt-missile.range: 23
 unit.disrupt-missile.maxRange: 23
 unit.disrupt-missile.weapons: [ 
