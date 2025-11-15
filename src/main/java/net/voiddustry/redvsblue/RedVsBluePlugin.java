@@ -189,7 +189,7 @@ public class RedVsBluePlugin extends Plugin {
             if(unit.type() == UnitTypes.elude) {
                 unit.apply(StatusEffects.sporeSlowed, Float.MAX_VALUE);
             }
-        }
+        });
 
 
         Events.on(EventType.UnitDestroyEvent.class, event -> {
