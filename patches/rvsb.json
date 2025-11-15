@@ -19,6 +19,7 @@ unit.disrupt-missile.weapons: [
     suppressionRange: 140f
     size: 24.8f
     damage: 90f
+    pierce: true
     shootEffect: {
       type: ExplosionEffect
       lifetime: 50f
@@ -58,6 +59,7 @@ unit.quell-missile.weapons: [
     suppressionRange: 140f
     size: 24.8f
     damage: 90f
+    pierce: true
     shootEffect: {
       type: ExplosionEffect
       lifetime: 90f
