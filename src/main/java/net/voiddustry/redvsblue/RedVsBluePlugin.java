@@ -148,7 +148,7 @@ public class RedVsBluePlugin extends Plugin {
             }
         });
 
-        //missile kill credit + elude nerf
+        //missile kill credit,missile explosion is changed to fire the event in rvsb.json + elude nerf
         HashMap<Unit, Unit> spawnedUnitOwnership = new HashMap<>();
         
         Events.on(EventType.UnitCreateEvent.class, event -> {
@@ -170,7 +170,6 @@ public class RedVsBluePlugin extends Plugin {
                     if (killer.isPlayer()) {
                         killerPlayer = killer.getPlayer();
                     } else {
-                        Log.info("missile kill");
                         killerPlayer = spawnedUnitOwnership.get(killer).getPlayer();
                     }
                     PlayerData data = players.get(killerPlayer.uuid());
