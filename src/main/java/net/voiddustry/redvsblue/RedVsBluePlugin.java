@@ -155,6 +155,7 @@ public class RedVsBluePlugin extends Plugin {
             Unit unit = event.unit;
             Unit spawnerUnit = event.spawnerUnit;
             if (spawnerUnit != null) {
+                Log.info("Missile created by" + spawnerUnit);
                 spawnedUnitOwnership.put(unit, spawnerUnit);
             }
 
@@ -167,10 +168,12 @@ public class RedVsBluePlugin extends Plugin {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
                 if ((killer.isPlayer() || (spawnedUnitOwnership.get(killer) != null && spawnedUnitOwnership.get(killer).isPlayer())) && killer.team == Team.blue) {
                     Player killerPlayer;
+                    Log.info("registering kill by" + killer);
                     if (killer.isPlayer()) {
                         killerPlayer = killer.getPlayer();
                     } else {
                         killerPlayer = spawnedUnitOwnership.get(killer).getPlayer();
+                        Log.info("registering missile kill by" + killer + " of player " + killerPlayer);
                     }
                     PlayerData data = players.get(killerPlayer.uuid());
                     players.get(killerPlayer.uuid()).addScore(data.getLevel());
