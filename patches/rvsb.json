@@ -8,8 +8,7 @@ unit.disrupt-missile.weapons: [
   shootCone: 360f
   mirror: false
   reload: 1f
-  loopSound: shootSmite
-  loopSoundVolume: 0.5
+  shootSound: spark
   shootOnDeath: true
   bullet: {
     type: basicBulletType
