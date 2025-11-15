@@ -51,7 +51,7 @@ unit.quell-missile.weapons: [
   reload: 1f
   shootSound: plasmaboom
   shootOnDeath: false
-  bullet: {
+  bullet.fragBullet: {
     type: basicBulletType
     lightning: 1
     sprite: ""
