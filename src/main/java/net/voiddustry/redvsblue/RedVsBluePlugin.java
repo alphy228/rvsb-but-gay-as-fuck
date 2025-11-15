@@ -157,7 +157,7 @@ public class RedVsBluePlugin extends Plugin {
         Events.on(EventType.UnitCreateEvent.class, event -> {
             Unit unit = event.unit;
             Unit spawnerUnit = null;
-            Log.info("Unit created " + unit)
+            Log.info("Unit created " + unit);
             if (unit.type.controller instanceof MissileAI) {
                 int mindist = 999999;
                 int dist;
