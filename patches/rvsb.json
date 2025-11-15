@@ -10,6 +10,8 @@ unit.disrupt-missile.weapons: [
   reload: 1f
   shootSound: plasmaboom
   shootOnDeath: true
+  controllable: false
+  autoShoot: true
   bullet: {
     type: basicBulletType
     lightning: 1
@@ -51,7 +53,9 @@ unit.quell-missile.weapons: [
   reload: 1f
   shootSound: plasmaboom
   shootOnDeath: true
-  bullet.fragBullet: {
+  controllable: false
+  autoShoot: true
+  bullet: {
     type: basicBulletType
     lightning: 1
     sprite: ""
