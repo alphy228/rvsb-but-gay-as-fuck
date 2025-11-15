@@ -318,7 +318,7 @@ public class RedVsBluePlugin extends Plugin {
             tick++;
             if (playing) {
                 for (Unit unit : Groups.unit) {
-                    if (!(unit.type.lifetime == null)) {
+                    if (unit.type instanceof MissileUnitType) {
                         if (!spawnedUnitOwnership.containsKey(unit)) {
                             Unit spawnerUnit = null;
                             int mindist = 999999;
