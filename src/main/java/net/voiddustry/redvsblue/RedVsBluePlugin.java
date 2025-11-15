@@ -154,7 +154,7 @@ public class RedVsBluePlugin extends Plugin {
         //missile kill credit,missile explosion is changed to fire the event in rvsb.json + elude nerf
         HashMap<Unit, Unit> spawnedUnitOwnership = new HashMap<>();
         
-        Events.on(EventType.UnitCreateEvent.class, event -> {
+        Events.on(EventType.UnitSpawnEvent.class, event -> {
             Unit unit = event.unit;
             Unit spawnerUnit = null;
             Log.info("Unit created " + unit);
