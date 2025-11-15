@@ -25,13 +25,13 @@ public enum Evolution {
     RETUSA(UnitTypes.retusa, 3, 15*multp, new String[] { "oxynoe" }),
 
     FORTRESS(UnitTypes.fortress, 4, 35*multp, new String[] { "locus" }),
-    VELA(UnitTypes.vela, 4, 140*multp, new String[] { "corvus" }),
+    VELA(UnitTypes.vela, 4, 180*multp, new String[] { "corvus" }),
     SPIROCT(UnitTypes.spiroct, 4, 95*multp, new String[] { "toxopid" }),
     MINKE(UnitTypes.minke, 4, 90*multp, new String[] { "avert" }),
     OXYNOE(UnitTypes.oxynoe, 4, 35*multp, new String[] { "mega" }),
 
     LOCUS(UnitTypes.locus, 5, 45*multp, new String[] { "precept" }),
-    CORVUS(UnitTypes.corvus, 5, 360*multp, new String[] { "aegires" }),
+    CORVUS(UnitTypes.corvus, 5, 300*multp, new String[] { "aegires" }),
     MEGA(UnitTypes.mega, 5, 100*multp, new String[] { "cyerce" }),
 
     PRECEPT(UnitTypes.precept, 6, 60*multp, new String[] { "scepter" }),
