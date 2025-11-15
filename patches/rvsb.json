@@ -11,7 +11,7 @@ unit.disrupt-missile.weapons: [
   shootSound: plasmaboom
   shootOnDeath: true
   controllable: false
-  autoShoot: true
+  autoTarget: true
   bullet: {
     type: basicBulletType
     lightning: 1
@@ -54,7 +54,7 @@ unit.quell-missile.weapons: [
   shootSound: plasmaboom
   shootOnDeath: true
   controllable: false
-  autoShoot: true
+  autoTarget: true
   bullet: {
     type: basicBulletType
     lightning: 1
