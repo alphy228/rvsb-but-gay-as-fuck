@@ -148,13 +148,29 @@ public class RedVsBluePlugin extends Plugin {
             }
         });
 
+        //missile kill credit + elude nerf
+        HashMap<Unit, Unit> spawnedUnitOwnership = new HashMap<>();
+        
+        Events.on(EventType.UnitCreateEvent.class, event -> {
+            Unit unit = event.unit;
+            Unit spawnerUnit = event.spawnerUnit;
+            if (spawnerUnit != null) {
+                spawnedUnitOwnership.put(unit, spawnerUnit);
+            }
+
+            if(unit.type() == UnitTypes.elude) {
+                unit.apply(StatusEffects.sporeSlowed, Float.MAX_VALUE);
+            }
+        });
+
         Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
                 if ((killer.isPlayer() || spawnedUnitOwnership.get(killer).isPlayer()) && killer.team == Team.blue) {
+                    Player killerPlayer;
                     if (killer.isPlayer()) {
-                        Player killerPlayer = killer.getPlayer();
+                        killerPlayer = killer.getPlayer();
                     } else {
-                        Player killerPlayer = spawnedUnitOwnership.get(killer).getPlayer();
+                        killerPlayer = spawnedUnitOwnership.get(killer).getPlayer();
                     }
                     PlayerData data = players.get(killerPlayer.uuid());
                     players.get(killerPlayer.uuid()).addScore(data.getLevel());
@@ -176,20 +192,6 @@ public class RedVsBluePlugin extends Plugin {
         Events.on(EventType.BlockDestroyEvent.class, event -> {
         });
 
-        //missile kill credit + elude nerf
-        HashMap<Unit, Unit> spawnedUnitOwnership = new HashMap<>();
-        
-        Events.on(EventType.UnitCreateEvent.class, event -> {
-            Unit unit = event.unit;
-            Unit spawnerUnit = event.spawnerUnit;
-            if (spawnerUnit != null) {
-                spawnedUnitOwnership.put(unit, spawnerUnit);
-            }
-
-            if(unit.type() == UnitTypes.elude) {
-                unit.apply(StatusEffects.sporeSlowed, Float.MAX_VALUE);
-            }
-        });
 
 
         Events.on(EventType.UnitDestroyEvent.class, event -> {
