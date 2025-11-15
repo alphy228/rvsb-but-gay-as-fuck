@@ -1,6 +1,6 @@
 name: rvsb
 
-//quell and disrupt missile change for kill reward to work
+//quell and disrupt missile change for kill reward to work,yeah they pierce now
 unit.disrupt-missile.range: 23
 unit.disrupt-missile.maxRange: 23
 unit.disrupt-missile.weapons: [ 
@@ -8,6 +8,7 @@ unit.disrupt-missile.weapons: [
   shootCone: 360f
   mirror: false
   reload: 1f
+  shootSound: shootSmite
   shootOnDeath: true
   bullet: {
     type: basicBulletType
@@ -16,7 +17,7 @@ unit.disrupt-missile.weapons: [
     collidesAir: false
     suppressionRange: 140f
     splashDamageRadius: 24.8f
-    splashDamage: 140f
+    splashDamage: 50f
     shootEffect: {
       type: ExplosionEffect
       lifetime: 50f
