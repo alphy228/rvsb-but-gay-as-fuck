@@ -170,6 +170,7 @@ public class RedVsBluePlugin extends Plugin {
                     if (killer.isPlayer()) {
                         killerPlayer = killer.getPlayer();
                     } else {
+                        Log.info("missile kill");
                         killerPlayer = spawnedUnitOwnership.get(killer).getPlayer();
                     }
                     PlayerData data = players.get(killerPlayer.uuid());
@@ -195,6 +196,9 @@ public class RedVsBluePlugin extends Plugin {
 
 
         Events.on(EventType.UnitDestroyEvent.class, event -> {
+
+            spawnedUnitOwnership.remove(event.unit);
+            
             if (event.unit.isPlayer()) {
                 if (event.unit.team() == Team.blue) {
                     event.unit.getPlayer().team(Team.crux);
