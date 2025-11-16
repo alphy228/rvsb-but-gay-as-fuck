@@ -39,7 +39,6 @@ public class Hud {
 
         });
 
-        Groups.unit.each(u -> Call.label("[orange]X", 0.2F, u.x, u.y));
 
 
         Groups.player.each(player -> {
