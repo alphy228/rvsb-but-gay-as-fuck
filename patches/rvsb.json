@@ -14,8 +14,8 @@ unit.disrupt-missile.weapons: [
   shootStatus: freezing
   shootCone: 360f
   bullet: {
-    range: 8
-    maxRange: 8
+    range: 13
+    maxRange: 13
     lifetime: 1f
     type: basicBulletType
     damage: 0
@@ -27,8 +27,8 @@ unit.disrupt-missile.weapons: [
   shootStatus: tarred
   shootCone: 360f
     bullet: {
-    range: 8
-    maxRange: 8
+    range: 13
+    maxRange: 13
     lifetime: 1f
     type: basicBulletType
     damage: 0
@@ -43,8 +43,8 @@ unit.disrupt-missile.weapons: [
   shootStatus: slow
   shootOnDeath: true
   bullet: {
-    range: 8
-    maxRange: 8
+    range: 13
+    maxRange: 13
     type: basicBulletType
     lightning: 1
     sprite: ""
@@ -53,7 +53,7 @@ unit.disrupt-missile.weapons: [
     suppressionRange: 140f
     width: 49.6f
     height: 49.6f
-    damage: 35f
+    damage: 43f
     pierce: true
     shootEffect: {
       type: ExplosionEffect
@@ -89,8 +89,8 @@ unit.quell-missile.weapons: [
   shootStatus: freezing
   shootCone: 360f
   bullet: {
-    range: 8
-    maxRange: 8
+    range: 13
+    maxRange: 13
     lifetime: 1f
     type: basicBulletType
     damage: 0
@@ -102,8 +102,8 @@ unit.quell-missile.weapons: [
   shootStatus: tarred
   shootCone: 360f
   bullet: {
-    range: 8
-    maxRange: 8
+    range: 13
+    maxRange: 13
     lifetime: 1f
     type: basicBulletType
     damage: 0
@@ -118,8 +118,8 @@ unit.quell-missile.weapons: [
   shootStatus: slow
   shootOnDeath: true
   bullet: {
-    range: 8
-    maxRange: 8
+    range: 13
+    maxRange: 13
     type: basicBulletType
     lightning: 1
     sprite: ""
@@ -128,7 +128,7 @@ unit.quell-missile.weapons: [
     suppressionRange: 140f
     width: 49.6f
     height: 49.6f
-    damage: 47f
+    damage: 58f
     pierce: true
     shootEffect: {
       type: ExplosionEffect
