@@ -51,7 +51,7 @@ unit.disrupt-missile.weapons: [
     suppressionRange: 140f
     width: 49.6f
     height: 49.6f
-    damage: 20f
+    damage: 19f
     pierce: true
     shootEffect: {
       type: ExplosionEffect
@@ -124,7 +124,7 @@ unit.quell-missile.weapons: [
     suppressionRange: 140f
     width: 49.6f
     height: 49.6f
-    damage: 23f
+    damage: 20f
     pierce: true
     shootEffect: {
       type: ExplosionEffect
