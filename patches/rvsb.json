@@ -1,8 +1,8 @@
 name: rvsb
 
 //quell and disrupt missile change for kill reward to work,yeah they pierce now,quell missile is same as disrupt except a bit more damage
-unit.disrupt-missile.range: 23
-unit.disrupt-missile.maxRange: 23
+unit.disrupt-missile.range: 40
+unit.disrupt-missile.maxRange: 40
 unit.disrupt.targetAir: true
 unit.disrupt-missile.targetAir: true
 unit.disrupt.weapons.0.bullet.collidesAir: true
@@ -14,6 +14,8 @@ unit.disrupt-missile.weapons: [
   shootStatus: freezing
   shootCone: 360f
   bullet: {
+    range: 40
+    maxRange: 40
     lifetime: 1f
     type: basicBulletType
     damage: 0
@@ -26,6 +28,8 @@ unit.disrupt-missile.weapons: [
   shootStatus: tarred
   shootCone: 360f
     bullet: {
+    range: 40
+    maxRange: 40
     lifetime: 1f
     type: basicBulletType
     damage: 0
@@ -42,6 +46,8 @@ unit.disrupt-missile.weapons: [
   shootStatus: slow
   shootOnDeath: true
   bullet: {
+    range: 40
+    maxRange: 40
     type: basicBulletType
     lightning: 1
     sprite: ""
@@ -80,6 +86,8 @@ unit.quell-missile.targetAir: true
 unit.quell.weapons.0.bullet.collidesAir: true
 unit.quell-missile.weapons: [ 
   {
+  range: 40
+  maxRange: 40
   controllable: false
   autoTarget: true
   shootStatusDuration: 2
@@ -98,6 +106,8 @@ unit.quell-missile.weapons: [
   shootStatus: tarred
   shootCone: 360f
   bullet: {
+    range: 40
+    maxRange: 40
     lifetime: 1f
     type: basicBulletType
     damage: 0
@@ -114,6 +124,8 @@ unit.quell-missile.weapons: [
   shootStatus: slow
   shootOnDeath: true
   bullet: {
+    range: 40
+    maxRange: 40
     type: basicBulletType
     lightning: 1
     sprite: ""
