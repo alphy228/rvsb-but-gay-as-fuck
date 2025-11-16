@@ -6,6 +6,7 @@ unit.disrupt-missile.maxRange: 40
 unit.disrupt.targetAir: true
 unit.disrupt-missile.targetAir: true
 unit.disrupt.weapons.0.bullet.collidesAir: true
+unit.disrupt-missile.health=99999;
 unit.disrupt-missile.weapons: [ 
   {
   controllable: false
@@ -84,6 +85,7 @@ unit.quell-missile.maxRange: 40
 unit.quell.targetAir: true
 unit.quell-missile.targetAir: true
 unit.quell.weapons.0.bullet.collidesAir: true
+unit.quell-missile.health=99999;
 unit.quell-missile.weapons: [ 
   {
   range: 40
