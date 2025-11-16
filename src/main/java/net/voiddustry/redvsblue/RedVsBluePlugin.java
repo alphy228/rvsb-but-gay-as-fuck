@@ -44,7 +44,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 import java.lang.Math;
-import java.lang.reflect.*;
 
 import static net.voiddustry.redvsblue.util.MapVote.callMapVoting;
 import static net.voiddustry.redvsblue.util.Utils.*;
@@ -335,6 +334,9 @@ public class RedVsBluePlugin extends Plugin {
                 }
 
                 if(tick%3==0){
+
+                    // draw hitboxes 
+                    Groups.unit.each(u -> Call.label("[orange]X", 0.05F, u.x, u.y));
                     //register missiles
                     for (Unit unit : Groups.unit) {
                     if (unit.type instanceof MissileUnitType) {
