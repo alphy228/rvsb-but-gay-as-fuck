@@ -88,14 +88,14 @@ unit.quell.weapons.0.bullet.collidesAir: true
 unit.quell-missile.health: 99999
 unit.quell-missile.weapons: [ 
   {
-  range: 40
-  maxRange: 40
   controllable: false
   autoTarget: true
   shootStatusDuration: 2
   shootStatus: freezing
   shootCone: 360f
   bullet: {
+    range: 40
+    maxRange: 40
     lifetime: 1f
     type: basicBulletType
     damage: 0
