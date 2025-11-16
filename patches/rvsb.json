@@ -11,11 +11,21 @@ unit.disrupt-missile.weapons: [
   shootStatusDuration: 2
   shootStatus: freezing
   shootCone: 360f
+  bullet: {
+    lifetime: 1f
+    type: basicBulletType
+    damage: 0
+    }
   }
   {
   shootStatusDuration: 2
   shootStatus: tarred
   shootCone: 360f
+    bullet: {
+    lifetime: 1f
+    type: basicBulletType
+    damage: 0
+    }
   }
   {
   shootCone: 360f
@@ -34,7 +44,7 @@ unit.disrupt-missile.weapons: [
     suppressionRange: 140f
     width: 49.6f
     height: 49.6f
-    damage: 28f
+    damage: 25f
     pierce: true
     shootEffect: {
       type: ExplosionEffect
@@ -67,11 +77,21 @@ unit.quell-missile.weapons: [
   shootStatusDuration: 2
   shootStatus: freezing
   shootCone: 360f
+  bullet: {
+    lifetime: 1f
+    type: basicBulletType
+    damage: 0
+    }
   }
   {
   shootStatusDuration: 2
   shootStatus: tarred
   shootCone: 360f
+  bullet: {
+    lifetime: 1f
+    type: basicBulletType
+    damage: 0
+    }
   }
   {
   shootCone: 360f
