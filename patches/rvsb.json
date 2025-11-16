@@ -9,6 +9,17 @@ unit.disrupt.weapons.0.bullet.collidesAir: true
 unit.disrupt-missile.health: 99999
 unit.disrupt-missile.weapons: [ 
   {
+    shootSound: plasmaboom
+    reload: 30
+    bullet: {
+    range: 5
+    maxRange: 5
+    lifetime: 1f
+    type: basicBulletType
+    damage: 0
+    }
+  }
+  {
   shootSound: none
   shootStatusDuration: 2
   shootStatus: freezing
@@ -83,6 +94,17 @@ unit.quell-missile.targetAir: true
 unit.quell.weapons.0.bullet.collidesAir: true
 unit.quell-missile.health: 99999
 unit.quell-missile.weapons: [ 
+    {
+    shootSound: plasmaboom
+    reload: 30
+    bullet: {
+    range: 5
+    maxRange: 5
+    lifetime: 1f
+    type: basicBulletType
+    damage: 0
+    }
+  }
   {
   shootSound: none
   shootStatusDuration: 2
