@@ -21,7 +21,6 @@ unit.disrupt-missile.weapons: [
   shootCone: 360f
   mirror: false
   reload: 1f
-  range: 23f
   shootSound: plasmaboom
   shootStatusDuration: 2
   shootStatus: slow
@@ -78,7 +77,6 @@ unit.quell-missile.weapons: [
   shootCone: 360f
   mirror: false
   reload: 1f
-  range: 23f
   shootSound: plasmaboom
   shootStatusDuration: 2
   shootStatus: slow
