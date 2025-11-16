@@ -79,8 +79,8 @@ unit.disrupt-missile.weapons: [
 }
 ]
 
-unit.quell-missile.range: 23
-unit.quell-missile.maxRange: 23
+unit.quell-missile.range: 40
+unit.quell-missile.maxRange: 40
 unit.quell.targetAir: true
 unit.quell-missile.targetAir: true
 unit.quell.weapons.0.bullet.collidesAir: true
