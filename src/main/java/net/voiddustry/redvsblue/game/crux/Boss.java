@@ -71,7 +71,9 @@ public class Boss {
                 Groups.player.each(pl -> {
                     if (!(pl == null)) {
                         if (pl.team() == Team.blue && p.dst(pl) <= 64) {
-                            pl.unit().apply(StatusEffects.sapped, 30);
+                            if (!(p1.unit() == null)) {
+                                pl.unit().apply(StatusEffects.sapped, 30);
+                            }
                         }
                     }
                 });
