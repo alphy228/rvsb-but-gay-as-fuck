@@ -9,18 +9,6 @@ unit.disrupt.weapons.0.bullet.collidesAir: true
 unit.disrupt-missile.health: 99999
 unit.disrupt-missile.weapons: [ 
   {
-    shootOnDeath: true
-    shootSound: plasmaboom
-    reload: 30
-    bullet: {
-    range: 5
-    maxRange: 5
-    lifetime: 1f
-    type: basicBulletType
-    damage: 0
-    }
-  }
-  {
   shootSound: none
   shootStatusDuration: 2
   shootStatus: freezing
@@ -65,7 +53,7 @@ unit.disrupt-missile.weapons: [
     suppressionRange: 140f
     width: 49.6f
     height: 49.6f
-    damage: 45f
+    damage: 35f
     pierce: true
     shootEffect: {
       type: ExplosionEffect
@@ -95,18 +83,6 @@ unit.quell-missile.targetAir: true
 unit.quell.weapons.0.bullet.collidesAir: true
 unit.quell-missile.health: 99999
 unit.quell-missile.weapons: [ 
-    {
-    shootOnDeath: true
-    shootSound: plasmaboom
-    reload: 30
-    bullet: {
-    range: 5
-    maxRange: 5
-    lifetime: 1f
-    type: basicBulletType
-    damage: 0
-    }
-  }
   {
   shootSound: none
   shootStatusDuration: 2
@@ -152,7 +128,7 @@ unit.quell-missile.weapons: [
     suppressionRange: 140f
     width: 49.6f
     height: 49.6f
-    damage: 50f
+    damage: 47f
     pierce: true
     shootEffect: {
       type: ExplosionEffect
