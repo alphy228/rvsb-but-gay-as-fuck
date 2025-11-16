@@ -9,6 +9,7 @@ unit.disrupt.weapons.0.bullet.collidesAir: true
 unit.disrupt-missile.health: 99999
 unit.disrupt-missile.weapons: [ 
   {
+  shootSound: none
   shootStatusDuration: 2
   shootStatus: freezing
   shootCone: 360f
@@ -21,6 +22,7 @@ unit.disrupt-missile.weapons: [
     }
   }
   {
+  shootSound: none
   shootStatusDuration: 2
   shootStatus: tarred
   shootCone: 360f
@@ -82,6 +84,7 @@ unit.quell.weapons.0.bullet.collidesAir: true
 unit.quell-missile.health: 99999
 unit.quell-missile.weapons: [ 
   {
+  shootSound: none
   shootStatusDuration: 2
   shootStatus: freezing
   shootCone: 360f
@@ -94,6 +97,7 @@ unit.quell-missile.weapons: [
     }
   }
   {
+  shootSound: none
   shootStatusDuration: 2
   shootStatus: tarred
   shootCone: 360f
