@@ -9,6 +9,7 @@ unit.disrupt.weapons.0.bullet.collidesAir: true
 unit.disrupt-missile.health: 99999
 unit.disrupt-missile.weapons: [ 
   {
+    shootOnDeath: true
     shootSound: plasmaboom
     reload: 30
     bullet: {
@@ -95,6 +96,7 @@ unit.quell.weapons.0.bullet.collidesAir: true
 unit.quell-missile.health: 99999
 unit.quell-missile.weapons: [ 
     {
+    shootOnDeath: true
     shootSound: plasmaboom
     reload: 30
     bullet: {
