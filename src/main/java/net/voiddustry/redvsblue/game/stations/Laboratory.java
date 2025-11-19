@@ -70,7 +70,7 @@ public class Laboratory {
                     int centerX = lab.tileOn().x * 8;
                     int centerY = lab.tileOn().y * 8;
 
-                    if (p.team() == Team.blue) {
+                    if (p.team() == Team.blue && !(p.unit() == null)) {
                         if (p.dst(centerX, centerY) <= 48) {
                             if(Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) != null && Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)).block() == Blocks.carbideWall && p.shooting) {
                                 Locale locale = Bundle.findLocale(p.locale());
