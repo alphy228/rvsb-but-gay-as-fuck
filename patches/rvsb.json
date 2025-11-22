@@ -27,26 +27,36 @@ recoils: 0
 recoilTime: 0
 name: "assembly-drone"
 layerOffset: 11085
+shootSound: spark
+controllable: false
+autoTarget: true
+bullet: {
+type: lightningBulletType
+lightningLength: 2
+damage: 5
+pierceArmor: true
+}
 }
 
 // parallax with very low reload and range
 {
-name: stell-weapon
+name: small-mount-weapon
 x: 0
-y: -8
+y: -5
+layerOffset: 11085.0001
 type: pointDefenseWeapon
 reload: 4
 targetInterval: 4
 targetSwitchInterval: 4
-recoil: 0.5f
+recoil: 0
 recoils: 0
-recoilTime: 4
-bullet: {
+recoilTime: 0
 shootSound: lasershoot
+bullet: {
 shootEffect: sparkShoot
 hitEffect: pointHit
-maxRange: 32
-range: 32
+maxRange: 50
+range: 50
 damage: 38
 }
 }
@@ -77,7 +87,7 @@ range: 320
 length: 280
 hitEffect: sapExplosion
 status: unmoving
-damage: 300
+damage: 500
 statusDuration: 120f
 fragBullets: 5
 fragRandomSpread: 360f
@@ -157,7 +167,7 @@ lightningLength: 15
 lightningLengthRand: 10
 status: unmoving
 statusDuration: 75
-damage: 70
+damage: 130
 }
 }
 // drone electric sfx
