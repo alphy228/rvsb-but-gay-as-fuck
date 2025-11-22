@@ -1,5 +1,155 @@
 name: rvsb
 
+//disrupt ability
+
+//disrupt drone(emanate)
+unit.emanate.localizedName: "Disruption drone"
+unit.emanate.flyingLayer: 85
+unit.emanate.region: "unit-assembly-drone-full"
+unit.emanate.fullIcon: "unit-assembly-drone-preview"
+unit.emanate.uiIcon: "unit-assembly-drone-ui"
+unit.emanate.engineSize: 0.0001f
+unit.emanate.engineOffset: 0
+unit.emanate.controllable: false
+unit.emanate.range: 280
+unit.emanate.maxRange: 280
+unit.emanate.faceTarget: false
+unit.emanate.weapons: [
+// drone main weapon+main effects
+{
+x: 0
+y: 0
+name: "missiles-mount"
+controllable: false
+autoTarget: true
+recoils: 1
+recoil: 0.5
+recoilTime: 120
+shootSound: smiteshoot
+rotate: true
+alwaysShooting: true
+range: 280
+reload: 300
+shoot: {
+firstShotDelay: 105
+}
+maxRange: 280
+bullet: {
+type: laserBulletType
+colors: [666666,999999,aaaaaa]
+lifetime: 55
+maxRange: 280
+range: 280
+status: unmoving
+damage: 300
+statusDuration: 120f
+fragBullets: 5
+fragRandomSpread: 360f
+fragBullet: {
+type: lightningBulletType
+status: disarmed
+statusDuration: 75
+damage: 50
+lightningLength: 2
+lightningLengthRand: 10
+}
+}
+}
+{
+controllable: false
+autoTarget: true
+x: 0
+y: 0
+shootSound: unlock
+rotate: true
+alwaysShooting: true
+range: 280
+reload: 300
+shoot: {
+firstShotDelay: 70
+}
+maxRange: 280
+bullet: {
+lifetime: 30
+shootEffect: none
+colors: [666666,999999,aaaaaa]
+type: laserBulletType
+maxRange: 280
+range: 280
+}
+}
+{
+controllable: false
+autoTarget: true
+x: 0
+y: 0
+shootSound: unlock
+rotate: true
+alwaysShooting: true
+range: 280
+reload: 300
+shoot: {
+firstShotDelay: 30
+}
+maxRange: 280
+bullet: {
+lifetime: 30
+shootEffect: none
+colors: [666666,999999,aaaaaa]
+type: laserBulletType
+maxRange: 280
+range: 280
+}
+}
+// drone electric stuns 
+{
+shoot: {
+shots: 3
+shotDelay: 1
+}
+shootSound: spark
+inaccuracy: 360f
+rotate: false
+x: 0
+y: 0
+recoil: 0
+recoils: 0
+recoilTime: 0
+reload: 180
+alwaysShooting: true
+bullet: {
+type: lightningBulletType
+lightningLength: 15
+lightningLengthRand: 10
+status: unmoving
+statusDuration: 75
+damage: 70
+}
+}
+// drone electric sfx
+{
+x: 0
+y: 0
+shoot: {
+shots: 10
+shotDelay: 6
+}
+shootEffect: none
+shootSound: spark
+reload: 180
+alwaysShooting: true
+inaccuracy: 360f
+bullet: {
+type: lightningBulletType
+lightningLength: 2
+lightningLengthRand: 5
+damage: 20
+}
+}
+]
+
+
+
 //quell and disrupt missile change for kill reward to work,yeah they pierce now,quell missile is same as disrupt except a bit more damage
 unit.disrupt-missile.range: 23
 unit.disrupt-missile.maxRange: 23
@@ -169,6 +319,8 @@ unit.anthicus.weapons: [
     shots: 65
     shotDelay: 1
     }
+//why
+    //alwaysShootWhenMoving: true
     name: "tecta-weapon"
     shootStatus: slow
     shootStatusDuration: 135
@@ -189,7 +341,7 @@ unit.anthicus.weapons: [
     maxRange: 350
     type: railBulletType
     pierceCap: 1
-    damage: 2
+    damage: 1.6
     length: 340
     pierceDamageFactor: 0.1
     pointEffect: railTrail
@@ -204,6 +356,7 @@ unit.anthicus.weapons: [
     shots: 65
     shotDelay: 1
     }
+    //alwaysShootWhenMoving: true
     rotate: true
     shootStatus: freezing
     shootStatusDuration: 135
@@ -231,6 +384,7 @@ unit.anthicus.weapons: [
 }
 }
 {
+    //alwaysShootWhenMoving: true
     rotate: true
     rotateSpeed: 0.25f
     ignoreRotation: true
