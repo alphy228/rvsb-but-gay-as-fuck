@@ -8,38 +8,74 @@ unit.emanate.flyingLayer: 85
 unit.emanate.region: "unit-assembly-drone-full"
 unit.emanate.fullIcon: "unit-assembly-drone-preview"
 unit.emanate.uiIcon: "unit-assembly-drone-ui"
-unit.emanate.engineSize: 0.0001f
-unit.emanate.engineOffset: 0
-unit.emanate.controllable: false
-unit.emanate.range: 280
-unit.emanate.maxRange: 280
+unit.emanate.playerControllable: false
+unit.emanate.logicControllable: false
+unit.emanate.allowedInPayloads: false
+unit.emanate.range: 320
+unit.emanate.maxRange: 400
 unit.emanate.faceTarget: false
+unit.emanate.fogRadius: 20
+unit.emanate.flyingLayer: -11000
 unit.emanate.weapons: [
+//drone body because you cant edit engines for some reason so they go to -11000
+{
+x: 0
+y: 0
+rotate: false
+recoil: 0
+recoils: 0
+recoilTime: 0
+name: "assembly-drone"
+layerOffset: 11085
+}
+
+// parallax with very low reload and range
+{
+name: stell-weapon
+x: 0
+y: -8
+type: pointDefenseWeapon
+reload: 4
+targetInterval: 4
+targetSwitchInterval: 4
+recoil: 0.5f
+recoils: 0
+recoilTime: 4
+bullet: {
+shootSound: lasershoot
+shootEffect: sparkShoot
+hitEffect: pointHit
+maxRange: 32
+range: 32
+damage: 38
+}
+}
 // drone main weapon+main effects
 {
 x: 0
 y: 0
-name: "missiles-mount"
+name: "vanquish-point-weapon"
+layerOffset: 11085.0001
 controllable: false
 autoTarget: true
-recoils: 1
-recoil: 0.5
+recoils: 0
+recoil: 5
 recoilTime: 120
-shootSound: smiteshoot
+reload: 600
+shootSound: malignShoot
 rotate: true
 alwaysShooting: true
-range: 280
-reload: 300
 shoot: {
 firstShotDelay: 105
 }
-maxRange: 280
 bullet: {
 type: laserBulletType
-colors: [666666,999999,aaaaaa]
+colors: [4d0505,940909,ff0000]
 lifetime: 55
-maxRange: 280
-range: 280
+maxRange: 320
+range: 320
+length: 280
+hitEffect: sapExplosion
 status: unmoving
 damage: 300
 statusDuration: 120f
@@ -63,19 +99,18 @@ y: 0
 shootSound: unlock
 rotate: true
 alwaysShooting: true
-range: 280
-reload: 300
+reload: 600
 shoot: {
 firstShotDelay: 70
 }
-maxRange: 280
 bullet: {
-lifetime: 30
-shootEffect: none
+lifetime: 8
+damage: 0
 colors: [666666,999999,aaaaaa]
 type: laserBulletType
-maxRange: 280
-range: 280
+maxRange: 320
+range: 320
+length: 280
 }
 }
 {
@@ -86,19 +121,18 @@ y: 0
 shootSound: unlock
 rotate: true
 alwaysShooting: true
-range: 280
-reload: 300
+reload: 600
 shoot: {
 firstShotDelay: 30
 }
-maxRange: 280
 bullet: {
-lifetime: 30
-shootEffect: none
+lifetime: 8
+damage: 0
 colors: [666666,999999,aaaaaa]
 type: laserBulletType
-maxRange: 280
-range: 280
+maxRange: 320
+range: 320
+length: 280
 }
 }
 // drone electric stuns 
@@ -115,7 +149,7 @@ y: 0
 recoil: 0
 recoils: 0
 recoilTime: 0
-reload: 180
+reload: 270
 alwaysShooting: true
 bullet: {
 type: lightningBulletType
@@ -134,9 +168,8 @@ shoot: {
 shots: 10
 shotDelay: 6
 }
-shootEffect: none
 shootSound: spark
-reload: 180
+reload: 270
 alwaysShooting: true
 inaccuracy: 360f
 bullet: {
