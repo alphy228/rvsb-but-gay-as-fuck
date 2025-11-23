@@ -2,7 +2,7 @@ name: rvsb
 
       //disrupt ability
 
-
+unit.disrupt.speed: 2
 
 //disrupt ability "wings"
 unit.disrupt.weapons.+: [ {
