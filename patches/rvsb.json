@@ -1,6 +1,208 @@
 name: rvsb
 
-//disrupt ability
+      //disrupt ability
+
+
+
+//disrupt ability "wings"
+unit.disrupt.weapons.+: [ {
+alwaysShooting: true
+minShootVelocity: 1.6
+x: 0
+y: 0
+name: small-mount-weapon
+recoil: 0
+recoils: 0
+recoilTime: 0
+reload: 10
+shake: 3.5f
+inaccuracy: 360
+shootSound: flux
+bullet: {
+type: lightningBulletType
+lightningLength: 1
+lightningLengthRand: 15
+damage: 100
+}
+parts: [ {
+name: obviate
+rotation: -85
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: 14
+y: 4
+xScl: 0.4
+yScl: 2.5
+heatColor: fc4e03
+}
+{
+name: obviate
+rotation: -90
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: 16
+y: -4
+xScl: 0.6
+yScl: 3.4
+heatColor: fc4e03
+}
+{
+name: obviate
+rotation: -103
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: 18
+y: -12
+xScl: 0.8
+yScl: 4.5
+heatColor: fc4e03
+}
+
+//mirror parts
+{
+name: obviate
+rotation: 85
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: -14
+y: 4
+xScl: 0.4
+yScl: 2.5
+heatColor: fc4e03
+}
+{
+name: obviate
+rotation: 90
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: -16
+y: -4
+xScl: 0.6
+yScl: 3.4
+heatColor: fc4e03
+}
+{
+name: obviate
+rotation: 103
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: -18
+y: -12
+xScl: 0.8
+yScl: 4.5
+heatColor: fc4e03
+}
+
+]
+}
+
+//disrupt ability additional sfx
+{
+alwaysShooting: true
+minShootVelocity: 1.6
+reload: 20
+shootSound: spellLoop
+bullet: {
+lifetime: 0
+speed: 0
+}
+}
+
+// disrupt ability bombs
+{
+alwaysShooting: true
+x: 0
+y: 0
+minShootVelocity: 1.6
+reload: 270
+shoot: {
+firstShotDelay: 10
+}
+shootSound: none
+chargeSound: lasercharge2
+bullet: {
+splashDamagePierce: true
+despawnHit: true
+type: missileBulletType
+splashDamageRadius: 80f
+splashDamage: 500
+weaveScale: 8
+weaveMag: 1
+trailColor: 760ee6
+trailWidth: 5f
+trailLength: 10
+sprite: missile-large
+width: 30f
+height: 30f
+shrinkY: -0.5f
+shrinkY: -0.5f
+drag: 0f
+homingPower: 0
+keepVelocity: true
+lightRadius: 180f
+lightOpacity: 0.7f
+lightColor: 760ee6
+backColor: 760ee6
+frontColor: ffffff
+lifetime: 25f
+fragBullets: 8
+fragRandomSpread: 360f
+fragVelocityMin: 0.3f
+hitSound: plasmaboom
+despawnSound: plasmaboom
+hitEffect: {
+lifetime: 90f
+type: explosionEffect
+waveStroke: 6
+waveLife: 10f
+waveRadBase: 7f
+waveColor: 760ee6
+waveRad: 120f
+smokes: 18
+smokeColor: ffffff
+sparkColor: 760ee6
+sparks: 18
+sparkRad: 120f
+sparkStroke: 1.5f
+sparkLen: 4f
+}
+fragBullet: {
+velocityScaleRandMin: 0.3
+velocityScaleRandMax: 1
+despawnHit: true
+type: missileBulletType
+despawnEffect: none
+homingPower: 0f
+width: 12
+height: 22
+hitSize: 0
+damage: 0
+lifetime: 60
+backColor: 760ee6
+trailColor: 760ee6
+trailWidth: 3
+trailLength: 12
+despawnEffect: hitBulletColor
+hitEffect: hitBulletColor
+keepVelocity: false
+fragBullets: 1
+fragBullet: {
+speed: 0f
+keepVelocity: false
+spawnUnit: emanate
+}
+}
+}
+}
+]
+
+
 
 //disrupt drone(emanate)
 unit.emanate.localizedName: "Disruption drone"
@@ -16,6 +218,21 @@ unit.emanate.maxRange: 400
 unit.emanate.faceTarget: false
 unit.emanate.fogRadius: 20
 unit.emanate.flyingLayer: -11000
+unit.emanate.useUnitCap: false
+unit.emanate.health: 30
+
+//drone timed death
+unit.emanate.abilities.+: [
+{
+type: RepairFieldAbility
+amount: -1
+reload: 60
+range: 1
+healEffect: hitFlameSmall   
+activeEffect: hitFlameSmall   
+}
+]
+
 unit.emanate.weapons: [
 //drone body because you cant edit engines for some reason so they go to -11000
 {
@@ -57,7 +274,7 @@ shootEffect: sparkShoot
 hitEffect: pointHit
 maxRange: 50
 range: 50
-damage: 38
+damage: 20
 }
 }
 // drone main weapon+main effects
@@ -87,7 +304,7 @@ range: 320
 length: 280
 hitEffect: sapExplosion
 status: unmoving
-damage: 500
+damage: 150
 statusDuration: 120f
 fragBullets: 5
 fragRandomSpread: 360f
@@ -167,7 +384,7 @@ lightningLength: 15
 lightningLengthRand: 10
 status: unmoving
 statusDuration: 75
-damage: 130
+damage: 65
 }
 }
 // drone electric sfx
@@ -186,7 +403,7 @@ bullet: {
 type: lightningBulletType
 lightningLength: 2
 lightningLengthRand: 5
-damage: 20
+damage: 10
 }
 }
 ]
