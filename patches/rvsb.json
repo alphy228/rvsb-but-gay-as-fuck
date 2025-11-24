@@ -145,7 +145,8 @@ shrinkY: -0.5f
 shrinkY: -0.5f
 drag: 0f
 homingPower: 0
-keepVelocity: true
+keepVelocity: false
+speed: 3
 lightRadius: 180f
 lightOpacity: 0.7f
 lightColor: 760ee6
