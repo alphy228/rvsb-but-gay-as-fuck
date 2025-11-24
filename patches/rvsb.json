@@ -1,6 +1,6 @@
 name: rvsb
 
-      //disrupt ability
+      //disrupt ability by alphy
 
 unit.disrupt.speed: 2
 
@@ -568,7 +568,7 @@ unit.quell-missile.weapons: [
 
 
 
-//anthicus weapon
+//anthicus weapon by alphy
 unit.anthicus.faceTarget: false
 unit.anthicus.range: 350
 unit.anthicus.maxRange: 350
@@ -670,7 +670,7 @@ unit.anthicus.weapons: [
 }
 ]
 
-//mono weapon
+//mono weapon by alphy
 unit.mono.faceTarget: false
 unit.mono.range: 144f
 unit.mono.maxRange: 144f
