@@ -123,7 +123,7 @@ y: 0
 minShootVelocity: 3.6
 reload: 270
 shoot: {
-firstShotDelay: 120
+firstShotDelay: 60
 }
 shootSound: none
 chargeSound: lasercharge2
