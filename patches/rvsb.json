@@ -116,7 +116,7 @@ speed: 0
 
 // disrupt ability bombs
 {
-shake: 10
+shake: 7
 alwaysShooting: true
 x: 0
 y: 0
