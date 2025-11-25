@@ -208,6 +208,7 @@ spawnUnit: emanate
 
 //disrupt drone(emanate)
 unit.emanate.localizedName: "Disruption drone"
+unit.emanate.hitSize: 0
 unit.emanate.flyingLayer: 85
 unit.emanate.region: "unit-assembly-drone-full"
 unit.emanate.fullIcon: "unit-assembly-drone-preview"
