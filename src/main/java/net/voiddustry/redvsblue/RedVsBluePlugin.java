@@ -151,24 +151,38 @@ public class RedVsBluePlugin extends Plugin {
             }
         });
 
-        //missile kill credit
+        //kill credit
         HashMap<Unit, Unit> spawnedUnitOwnership = new HashMap<>();
+        HashMap<Unit, Player> killCredit = new HashMap<>();
 
-        Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
-            if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
-                if ((killer.isPlayer() || (spawnedUnitOwnership.get(killer) != null && spawnedUnitOwnership.get(killer).isPlayer())) && killer.team == Team.blue) {
-                    Player killerPlayer;
-                    if (killer.isPlayer()) {
-                        killerPlayer = killer.getPlayer();
+        Events.on(EventType.UnitDamageEvent.class, event -> {
+            if (event.unit != null && event.bullet.owner() instanceof Unit damager) {
+                if ((damager.isPlayer() || (spawnedUnitOwnership.get(damager) != null && spawnedUnitOwnership.get(damager).isPlayer())) && damager.team == Team.blue) {
+                    Player damagerPlayer;
+                    if (damager.isPlayer()) {
+                        damagerPlayer = damager.getPlayer();
                     } else {
-                        killerPlayer = spawnedUnitOwnership.get(killer).getPlayer();
+                        damagerPlayer = spawnedUnitOwnership.get(damager).getPlayer();
                     }
+                    if (!(damagerPlayer == null)) {
+                        killCredit.put(event.unit(), damagerPlayer);
+                    }
+                } else if (damager.isPlayer() && damager.team == Team.crux) {
+                    killCredit.put(event.unit(), damager.getPlayer());
+                }
+            }
+        });
+
+        Events.on(EventType.UnitDestroyEvent.class, event -> {
+            Player killerPlayer = killCredit.get(event.unit);
+            if (killerPlayer != null) {
+                if (killerPlayer.team() == Team.blue) {
                     PlayerData data = players.get(killerPlayer.uuid());
                     players.get(killerPlayer.uuid()).addScore(data.getLevel());
                     Call.label(killerPlayer.con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
                     data.addExp(1);
                     processLevel(killerPlayer, data);
-                } else if (killer.isPlayer() && killer.team == Team.crux) {
+                } else if (killerPlayer.team() == Team.crux) {
                     PlayerData data = players.get(killer.getPlayer().uuid());
                     data.addKill();
                     Call.label(killer.getPlayer().con, "[scarlet]+1", 2, event.unit.x, event.unit.y);
