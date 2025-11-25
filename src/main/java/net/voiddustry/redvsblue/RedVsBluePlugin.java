@@ -177,7 +177,7 @@ public class RedVsBluePlugin extends Plugin {
             Player killerPlayer = killCredit.get(event.unit);
             //always register kills for someone
             if (killerPlayer == null) {
-                int minDist = 69420;
+                float minDist = 69420;
                 for (Player p : Groups.player) {
                     if (event.unit.dst2(p)<minDist) {
                         killerPlayer=p;
