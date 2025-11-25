@@ -175,6 +175,17 @@ public class RedVsBluePlugin extends Plugin {
 
         Events.on(EventType.UnitDestroyEvent.class, event -> {
             Player killerPlayer = killCredit.get(event.unit);
+            //always register kills for someone
+            if (killerPlayer == null) {
+                int minDist = 69420;
+                for (Player p : Groups.player) {
+                    if (event.unit.dst2(p)<minDist) {
+                        killerPlayer=p;
+                        minDist = event.unit.dst2(p);
+                    }
+                }
+            }
+            
             if (killerPlayer != null) {
                 if (killerPlayer.team() == Team.blue) {
                     PlayerData data = players.get(killerPlayer.uuid());
