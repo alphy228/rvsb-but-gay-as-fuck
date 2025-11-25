@@ -13,7 +13,7 @@ public enum Evolution {
     FLARE(UnitTypes.flare, 1, 10*multp, new String[] { "risso", "nova", "elude", "dagger", "mono" }),
     MONO(UnitTypes.mono, 1, 5*multp, new String[] { "poly", "nova", "elude", "dagger" }),
 
-    PULSAR(UnitTypes.pulsar, 2, 10*multp, new String[] { "quasar" }),
+    PULSAR(UnitTypes.pulsar, 2, 20*multp, new String[] { "quasar" }),
     ATRAX(UnitTypes.atrax, 2, 18*multp, new String[] { "cleroi" }),
     RISSO(UnitTypes.risso, 2, 36*multp, new String[] { "zenith" }),
     POLY(UnitTypes.poly, 2, 21*multp, new String[] { "retusa" }),
