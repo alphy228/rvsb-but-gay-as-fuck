@@ -180,7 +180,7 @@ public class RedVsBluePlugin extends Plugin {
                 float minDist = 69420;
                 for (Player p : Groups.player) {
                     if ((!(p.unit() == null)) && event.unit.dst2(p)<minDist) {
-                        if (event.unit.dst2(p) < (p.unit().range+p.unit().speed*8))
+                        if (event.unit.dst2(p) < (p.unit().type.range+p.unit().type.speed*8))
                             killerPlayer=p;
                             minDist = event.unit.dst2(p);
                     }
