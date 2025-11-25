@@ -194,7 +194,7 @@ public class RedVsBluePlugin extends Plugin {
                     Call.label(killerPlayer.con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
                     data.addExp(1);
                     processLevel(killerPlayer, data);
-                } else if (killerPlayer.team() == Team.crux) {
+                } else if (killerPlayer.team() == Team.crux && event.unit.isPlayer()) {
                     PlayerData data = players.get(killerPlayer.uuid());
                     data.addKill();
                     Call.label(killerPlayer.con, "[scarlet]+1", 2, event.unit.x, event.unit.y);
