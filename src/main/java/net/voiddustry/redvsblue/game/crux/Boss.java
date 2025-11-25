@@ -69,11 +69,9 @@ public class Boss {
                     Call.effect(Fx.vaporSmall, (float) (p.x + Math.sin(i) * 64), (float) (p.y + Math.cos(i) * 64), 0, Color.red);
                 }
                 Groups.player.each(pl -> {
-                    if (!(pl == null)) {
-                        if (pl.team() == Team.blue && p.dst(pl) <= 64) {
-                            if (!(p1.unit() == null)) {
-                                pl.unit().apply(StatusEffects.sapped, 30);
-                            }
+                    if (pl.team() == Team.blue && p.dst(pl) <= 64) {
+                        if (!(p1.unit() == null)) {
+                            pl.unit().apply(StatusEffects.sapped, 30);
                         }
                     }
                 });
