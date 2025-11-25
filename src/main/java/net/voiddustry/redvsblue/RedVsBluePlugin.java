@@ -165,10 +165,10 @@ public class RedVsBluePlugin extends Plugin {
                         damagerPlayer = spawnedUnitOwnership.get(damager).getPlayer();
                     }
                     if (!(damagerPlayer == null)) {
-                        killCredit.put(event.unit(), damagerPlayer);
+                        killCredit.put(event.unit, damagerPlayer);
                     }
                 } else if (damager.isPlayer() && damager.team == Team.crux) {
-                    killCredit.put(event.unit(), damager.getPlayer());
+                    killCredit.put(event.unit, damager.getPlayer());
                 }
             }
         });
@@ -183,11 +183,11 @@ public class RedVsBluePlugin extends Plugin {
                     data.addExp(1);
                     processLevel(killerPlayer, data);
                 } else if (killerPlayer.team() == Team.crux) {
-                    PlayerData data = players.get(killer.getPlayer().uuid());
+                    PlayerData data = players.get(killerPlayer.uuid());
                     data.addKill();
-                    Call.label(killer.getPlayer().con, "[scarlet]+1", 2, event.unit.x, event.unit.y);
+                    Call.label(killerPlayer.con, "[scarlet]+1", 2, event.unit.x, event.unit.y);
                     if (data.getKills() >= 2) {
-                        Boss.spawnBoss(killer.getPlayer());
+                        Boss.spawnBoss(killerPlayer);
                     }
 
                 }
