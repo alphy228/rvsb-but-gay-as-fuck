@@ -214,6 +214,7 @@ public class RedVsBluePlugin extends Plugin {
         Events.on(EventType.UnitDestroyEvent.class, event -> {
 
             spawnedUnitOwnership.remove(event.unit);
+            killCredit.remove(event.unit);
             
             if (event.unit.isPlayer()) {
                 if (event.unit.team() == Team.blue) {
