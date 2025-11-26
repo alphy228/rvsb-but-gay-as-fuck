@@ -153,7 +153,7 @@ lightColor: 760ee6
 backColor: 760ee6
 frontColor: ffffff
 lifetime: 25f
-fragBullets: 8
+fragBullets: 5
 fragRandomSpread: 360f
 fragVelocityMin: 0.3f
 hitSound: plasmaboom
@@ -307,7 +307,7 @@ range: 320
 length: 280
 hitEffect: sapExplosion
 status: unmoving
-damage: 150
+damage: 120
 statusDuration: 120f
 fragBullets: 5
 fragRandomSpread: 360f
