@@ -121,7 +121,7 @@ alwaysShooting: true
 x: 0
 y: 0
 minShootVelocity: 3.6
-reload: 270
+reload: 540
 shoot: {
 firstShotDelay: 60
 }
@@ -132,7 +132,7 @@ splashDamagePierce: true
 despawnHit: true
 type: missileBulletType
 splashDamageRadius: 80f
-splashDamage: 500
+splashDamage: 900
 weaveScale: 8
 weaveMag: 1
 trailColor: 760ee6
