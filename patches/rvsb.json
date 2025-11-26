@@ -222,7 +222,9 @@ unit.emanate.faceTarget: false
 unit.emanate.fogRadius: 20
 unit.emanate.flyingLayer: -11000
 unit.emanate.useUnitCap: false
-unit.emanate.health: 30
+unit.emanate.health: 1000
+unit.emanate.hittable: true
+unit.emanate.targetable: true
 
 //drone timed death
 unit.emanate.abilities.+: [
