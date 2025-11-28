@@ -167,15 +167,16 @@ public class RedVsBluePlugin extends Plugin {
                     if (!(damagerPlayer == null)) {
                         killCredit.put(event.unit, damagerPlayer);
                     }
-                } else if (damager.isPlayer() && damager.team == Team.crux) {
-                    killCredit.put(event.unit, damager.getPlayer());
                 }
             }
         });
 
+        
+        //blue kill registration
         Events.on(EventType.UnitDestroyEvent.class, event -> {
             Player killerPlayer = killCredit.get(event.unit);
-            //always register kills for someone
+            killCredit.remove(event.unit);
+            
             if (killerPlayer == null) {
                 float minDist = 69420;
                 for (Player p : Groups.player) {
@@ -194,12 +195,19 @@ public class RedVsBluePlugin extends Plugin {
                     Call.label(killerPlayer.con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
                     data.addExp(1);
                     processLevel(killerPlayer, data);
-                } else if (killerPlayer.team() == Team.crux && event.unit.isPlayer()) {
-                    PlayerData data = players.get(killerPlayer.uuid());
+                }
+            }
+        });
+
+        //crux kill registration
+        Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
+            if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
+                if (killer.isPlayer() && killer.team == Team.crux) {
+                    PlayerData data = players.get(killer.getPlayer().uuid());
                     data.addKill();
-                    Call.label(killerPlayer.con, "[scarlet]+1", 2, event.unit.x, event.unit.y);
+                    Call.label(killer.getPlayer().con, "[scarlet]+1", 2, event.unit.x, event.unit.y);
                     if (data.getKills() >= 2) {
-                        Boss.spawnBoss(killerPlayer);
+                        Boss.spawnBoss(killer.getPlayer());
                     }
 
                 }
