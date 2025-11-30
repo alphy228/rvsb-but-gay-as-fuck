@@ -222,7 +222,7 @@ unit.emanate.faceTarget: false
 unit.emanate.fogRadius: 20
 unit.emanate.flyingLayer: -11000
 unit.emanate.useUnitCap: false
-unit.emanate.health: 1000
+unit.emanate.health: 1500
 unit.emanate.hittable: true
 unit.emanate.targetable: true
 
