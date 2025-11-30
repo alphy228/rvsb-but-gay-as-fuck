@@ -16,7 +16,7 @@ import java.util.Locale;
 
 import mindustry.type.Weapon;
 import mindustry.world.Block;
-import mindustry.world.blocks.environment.Prop;
+import mindustry.world.blocks.environment.*;
 
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
