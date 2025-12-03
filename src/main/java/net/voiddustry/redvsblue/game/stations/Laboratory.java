@@ -35,7 +35,7 @@ public class Laboratory {
         PlayerData playerData = players.get(player.uuid());
 
         if (playerData.getScore() >= evolutionOption.cost) {
-            if (player.tileOn().block() == Blocks.air) {
+            if (player.unit() != null && (player.tileOn().block() == Blocks.air || evolutionOption.unitType.flying==true || evolutionOption.unitType.canBoost == true)) {
                 Unit unit = evolutionOption.unitType.spawn(Team.blue, player.x(), player.y());
                 unit.health = unit.type.health/2;
 
@@ -70,7 +70,7 @@ public class Laboratory {
                     int centerX = lab.tileOn().x * 8;
                     int centerY = lab.tileOn().y * 8;
 
-                    if (p.team() == Team.blue) {
+                    if (p.team() == Team.blue && !(p.unit() == null)) {
                         if (p.dst(centerX, centerY) <= 48) {
                             if(Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) != null && Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)).block() == Blocks.carbideWall && p.shooting) {
                                 Locale locale = Bundle.findLocale(p.locale());
@@ -85,8 +85,9 @@ public class Laboratory {
 
                                 Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
                             }
-
+                            if (!(players.get(p.uuid()) == null)) {
                             players.get(p.uuid()).setCanEvolve(true);
+                            }
                             Call.infoPopup(p.con, Bundle.get("evolution.evolution-available", p.locale), 0.5F, 0, 0, 0, -200, 0);
                         }
                     }

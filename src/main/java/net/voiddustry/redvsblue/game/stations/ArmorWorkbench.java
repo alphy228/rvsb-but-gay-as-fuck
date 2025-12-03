@@ -38,47 +38,49 @@ public class ArmorWorkbench {
             int centerY = pointData.tileOn().y * 8;
 
             Groups.player.each(p -> {
-                if (p.team() == Team.blue) {
-                    if (p.dst(centerX, centerY) <= 64) {
-                        if (p.unit().shield >= 0 && p.unit().shield < 30) {
-                            p.unit().shield += 10;
-                            Call.label("[blue]+10", 1, p.x, p.y);
-                        }
-
-                        if(Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) != null && Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)).block() == Blocks.radar && p.shooting){
-
-                            //int maxShield = (int) p.unit().type.health; // /50;
-                            float maxShield = p.unit().type.health;
-                            if (p.unit().type.health >= 17000) {
-                                maxShield = p.unit().type.health/3;
-                            } else if (p.unit().type.health <= 290) {
-                                maxShield = p.unit().type.health*4;
-                            } else if (p.unit().type.health >= 11000) {
-                                maxShield = p.unit().type.health/2;
+                if (!(p.unit() == null)) {
+                    if (p.team() == Team.blue) {
+                        if (p.dst(centerX, centerY) <= 64) {
+                            if (p.unit().shield >= 0 && p.unit().shield < 30) {
+                                p.unit().shield += 10;
+                                Call.label("[blue]+10", 1, p.x, p.y);
                             }
-
-                            int shieldPerPoint = (int) maxShield/20;
-
-                            float finalMaxShield = maxShield;
-                            int menu = Menus.registerMenu((player, option) -> {
-                                if (option == 0 && players.get(p.uuid()).getScore() >= 1 && p.unit().shield <= (int) finalMaxShield) {
-                                    p.unit().shield = p.unit().shield + shieldPerPoint;
-                                    players.get(p.uuid()).subtractScore(1);
-
-                                    Call.label("[royal]+" + shieldPerPoint, 3, p.x, p.y);
+    
+                            if(Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) != null && Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)).block() == Blocks.radar && p.shooting){
+    
+                                //int maxShield = (int) p.unit().type.health; // /50;
+                                float maxShield = p.unit().type.health;
+                                if (p.unit().type.health >= 17000) {
+                                    maxShield = p.unit().type.health/3;
+                                } else if (p.unit().type.health <= 290) {
+                                    maxShield = p.unit().type.health*4;
+                                } else if (p.unit().type.health >= 11000) {
+                                    maxShield = p.unit().type.health/2;
                                 }
-                            });
-
-                            String[][] buttons = new String[][]{
-                                    {
-                                        Bundle.format("stations.workbench.buy-armor", Bundle.findLocale(p.locale), shieldPerPoint),
-                                    },
-                                    {
-                                        Bundle.get("stations.buttons.close", p.locale)
+    
+                                int shieldPerPoint = (int) maxShield/20;
+    
+                                float finalMaxShield = maxShield;
+                                int menu = Menus.registerMenu((player, option) -> {
+                                    if (option == 0 && players.get(p.uuid()).getScore() >= 1 && p.unit().shield <= (int) finalMaxShield) {
+                                        p.unit().shield = p.unit().shield + shieldPerPoint;
+                                        players.get(p.uuid()).subtractScore(1);
+    
+                                        Call.label("[royal]+" + shieldPerPoint, 3, p.x, p.y);
                                     }
-                            };
-
-                            openMenu(p, menu, buttons);
+                                });
+    
+                                String[][] buttons = new String[][]{
+                                        {
+                                            Bundle.format("stations.workbench.buy-armor", Bundle.findLocale(p.locale), shieldPerPoint),
+                                        },
+                                        {
+                                            Bundle.get("stations.buttons.close", p.locale)
+                                        }
+                                };
+    
+                                openMenu(p, menu, buttons);
+                            }
                         }
                     }
                 }

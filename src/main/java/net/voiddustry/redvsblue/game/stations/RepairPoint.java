@@ -34,19 +34,19 @@ public class RepairPoint {
             String text = pointData.owner().name + "[gold]'s\n[cyan]Repair Point";
             StationUtils.drawStationName(pointData.tileOn(), text, 1.1F);
 
-            Groups.player.each(p -> {
-                if (p.team() == Team.blue) {
-                    if (p.dst(centerX, centerY) <= 32) {
-                        if (p.unit().health <= p.unit().type.health) {
-                            float add = p.unit().type.health/100;
-                            if (p.unit().type.health >= 8200) {
-                                add = p.unit().type.health/400;
-                            } else if (p.unit().type.health <= 130) {
-                                add = p.unit().type.health/50;
+            Groups.unit.each(u -> {
+                if (u.team == Team.blue) {
+                    if (u.dst(centerX, centerY) <= 32) {
+                        if (u.health <= u.type.health) {
+                            float add = u.type.health/100;
+                            if (u.type.health >= 8200) {
+                                add = u.type.health/400;
+                            } else if (u.type.health <= 130) {
+                                add = u.type.health/50;
                             }
 
-                            p.unit().health += add;
-                            Call.label("[lime]+" + add, 1, p.x, p.y);
+                            u.health += add;
+                            Call.label("[lime]+" + add, 1, u.x, u.y);
                         }
                     }
                 }

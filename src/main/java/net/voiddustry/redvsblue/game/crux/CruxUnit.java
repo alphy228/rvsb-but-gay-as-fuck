@@ -23,7 +23,7 @@ public class CruxUnit {
             Tile cruxSpawn = RedVsBluePlugin.redSpawns.random();
 
             if (cruxSpawn != null && cruxSpawn.block() != null) {
-                Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true);
+                Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true, true);
             }
             Unit unit = type.spawn(Team.crux, cruxSpawn);
 
@@ -63,7 +63,7 @@ public class CruxUnit {
             Tile cruxSpawn = RedVsBluePlugin.redSpawns.random();
 
             if (cruxSpawn != null && cruxSpawn.block() != null) {
-                Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true);
+                Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true, true);
             }
             Unit unit = unitType.spawn(Team.crux, cruxSpawn);
 
@@ -96,8 +96,10 @@ public class CruxUnit {
             final int[] cruxPlayersWithUnits = {0};
 
             Groups.player.each(p -> {
-                if (p.unit().team == Team.crux) {
-                    cruxPlayersWithUnits[0]++;
+                if (!(p.unit() == null)) {
+                    if (p.unit().team == Team.crux) {
+                        cruxPlayersWithUnits[0]++;
+                    }
                 }
             });
 

@@ -1,6 +1,5 @@
 package net.voiddustry.redvsblue.player;
 
-
 import mindustry.content.Blocks;
 import mindustry.content.UnitTypes;
 import mindustry.game.Team;
@@ -40,62 +39,40 @@ public class Hud {
 
         });
 
-        Groups.unit.each(u -> Call.label("[orange]X", 0.016F, u.x, u.y));
-        // allow map makers to draw fake hitboxes with erekir liquid routers
-        Groups.build.each(b -> {
-            if (b.block == Blocks.reinforcedLiquidRouter && b.team == Team.crux) {
-                Call.label("[orange]X", 0.016F, b.x, b.y);
-            }
-        });
-
-
-        //allows mappers to edit 'redSpawns', only changes 'redSpawns',removes the objectiveFlag and the 100 team erekir liquid routers placed in order to send coordinates
-        //very cringe code
-        if (Vars.state.rules.objectiveFlags.contains("updateRedSpawns")) {
-            Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
-            //hopefully no crash due to empty spawns
-            RedVsBluePlugin.redSpawns.each(spawnpoint -> {
-                if (spawnpoint != RedVsBluePlugin.redSpawns.firstOpt()) {
-                    RedVsBluePlugin.redSpawns.remove(spawnpoint);
-                }
-            });
-            Groups.build.each(bildeng -> {
-                if (bildeng.block == Blocks.reinforcedLiquidRouter && bildeng.team == Team.all[100]) {
-                    RedVsBluePlugin.redSpawns.add(Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)));
-                    Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)).setBlock(Blocks.air);
-                }
-            });
-            RedVsBluePlugin.redSpawns.remove(RedVsBluePlugin.redSpawns.firstOpt());  
-        }
 
 
         Groups.player.each(player -> {
             Unit unit = player.unit();
-
-            if(!RedVsBluePlugin.players.containsKey(player.uuid())) {
-                RedVsBluePlugin.players.put(player.uuid(), new PlayerData(player));
-            }
+           
             PlayerData data = RedVsBluePlugin.players.get(player.uuid());
-
-            String textHud = (data.getLevel() == 5)? "[scarlet]Max" : "[accent]" + data.getExp() + " / " + data.getMaxExp();
-
-            String hudText = Bundle.format("game.hud", Bundle.findLocale(player.locale()), Administration.Config.serverName.get(), Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), RedVsBluePlugin.stage, time, playersText, data.getLevel(), textHud);
-            Call.setHudText(player.con, hudText);
-
-            if (RedVsBluePlugin.playing && data.getUnit() != null) {
-                if (data.getUnit().dead) {
-                    data.setTeam(Team.crux);
-                    player.team(data.getTeam());
+            if (!(data == null)) {
+    
+                if(!RedVsBluePlugin.players.containsKey(player.uuid())) {
+                    RedVsBluePlugin.players.put(player.uuid(), new PlayerData(player));
                 }
-            }
-
-            if (player.unit().type == UnitTypes.quasar && player.unit().shield >= -10 && player.unit().shield <= 0) {
-                player.unit().shield = 300;
-            }
-
-            if (RedVsBluePlugin.playing && data.getUnit() != null && player.team() == Team.blue) {
-                if (!data.getUnit().dead) {
-                    player.unit(data.getUnit());
+        
+                String textHud = (data.getLevel() == 5)? "[scarlet]Max" : "[accent]" + data.getExp() + " / " + data.getMaxExp();
+      
+                String hudText = "";
+                if (!(player.unit() == null)) {
+                    hudText = Bundle.format("game.hud", Bundle.findLocale(player.locale()), Administration.Config.serverName.get(), Math.floor(unit.health()), Math.floor(unit.shield()), data.getScore(), RedVsBluePlugin.stage, time, playersText, data.getLevel(), textHud);
+                } else {
+                    hudText = Bundle.format("game.hud", Bundle.findLocale(player.locale()), Administration.Config.serverName.get(), "-", "-", data.getScore(), RedVsBluePlugin.stage, time, playersText, data.getLevel(), textHud);
+                }
+    
+                Call.setHudText(player.con, hudText);
+                
+                if (RedVsBluePlugin.playing && data.getUnit() != null) {
+                    if (data.getUnit().dead) {
+                        data.setTeam(Team.crux);
+                        player.team(data.getTeam());
+                    }
+                }
+                
+                if (RedVsBluePlugin.playing && data.getUnit() != null && player.team() == Team.blue) {
+                    if (!data.getUnit().dead) {
+                        player.unit(data.getUnit());
+                    }
                 }
             }
         });

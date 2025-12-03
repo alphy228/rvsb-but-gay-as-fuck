@@ -6,7 +6,9 @@ import arc.graphics.Color;
 import arc.struct.Seq;
 import arc.util.*;
 import mindustry.Vars;
+import mindustry.type.unit.*;
 import mindustry.ai.Pathfinder;
+import mindustry.ai.types.*;
 import mindustry.content.Blocks;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
@@ -41,6 +43,7 @@ import net.voiddustry.redvsblue.util.Utils;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
+import java.lang.Math;
 
 import static net.voiddustry.redvsblue.util.MapVote.callMapVoting;
 import static net.voiddustry.redvsblue.util.Utils.*;
@@ -86,8 +89,7 @@ public class RedVsBluePlugin extends Plugin {
     public void init() {
 
         Log.info("&gRedVsBlue Plugin &rStarted!");
-
-        Utils.initStats();
+        
         Utils.initRules();
         Utils.initTimers();
         Utils.loadContent();
@@ -149,15 +151,58 @@ public class RedVsBluePlugin extends Plugin {
             }
         });
 
+        //kill credit
+        HashMap<Unit, Unit> spawnedUnitOwnership = new HashMap<>();
+        HashMap<Unit, Player> killCredit = new HashMap<>();
+
+        Events.on(EventType.UnitDamageEvent.class, event -> {
+            if (event.unit != null && event.bullet.owner() instanceof Unit damager) {
+                if ((damager.isPlayer() || (spawnedUnitOwnership.get(damager) != null && spawnedUnitOwnership.get(damager).isPlayer())) && damager.team == Team.blue) {
+                    Player damagerPlayer;
+                    if (damager.isPlayer()) {
+                        damagerPlayer = damager.getPlayer();
+                    } else {
+                        damagerPlayer = spawnedUnitOwnership.get(damager).getPlayer();
+                    }
+                    if (!(damagerPlayer == null)) {
+                        killCredit.put(event.unit, damagerPlayer);
+                    }
+                }
+            }
+        });
+
+        
+        //blue kill registration
+        Events.on(EventType.UnitDestroyEvent.class, event -> {
+            Player killerPlayer = killCredit.get(event.unit);
+            killCredit.remove(event.unit);
+            
+            if (killerPlayer == null) {
+                float minDist = 69420;
+                for (Player p : Groups.player) {
+                    if (((!(p.unit() == null)) && event.unit.dst(p)<minDist) && (!(event.unit.team == p.team()))) {
+                        if (event.unit.dst(p) < ((p.unit().type.range)*1.2+p.unit().type.speed*8))
+                            killerPlayer=p;
+                            minDist = event.unit.dst(p);
+                    }
+                }
+            }
+            
+            if (killerPlayer != null) {
+                if (killerPlayer.team() == Team.blue) {
+                    PlayerData data = players.get(killerPlayer.uuid());
+                    players.get(killerPlayer.uuid()).addScore(data.getLevel());
+                    Call.label(killerPlayer.con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
+                    data.addExp(1);
+                    processLevel(killerPlayer, data);
+                }
+            }
+        });
+
+        //crux kill registration
         Events.on(EventType.UnitBulletDestroyEvent.class, event -> {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
-                if (killer.isPlayer() && killer.team == Team.blue) {
-                    PlayerData data = players.get(killer.getPlayer().uuid());
-                    players.get(killer.getPlayer().uuid()).addScore(data.getLevel());
-                    Call.label(killer.getPlayer().con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
-                    data.addExp(1);
-                    processLevel(killer.getPlayer(), data);
-                } else if (killer.isPlayer() && killer.team == Team.crux) {
+                if (killer.isPlayer() && killer.team == Team.crux) {
                     PlayerData data = players.get(killer.getPlayer().uuid());
                     data.addKill();
                     Call.label(killer.getPlayer().con, "[scarlet]+1", 2, event.unit.x, event.unit.y);
@@ -173,7 +218,12 @@ public class RedVsBluePlugin extends Plugin {
         });
 
 
+
         Events.on(EventType.UnitDestroyEvent.class, event -> {
+
+            spawnedUnitOwnership.remove(event.unit);
+            killCredit.remove(event.unit);
+            
             if (event.unit.isPlayer()) {
                 if (event.unit.team() == Team.blue) {
                     event.unit.getPlayer().team(Team.crux);
@@ -200,6 +250,13 @@ public class RedVsBluePlugin extends Plugin {
         });
 
 
+        Timer.schedule(() -> {
+            if (playing) {
+                Hud.update();
+            }
+        },0.2f,0.2f);
+
+
 
         Events.on(EventType.WorldLoadEvent.class, event -> {
             Miner.clearMiners();
@@ -216,11 +273,13 @@ public class RedVsBluePlugin extends Plugin {
 
             StartingMenu.canOpenMenu = true;
 
+
             Groups.player.each(p -> {
                 PlayerData data = players.get(p.uuid());
                 data.setUnit(null);
                 data.setExp(0);
                 data.setLevel(1);
+                data.setScore(0);
             });
         });
 
@@ -260,9 +319,6 @@ public class RedVsBluePlugin extends Plugin {
 
                     Unit unit = getStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
                     PlayerData data = players.get(player.uuid());
-                    if(unit.type() == UnitTypes.elude) {
-                        unit.apply(StatusEffects.sporeSlowed, Float.MAX_VALUE);
-                    }
                     data.setUnit(unit);
 
                 }
@@ -283,6 +339,9 @@ public class RedVsBluePlugin extends Plugin {
             initRules();
             launchGameStartTimer();
 
+            spawnedUnitOwnership.clear();
+
+
             Call.setRules(Vars.state.rules);
 
         }, 10));
@@ -290,9 +349,48 @@ public class RedVsBluePlugin extends Plugin {
         Events.run(EventType.Trigger.update, () -> {
             tick++;
             if (playing) {
-                Hud.update();
+
+                //shitty redspawn updater
+                if (Vars.state.rules.objectiveFlags.contains("updateRedSpawns")) {
+                    Vars.state.rules.objectiveFlags.remove("updateRedSpawns");
+                    
+                    RedVsBluePlugin.redSpawns.each(spawnpoint -> {
+                        if (spawnpoint != RedVsBluePlugin.redSpawns.firstOpt()) {
+                            RedVsBluePlugin.redSpawns.remove(spawnpoint);
+                        }
+                    });
+                    Groups.build.each(bildeng -> {
+                        if (bildeng.block == Blocks.reinforcedLiquidRouter && bildeng.team == Team.all[100]) {
+                            RedVsBluePlugin.redSpawns.add(Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)));
+                            Vars.world.tile((((int)bildeng.x)/8),(((int)bildeng.y)/8)).setBlock(Blocks.air);
+                        }
+                    });
+                    RedVsBluePlugin.redSpawns.remove(RedVsBluePlugin.redSpawns.firstOpt());  
+                }
 
                 if(tick%3==0){
+
+                    // draw hitboxes 
+                    Groups.unit.each(u -> Call.label("[orange]X", 0.05F, u.x, u.y));
+                    //register missiles
+                    for (Unit unit : Groups.unit) {
+                    if (unit.type instanceof MissileUnitType) {
+                        if (!spawnedUnitOwnership.containsKey(unit)) {
+                            Unit spawnerUnit = null;
+                            int mindist = 999999;
+                            int dist;
+                            for (Unit unait : Groups.unit) {
+                                dist = (int)(Math.round(Math.sqrt((unait.x - unit.x)*(unait.x - unit.x) + (unait.y - unit.y)*(unait.y - unit.y))));
+                                if (dist<mindist && (unait.type == UnitTypes.disrupt || unait.type == UnitTypes.quell)) {
+                                    spawnerUnit = unait;
+                                    mindist = dist;
+                                }
+                            }
+                            spawnedUnitOwnership.put(unit, spawnerUnit);
+                        }
+                    }
+                }
+    
                     Groups.bullet.forEach(bullet -> {
                         if (bullet.lifetime == 59f){
                             Call.effect(Fx.shootHeal, bullet.x, bullet.y, bullet.rotation(), Color.cyan);
@@ -387,7 +485,9 @@ public class RedVsBluePlugin extends Plugin {
                 player.sendMessage(Bundle.get("game.late", player.locale));
             }
         });
-
+        
+        handler.<Player>removeCommand("rtv");
+        
 //        handler.<Player>register("reset-data", "Use that if you blue and dont have unit.", (args, player) -> {
 //            if (player.team() == Team.blue) {
 //                players.put(player.uuid(), new PlayerData(player));
@@ -409,7 +509,14 @@ public class RedVsBluePlugin extends Plugin {
     }
 
     public static void gameOverCheck() {
-        if (playerCount(Team.blue) == 0) {
+        int blueUnitCount = 0;
+        int PlayerCount = 0;
+        for (Unit u : Groups.unit) {
+            if (u.team == Team.blue) {
+                blueUnitCount = blueUnitCount+1;
+            }
+        }
+        if ((playerCount(Team.blue) == 0 || blueUnitCount== 0) && ((playerCount(Team.blue) + playerCount(Team.crux)) != 0)) {
             gameOver(Team.crux);
         }
     }
