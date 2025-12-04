@@ -220,9 +220,9 @@ unit.emanate.range: 320
 unit.emanate.maxRange: 400
 unit.emanate.faceTarget: false
 unit.emanate.fogRadius: 20
-unit.emanate.flyingLayer: -11000
+unit.emanate.flyingLayer: -500
 unit.emanate.useUnitCap: false
-unit.emanate.health: 1500
+unit.emanate.health: 750
 unit.emanate.hittable: true
 unit.emanate.targetable: true
 
@@ -248,7 +248,7 @@ recoil: 0
 recoils: 0
 recoilTime: 0
 name: "assembly-drone"
-layerOffset: 11085
+layerOffset: 585
 shootSound: spark
 controllable: false
 autoTarget: true
@@ -265,7 +265,7 @@ pierceArmor: true
 name: small-mount-weapon
 x: 0
 y: -5
-layerOffset: 11085.0001
+layerOffset: 585.0001
 type: pointDefenseWeapon
 reload: 4
 targetInterval: 4
@@ -287,7 +287,7 @@ damage: 20
 x: 0
 y: 0
 name: "vanquish-point-weapon"
-layerOffset: 11085.0001
+layerOffset: 585.0001
 controllable: false
 autoTarget: true
 recoils: 0
