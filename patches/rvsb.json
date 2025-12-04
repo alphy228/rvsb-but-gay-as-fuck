@@ -543,7 +543,7 @@ unit.quell-missile.weapons: [
     suppressionRange: 140f
     width: 49.6f
     height: 49.6f
-    damage: 170f
+    damage: 145f
     pierce: true
     shootEffect: {
       type: ExplosionEffect
