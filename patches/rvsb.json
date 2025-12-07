@@ -7,7 +7,7 @@ unit.disrupt.speed: 2
 //disrupt ability "wings"
 unit.disrupt.weapons.+: [ {
 alwaysShooting: true
-minShootVelocity: 3.9
+minShootVelocity: 3.6
 x: 0
 y: 0
 name: small-mount-weapon
@@ -105,7 +105,7 @@ heatColor: fc4e03
 //disrupt ability additional sfx
 {
 alwaysShooting: true
-minShootVelocity: 3.9
+minShootVelocity: 3.6
 reload: 20
 shootSound: spellLoop
 bullet: {
@@ -120,7 +120,7 @@ shake: 7
 alwaysShooting: true
 x: 0
 y: 0
-minShootVelocity: 3.9
+minShootVelocity: 3.6
 reload: 540
 shoot: {
 firstShotDelay: 60
