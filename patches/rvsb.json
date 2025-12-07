@@ -208,7 +208,7 @@ spawnUnit: emanate
 
 //disrupt drone(emanate)
 unit.emanate.localizedName: "Disruption drone"
-unit.emanate.hitSize: 0
+unit.emanate.hitSize: 1
 unit.emanate.flyingLayer: 85
 unit.emanate.region: "unit-assembly-drone-full"
 unit.emanate.fullIcon: "unit-assembly-drone-preview"
@@ -222,7 +222,7 @@ unit.emanate.faceTarget: false
 unit.emanate.fogRadius: 20
 unit.emanate.flyingLayer: -500
 unit.emanate.useUnitCap: false
-unit.emanate.health: 750
+unit.emanate.health: 350
 unit.emanate.hittable: true
 unit.emanate.targetable: true
 
