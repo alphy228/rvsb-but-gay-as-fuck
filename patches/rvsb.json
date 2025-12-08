@@ -197,7 +197,7 @@ fragBullets: 1
 fragBullet: {
 speed: 0f
 keepVelocity: false
-spawnUnit: emanate
+spawnUnit: incite
 }
 }
 }
@@ -206,28 +206,27 @@ spawnUnit: emanate
 
 
 
-//disrupt drone(emanate)
-unit.emanate.localizedName: "Disruption drone"
-unit.emanate.hitSize: 1
-unit.emanate.flyingLayer: 85
-unit.emanate.region: "unit-assembly-drone-full"
-unit.emanate.fullIcon: "unit-assembly-drone-preview"
-unit.emanate.uiIcon: "unit-assembly-drone-ui"
-unit.emanate.playerControllable: false
-unit.emanate.logicControllable: false
-unit.emanate.allowedInPayloads: false
-unit.emanate.range: 320
-unit.emanate.maxRange: 400
-unit.emanate.faceTarget: false
-unit.emanate.fogRadius: 20
-unit.emanate.flyingLayer: -500
-unit.emanate.useUnitCap: false
-unit.emanate.health: 350
-unit.emanate.hittable: true
-unit.emanate.targetable: true
+//disrupt drone(incite)
+unit.incite.localizedName: "Disruption drone"
+unit.incite.hitSize: 1
+unit.incite.flyingLayer: 85
+unit.incite.region: "unit-assembly-drone-full"
+unit.incite.fullIcon: "unit-assembly-drone-preview"
+unit.incite.uiIcon: "unit-assembly-drone-ui"
+unit.incite.playerControllable: false
+unit.incite.logicControllable: false
+unit.incite.allowedInPayloads: false
+unit.incite.range: 320
+unit.incite.maxRange: 400
+unit.incite.faceTarget: false
+unit.incite.fogRadius: 20
+unit.incite.useUnitCap: false
+unit.incite.health: 350
+unit.incite.hittable: true
+unit.incite.targetable: true
 
 //drone timed death
-unit.emanate.abilities.+: [
+unit.incite.abilities.+: [
 {
 type: RepairFieldAbility
 amount: -1
@@ -238,8 +237,7 @@ activeEffect: hitFlameSmall
 }
 ]
 
-unit.emanate.weapons: [
-//drone body because you cant edit engines for some reason so they go to -11000
+unit.incite.weapons: [
 {
 x: 0
 y: 0
@@ -248,7 +246,7 @@ recoil: 0
 recoils: 0
 recoilTime: 0
 name: "assembly-drone"
-layerOffset: 585
+layerOffset: 0
 shootSound: spark
 controllable: false
 autoTarget: true
@@ -265,7 +263,7 @@ pierceArmor: true
 name: small-mount-weapon
 x: 0
 y: -5
-layerOffset: 585.0001
+layerOffset: 0.0001
 type: pointDefenseWeapon
 reload: 4
 targetInterval: 4
@@ -287,7 +285,7 @@ damage: 20
 x: 0
 y: 0
 name: "vanquish-point-weapon"
-layerOffset: 585.0001
+layerOffset: 0.0001
 controllable: false
 autoTarget: true
 recoils: 0
