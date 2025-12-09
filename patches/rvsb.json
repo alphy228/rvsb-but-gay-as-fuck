@@ -1,5 +1,28 @@
 name: rvsb
 
+// obviate shield
+unit.obviate.flyingLayer: 115
+unit.obviate.abilities.+: [ {
+    type: forceFieldAbility
+    sides: 4
+    radius: 40
+    max: 600
+    regen: 0.5
+    cooldown: 600
+}
+]
+// flare shield
+unit.flare.abilities.+: [
+{
+    type: shieldRegenFieldAbility
+    max: 40
+    amount: 10
+    reload: 120
+    range: 30
+}
+]
+
+
       //disrupt ability by alphy
 
 unit.disrupt.speed: 2
