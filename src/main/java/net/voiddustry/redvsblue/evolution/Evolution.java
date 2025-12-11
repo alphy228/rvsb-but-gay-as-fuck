@@ -57,7 +57,7 @@ public enum Evolution {
 
     CONQUER(UnitTypes.conquer, 10, 450*multp, new String[] { "elude", "nova", "flare", "mono" }),
     SEI(UnitTypes.sei, 10, 270*multp, new String[] { "omura" }),
-    DISRUPT(UnitTypes.disrupt, 10, 500*multp, new String[] { "nova", "flare", "dagger"}),
+    DISRUPT(UnitTypes.disrupt, 10, 800*multp, new String[] { "nova", "flare", "dagger"}),
 
     OMURA(UnitTypes.omura, 11, 1650*multp, new String[] { "elude", "nova", "dagger", "mono" });
 
