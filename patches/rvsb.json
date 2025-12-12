@@ -1,7 +1,7 @@
 name: rvsb
 
 // obviate shield
-unit.obviate.hitSize: 2.49
+unit.obviate.hitSize: 24.9
 unit.obviate.flyingLayer: 115
 unit.obviate.abilities.+: [ {
     type: forceFieldAbility
