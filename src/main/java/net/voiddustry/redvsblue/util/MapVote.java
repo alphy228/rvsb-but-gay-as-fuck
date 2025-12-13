@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class MapVote {
 
     private static final Map<String, Integer> playersVotesMap = new HashMap<>();
-    private static Seq<Integer> avaibleMapnumbers = new ArrayList<Integer>();
+    private static Seq<Integer> avaibleMapnumbers = new Seq<Integer>();
     public static Seq<String> pinnedMaps = new Seq<String>();
 
     public static void callMapVoting() {
