@@ -460,7 +460,7 @@ public class RedVsBluePlugin extends Plugin {
 
         });
         
-        handler.<Player>register("pin-map","<filename> <add/remove>", "Admin only", (args, player) -> {
+        handler.<Player>register("pin-map","<filename> <add/remove>", "[scarlet]Admin only", (args, player) -> {
             if (player.admin) {
                 try {
                     if (args[1] == "add") {
