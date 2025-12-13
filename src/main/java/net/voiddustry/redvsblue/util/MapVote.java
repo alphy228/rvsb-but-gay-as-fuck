@@ -19,7 +19,8 @@ import java.util.ArrayList;
 public class MapVote {
 
     private static final Map<String, Integer> playersVotesMap = new HashMap<>();
-    private static ArrayList<Integer> avaibleMapnumbers = new ArrayList<Integer>();
+    private static Seq<Integer> avaibleMapnumbers = new ArrayList<Integer>();
+    public static Seq<String> pinnedMaps = new Seq<String>();
 
     public static void callMapVoting() {
         if (!Utils.voting) {
@@ -43,7 +44,7 @@ public class MapVote {
 
                     int[] mapVotes = getMapVotes();
                     for (int j = 0; j < getMaps().size; j++) {
-                        if (avaibleMapnumbers.contains(j) || maps.get(j).file.name().startsWith("[blue]")) {
+                        if (avaibleMapnumbers.contains(j) || pinnedMaps.contains(maps.get(j).file.name())) {
                             int mapNumber = j + 1;
                             mapsList.append("\n[lightgray]").append(mapNumber).append(" [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append(maps.get(j).file.name().replace(".msav", ""));
                         }
@@ -89,7 +90,7 @@ public class MapVote {
 
     public static void registerVote(Player player, Integer voteNumber) {
         if (!playersVotesMap.containsKey(player.uuid())) {
-            if (avaibleMapnumbers.contains(voteNumber-1) || getMaps().get(voteNumber-1).file.name().startsWith("[blue]")) {
+            if (avaibleMapnumbers.contains(voteNumber-1) || pinnedMaps.contains(getMaps().get(voteNumber-1).file.name())) {
                 playersVotesMap.put(player.uuid(), voteNumber-1);
             }
         }
