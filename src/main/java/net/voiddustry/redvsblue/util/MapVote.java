@@ -48,6 +48,7 @@ public class MapVote {
                             int mapNumber = j + 1;
                             mapsList.append("\n[lightgray]").append(mapNumber).append(" [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append(maps.get(j).file.name().replace(".msav", ""));
                         } else if (pinnedMaps.contains(maps.get(j).file.name())) {
+                            int mapNumber = j + 1;
                             mapsList.append("\n[lightgray]").append(mapNumber).append(" [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append("[blue]").append(maps.get(j).file.name().replace(".msav", ""));
                         }
                     }
