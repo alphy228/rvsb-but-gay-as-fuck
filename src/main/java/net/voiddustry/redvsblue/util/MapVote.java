@@ -76,9 +76,14 @@ public class MapVote {
         Seq<mindustry.maps.Map> maps = getMaps();
         int[] votes = getMapVotes();
         int largest = 0;
+        Random rand = new Random();
 
         for (int i = 0; i < votes.length; i++) {
             largest = votes[i] > votes[largest] ? i : largest;
+        }
+        
+        if (votes[largest] == 0) {
+            largest == rand.nextInt(getMaps().length()-1);
         }
 
         return maps.get(largest);
