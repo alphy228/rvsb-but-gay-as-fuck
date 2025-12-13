@@ -459,6 +459,12 @@ public class RedVsBluePlugin extends Plugin {
             }
 
         });
+        
+        handler.<Player>register("pin-map","<filename>", "Admin only", (args, player) -> {
+            if (player.admin) {
+                MapVote.pinnedMaps.add(args[0]);
+            }
+        });
 
         handler.<Player>register("gameover", "Only for admins", (args, player) -> {
             if (player.admin) {
