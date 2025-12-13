@@ -460,13 +460,19 @@ public class RedVsBluePlugin extends Plugin {
 
         });
         
-        handler.<Player>register("pin-map","<filename> <add/remove>", "[scarlet]Admin only", (args, player) -> {
+        handler.<Player>register("pin-map","<add/remove/list> <filename>", "[scarlet]Admin only", (args, player) -> {
             if (player.admin) {
                 try {
-                    if (args[1] == "add") {
-                    MapVote.pinnedMaps.add(args[0].trim());
-                    } else if (args[1] == "remove") {
-                    MapVote.pinnedMaps.remove(args[0].trim());
+                    if (args[0] == "add") {
+                        MapVote.pinnedMaps.add(args[1].trim());
+                    } else if (args[0] == "remove") {
+                        MapVote.pinnedMaps.remove(args[1].trim());
+                    } else if (args[0] == "list") {
+                        String mapList = "";
+                        for (String mn : MapVote.pinnedMaps) {
+                            mapList = mapList+"\n"+mn;
+                        }
+                        player.sendMessage(mapList);
                     }
                 } catch (Exception e) {
                     Log.info("Failed to pin/unpin a map" + e);
