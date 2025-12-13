@@ -469,7 +469,7 @@ public class RedVsBluePlugin extends Plugin {
                     MapVote.pinnedMaps.remove(args[0]);
                     }
                 } catch (Exception e) {
-                    Log.info("Failed to pin/unpin a map" + e)
+                    Log.info("Failed to pin/unpin a map" + e);
                 }
             }
         });
