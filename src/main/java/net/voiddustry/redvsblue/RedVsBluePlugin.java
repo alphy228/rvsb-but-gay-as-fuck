@@ -464,9 +464,9 @@ public class RedVsBluePlugin extends Plugin {
             if (player.admin) {
                 try {
                     if (args[1] == "add") {
-                    MapVote.pinnedMaps.add(args[0]);
+                    MapVote.pinnedMaps.add(args[0].trim());
                     } else if (args[1] == "remove") {
-                    MapVote.pinnedMaps.remove(args[0]);
+                    MapVote.pinnedMaps.remove(args[0].trim());
                     }
                 } catch (Exception e) {
                     Log.info("Failed to pin/unpin a map" + e);
