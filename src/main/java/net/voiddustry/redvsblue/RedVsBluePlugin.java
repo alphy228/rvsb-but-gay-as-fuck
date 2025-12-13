@@ -487,7 +487,7 @@ public class RedVsBluePlugin extends Plugin {
         handler.<Player>register("clear-pinned-maps", "[scarlet]Admin only", (args, player) -> {
             if (player.admin) {
                 try {
-                    MapVote.pinnedMaps.clear()
+                    MapVote.pinnedMaps.clear();
                 } catch (Exception e) {
                     player.sendMessage("Failed to clear pinned maps" + e);
                 }
