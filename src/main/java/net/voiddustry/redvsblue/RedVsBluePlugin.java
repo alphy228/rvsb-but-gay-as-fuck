@@ -460,22 +460,36 @@ public class RedVsBluePlugin extends Plugin {
 
         });
         
-        handler.<Player>register("pin-map","<add/remove/list> <filename>", "[scarlet]Admin only", (args, player) -> {
+        handler.<Player>register("list-pinned-maps","<filename>", "[scarlet]Admin only", (args, player) -> {
             if (player.admin) {
                 try {
-                    if (args[0] == "add") {
-                        MapVote.pinnedMaps.add(args[1].trim());
-                    } else if (args[0] == "remove") {
-                        MapVote.pinnedMaps.remove(args[1].trim());
-                    } else if (args[0] == "list") {
-                        String mapList = "";
-                        for (String mn : MapVote.pinnedMaps) {
-                            mapList = mapList+"\n"+mn;
-                        }
-                        player.sendMessage(mapList);
+                    String mapList = "";
+                    for (String mn : MapVote.pinnedMaps) {
+                        mapList = mapList+"\n"+mn;
                     }
+                    player.sendMessage(mapList);
                 } catch (Exception e) {
-                    player.sendMessage("Failed to pin/unpin a map" + e);
+                    player.sendMessage("Failed to list pinned maps" + e);
+                }
+            }
+        });
+
+        handler.<Player>register("pin-map","<filename>", "[scarlet]Admin only", (args, player) -> {
+            if (player.admin) {
+                try {
+                    MapVote.pinnedMaps.add(args[0].trim());
+                } catch (Exception e) {
+                    player.sendMessage("Failed to pin a map" + e);
+                }
+            }
+        });
+
+        handler.<Player>register("unpin-map","<filename>", "[scarlet]Admin only", (args, player) -> {
+            if (player.admin) {
+                try {
+                    MapVote.pinnedMaps.remove(args[1].trim());
+                } catch (Exception e) {
+                    player.sendMessage("Failed to unpin a map" + e);
                 }
             }
         });
