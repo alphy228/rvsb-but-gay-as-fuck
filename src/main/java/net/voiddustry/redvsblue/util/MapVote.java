@@ -83,7 +83,7 @@ public class MapVote {
         }
         
         if (votes[largest] == 0) {
-            largest = rand.nextInt(getMaps().length()-1);
+            largest = rand.nextInt(getMaps().size()-1);
         }
 
         return maps.get(largest);
