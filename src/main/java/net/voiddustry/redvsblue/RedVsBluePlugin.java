@@ -475,7 +475,7 @@ public class RedVsBluePlugin extends Plugin {
                         player.sendMessage(mapList);
                     }
                 } catch (Exception e) {
-                    Log.info("Failed to pin/unpin a map" + e);
+                    player.sendMessage("Failed to pin/unpin a map" + e);
                 }
             }
         });
