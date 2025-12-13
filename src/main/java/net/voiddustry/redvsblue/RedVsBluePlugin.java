@@ -460,7 +460,7 @@ public class RedVsBluePlugin extends Plugin {
 
         });
         
-        handler.<Player>register("list-pinned-maps","<filename>", "[scarlet]Admin only", (args, player) -> {
+        handler.<Player>register("list-pinned-maps", "[scarlet]Admin only", (args, player) -> {
             if (player.admin) {
                 try {
                     String mapList = "";
