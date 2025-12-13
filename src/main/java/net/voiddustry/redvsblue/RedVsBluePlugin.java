@@ -484,12 +484,12 @@ public class RedVsBluePlugin extends Plugin {
             }
         });
 
-        handler.<Player>register("unpin-map","<filename>", "[scarlet]Admin only", (args, player) -> {
+        handler.<Player>register("clear-pinned-maps", "[scarlet]Admin only", (args, player) -> {
             if (player.admin) {
                 try {
-                    MapVote.pinnedMaps.remove(args[1].trim());
+                    MapVote.pinnedMaps.clear()
                 } catch (Exception e) {
-                    player.sendMessage("Failed to unpin a map" + e);
+                    player.sendMessage("Failed to clear pinned maps" + e);
                 }
             }
         });
