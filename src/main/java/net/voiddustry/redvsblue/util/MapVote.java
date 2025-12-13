@@ -44,9 +44,11 @@ public class MapVote {
 
                     int[] mapVotes = getMapVotes();
                     for (int j = 0; j < getMaps().size; j++) {
-                        if (avaibleMapnumbers.contains(j) || pinnedMaps.contains(maps.get(j).file.name())) {
+                        if (avaibleMapnumbers.contains(j)) {
                             int mapNumber = j + 1;
                             mapsList.append("\n[lightgray]").append(mapNumber).append(" [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append(maps.get(j).file.name().replace(".msav", ""));
+                        } else if (pinnedMaps.contains(maps.get(j).file.name())) {
+                            mapsList.append("\n[lightgray]").append(mapNumber).append(" [gray]| [gold]").append(mapVotes[j]).append(" [gray]| ").append("[blue]").append(maps.get(j).file.name().replace(".msav", ""));
                         }
                     }
                     
