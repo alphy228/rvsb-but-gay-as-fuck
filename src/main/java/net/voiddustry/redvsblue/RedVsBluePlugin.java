@@ -460,9 +460,13 @@ public class RedVsBluePlugin extends Plugin {
 
         });
         
-        handler.<Player>register("pin-map","<filename>", "Admin only", (args, player) -> {
+        handler.<Player>register("pin-map","<filename>, <add/remove>", "Admin only", (args, player) -> {
             if (player.admin) {
+                if (args[1] == "add") {
                 MapVote.pinnedMaps.add(args[0]);
+                } else if (args[1] == "remove") {
+                MapVote.pinnedMaps.remove(args[0]);
+                }
             }
         });
 
