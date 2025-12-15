@@ -44,7 +44,7 @@ public class Miner {
     }
 
     public static void buyMiner(Player player) {
-        if (players.get(player.uuid()).getScore() < 20) {
+        if ((!(players.get(player.uuid()) == null)) && players.get(player.uuid()).getScore() < 20) {
             player.sendMessage(Bundle.format("station.not-enough-money", 20));
         } else {
             if (!minersMap.containsKey(player.uuid())) {
