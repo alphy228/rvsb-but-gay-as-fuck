@@ -143,7 +143,7 @@ public class RedVsBluePlugin extends Plugin {
         });
 
         Events.on(EventType.PlayerChatEvent.class, event -> {
-            Call.sound(Sounds.chatMessage, 2, 2, 1);
+            Call.sound(Sounds.uiChat, 2, 2, 1);
             if (Utils.voting) {
                 if (Strings.canParseInt(event.message)) {
                     MapVote.registerVote(event.player, Strings.parseInt(event.message));
