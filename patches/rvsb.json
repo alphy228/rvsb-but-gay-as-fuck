@@ -232,7 +232,7 @@ spawnUnit: incite
 
 //disrupt drone(incite)
 unit.incite.localizedName: "Disruption drone"
-unit.incite.hitSize: 1
+unit.incite.hitSize: 9
 unit.incite.flyingLayer: 85
 unit.incite.region: "unit-assembly-drone-full"
 unit.incite.fullIcon: "unit-assembly-drone-preview"
@@ -245,9 +245,10 @@ unit.incite.maxRange: 400
 unit.incite.faceTarget: false
 unit.incite.fogRadius: 20
 unit.incite.useUnitCap: false
-unit.incite.health: 350
+unit.incite.health: 100
 unit.incite.hittable: true
 unit.incite.targetable: true
+
 
 //drone timed death
 unit.incite.abilities.+: [
@@ -280,6 +281,19 @@ lightningLength: 2
 damage: 5
 pierceArmor: true
 }
+}
+
+//invulnerability
+{
+    alwaysShooting: true
+    reload: 99999999999999
+    shootStatus: invincible
+    shootStatusDuration: 2400
+    bullet: {
+        type: lightningBulletType
+    lightningLength: 1
+    damage: 0
+    }
 }
 
 // parallax with very low reload and range
@@ -315,7 +329,7 @@ autoTarget: true
 recoils: 0
 recoil: 5
 recoilTime: 120
-reload: 600
+reload: 1200
 shootSound: malignShoot
 rotate: true
 alwaysShooting: true
@@ -353,7 +367,7 @@ y: 0
 shootSound: unlock
 rotate: true
 alwaysShooting: true
-reload: 600
+reload: 1200
 shoot: {
 firstShotDelay: 70
 }
@@ -375,7 +389,7 @@ y: 0
 shootSound: unlock
 rotate: true
 alwaysShooting: true
-reload: 600
+reload: 1200
 shoot: {
 firstShotDelay: 30
 }
