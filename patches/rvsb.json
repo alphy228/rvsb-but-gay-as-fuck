@@ -1,7 +1,7 @@
 name: rvsb
 
 // obviate shield
-unit.obviate.hitSize: 24.9
+unit.obviate.hitSize: 19.9
 unit.obviate.flyingLayer: 115
 unit.obviate.abilities.+: [ {
     type: forceFieldAbility
@@ -256,7 +256,7 @@ unit.incite.abilities.+: [
 type: RepairFieldAbility
 amount: -1
 reload: 60
-range: 1
+range: 0.1
 healEffect: hitFlameSmall   
 activeEffect: hitFlameSmall   
 }
