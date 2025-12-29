@@ -245,7 +245,7 @@ unit.incite.maxRange: 400
 unit.incite.faceTarget: false
 unit.incite.fogRadius: 20
 unit.incite.useUnitCap: false
-unit.incite.health: 100
+unit.incite.health: 60
 unit.incite.hittable: true
 unit.incite.targetable: true
 
