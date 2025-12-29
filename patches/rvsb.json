@@ -2,16 +2,16 @@ name: rvsb
 
 // obviate shield
 unit.obviate.hitSize: 19.9
-unit.obviate.flyingLayer: 115
-unit.obviate.abilities.+: [ {
-    type: forceFieldAbility
-    sides: 4
-    radius: 40
-    max: 600
-    regen: 0.5
-    cooldown: 600
-}
-]
+//unit.obviate.flyingLayer: 115
+//unit.obviate.abilities.+: [ {
+    //type: forceFieldAbility
+    //sides: 4
+    //radius: 40
+    //max: 600
+    //regen: 0.5
+    //cooldown: 600
+//}
+//]
 // flare shield
 unit.flare.abilities.+: [
 {
