@@ -288,7 +288,7 @@ pierceArmor: true
     alwaysShooting: true
     reload: 99999999999999
     shootStatus: invincible
-    shootStatusDuration: 2400
+    shootStatusDuration: 1800
     bullet: {
         type: lightningBulletType
     lightningLength: 1
