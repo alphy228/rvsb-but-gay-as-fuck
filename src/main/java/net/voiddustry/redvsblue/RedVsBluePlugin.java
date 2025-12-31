@@ -13,6 +13,7 @@ import mindustry.content.Blocks;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.content.UnitTypes;
+import mindustry.type.*;
 import mindustry.game.EventType;
 import mindustry.game.Team;
 import mindustry.gen.*;
@@ -154,6 +155,12 @@ public class RedVsBluePlugin extends Plugin {
         //kill credit
         HashMap<Unit, Unit> spawnedUnitOwnership = new HashMap<>();
         HashMap<Unit, Player> killCredit = new HashMap<>();
+
+        //situations where kills should not be registered
+        noRegisterKills = new StatusEffect("noRegisterKills") {{
+            show = false;
+        }}
+        
 
         Events.on(EventType.UnitDamageEvent.class, event -> {
             if (event.unit != null && event.bullet.owner() instanceof Unit damager) {
