@@ -38,7 +38,7 @@ public class Recycler {
                 if (p.team() == Team.blue && p.unit() != null) {
                     if (p.dst(centerX, centerY) <= 32) {
                         if (p.unit().stack.amount >= 20) {
-                            if (!((p.unit.stack.item == Items.plastanium) || (p.unit.stack.item == Items.sporePod) || (p.unit.stack.item == Items.surgeAlloy) || (p.unit.stack.item == Items.carbide))) {
+                            if (!((p.unit().stack.item == Items.plastanium) || (p.unit().stack.item == Items.sporePod) || (p.unit().stack.item == Items.surgeAlloy) || (p.unit().stack.item == Items.carbide))) {
                                 int add = p.unit().stack.amount/20;
                                 Utils.label(p.x, p.y, "[#023919]+" + add, 3, 0.8F);
                                 p.unit().stack.amount -= add * 20;
