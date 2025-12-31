@@ -157,7 +157,7 @@ public class RedVsBluePlugin extends Plugin {
         HashMap<Unit, Player> killCredit = new HashMap<>();
 
         //situations where kills should not be registered
-        noRegisterKills = new StatusEffect("noRegisterKills") {{
+        StatusEffect noRegisterKills = new StatusEffect("noRegisterKills") {{
             show = false;
         }};
         
