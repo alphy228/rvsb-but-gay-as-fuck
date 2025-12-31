@@ -159,7 +159,7 @@ public class RedVsBluePlugin extends Plugin {
         //situations where kills should not be registered
         noRegisterKills = new StatusEffect("noRegisterKills") {{
             show = false;
-        }}
+        }};
         
 
         Events.on(EventType.UnitDamageEvent.class, event -> {
@@ -181,6 +181,11 @@ public class RedVsBluePlugin extends Plugin {
         
         //blue kill registration
         Events.on(EventType.UnitDestroyEvent.class, event -> {
+            
+            if (event.unit.hasEffect("noRegisterKills")) {
+                break;
+            }
+            
             Player killerPlayer = killCredit.get(event.unit);
             killCredit.remove(event.unit);
             
