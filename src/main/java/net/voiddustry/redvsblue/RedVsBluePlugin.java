@@ -157,7 +157,7 @@ public class RedVsBluePlugin extends Plugin {
         HashMap<Unit, Player> killCredit = new HashMap<>();
 
         //situations where kills should not be registered
-        noRegisterKills = new StatusEffect(Vars.content.statusEffect"noRegisterKills") {{
+        noRegisterKills = new StatusEffect("noRegisterKills") {{
             show = false;
         }};
         
@@ -182,7 +182,7 @@ public class RedVsBluePlugin extends Plugin {
         //blue kill registration
         Events.on(EventType.UnitDestroyEvent.class, event -> {
             
-            if (!(event.unit.hasEffect("noRegisterKills"))) {
+            if (!(event.unit.hasEffect(Vars.content.statusEffect("noRegisterKills")))) {
                 Player killerPlayer = killCredit.get(event.unit);
                 killCredit.remove(event.unit);
                 
