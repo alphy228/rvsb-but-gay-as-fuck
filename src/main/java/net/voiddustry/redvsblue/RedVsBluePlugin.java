@@ -182,31 +182,29 @@ public class RedVsBluePlugin extends Plugin {
         //blue kill registration
         Events.on(EventType.UnitDestroyEvent.class, event -> {
             
-            if (event.unit.hasEffect("noRegisterKills")) {
-                break;
-            }
-            
-            Player killerPlayer = killCredit.get(event.unit);
-            killCredit.remove(event.unit);
-            
-            if (killerPlayer == null) {
-                float minDist = 69420;
-                for (Player p : Groups.player) {
-                    if (((!(p.unit() == null)) && event.unit.dst(p)<minDist) && (!(event.unit.team == p.team()))) {
-                        if (event.unit.dst(p) < ((p.unit().type.range)*1.2+p.unit().type.speed*8))
-                            killerPlayer=p;
-                            minDist = event.unit.dst(p);
+            if (!(event.unit.hasEffect("noRegisterKills"))) {
+                Player killerPlayer = killCredit.get(event.unit);
+                killCredit.remove(event.unit);
+                
+                if (killerPlayer == null) {
+                    float minDist = 69420;
+                    for (Player p : Groups.player) {
+                        if (((!(p.unit() == null)) && event.unit.dst(p)<minDist) && (!(event.unit.team == p.team()))) {
+                            if (event.unit.dst(p) < ((p.unit().type.range)*1.2+p.unit().type.speed*8))
+                                killerPlayer=p;
+                                minDist = event.unit.dst(p);
+                        }
                     }
                 }
-            }
-            
-            if (killerPlayer != null) {
-                if (killerPlayer.team() == Team.blue) {
-                    PlayerData data = players.get(killerPlayer.uuid());
-                    players.get(killerPlayer.uuid()).addScore(data.getLevel());
-                    Call.label(killerPlayer.con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
-                    data.addExp(1);
-                    processLevel(killerPlayer, data);
+                
+                if (killerPlayer != null) {
+                    if (killerPlayer.team() == Team.blue) {
+                        PlayerData data = players.get(killerPlayer.uuid());
+                        players.get(killerPlayer.uuid()).addScore(data.getLevel());
+                        Call.label(killerPlayer.con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
+                        data.addExp(1);
+                        processLevel(killerPlayer, data);
+                    }
                 }
             }
         });
