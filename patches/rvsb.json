@@ -752,6 +752,10 @@ ammoMultiplier: 2
 }
 }
 
+//dont register crawlers that manually explode
+unit.crawler.shootStatus: noRegisterKills
+unit.crawler.shootStatusDuration: 1000
+
 //update unit and block stats
 // Health
 
