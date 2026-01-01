@@ -566,6 +566,15 @@ public class RedVsBluePlugin extends Plugin {
     }
 
     public static void gameOver(Team winner) {
+        
+        Groups.player.each(p -> {
+            PlayerData data = players.get(p.uuid());
+            data.setUnit(null);
+            data.setExp(0);
+            data.setLevel(1);
+            data.setScore(0);
+        });
+        
         if (winner == Team.crux) {
             if (playing) {
                 RedVsBluePlugin.playing = false;
