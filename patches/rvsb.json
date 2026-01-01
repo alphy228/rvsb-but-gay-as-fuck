@@ -59,8 +59,8 @@ unit.disrupt.speed: 2
 //xScl: 0.4
 //yScl: 2.5
 //heatColor: fc4e03
-}
-{
+//}
+//{
 //name: obviate
 //rotation: -90
 //type: regionPart
