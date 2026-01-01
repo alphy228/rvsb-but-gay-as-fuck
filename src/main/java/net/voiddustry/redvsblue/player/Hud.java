@@ -20,8 +20,6 @@ import static net.voiddustry.redvsblue.util.Utils.playerCount;
 public class Hud {
     public static void update() {
 
-        CruxUnit.checkUnitCount();
-
         int minutes = (int) Math.floor(RedVsBluePlugin.stageTimer / 60);
         int seconds = (int) (RedVsBluePlugin.stageTimer - minutes * 60);
 
