@@ -378,6 +378,10 @@ public class RedVsBluePlugin extends Plugin {
                     RedVsBluePlugin.redSpawns.remove(RedVsBluePlugin.redSpawns.firstOpt());  
                 }
 
+                if (tick%20==0) {
+                    CruxUnit.checkUnitCount();
+                }
+
                 if(tick%3==0){
 
                     // draw hitboxes 
