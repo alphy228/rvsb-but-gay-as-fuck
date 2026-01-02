@@ -239,9 +239,11 @@ public class RedVsBluePlugin extends Plugin {
                 if (event.unit.team() == Team.blue) {
                     event.unit.getPlayer().team(Team.crux);
                     PlayerData data = players.get(event.unit.getPlayer().uuid());
-                    data.setTeam(Team.crux);
-                    data.setScore(0);
-                    data.setKills(0);
+                    if (!(data == null)) {
+                        data.setTeam(Team.crux);
+                        data.setScore(0);
+                        data.setKills(0);
+                    }
 
                     UnitTypes.renale.spawn(Team.malis, event.unit.x, event.unit.y).kill();
 
@@ -287,10 +289,12 @@ public class RedVsBluePlugin extends Plugin {
 
             Groups.player.each(p -> {
                 PlayerData data = players.get(p.uuid());
-                data.setUnit(null);
-                data.setExp(0);
-                data.setLevel(1);
-                data.setScore(0);
+                if (!(data == null)) {
+                    data.setUnit(null);
+                    data.setExp(0);
+                    data.setLevel(1);
+                    data.setScore(0);
+                }
             });
         });
 
