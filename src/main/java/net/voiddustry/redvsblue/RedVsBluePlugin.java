@@ -128,7 +128,7 @@ public class RedVsBluePlugin extends Plugin {
                 } else {
                     players.put(player.uuid(), new PlayerData(player));
                     PlayerData data = players.get(player.uuid());
-                    Vars.world.tile(blueSpawnX/8,blueSpawnY/8).setNet(Blocks.air,Team.derelict,0);
+                    Vars.world.tile(blueSpawnX/8f,blueSpawnY/8f).setNet(Blocks.air,Team.derelict,0);
                     Unit unit = getStartingUnit().spawn(Team.blue, blueSpawnX, blueSpawnY);
 
                     data.setUnit(unit);
