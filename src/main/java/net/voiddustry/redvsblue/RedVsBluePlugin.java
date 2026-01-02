@@ -201,10 +201,12 @@ public class RedVsBluePlugin extends Plugin {
                 if (killerPlayer != null) {
                     if (killerPlayer.team() == Team.blue) {
                         PlayerData data = players.get(killerPlayer.uuid());
-                        players.get(killerPlayer.uuid()).addScore(data.getLevel());
-                        Call.label(killerPlayer.con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
-                        data.addExp(1);
-                        processLevel(killerPlayer, data);
+                        if (!(data == null)) {
+                            players.get(killerPlayer.uuid()).addScore(data.getLevel());
+                            Call.label(killerPlayer.con, "[lime]+" + data.getLevel(), 2, event.unit.x, event.unit.y);
+                            data.addExp(1);
+                            processLevel(killerPlayer, data);
+                        }
                     }
                 }
             }
@@ -215,10 +217,12 @@ public class RedVsBluePlugin extends Plugin {
             if (event.unit != null && event.bullet.owner() instanceof Unit killer) {
                 if (killer.isPlayer() && killer.team == Team.crux) {
                     PlayerData data = players.get(killer.getPlayer().uuid());
-                    data.addKill();
-                    Call.label(killer.getPlayer().con, "[scarlet]+1", 2, event.unit.x, event.unit.y);
-                    if (data.getKills() >= 2) {
-                        Boss.spawnBoss(killer.getPlayer());
+                    if (!(data == null)) {
+                        data.addKill();
+                        Call.label(killer.getPlayer().con, "[scarlet]+1", 2, event.unit.x, event.unit.y);
+                        if (data.getKills() >= 2) {
+                            Boss.spawnBoss(killer.getPlayer());
+                        }
                     }
 
                 }
