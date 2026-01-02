@@ -90,7 +90,7 @@ public class Utils {
         Timer.schedule(() -> {
             if (playing) {
                 Groups.player.each(p -> {
-                    if (p.team() == Team.blue && (!(((Integer)players.get(p.uuid()).getScore()) == null))) {
+                    if (p.team() == Team.blue && (!(players.get(p.uuid()) == null)) && (!(((Integer)players.get(p.uuid()).getScore()) == null))) {
                         players.get(p.uuid()).setScore(players.get(p.uuid()).getScore() + money_per_min);
                         p.sendMessage(Bundle.format("game.salary", Bundle.findLocale(p.locale), money_per_min));
 
