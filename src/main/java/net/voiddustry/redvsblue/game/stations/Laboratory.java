@@ -77,13 +77,16 @@ public class Laboratory {
 
                                 Evolution evolution = Evolutions.evolutions.get(p.unit().type().name);
 
-                                String[][] buttons = new String[evolution.evolutions.length][1];
-
-                                for (int i = 0; i < evolution.evolutions.length; i++) {
-                                    buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i], Evolutions.evolutions.get(evolution.evolutions[i]).cost);
+                                if (!(evolution == null)) {
+    
+                                    String[][] buttons = new String[evolution.evolutions.length][1];
+    
+                                    for (int i = 0; i < evolution.evolutions.length; i++) {
+                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i], Evolutions.evolutions.get(evolution.evolutions[i]).cost);
+                                    }
+    
+                                    Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
                                 }
-
-                                Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
                             }
                             if (!(players.get(p.uuid()) == null)) {
                             players.get(p.uuid()).setCanEvolve(true);
