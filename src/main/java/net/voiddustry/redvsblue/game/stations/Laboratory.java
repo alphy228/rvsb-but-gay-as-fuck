@@ -16,6 +16,7 @@ import net.voiddustry.redvsblue.evolution.Evolution;
 import net.voiddustry.redvsblue.evolution.Evolutions;
 import net.voiddustry.redvsblue.game.stations.stationData.StationData;
 import net.voiddustry.redvsblue.util.Utils;
+import mindustry.graphics.Layer;
 
 import java.util.Locale;
 import java.util.Map;
@@ -35,7 +36,7 @@ public class Laboratory {
         PlayerData playerData = players.get(player.uuid());
 
         if (playerData.getScore() >= evolutionOption.cost) {
-            if (player.unit() != null && (player.tileOn().block() == Blocks.air || evolutionOption.unitType.flying==true || evolutionOption.unitType.canBoost == true)) {
+            if (player.unit() != null && (player.tileOn().block() == Blocks.air || evolutionOption.unitType.flying==true || evolutionOption.unitType.canBoost == true || evolutionOption.unitType.groundLayer==Layer.legUnit)) {
                 Unit unit = evolutionOption.unitType.spawn(Team.blue, player.x(), player.y());
                 unit.health = unit.type.health/2;
 
