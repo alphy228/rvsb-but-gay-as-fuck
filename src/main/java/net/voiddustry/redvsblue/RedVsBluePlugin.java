@@ -582,10 +582,12 @@ public class RedVsBluePlugin extends Plugin {
         
         Groups.player.each(p -> {
             PlayerData data = players.get(p.uuid());
-            data.setUnit(null);
-            data.setExp(0);
-            data.setLevel(1);
-            data.setScore(0);
+            if (!(data == null)) {
+                data.setUnit(null);
+                data.setExp(0);
+                data.setLevel(1);
+                data.setScore(0);
+            }
         });
         
         if (winner == Team.crux) {
