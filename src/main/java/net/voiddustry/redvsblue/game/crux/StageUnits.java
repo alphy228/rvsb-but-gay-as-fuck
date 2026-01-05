@@ -58,6 +58,12 @@ public class StageUnits {
             UnitTypes.precept, "units.crux.menu.precept"
     );
 
+    public final static ObjectMap<UnitType, String> eleventhStage = ObjectMap.of(
+            UnitTypes.obviate, "units.crux.menu.obviate",
+            UnitTypes.vanquish, "units.crux.menu.vanquish",
+            UnitTypes.antumbra, "units.crux.menu.antumbra"
+    );
+
     public final static ObjectMap<Integer, UnitType> bosses = ObjectMap.of(
             2, UnitTypes.horizon,
             3, UnitTypes.locus,
