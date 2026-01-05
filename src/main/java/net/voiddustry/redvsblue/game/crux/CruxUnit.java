@@ -42,9 +42,11 @@ public class CruxUnit {
                         unit.health = 100;
                     } else if (unit.type == UnitTypes.dagger) {
                         unit.health = 100;
-                    } else if (unit.type == UnitTypes.antumbra) {
-                        unit.health = 4000;
-                        unit.addItem(Items.pyratite, 999);
+                    } else if (unit.type == UnitTypes.obviate) {
+                        if (RedVsBluePlugin.stage == 11) {
+                            unit.apply(StatusEffects.shielded, 600f);
+                            unit.apply(StatusEffects.overdrive, 99999f);
+                        }
                     } else {
                         unit.health = unit.type.health;
                     }
