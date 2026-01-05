@@ -14,6 +14,8 @@ import mindustry.world.Tile;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.util.Utils;
 
+import java.util.Random;
+
 public class CruxUnit {
     public static void callSpawn(Player player) {
         
@@ -70,6 +72,19 @@ public class CruxUnit {
             if (cruxSpawn != null && cruxSpawn.block() != null) {
                 Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true, true);
             }
+            if (RedVsBluePlugin.stage >= 11) {
+                Random rand = new Random;
+                if (rand.nextInt(40) == 1) {
+                    UnitTypes.latum.spawn(Team.crux, cruxSpawn);
+                }
+                if (rand.nextInt(80) == 1) {
+                    UnitTypes.conquer.spawn(Team.crux, cruxSpawn);
+                }
+                if (rand.nextInt(40) == 1) {
+                    UnitTypes.tecta.spawn(Team.crux, cruxSpawn);
+                }
+            }
+            
             Unit unit = unitType.spawn(Team.crux, cruxSpawn);
 
             Timer.schedule(() -> {
@@ -83,6 +98,11 @@ public class CruxUnit {
                     unit.health = 100;
                 } else if (unit.type == UnitTypes.dagger) {
                     unit.health = 100;
+                } else if (unit.type == UnitTypes.obviate) {
+                    if (RedVsBluePlugin.stage == 11) {
+                        unit.apply(StatusEffects.shielded, 600f);
+                        unit.apply(StatusEffects.overdrive, 99999f);
+                    }
                 } else {
                     unit.health = unit.type.health;
                 }
