@@ -76,7 +76,7 @@ public class RedVsBluePlugin extends Plugin {
         @Override
         public void run() {
             stage++;
-            stageTimer = 60;
+            stageTimer = 300;
             spawnBoss();
             announceBundled("game.new-stage", 15, stage);
             ClassChooseMenu.updateUnitsMap();
@@ -99,7 +99,7 @@ public class RedVsBluePlugin extends Plugin {
                     }
                 }
                 Log.info("Blue unit value" + blueUnitValue);
-                if (blueUnitValue < 50000) {
+                if (blueUnitValue < 52000) {
                 gameOver(Team.blue);
                 } else {
                     stage11 = true;
@@ -357,7 +357,7 @@ public class RedVsBluePlugin extends Plugin {
             }
 
             Timer timer = new Timer();
-            timer.scheduleTask(task, 60, 60);
+            timer.scheduleTask(task, 300, 300);
 
             Groups.player.each(player -> {
                 if (player != null) {
