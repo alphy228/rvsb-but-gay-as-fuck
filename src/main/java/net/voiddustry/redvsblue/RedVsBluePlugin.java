@@ -70,7 +70,7 @@ public class RedVsBluePlugin extends Plugin {
     public static float stageTimer = 0;
     public static boolean playing = false;
 
-
+    public static int stage11 = false;
 
     static Timer.Task task = new Timer.Task() {
         @Override
@@ -80,7 +80,32 @@ public class RedVsBluePlugin extends Plugin {
             spawnBoss();
             announceBundled("game.new-stage", 15, stage);
             ClassChooseMenu.updateUnitsMap();
-            if (stage >= 11) {
+          
+            if (stage >= 11 && (stage11 == false)) {
+                 //calculate blue unit value for stage 11
+                int blueUnitValue = 0;
+                int typeModifier = 0;
+                for (Unit u : Groups.unit) {
+                    typeModifier = 1;
+                    if (u.type == UnitTypes.quad) {
+                        typeModifier = 2;
+                    } else if (u.type == UnitTypes.sei) {
+                        typeModifier = 2;
+                    } else if (u.type == UnitTypes.aegires) {
+                        typeModifier = 2;
+                    }
+                    blueUnitValue = blueUnitValue + (u.type.health*typeModifier);
+                }
+                if (blueUnitValue < 50000) {
+                gameOver(Team.blue);
+                } else {
+                    stage11 = true;
+                    Groups.player.each(p=>{
+                          //add stage 11 announcement      
+                    });
+                }
+            }
+            if (stage >= 12) {
                 gameOver(Team.blue);
             }
         }
@@ -315,6 +340,8 @@ public class RedVsBluePlugin extends Plugin {
 
             blueSpawnX = core.x();
             blueSpawnY = core.y();
+
+            stage11 = false;
 
             Vars.state.teams.cores(Team.blue).each(Building::kill);
 
