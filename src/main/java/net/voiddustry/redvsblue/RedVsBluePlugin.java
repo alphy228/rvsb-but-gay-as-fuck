@@ -83,7 +83,7 @@ public class RedVsBluePlugin extends Plugin {
                 ClassChooseMenu.updateUnitsMap();
             }
           
-            if ((stage >= 11) && (stage11 == false)) {
+            if ((stage >= 10) && (stage11 == false)) {
                  //calculate blue unit value for stage 11
                 int blueUnitValue = 0;
                 int typeModifier = 1;
@@ -106,7 +106,8 @@ public class RedVsBluePlugin extends Plugin {
                 } else {
                     stage11 = true;
                     announceBundled("game.stage11", 5);
-                    Timer.schedule(() -> {
+                    Timer timer = new Timer();
+                    timer.schedule(() -> {
                         stage++;
                         stageTimer = 300;
                         spawnBoss();
@@ -366,7 +367,7 @@ public class RedVsBluePlugin extends Plugin {
             }
 
             Timer timer = new Timer();
-            timer.scheduleTask(task, 300, 300);
+            timer.scheduleTask(task, 30, 300);
 
             Groups.player.each(player -> {
                 if (player != null) {
