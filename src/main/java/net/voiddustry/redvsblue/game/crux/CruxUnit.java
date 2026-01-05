@@ -72,8 +72,9 @@ public class CruxUnit {
             if (cruxSpawn != null && cruxSpawn.block() != null) {
                 Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true, true);
             }
+            
             if (RedVsBluePlugin.stage >= 11) {
-                Random rand = new Random;
+                Random rand = new Random();
                 if (rand.nextInt(40) == 1) {
                     UnitTypes.latum.spawn(Team.crux, cruxSpawn);
                 }
