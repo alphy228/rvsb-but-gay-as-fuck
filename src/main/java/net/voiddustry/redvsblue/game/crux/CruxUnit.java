@@ -33,6 +33,13 @@ public class CruxUnit {
                 unit.health = Integer.MAX_VALUE;
                 unit.apply(StatusEffects.overclock, 180);;
 
+                if (unit.type == UnitTypes.obviate) {
+                    if (RedVsBluePlugin.stage == 11) {
+                        unit.apply(StatusEffects.shielded, 600f);
+                        unit.apply(StatusEffects.overdrive, 99999f);
+                    }
+                }
+
                 Timer.schedule(() -> {
                     if (unit.type == UnitTypes.crawler) {
                         unit.health = 20;
@@ -44,11 +51,6 @@ public class CruxUnit {
                         unit.health = 100;
                     } else if (unit.type == UnitTypes.dagger) {
                         unit.health = 100;
-                    } else if (unit.type == UnitTypes.obviate) {
-                        if (RedVsBluePlugin.stage == 11) {
-                            unit.apply(StatusEffects.shielded, 600f);
-                            unit.apply(StatusEffects.overdrive, 99999f);
-                        }
                     } else {
                         unit.health = unit.type.health;
                     }
@@ -88,6 +90,13 @@ public class CruxUnit {
             
             Unit unit = unitType.spawn(Team.crux, cruxSpawn);
 
+            if (unit.type == UnitTypes.obviate) {
+                if (RedVsBluePlugin.stage == 11) {
+                    unit.apply(StatusEffects.shielded, 600f);
+                    unit.apply(StatusEffects.overdrive, 99999f);
+                }
+            }
+
             Timer.schedule(() -> {
                 if (unit.type == UnitTypes.crawler) {
                     unit.health = 20;
@@ -99,11 +108,6 @@ public class CruxUnit {
                     unit.health = 100;
                 } else if (unit.type == UnitTypes.dagger) {
                     unit.health = 100;
-                } else if (unit.type == UnitTypes.obviate) {
-                    if (RedVsBluePlugin.stage == 11) {
-                        unit.apply(StatusEffects.shielded, 600f);
-                        unit.apply(StatusEffects.overdrive, 99999f);
-                    }
                 } else {
                     unit.health = unit.type.health;
                 }
