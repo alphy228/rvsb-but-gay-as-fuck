@@ -100,9 +100,7 @@ public class RedVsBluePlugin extends Plugin {
                 gameOver(Team.blue);
                 } else {
                     stage11 = true;
-                    Groups.player.each(p -> {
-                          //add stage 11 announcement      
-                    });
+                    announceBundled("game.stage11", 15);
                 }
             }
             if (stage >= 12) {
