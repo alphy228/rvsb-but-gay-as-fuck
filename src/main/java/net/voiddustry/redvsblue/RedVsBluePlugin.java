@@ -365,7 +365,7 @@ public class RedVsBluePlugin extends Plugin {
             }
 
             Timer timer = new Timer();
-            timer.scheduleTask(task, 300, 300);
+            timer.scheduleTask(task, 30, 30);
 
             Groups.player.each(player -> {
                 if (player != null) {
