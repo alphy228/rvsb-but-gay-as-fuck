@@ -70,7 +70,7 @@ public class RedVsBluePlugin extends Plugin {
     public static float stageTimer = 0;
     public static boolean playing = false;
 
-    public static int stage11 = false;
+    public static boolean stage11 = false;
 
     static Timer.Task task = new Timer.Task() {
         @Override
@@ -94,7 +94,7 @@ public class RedVsBluePlugin extends Plugin {
                     } else if (u.type == UnitTypes.aegires) {
                         typeModifier = 2;
                     }
-                    blueUnitValue = blueUnitValue + (u.type.health*typeModifier);
+                    blueUnitValue = blueUnitValue + ((int)(u.type.health*typeModifier));
                 }
                 if (blueUnitValue < 50000) {
                 gameOver(Team.blue);
