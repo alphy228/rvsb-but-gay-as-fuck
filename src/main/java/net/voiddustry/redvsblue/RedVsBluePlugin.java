@@ -81,7 +81,7 @@ public class RedVsBluePlugin extends Plugin {
                 spawnBoss();
                 announceBundled("game.new-stage", 15, stage);
                 ClassChooseMenu.updateUnitsMap();
-            } else if ((stage >= 10) && (stage11 == false)) {
+            } else {
                  //calculate blue unit value for stage 11
                 int blueUnitValue = 0;
                 int typeModifier = 1;
