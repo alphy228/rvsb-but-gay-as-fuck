@@ -100,7 +100,7 @@ public class RedVsBluePlugin extends Plugin {
                         blueUnitValue = blueUnitValue + ((int)(u.type.health*typeModifier));
                     }
                 }
-                Log.info("Blue unit value" + blueUnitValue);
+                Log.info("Blue unit value for stage 11: " + blueUnitValue);
                 if (blueUnitValue < 52000) {
                 gameOver(Team.blue);
                 } else {
@@ -367,7 +367,7 @@ public class RedVsBluePlugin extends Plugin {
             }
 
             Timer timer = new Timer();
-            timer.scheduleTask(task, 30, 300);
+            timer.scheduleTask(task, 300, 300);
 
             Groups.player.each(player -> {
                 if (player != null) {
