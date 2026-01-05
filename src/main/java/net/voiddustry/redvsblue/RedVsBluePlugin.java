@@ -588,7 +588,16 @@ public class RedVsBluePlugin extends Plugin {
 //        });
 
         handler.register("restart", "ae", (args) -> Groups.player.each(p -> p.kick("[scarlet]Server is going to restart")));
+        
+        handler.register("setstage", "Sets rvsb stage", (args) -> {
+            try {
+                stage = args[0];
+            } catch (Exception e) {
+                Log.info("Failed to set stage");
+            }
+        });
     }
+    
 
     public static void gameOverCheck() {
         int blueUnitCount = 0;
