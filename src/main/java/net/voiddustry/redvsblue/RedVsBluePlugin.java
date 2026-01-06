@@ -103,7 +103,7 @@ public class RedVsBluePlugin extends Plugin {
                     }
                 }
                 Log.info("Blue unit value for stage 11: " + blueUnitValue);
-                if (blueUnitValue < 70000) {
+                if (blueUnitValue < 60000) {
                 gameOver(Team.blue);
                 } else {
                     stage11 = true;
