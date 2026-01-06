@@ -90,6 +90,9 @@ public class CruxUnit {
             
             Unit unit = unitType.spawn(Team.crux, cruxSpawn);
 
+            unit.apply(Vars.content.statusEffect("superShielded"), 60f);
+            unit.apply(Vars.content.statusEffect("shielded"), 120f);
+
             if (unit.type == UnitTypes.obviate) {
                 if (RedVsBluePlugin.stage == 11) {
                     unit.apply(StatusEffects.shielded, 600f);
