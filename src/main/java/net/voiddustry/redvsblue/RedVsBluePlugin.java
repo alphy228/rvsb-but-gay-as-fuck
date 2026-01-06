@@ -423,7 +423,7 @@ public class RedVsBluePlugin extends Plugin {
                     RedVsBluePlugin.redSpawns.remove(RedVsBluePlugin.redSpawns.firstOpt());  
                 }
 
-                if (tick%60==0) {
+                if (tick%5==0) {
                     CruxUnit.checkUnitCount();
                 }
 
