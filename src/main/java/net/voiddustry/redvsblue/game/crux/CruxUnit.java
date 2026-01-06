@@ -80,10 +80,10 @@ public class CruxUnit {
                 if (rand.nextInt(40) == 1) {
                     UnitTypes.latum.spawn(Team.crux, cruxSpawn);
                 }
-                if (rand.nextInt(80) == 1) {
+                if (rand.nextInt(50) == 1) {
                     UnitTypes.conquer.spawn(Team.crux, cruxSpawn);
                 }
-                if (rand.nextInt(40) == 1) {
+                if (rand.nextInt(25) == 1) {
                     UnitTypes.tecta.spawn(Team.crux, cruxSpawn);
                 }
             }
