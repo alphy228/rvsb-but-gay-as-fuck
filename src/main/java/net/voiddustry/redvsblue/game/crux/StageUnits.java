@@ -73,7 +73,7 @@ public class StageUnits {
             8, UnitTypes.tecta,
             9, UnitTypes.vanquish,
             10, UnitTypes.eclipse,
-            11, UnitTypes.navanax,
-            12, UnitTypes.conquer
+            11, UnitTypes.conquer,
+            12, UnitTypes.navanax
     );
 }
