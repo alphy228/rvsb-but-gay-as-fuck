@@ -97,7 +97,7 @@ public class RedVsBluePlugin extends Plugin {
                         } else if (u.type == UnitTypes.omura) {
                             typeModifier = 2;
                         } else if (u.type == UnitTypes.navanax) {
-                            typeModifier = 1.5;
+                            typeModifier = 1.5f;
                         }
                         blueUnitValue = blueUnitValue + ((int)(u.type.health*typeModifier));
                     }
