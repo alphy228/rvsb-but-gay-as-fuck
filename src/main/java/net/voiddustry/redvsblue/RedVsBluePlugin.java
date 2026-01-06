@@ -401,6 +401,11 @@ public class RedVsBluePlugin extends Plugin {
 
         }, 10));
 
+        StatusEffect superShielded = new StatusEffect("superShielded") {{
+            show = false;
+            healthMultiplier = 9;
+        }};
+
         Events.run(EventType.Trigger.update, () -> {
             tick++;
             if (playing) {
