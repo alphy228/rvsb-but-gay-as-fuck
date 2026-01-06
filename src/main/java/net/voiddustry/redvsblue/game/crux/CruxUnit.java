@@ -41,6 +41,7 @@ public class CruxUnit {
                     if (RedVsBluePlugin.stage == 11) {
                         unit.apply(StatusEffects.shielded, 600f);
                         unit.apply(StatusEffects.overdrive, 99999f);
+                        unit.apply(StatusEffects.fast, 99999f);
                     }
                 }
 
@@ -84,7 +85,7 @@ public class CruxUnit {
                 if (rand.nextInt(20) == 1) {
                     UnitTypes.latum.spawn(Team.crux, cruxSpawn);
                 }
-                if (rand.nextInt(20) == 1) {
+                if (rand.nextInt(13) == 1) {
                     UnitTypes.conquer.spawn(Team.crux, cruxSpawn);
                 }
                 if (rand.nextInt(7) == 1) {
@@ -101,6 +102,7 @@ public class CruxUnit {
                 if (RedVsBluePlugin.stage == 11) {
                     unit.apply(StatusEffects.shielded, 600f);
                     unit.apply(StatusEffects.overdrive, 99999f);
+                    unit.apply(StatusEffects.fast, 99999f);
                 }
             }
 
