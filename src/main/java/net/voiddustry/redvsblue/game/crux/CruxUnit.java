@@ -1,6 +1,7 @@
 package net.voiddustry.redvsblue.game.crux;
 
 import arc.util.Timer;
+import mindustry.Vars;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.content.UnitTypes;
@@ -32,6 +33,9 @@ public class CruxUnit {
             if (unit != null && !unit.dead) {
                 unit.health = Integer.MAX_VALUE;
                 unit.apply(StatusEffects.overclock, 180);;
+
+                unit.apply(Vars.content.statusEffect("superShielded"), 60f);
+                unit.apply(Vars.content.statusEffect("shielded"), 120f);
 
                 if (unit.type == UnitTypes.obviate) {
                     if (RedVsBluePlugin.stage == 11) {
