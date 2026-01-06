@@ -84,7 +84,7 @@ public class RedVsBluePlugin extends Plugin {
             } else {
                  //calculate blue unit value for stage 11
                 int blueUnitValue = 0;
-                int typeModifier = 1;
+                float typeModifier = 1;
                 for (Unit u : Groups.unit) {
                     if (u.team==Team.blue) {
                         typeModifier = 1;
