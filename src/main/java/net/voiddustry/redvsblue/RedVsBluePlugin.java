@@ -93,13 +93,17 @@ public class RedVsBluePlugin extends Plugin {
                         } else if (u.type == UnitTypes.sei) {
                             typeModifier = 2;
                         } else if (u.type == UnitTypes.aegires) {
+                            typeModifier = 3;
+                        } else if (u.type == UnitTypes.omura) {
                             typeModifier = 2;
+                        } else if (u.type == UnitTypes.navanax) {
+                            typeModifier = 1.5;
                         }
                         blueUnitValue = blueUnitValue + ((int)(u.type.health*typeModifier));
                     }
                 }
                 Log.info("Blue unit value for stage 11: " + blueUnitValue);
-                if (blueUnitValue < 52000) {
+                if (blueUnitValue < 70000) {
                 gameOver(Team.blue);
                 } else {
                     stage11 = true;
