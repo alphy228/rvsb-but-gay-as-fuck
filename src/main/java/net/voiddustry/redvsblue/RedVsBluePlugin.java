@@ -431,10 +431,9 @@ public class RedVsBluePlugin extends Plugin {
                     });
                     RedVsBluePlugin.redSpawns.remove(RedVsBluePlugin.redSpawns.firstOpt());  
                 }
+                
 
-                if (tick%5==0) {
-                    CruxUnit.checkUnitCount();
-                }
+                CruxUnit.checkUnitCount();
 
                 if(tick%3==0){
 
