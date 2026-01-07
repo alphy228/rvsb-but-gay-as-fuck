@@ -758,7 +758,7 @@ unit.crawler.weapons.0.shootStatusDuration: 1000
 //update unit and block stats
 
 // Hit size
-unit.vanquish.hitSize=16
+unit.vanquish.hitSize: 16
 
 // Health
 
