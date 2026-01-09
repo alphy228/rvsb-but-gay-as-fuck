@@ -249,12 +249,18 @@ despawnSound: explosion
 }
 
 {
-name: "large-laser-mount"
 layerOffset: 0.05
-parts: {
+parts: [
+{
 name: "scepter-weapon"
-layerOffset: 0.06
+layerOffset: 0.061
 }
+{
+name: "sei-launcher"
+layerOffset: 0.06
+xScl: 0.7
+}
+]
 x: 12
 y: -8
 shootY: 6
