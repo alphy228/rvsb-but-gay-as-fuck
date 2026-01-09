@@ -152,6 +152,7 @@ lifetime: 4
 speed: 14
 pierce: true
 pierceBuilding: true
+hitSound: shockBullet
 pierceCap: 99999
 lightning: 1
 lightningDamage: 20
@@ -238,6 +239,7 @@ lifetime: 4
 speed: 14
 pierce: true
 pierceBuilding: true
+hitSound: shockBullet
 pierceCap: 99999
 lightning: 1
 lightningDamage: 20
@@ -383,3 +385,4 @@ buildingDamageMultiplier: 999
 }
 ]
 }
+
