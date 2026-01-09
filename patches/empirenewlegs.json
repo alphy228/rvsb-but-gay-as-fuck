@@ -125,7 +125,7 @@ shootSound: shootMalign
 
 bullet: {
 damage: 60
-splashDamage: 350
+splashDamage: 300
 splashDamageRadius: 30
 type: BasicBulletType
 speed: 14
@@ -211,7 +211,7 @@ shootSound: shootMalign
 
 bullet: {
 damage: 60
-splashDamage: 350
+splashDamage: 300
 splashDamageRadius: 30
 type: BasicBulletType
 speed: 14
@@ -270,13 +270,15 @@ recoil: 6
 recoils: 1
 recoilTime: 60
 inaccuracy: 12f
-velocityRnd: 0.2
+velocityRnd: 0.4
+extraVelocity: 0.4
 shootSound: shootArtillery
 shoot: {
 firstShotDelay: 30
-shots: 6
+shots: 18
 }
 bullet: {
+collidesAir: true
 type: artilleryBulletType
 range: 99999999
 width: 15
@@ -336,6 +338,7 @@ despawnEffect: none
 fragBullets: 1
 fragBullet: {
 type: explosionBulletType
+collidesAir: true
 despawnEffect: {
 type: ExplosionEffect
 lifetime: 50f
