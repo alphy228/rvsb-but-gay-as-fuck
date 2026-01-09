@@ -1,4 +1,4 @@
-name: empire boss,evoke base
+name: empire boss by alphy,evoke base
 
 unit.evoke: {
 localizedName: Empire
@@ -385,4 +385,5 @@ buildingDamageMultiplier: 999
 }
 ]
 }
+
 
