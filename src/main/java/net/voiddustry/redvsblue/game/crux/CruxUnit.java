@@ -35,7 +35,7 @@ public class CruxUnit {
                 unit.apply(StatusEffects.overclock, 180);;
 
                 //unit.apply(Vars.content.statusEffect("superShielded"), 120f);
-                unit.apply(Vars.content.statusEffect("shielded"), 180f);
+                unit.apply(Vars.content.statusEffect("shielded"), 300f);
 
                 if (unit.type == UnitTypes.obviate) {
                     if (RedVsBluePlugin.stage == 11) {
@@ -107,7 +107,7 @@ public class CruxUnit {
             Unit unit = unitType.spawn(Team.crux, cruxSpawn);
 
             //unit.apply(Vars.content.statusEffect("superShielded"), 120f);
-            unit.apply(Vars.content.statusEffect("shielded"), 180f);
+            unit.apply(Vars.content.statusEffect("shielded"), 300f);
 
             if (unit.type == UnitTypes.obviate) {
                 if (RedVsBluePlugin.stage == 11) {
