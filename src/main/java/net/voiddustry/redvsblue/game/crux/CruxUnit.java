@@ -80,24 +80,29 @@ public class CruxUnit {
                 Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true, true);
             }
 
-            boolean s11BossAlive = true;
+            boolean s11BossDead = true;
 
-            for (Unit u : Groups.unit) {
-                if (u.type==UnitTypes.evoke) {
-                    s11BossDead = false;
+            if (RedVsBluePlugin.stage >= 11) {
+
+                boolean s11BossDead = true;
+                
+                for (Unit u : Groups.unit) {
+                    if (u.type==UnitTypes.evoke) {
+                        s11BossDead = false;
+                    }
                 }
-            }
-            
-            if (RedVsBluePlugin.stage >= 11 && s11BossDead) {
-                Random rand = new Random();
-                if (rand.nextInt(20) == 1) {
-                    UnitTypes.latum.spawn(Team.crux, cruxSpawn);
-                }
-                if (rand.nextInt(13) == 1) {
-                    UnitTypes.conquer.spawn(Team.crux, cruxSpawn);
-                }
-                if (rand.nextInt(7) == 1) {
-                    UnitTypes.tecta.spawn(Team.crux, cruxSpawn);
+
+                if (s11BossDead) {
+                    Random rand = new Random();
+                    if (rand.nextInt(20) == 1) {
+                        UnitTypes.latum.spawn(Team.crux, cruxSpawn);
+                    }
+                    if (rand.nextInt(13) == 1) {
+                        UnitTypes.conquer.spawn(Team.crux, cruxSpawn);
+                    }
+                    if (rand.nextInt(7) == 1) {
+                        UnitTypes.tecta.spawn(Team.crux, cruxSpawn);
+                    }
                 }
             }
             
