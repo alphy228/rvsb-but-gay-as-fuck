@@ -67,7 +67,7 @@ maxRange: 450
 rotateSpeed: 0.6
 aimDst: 120
 hitSize: 45f
-health: 72000
+health: 62000
 mechStepParticles: true
 stepShake: 1.2f
 drownTimeMultiplier: 4
@@ -270,7 +270,7 @@ rotate: true
 autoTarget: true
 alwaysShooting: true
 controllable: false
-reload: 720
+reload: 900
 rotateSpeed: 99999
 targetInterval: 180
 shake: 4
@@ -283,7 +283,7 @@ extraVelocity: 0.4
 shootSound: shootArtillery
 shoot: {
 firstShotDelay: 30
-shots: 18
+shots: 10
 }
 bullet: {
 collidesAir: true
@@ -371,7 +371,7 @@ lightningDamage: 24
 lightningColor: ffff6b
 hitSound: explosionMissile
 killShooter: false
-splashDamage: 2500
+splashDamage: 3000
 scaledSplashDamage: true
 splashDamageRadius: 45
 buildingDamageMultiplier: 999
@@ -385,6 +385,7 @@ buildingDamageMultiplier: 999
 }
 ]
 }
+
 
 
 
