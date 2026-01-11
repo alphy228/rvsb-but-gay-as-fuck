@@ -746,7 +746,7 @@ backColor: 99ff99
 frontColor: ffffff
 healPercent: 5f
 collidesTeam: true
-damage: 20f
+damage: 30f
 ammoMultiplier: 2
 }
 }
