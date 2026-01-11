@@ -80,8 +80,6 @@ public class CruxUnit {
                 Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true, true);
             }
 
-            boolean s11BossDead = true;
-
             if (RedVsBluePlugin.stage >= 11) {
 
                 boolean s11BossDead = true;
