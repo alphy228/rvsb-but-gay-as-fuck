@@ -79,8 +79,16 @@ public class CruxUnit {
             if (cruxSpawn != null && cruxSpawn.block() != null) {
                 Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true, true);
             }
+
+            boolean s11BossAlive = true;
+
+            for (Unit u : Groups.unit) {
+                if (u.type==UnitTypes.evoke) {
+                    s11BossDead = false;
+                }
+            }
             
-            if (RedVsBluePlugin.stage >= 11) {
+            if (RedVsBluePlugin.stage >= 11 && s11BossDead) {
                 Random rand = new Random();
                 if (rand.nextInt(20) == 1) {
                     UnitTypes.latum.spawn(Team.crux, cruxSpawn);
