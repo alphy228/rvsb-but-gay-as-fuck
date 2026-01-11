@@ -67,7 +67,7 @@ maxRange: 450
 rotateSpeed: 0.6
 aimDst: 120
 hitSize: 45f
-health: 84000
+health: 58000
 mechStepParticles: true
 stepShake: 1.2f
 drownTimeMultiplier: 4
@@ -385,5 +385,6 @@ buildingDamageMultiplier: 999
 }
 ]
 }
+
 
 
