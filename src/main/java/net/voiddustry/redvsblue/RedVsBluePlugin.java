@@ -643,8 +643,8 @@ public class RedVsBluePlugin extends Plugin {
             } catch (Exception e) {
                 Log.info("A mysterious error has appeared while executing the command");
             }
-    });
-    
+        });
+    }    
 
     public static void gameOverCheck() {
         int blueUnitCount = 0;
