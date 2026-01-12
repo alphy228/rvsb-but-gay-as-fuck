@@ -631,7 +631,7 @@ public class RedVsBluePlugin extends Plugin {
 
         handler.register("restart", "now actually works", (args) -> {
             Groups.player.each(p -> p.kick("[scarlet]Server is going to restart"));
-            Log.info("Server is restarting")
+            Log.info("Server is restarting");
             net.dispose();
             Core.app.exit();
         });
