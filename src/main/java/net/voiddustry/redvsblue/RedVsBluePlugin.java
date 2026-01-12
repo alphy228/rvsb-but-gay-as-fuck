@@ -23,6 +23,7 @@ import mindustry.type.UnitType;
 import mindustry.ui.Menus;
 import mindustry.world.Tile;
 import mindustry.net.*;
+import mindustry.core.Control;
 import net.voiddustry.redvsblue.admin.Admin;
 import net.voiddustry.redvsblue.ai.AirAI;
 import net.voiddustry.redvsblue.ai.BluePlayerTarget;
@@ -352,9 +353,10 @@ public class RedVsBluePlugin extends Plugin {
             
             restartCounter = restartCounter+1;
             if (restartCounter >= gamesUntilRestart) {
-                Call.announce("[scarlet] server is restarting");
-                timer.schedule(() -> {
-                    net.dispose();
+                Call.announce("[scarlet]The server is restarting");
+                Timer timerr = new Timer()
+                timerr.schedule(() -> {
+                    Control.dispose();
                     Core.app.exit();
                 }, 7);
             }
@@ -632,7 +634,7 @@ public class RedVsBluePlugin extends Plugin {
         handler.register("restart", "now actually works", (args) -> {
             Groups.player.each(p -> p.kick("[scarlet]Server is going to restart"));
             Log.info("Server is restarting");
-            net.dispose();
+            Control.dispose();
             Core.app.exit();
         });
         
@@ -648,7 +650,7 @@ public class RedVsBluePlugin extends Plugin {
         handler.register("autorestart","<yes/no>,<games until restart>" ,"self explanatory", (args) -> {
             try {
                 if (args[0] == "yes") {
-                    gamesUntilRestart = args[1];
+                    gamesUntilRestart = Integer.parseInt(args[1]);
                 } else {
                     gamesUntilRestart = 2000000;
                 }
