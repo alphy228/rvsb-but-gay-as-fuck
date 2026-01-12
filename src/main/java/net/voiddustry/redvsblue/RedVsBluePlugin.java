@@ -75,7 +75,7 @@ public class RedVsBluePlugin extends Plugin {
     public static boolean stage11 = false;
 
     public int restartCounter = 0;
-    public int gamesUntilRestart = 1;
+    public int gamesUntilRestart = 2000000;
 
     static Timer.Task task = new Timer.Task() {
         @Override
