@@ -313,6 +313,10 @@ public class RedVsBluePlugin extends Plugin {
 
 
 
+        int restartCounter = 0;
+        int gamesUntilRestart = 1;
+        
+
         Events.on(EventType.WorldLoadEvent.class, event -> {
             Miner.clearMiners();
             RepairPoint.clearPoints();
@@ -406,12 +410,21 @@ public class RedVsBluePlugin extends Plugin {
 
             Call.setRules(Vars.state.rules);
 
+            restartCounter = restartCounter+1;
+            if (restartCounter >= gamesUntilRestart) {
+                Call.announce("[scarlet] server is restarting")
+                timer.schedule(() -> {
+                    net.dispose();
+                    Core.app.exit();
+                }, 7);
+            }
+
         }, 10));
 
-        StatusEffect superShielded = new StatusEffect("superShielded") {{
-            show = false;
-            healthMultiplier = 9;
-        }};
+    //    StatusEffect superShielded = new StatusEffect("superShielded") {{
+       //     show = false;
+        //    healthMultiplier = 9;
+       // }};
 
         Events.run(EventType.Trigger.update, () -> {
             tick++;
@@ -618,6 +631,18 @@ public class RedVsBluePlugin extends Plugin {
                 Log.info("Failed to set stage");
             }
         });
+
+        
+        handler.register("autorestart","<yes/no>,<games until restart>" ,"Sets rvsb stage", (args) -> {
+            try {
+                if (args[0] == "yes") {
+                    gamesUntilRestart = args[1];
+                } else {
+                    gamesUntilRestart = 2000000;
+                }
+            } catch (Exception e) {
+                Log.info("A mysterious error has appeared while executing the command");
+            }
     }
     
 
