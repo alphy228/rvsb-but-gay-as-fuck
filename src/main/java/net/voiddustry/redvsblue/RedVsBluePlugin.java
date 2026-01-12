@@ -23,7 +23,6 @@ import mindustry.type.UnitType;
 import mindustry.ui.Menus;
 import mindustry.world.Tile;
 import mindustry.net.*;
-import mindustry.core.Control;
 import net.voiddustry.redvsblue.admin.Admin;
 import net.voiddustry.redvsblue.ai.AirAI;
 import net.voiddustry.redvsblue.ai.BluePlayerTarget;
@@ -356,7 +355,8 @@ public class RedVsBluePlugin extends Plugin {
                 Call.announce("[scarlet]The server is restarting");
                 Timer timerr = new Timer();
                 timerr.schedule(() -> {
-                    Control.dispose();
+                    //net.dispose(); where do you find this mythical method
+                    Groups.player.each(p -> p.kick("[scarlet]Server is restarting"));
                     Core.app.exit();
                 }, 7);
             }
@@ -632,9 +632,8 @@ public class RedVsBluePlugin extends Plugin {
 //        });
 
         handler.register("restart", "now actually works", (args) -> {
-            Groups.player.each(p -> p.kick("[scarlet]Server is going to restart"));
+            Groups.player.each(p -> p.kick("[scarlet]Server is restarting"));
             Log.info("Server is restarting");
-            Control.dispose();
             Core.app.exit();
         });
         
