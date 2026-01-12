@@ -324,6 +324,8 @@ public class RedVsBluePlugin extends Plugin {
             BuildBlock.clear();
             Boss.bosses.clear();
 
+            
+
             initRules();
 
             StartingMenu.canOpenMenu = true;
@@ -399,6 +401,7 @@ public class RedVsBluePlugin extends Plugin {
             launchGameStartTimer();
 
             spawnedUnitOwnership.clear();
+            killCredit.clear();
 
 
             Call.setRules(Vars.state.rules);
