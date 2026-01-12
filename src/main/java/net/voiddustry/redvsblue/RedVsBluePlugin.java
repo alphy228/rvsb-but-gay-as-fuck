@@ -1,6 +1,7 @@
 package net.voiddustry.redvsblue;
 
 import arc.Events;
+import arc.Core;
 
 import arc.graphics.Color;
 import arc.struct.Seq;
@@ -21,6 +22,7 @@ import mindustry.mod.Plugin;
 import mindustry.type.UnitType;
 import mindustry.ui.Menus;
 import mindustry.world.Tile;
+import mindustry.net;
 import net.voiddustry.redvsblue.admin.Admin;
 import net.voiddustry.redvsblue.ai.AirAI;
 import net.voiddustry.redvsblue.ai.BluePlayerTarget;
@@ -71,6 +73,9 @@ public class RedVsBluePlugin extends Plugin {
     public static boolean playing = false;
 
     public static boolean stage11 = false;
+
+    public int restartCounter = 0;
+    public int gamesUntilRestart = 1;
 
     static Timer.Task task = new Timer.Task() {
         @Override
@@ -313,8 +318,7 @@ public class RedVsBluePlugin extends Plugin {
 
 
 
-        int restartCounter = 0;
-        int gamesUntilRestart = 1;
+
         
 
         Events.on(EventType.WorldLoadEvent.class, event -> {
@@ -344,6 +348,17 @@ public class RedVsBluePlugin extends Plugin {
                     data.setScore(0);
                 }
             });
+
+            
+            restartCounter = restartCounter+1;
+            if (restartCounter >= gamesUntilRestart) {
+                Call.announce("[scarlet] server is restarting");
+                timer.schedule(() -> {
+                    net.dispose();
+                    Core.app.exit();
+                }, 7);
+            }
+            
         });
 
         Events.on(EventType.WorldLoadEvent.class, event -> Timer.schedule(() -> {
@@ -410,14 +425,6 @@ public class RedVsBluePlugin extends Plugin {
 
             Call.setRules(Vars.state.rules);
 
-            restartCounter = restartCounter+1;
-            if (restartCounter >= gamesUntilRestart) {
-                Call.announce("[scarlet] server is restarting");
-                timer.schedule(() -> {
-                    net.dispose();
-                    Core.app.exit();
-                }, 7);
-            }
 
         }, 10));
 
@@ -622,7 +629,12 @@ public class RedVsBluePlugin extends Plugin {
 //            }
 //        });
 
-        handler.register("restart", "ae", (args) -> Groups.player.each(p -> p.kick("[scarlet]Server is going to restart")));
+        handler.register("restart", "now actually works", (args) -> {
+            Groups.player.each(p -> p.kick("[scarlet]Server is going to restart"));
+            Log.info("Server is restarting")
+            net.dispose();
+            Core.app.exit();
+        });
         
         handler.register("setstage","<number>" ,"Sets rvsb stage", (args) -> {
             try {
@@ -633,7 +645,7 @@ public class RedVsBluePlugin extends Plugin {
         });
 
         
-        handler.register("autorestart","<yes/no>,<games until restart>" ,"Sets rvsb stage", (args) -> {
+        handler.register("autorestart","<yes/no>,<games until restart>" ,"self explanatory", (args) -> {
             try {
                 if (args[0] == "yes") {
                     gamesUntilRestart = args[1];
