@@ -412,7 +412,7 @@ public class RedVsBluePlugin extends Plugin {
 
             restartCounter = restartCounter+1;
             if (restartCounter >= gamesUntilRestart) {
-                Call.announce("[scarlet] server is restarting")
+                Call.announce("[scarlet] server is restarting");
                 timer.schedule(() -> {
                     net.dispose();
                     Core.app.exit();
