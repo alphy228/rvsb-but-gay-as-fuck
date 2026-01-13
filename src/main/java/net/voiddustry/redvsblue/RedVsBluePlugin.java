@@ -639,10 +639,10 @@ public class RedVsBluePlugin extends Plugin {
         handler.register("autorestart", "<yes/no> <gamesUntilRestart>", "self explanatory", (args) -> {
             try {
                 if (args[0] == "yes") {
-                    Log.info("Games until restart: "+Integer.parseInt(args[1]))
+                    Log.info("Games until restart: "+Integer.parseInt(args[1]));
                     gamesUntilRestart = Integer.parseInt(args[1]);
                 } else {
-                    Log.info("Autorestart disabled")
+                    Log.info("Autorestart disabled");
                     gamesUntilRestart = 2000000;
                 }
             } catch (Exception e) {
