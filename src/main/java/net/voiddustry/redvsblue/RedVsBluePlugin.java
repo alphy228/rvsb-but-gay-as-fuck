@@ -355,7 +355,6 @@ public class RedVsBluePlugin extends Plugin {
                 //net.dispose(); where do you find this mythical method
                 Groups.player.each(p -> p.kick("[scarlet]Server is restarting"));
                 Core.app.exit();
-                }, 7);
             }
             
         });
