@@ -352,12 +352,10 @@ public class RedVsBluePlugin extends Plugin {
             
             restartCounter = restartCounter+1;
             if (restartCounter >= gamesUntilRestart) {
-                Call.announce("[scarlet]The server is restarting");
-                Timer timerr = new Timer();
-                timerr.schedule(() -> {
-                    //net.dispose(); where do you find this mythical method
-                    Groups.player.each(p -> p.kick("[scarlet]Server is restarting"));
-                    Core.app.exit();
+                Log.info("[scarlet]The server is restarting");
+                //net.dispose(); where do you find this mythical method
+                Groups.player.each(p -> p.kick("[scarlet]Server is restarting"));
+                Core.app.exit();
                 }, 7);
             }
             
