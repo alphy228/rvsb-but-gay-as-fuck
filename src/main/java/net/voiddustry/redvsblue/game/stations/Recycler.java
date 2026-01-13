@@ -39,7 +39,7 @@ public class Recycler {
                 if (p.team() == Team.blue && p.unit() != null) {
                     if (p.dst(centerX, centerY) <= 32) {
                         if (p.unit().stack.amount >= 20) {
-                            if (!((p.unit().stack.item == Items.plastanium && p.unit().type == UnitTypes.cyerce) || (p.unit().stack.item == Items.blastCompound && p.unit().type == UnitTypes.reign) || (p.unit().stack.item == Items.sporePod && p.unit().type == UnitTypes.toxopid) || (p.unit().stack.item == Items.surgeAlloy && (p.unit().type == UnitTypes.quad || p.unit().type == UnitTypes.oct)) || (p.unit().stack.item == Items.carbide && p.unit().type == UnitTypes.disrupt))) {
+                            if (!((p.unit().stack.item == Items.plastanium && p.unit().type == UnitTypes.cyerce) || (p.unit().stack.item == Items.sporePod && p.unit().type == UnitTypes.spiroct) || (p.unit().stack.item == Items.blastCompound && p.unit().type == UnitTypes.reign) || (p.unit().stack.item == Items.sporePod && p.unit().type == UnitTypes.toxopid) || (p.unit().stack.item == Items.surgeAlloy && (p.unit().type == UnitTypes.quad || p.unit().type == UnitTypes.oct)) || (p.unit().stack.item == Items.carbide && p.unit().type == UnitTypes.disrupt))) {
                                 int add = p.unit().stack.amount/20;
                                 Utils.label(p.x, p.y, "[#023919]+" + add, 3, 0.8F);
                                 p.unit().stack.amount -= add * 20;
