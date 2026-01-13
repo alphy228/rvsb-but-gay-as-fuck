@@ -348,8 +348,7 @@ public class RedVsBluePlugin extends Plugin {
                     data.setScore(0);
                 }
             });
-
-            
+            Log.info("Games until restart: "+(gamesUntilRestart-restartCounter));
             restartCounter = restartCounter+1;
             if (restartCounter >= gamesUntilRestart) {
                 Log.info("[scarlet]The server is restarting");
@@ -480,12 +479,6 @@ public class RedVsBluePlugin extends Plugin {
                         }
                     }
                 }
-    
-                    Groups.bullet.forEach(bullet -> {
-                        if (bullet.lifetime == 59f){
-                            Call.effect(Fx.shootHeal, bullet.x, bullet.y, bullet.rotation(), Color.cyan);
-                        }
-                    });
                 }
             }
         });
@@ -647,8 +640,10 @@ public class RedVsBluePlugin extends Plugin {
         handler.register("autorestart", "<yes/no> <gamesUntilRestart>", "self explanatory", (args) -> {
             try {
                 if (args[0] == "yes") {
+                    Log.info("Games until restart: "+Integer.parseInt(args[1]))
                     gamesUntilRestart = Integer.parseInt(args[1]);
                 } else {
+                    Log.info("Autorestart disabled")
                     gamesUntilRestart = 2000000;
                 }
             } catch (Exception e) {
