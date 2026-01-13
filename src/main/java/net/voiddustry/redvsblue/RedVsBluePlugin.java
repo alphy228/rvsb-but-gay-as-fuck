@@ -638,7 +638,7 @@ public class RedVsBluePlugin extends Plugin {
         
         handler.register("autorestart", "<yes/no> <gamesUntilRestart>", "self explanatory", (args) -> {
             try {
-                if (args[0] == "yes") {
+                if (args[0].trim().contains("yes")) {
                     Log.info("Games until restart: "+Integer.parseInt(args[1]));
                     gamesUntilRestart = Integer.parseInt(args[1]);
                 } else {
