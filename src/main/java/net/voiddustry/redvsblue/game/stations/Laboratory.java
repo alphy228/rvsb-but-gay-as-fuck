@@ -1,7 +1,5 @@
 package net.voiddustry.redvsblue.game.stations;
 
-import java.lang.Math;
-
 import arc.graphics.Color;
 import arc.util.Timer;
 import arc.util.Log;
@@ -24,6 +22,7 @@ import mindustry.graphics.Layer;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.lang.Math;
 
 
 import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
