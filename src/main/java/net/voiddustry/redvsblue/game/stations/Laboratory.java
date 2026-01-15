@@ -126,7 +126,7 @@ public class Laboratory {
         }, 0, 0.5F);
     }
 
-    private static int getMultiplier(Evolution evo) {
+    private static float getMultiplier(Evolution evo) {
         int stage = evo.stage;
         float multiplier;
         if (RedVsBluePlugin.stage == stage) {
@@ -137,7 +137,7 @@ public class Laboratory {
             multiplier = (2^(stage-RedVsBluePlugin.stage));
         }
         Log.info("stage for evolution "+evo+" - "+stage+" multiplier:"+multiplier);
-        return (int)(((float)evo.cost)*multiplier);
+        return multiplier;
     }
 
     private static int getMultiplier(String evolution) {
