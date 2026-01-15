@@ -134,7 +134,7 @@ public class Laboratory {
         } else if (RedVsBluePlugin.stage > stage) {
             multiplier = 0.75f;
         } else {
-            multiplier = (2^(stage-RedVsBluePlugin.stage));
+            multiplier = ((2^(stage-RedVsBluePlugin.stage-1))+0.5f);
         }
         Log.info("stage for evolution "+evo+" - "+stage+" multiplier:"+multiplier);
         return multiplier;
