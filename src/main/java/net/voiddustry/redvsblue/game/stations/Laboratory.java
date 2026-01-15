@@ -50,7 +50,7 @@ public class Laboratory {
                     player.unit(unit);
                     oldUnit.kill();
 
-                    playerData.subtractScore(getMultiplier(evolutionOption)*evolutionOption.cost);
+                    playerData.subtractScore((int)(getMultiplier(evolutionOption)*evolutionOption.cost));
                     playerData.setEvolutionStage(evolutionOption.tier);
 
                     Utils.sendBundled("game.evolved", player.name(), evolution.evolutions[option]);
@@ -140,7 +140,7 @@ public class Laboratory {
         return multiplier;
     }
 
-    private static int getMultiplier(String evolution) {
+    private static float getMultiplier(String evolution) {
         return getMultiplier(Evolutions.evolutions.get(evolution));
     }
 
