@@ -95,7 +95,7 @@ public class Laboratory {
                                         } else {
                                             textColor = "[green]";
                                         }
-                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, textColor, evolution.evolutions[i], " - ",cost);
+                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i])+" - "+cost;
                                     }
     
                                     Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
