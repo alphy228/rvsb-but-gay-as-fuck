@@ -48,7 +48,7 @@ public class Laboratory {
                     player.unit(unit);
                     oldUnit.kill();
 
-                    playerData.subtractScore(getFinalCost(evolutionOption));
+                    playerData.subtractScore(getMultiplier(evolutionOption)*evolutionOption.cost);
                     playerData.setEvolutionStage(evolutionOption.tier);
 
                     Utils.sendBundled("game.evolved", player.name(), evolution.evolutions[option]);
@@ -96,7 +96,7 @@ public class Laboratory {
                                         } else {
                                             textColor = "[green]";
                                         }
-                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i],(textColor+cost+" - "+*multiplier*100)+"%"));
+                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i],(textColor+cost+" - "+(multiplier*100)+"%"));
                                     }
     
                                     Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
