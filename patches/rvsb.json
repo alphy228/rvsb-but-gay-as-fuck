@@ -782,10 +782,10 @@ unit.pulsar.itemCapacity: 40
 unit.mace.weapons.0.bullet.damage: 17
 unit.mace.weapons.1.bullet.damage: 17
 unit.avert.weapons.0.bullet.damage: 35
-unit.mega.weapons.0.bullet.damage: 30
-unit.mega.weapons.1.bullet.damage: 30
-unit.mega.weapons.2.bullet.damage: 30
-unit.mega.weapons.3.bullet.damage: 30
+unit.mega.weapons.0.bullet.damage: 18
+unit.mega.weapons.1.bullet.damage: 18
+unit.mega.weapons.2.bullet.damage: 18
+unit.mega.weapons.3.bullet.damage: 18
 
 //blocks
 block.launch-pad.itemCapacity: 50000
