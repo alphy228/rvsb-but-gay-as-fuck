@@ -1,5 +1,6 @@
 package net.voiddustry.redvsblue.game.stations;
 
+import java.util.Math;
 
 import arc.graphics.Color;
 import arc.util.Timer;
@@ -136,7 +137,7 @@ public class Laboratory {
         } else if (RedVsBluePlugin.stage > stage) {
             multiplier = 0.75f;
         } else {
-            multiplier = (2^(stage-RedVsBluePlugin.stage));
+            multiplier = Math.pow(2,(stage-RedVsBluePlugin.stage));
         }
         Log.info("stage for evolution "+evo+" - "+stage+" multiplier:"+multiplier);
         return multiplier;
