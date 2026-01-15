@@ -91,7 +91,9 @@ public class Laboratory {
 
                                         String textColor = "";
 
-                                        if (cost>Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
+                                       if (multiplier > 1 && multiplier <= 1.99) {
+                                            textColor = "[orange]";
+                                        } else if (cost>Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
                                             textColor = "[red]";
                                         } else if (cost<Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
                                             textColor = "[green]";
