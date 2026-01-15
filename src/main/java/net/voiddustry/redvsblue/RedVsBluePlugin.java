@@ -495,7 +495,19 @@ public class RedVsBluePlugin extends Plugin {
                 String[][] buttons = new String[evolution.evolutions.length][1];
 
                 for (int i = 0; i < evolution.evolutions.length; i++) {
-                    buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i], Evolutions.evolutions.get(evolution.evolutions[i]).cost);
+                    float multiplier = getMultiplier(evolution.evolutions[i]);
+                    int cost = (int)(Evolutions.evolutions.get(evolution.evolutions[i]).cost*multiplier);
+
+                    String textColor = "";
+
+                    if (cost>Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
+                        textColor = "[red]";
+                    } else if (cost<Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
+                        textColor = "[green]";
+                    } else {
+                        textColor = "[yellow]";
+                    }
+                    buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i],(textColor+cost+" - "+(multiplier*100)+"%"));
                 }
 
                 Call.menu(player.con, Laboratory.evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(player.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
