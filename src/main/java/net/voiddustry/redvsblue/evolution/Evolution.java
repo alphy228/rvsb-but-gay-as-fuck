@@ -63,11 +63,10 @@ public enum Evolution {
     OMURA(UnitTypes.omura, 11, 1650*multp, new String[] { "merui", "nova", "dagger", "mono" }, 9);
 
     public final UnitType unitType;
-    public final int tier, cost;
+    public final int tier, cost, stage;
     public final String[] evolutions;
-    public final int stage;
 
-    Evolution(mindustry.type.UnitType unitType, int tier, int cost, String[] evolutions) {
+    Evolution(mindustry.type.UnitType unitType, int tier, int cost, String[] evolutions, int stage) {
         this.unitType = unitType;
         this.tier = tier;
         this.cost = cost;
