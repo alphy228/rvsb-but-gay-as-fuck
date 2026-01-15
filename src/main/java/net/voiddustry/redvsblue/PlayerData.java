@@ -20,6 +20,7 @@ public class PlayerData {
     private int level;
     private int exp;
     private int maxExp;
+    private double lastEvolutionTime;
 
     public PlayerData(String name, String uuid, String ip, Unit unit, Team team, Integer evolutionStage, Integer level, Integer exp, Integer maxExp) {
         this.name = name;
@@ -36,6 +37,7 @@ public class PlayerData {
         this.level = 1;
         this.exp = 0;
         this.maxExp = 20;
+        this.lastEvolutionTime = 0;
     }
 
     public PlayerData(Player player) {
@@ -60,6 +62,10 @@ public class PlayerData {
 
     public Team getTeam() {
         return team;
+    }
+
+    public double getLastEvolutionTime() {
+        return lastEvolutionTime;
     }
 
     public void addScore(int amount) {
@@ -157,5 +163,9 @@ public class PlayerData {
 
     public void setMaxExp(int amount) {
         this.maxExp = amount;
+    }
+    
+    public void setLastEvolutionTime(double time) {
+        this.lastEvolutionTime = time;
     }
 }
