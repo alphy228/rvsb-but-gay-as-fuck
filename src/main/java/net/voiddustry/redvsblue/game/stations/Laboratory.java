@@ -86,8 +86,8 @@ public class Laboratory {
                                     String[][] buttons = new String[evolution.evolutions.length][1];
     
                                     for (int i = 0; i < evolution.evolutions.length; i++) {
-                                        int multiplier = getMultiplier(evolution.evolutions[i]);
-                                        int cost = (Evolutions.evolutions.get(evolution.evolutions[i]).cost*multiplier);
+                                        float multiplier = getMultiplier(evolution.evolutions[i]);
+                                        int cost = (int)(Evolutions.evolutions.get(evolution.evolutions[i]).cost*multiplier);
 
                                         String textColor = "";
 
