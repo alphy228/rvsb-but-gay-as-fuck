@@ -88,9 +88,9 @@ public class Laboratory {
 
                                         String textColor = "";
 
-                                        if (cost>evolution.evolutions[i].cost) {
+                                        if (cost>Evolution.evolutions.get(evolution.evolutions[i]).cost) {
                                             textColor = "[red]";
-                                        } else if (cost<evolution.evolutions[i].cost) {
+                                        } else if (cost<Evolution.evolutions.get(evolution.evolutions[i]).cost) {
                                             textColor = "[cyan]";
                                         } else {
                                             textColor = "[green]";
@@ -124,7 +124,7 @@ public class Laboratory {
     }
 
     private static int getFinalCost(String evolution) {
-        Evolution evo = Evolutions.get(evolution);
+        Evolution evo = Evolutions.evolutions.get(evolution);
         int stage = evo.stage;
         float multiplier;
         if (RedVsBluePlugin.stage == stage) {
@@ -132,7 +132,7 @@ public class Laboratory {
         } else if (RedVsBluePlugin.stage > stage) {
             multiplier = 0.75f;
         } else {
-            multiplier = (stage-RedVsBluePlguin.stage)^2;
+            multiplier = (stage-RedVsBluePlugin.stage)^2;
         }
         return (int)(((float)evo.cost)*multiplier);
     }
