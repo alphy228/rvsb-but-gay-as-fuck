@@ -51,7 +51,7 @@ public class Laboratory {
                     player.unit(unit);
                     oldUnit.kill();
 
-                    playerData.subtractScore((int)(getMultiplier(evolutionOption)*evolutionOption.cost));
+                    playerData.subtractScore((int)(getMultiplier(evolutionOption, player)*evolutionOption.cost));
                     playerData.setEvolutionStage(evolutionOption.tier);
                     playerData.setLastEvolutionTime(Universe.seconds);
 
@@ -88,7 +88,7 @@ public class Laboratory {
                                     String[][] buttons = new String[evolution.evolutions.length][1];
     
                                     for (int i = 0; i < evolution.evolutions.length; i++) {
-                                        float multiplier = getMultiplier(evolution.evolutions[i]);
+                                        float multiplier = getMultiplier(evolution.evolutions[i], p);
                                         int cost = (int)(Evolutions.evolutions.get(evolution.evolutions[i]).cost*multiplier);
 
                                         String textColor = "";
