@@ -1,6 +1,6 @@
 package net.voiddustry.redvsblue.game.stations;
 
-import java.util.Math;
+import java.lang.Math;
 
 import arc.graphics.Color;
 import arc.util.Timer;
