@@ -496,7 +496,7 @@ public class RedVsBluePlugin extends Plugin {
                 String[][] buttons = new String[evolution.evolutions.length][1];
 
                 for (int i = 0; i < evolution.evolutions.length; i++) {
-                    float multiplier = Laboratory.getMultiplier(evolution.evolutions[i]);
+                    float multiplier = Laboratory.getMultiplier(evolution.evolutions[i], player);
                     int cost = (int)(Evolutions.evolutions.get(evolution.evolutions[i]).cost*multiplier);
 
                     String textColor = "";
