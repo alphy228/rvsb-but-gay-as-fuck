@@ -7,6 +7,7 @@ import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.content.Fx;
 import mindustry.game.Team;
+import mindustry.game.Universe;
 import mindustry.gen.*;
 import mindustry.ui.Menus;
 import mindustry.world.Tile;
@@ -52,6 +53,7 @@ public class Laboratory {
 
                     playerData.subtractScore((int)(getMultiplier(evolutionOption)*evolutionOption.cost));
                     playerData.setEvolutionStage(evolutionOption.tier);
+                    playerData.setLastEvolutionTime(Universe.seconds);
 
                     Utils.sendBundled("game.evolved", player.name(), evolution.evolutions[option]);
                 }
