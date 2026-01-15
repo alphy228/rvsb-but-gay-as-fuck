@@ -8,7 +8,7 @@ public class Evolutions {
     public final static ObjectMap<String, Evolution> evolutions = ObjectMap.of(
             "dagger", Evolution.DAGGER,
         "nova", Evolution.NOVA,
-        "elude", Evolution.ELUDE,
+        "merui", Evolution.MERUI,
         "flare", Evolution.FLARE,
         "mono", Evolution.MONO,
 
