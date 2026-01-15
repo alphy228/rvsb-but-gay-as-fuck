@@ -39,7 +39,7 @@ public class Laboratory {
 
         PlayerData playerData = players.get(player.uuid());
 
-        if (playerData.getScore() >= evolutionOption.cost) {
+        if (playerData.getScore() >= evolutionOption.cost*getMultplier(evolutionOption, player)) {
             if (player.unit() != null && (player.tileOn().block() == Blocks.air || evolutionOption.unitType.flying==true || evolutionOption.unitType.canBoost == true || evolutionOption.unitType.groundLayer==Layer.legUnit)) {
                 Unit unit = evolutionOption.unitType.spawn(Team.blue, player.x(), player.y());
                 unit.health = unit.type.health/2;
@@ -145,7 +145,7 @@ public class Laboratory {
         } else {
             multiplier = multiplier+(float)Math.pow(2,(stage-RedVsBluePlugin.stage));
         }
-        multiplier = (float)(Math.round(multiplier*1000)/1000);
+        multiplier = (float)(Math.round(multiplier*1000)/1000f);
         return multiplier;
     }
 
