@@ -84,7 +84,18 @@ public class Laboratory {
                                     String[][] buttons = new String[evolution.evolutions.length][1];
     
                                     for (int i = 0; i < evolution.evolutions.length; i++) {
-                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i], Evolutions.evolutions.get(getFinalCost(evolution.evolutions[i])));
+                                        int cost = getFinalCost(evolution.evolutions[i]);
+
+                                        string textColor = "";
+
+                                        if (cost>evolution.evolutions[i].cost) {
+                                            textColor = "[red]";
+                                        } else if (cost<evolution.evolutions[i].cost) {
+                                            textColor = "[cyan]";
+                                        } else {
+                                            textColor = "[green]";
+                                        }
+                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, textColor, evolution.evolutions[i], Evolutions.evolutions.get(cost)));
                                     }
     
                                     Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
@@ -113,16 +124,16 @@ public class Laboratory {
     }
 
     private static int getFinalCost(Evolution evo) {
-        int stage = evo.stage
+        int stage = evo.stage;
         float multiplier;
         if (RedVsBluePlugin.stage == stage) {
-            multiplier = 1
+            multiplier = 1;
         } else if (RedVsBluePlugin.stage > stage) {
-            multiplier = 0.75
+            multiplier = 0.75;
         } else {
-            multiplier = (stage-RedVsBluePlguin.stage)^2
+            multiplier = (stage-RedVsBluePlguin.stage)^2;
         }
-        return (((float)evo.cost)*multiplier)
+        return (int)(((float)evo.cost)*multiplier);
     }
 
     public static void buyLab(Player player) {
