@@ -133,7 +133,7 @@ public class Laboratory {
         } else if (RedVsBluePlugin.stage > stage) {
             multiplier = 0.75f;
         } else {
-            multiplier = ((stage-RedVsBluePlugin.stage)^2f/2f)+1f;
+            multiplier = ((stage-RedVsBluePlugin.stage)^2/2)+1;
         }
         return (int)(((float)evo.cost)*multiplier);
     }
