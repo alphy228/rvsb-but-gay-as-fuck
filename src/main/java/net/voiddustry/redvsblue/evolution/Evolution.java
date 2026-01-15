@@ -8,7 +8,7 @@ import static net.voiddustry.redvsblue.util.UnitsConfig.multp;
 public enum Evolution {
 
     DAGGER(UnitTypes.dagger, 1, 2*multp, new String[] { "atrax", "mace", "merui", "flare", "nova", "mono" }, 1),
-    NOVA(UnitTypes.nova, 1, 3*multp, new String[] { "pulsar", "merui", "flare", "dagger", "mono" }), 1,
+    NOVA(UnitTypes.nova, 1, 3*multp, new String[] { "pulsar", "merui", "flare", "dagger", "mono" }, 1),
     MERUI(UnitTypes.merui, 1, 8*multp, new String[] { "atrax", "nova", "flare", "dagger", "mono" }, 1),
     FLARE(UnitTypes.flare, 1, 6*multp, new String[] { "risso", "nova", "merui", "dagger", "mono" }, 1),
     MONO(UnitTypes.mono, 1, 5*multp, new String[] { "poly", "nova", "merui", "dagger" }, 1),
@@ -40,7 +40,7 @@ public enum Evolution {
     CYERCE(UnitTypes.cyerce, 6, 150*multp, new String[] { "quad" }, 5),
 
     SCEPTER(UnitTypes.scepter, 7, 105*multp, new String[] { "vanquish" }, 6),
-    NAVANAX(UnitTypes.navanax, 7, 450*multp, new String[] { "flare", "merui", "dagger" }, , 9),
+    NAVANAX(UnitTypes.navanax, 7, 450*multp, new String[] { "flare", "merui", "dagger" }, 9),
     TOXOPID(UnitTypes.toxopid, 7, 415*multp, new String[] { "collaris" }, 8),
     BRYDE(UnitTypes.bryde, 7, 180*multp, new String[] { "antumbra" }, 5),
     OBVIATE(UnitTypes.obviate, 7, 90*multp, new String[] { "quell" }, 5),
