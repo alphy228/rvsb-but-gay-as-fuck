@@ -7,7 +7,6 @@ import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.content.Fx;
 import mindustry.game.Team;
-import mindustry.game.Universe;
 import mindustry.gen.*;
 import mindustry.ui.Menus;
 import mindustry.world.Tile;
@@ -24,6 +23,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.lang.Math;
+import java.time.Instant;
 
 
 import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
@@ -53,7 +53,7 @@ public class Laboratory {
 
                     playerData.subtractScore((int)(getMultiplier(evolutionOption, player)*evolutionOption.cost));
                     playerData.setEvolutionStage(evolutionOption.tier);
-                    playerData.setLastEvolutionTime(Universe.seconds());
+                    playerData.setLastEvolutionTime(Instant.now().getEpochSecond());
 
                     Utils.sendBundled("game.evolved", player.name(), evolution.evolutions[option]);
                 }
@@ -131,7 +131,7 @@ public class Laboratory {
     }
 
     public static float getMultiplier(Evolution evo, Player player) {
-        double timeSinceLastEvo = Universe.seconds()-RedVsBluePlugin.players.get(player.uuid()).getLastEvolutionTime();
+        double timeSinceLastEvo = Instant.now().getEpochSecond()-RedVsBluePlugin.players.get(player.uuid()).getLastEvolutionTime();
         int stage = evo.stage;
         float multiplier = 0;
         if (timeSinceLastEvo<180) {
