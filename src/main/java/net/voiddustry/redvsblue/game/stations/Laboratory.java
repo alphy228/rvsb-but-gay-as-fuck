@@ -130,21 +130,26 @@ public class Laboratory {
         }, 0, 0.5F);
     }
 
-    public static float getMultiplier(Evolution evo) {
+    public static float getMultiplier(Evolution evo, Player player) {
+        double timeSinceLastEvo = Universe.seconds-RedVsBluePlugin.players.get(player.uuid()).getLastEvolutionTime();
         int stage = evo.stage;
-        float multiplier;
+        float multiplier = 0;
+        if (timeSinceLastEvo<180) {
+            multiplier = (180-timeSinceLastEvo)/240;
+            multiplier = multiplier + Math.sqrt(evo.cost);
+        }
         if (RedVsBluePlugin.stage == stage) {
-            multiplier = 1f;
+            multiplier = multiplier+1f;
         } else if (RedVsBluePlugin.stage > stage) {
-            multiplier = 0.75f;
+            multiplier = multiplier+0.75f;
         } else {
-            multiplier = (float)Math.pow(2,(stage-RedVsBluePlugin.stage));
+            multiplier = multiplier+(float)Math.pow(2,(stage-RedVsBluePlugin.stage));
         }
         Log.info("stage for evolution "+evo+" - "+stage+" multiplier:"+multiplier);
         return multiplier;
     }
 
-    public static float getMultiplier(String evolution) {
+    public static float getMultiplier(String evolution, Player player) {
         return getMultiplier(Evolutions.evolutions.get(evolution));
     }
 
