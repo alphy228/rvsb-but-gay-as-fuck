@@ -84,7 +84,8 @@ public class Laboratory {
                                     String[][] buttons = new String[evolution.evolutions.length][1];
     
                                     for (int i = 0; i < evolution.evolutions.length; i++) {
-                                        int cost = getFinalCost(evolution.evolutions[i]);
+                                        int multiplier = getMultiplier(evolution.evolutions[i]);
+                                        int cost = (Evolutions.evolutions.get(evolution.evolutions[i]).cost*multiplier);
 
                                         String textColor = "";
 
@@ -95,7 +96,7 @@ public class Laboratory {
                                         } else {
                                             textColor = "[green]";
                                         }
-                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i])+" - "+cost;
+                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i],(textColor+cost+" - "+*multiplier*100)+"%"));
                                     }
     
                                     Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
@@ -123,7 +124,7 @@ public class Laboratory {
         }, 0, 0.5F);
     }
 
-    private static int getFinalCost(Evolution evo) {
+    private static int getMultiplier(Evolution evo) {
         int stage = evo.stage;
         float multiplier;
         if (RedVsBluePlugin.stage == stage) {
@@ -131,13 +132,13 @@ public class Laboratory {
         } else if (RedVsBluePlugin.stage > stage) {
             multiplier = 0.75f;
         } else {
-            multiplier = (stage-RedVsBluePlugin.stage)^2;
+            multiplier = ((stage-RedVsBluePlugin.stage)^2f/2f)+1f;
         }
         return (int)(((float)evo.cost)*multiplier);
     }
 
-    private static int getFinalCost(String evolution) {
-        return getFinalCost(Evolutions.evolutions.get(evolution));
+    private static int getMultiplier(String evolution) {
+        return getMultiplier(Evolutions.evolutions.get(evolution));
     }
 
     public static void buyLab(Player player) {
