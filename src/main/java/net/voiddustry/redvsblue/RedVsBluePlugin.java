@@ -32,6 +32,7 @@ import net.voiddustry.redvsblue.evolution.Evolution;
 import net.voiddustry.redvsblue.evolution.Evolutions;
 import net.voiddustry.redvsblue.game.crux.*;
 import net.voiddustry.redvsblue.game.stations.StationsMenu;
+import net.voiddustry.redvsblue.game.stations.Laboratory;
 import net.voiddustry.redvsblue.game.building.BuildBlock;
 import net.voiddustry.redvsblue.game.building.BuildMenu;
 import net.voiddustry.redvsblue.game.starting_menu.StartingMenu;
@@ -495,12 +496,14 @@ public class RedVsBluePlugin extends Plugin {
                 String[][] buttons = new String[evolution.evolutions.length][1];
 
                 for (int i = 0; i < evolution.evolutions.length; i++) {
-                    float multiplier = getMultiplier(evolution.evolutions[i]);
+                    float multiplier = Laboratory.getMultiplier(evolution.evolutions[i]);
                     int cost = (int)(Evolutions.evolutions.get(evolution.evolutions[i]).cost*multiplier);
 
                     String textColor = "";
 
-                    if (cost>Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
+                    if (multiplier > 1 && multiplier <= 1.99) {
+                        textColor = "[orange]";
+                    } else if (cost>Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
                         textColor = "[red]";
                     } else if (cost<Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
                         textColor = "[green]";
