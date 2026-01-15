@@ -93,9 +93,9 @@ public class Laboratory {
                                         if (cost>Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
                                             textColor = "[red]";
                                         } else if (cost<Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
-                                            textColor = "[cyan]";
-                                        } else {
                                             textColor = "[green]";
+                                        } else {
+                                            textColor = "[yellow]";
                                         }
                                         buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i],(textColor+cost+" - "+(multiplier*100)+"%"));
                                     }
@@ -135,6 +135,7 @@ public class Laboratory {
         } else {
             multiplier = (2^(stage-RedVsBluePlugin.stage));
         }
+        Log.info("stage for evolution "+evo+" - "+stage+" multiplier:"+multiplier);
         return (int)(((float)evo.cost)*multiplier);
     }
 
