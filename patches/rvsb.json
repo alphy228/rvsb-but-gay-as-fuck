@@ -768,6 +768,7 @@ unit.locus.armor: -20
 unit.retusa.health: 800
 unit.pulsar.health: 500
 unit.pulsar.armor: 6
+unit.merui.health: 400
 
 // Health
 unit.elude.health: 300
