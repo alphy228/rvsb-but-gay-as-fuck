@@ -225,7 +225,7 @@ public class Utils {
                 return UnitTypes.nova;
             }
             case 7, 8 -> {
-                return UnitTypes.elude;
+                return UnitTypes.merui;
             }
             case 9 -> {
                 return UnitTypes.flare;
