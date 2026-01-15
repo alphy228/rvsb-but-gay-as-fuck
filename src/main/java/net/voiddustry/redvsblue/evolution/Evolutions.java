@@ -32,7 +32,7 @@ public class Evolutions {
 
         "locus", Evolution.LOCUS,
         "corvus", Evolution.CORVUS,
-        "elude", Evolution.ELUDE,
+        "merui", Evolution.MERUI,
         "mega", Evolution.MEGA,
 
         "precept", Evolution.PRECEPT,
