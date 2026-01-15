@@ -53,7 +53,7 @@ public class Laboratory {
 
                     playerData.subtractScore((int)(getMultiplier(evolutionOption, player)*evolutionOption.cost));
                     playerData.setEvolutionStage(evolutionOption.tier);
-                    playerData.setLastEvolutionTime(Universe.seconds);
+                    playerData.setLastEvolutionTime(Universe.seconds());
 
                     Utils.sendBundled("game.evolved", player.name(), evolution.evolutions[option]);
                 }
@@ -131,12 +131,12 @@ public class Laboratory {
     }
 
     public static float getMultiplier(Evolution evo, Player player) {
-        double timeSinceLastEvo = Universe.seconds-RedVsBluePlugin.players.get(player.uuid()).getLastEvolutionTime();
+        double timeSinceLastEvo = Universe.seconds()-RedVsBluePlugin.players.get(player.uuid()).getLastEvolutionTime();
         int stage = evo.stage;
         float multiplier = 0;
         if (timeSinceLastEvo<180) {
-            multiplier = (180-timeSinceLastEvo)/240;
-            multiplier = multiplier + Math.sqrt(evo.cost);
+            multiplier = (float)((180-timeSinceLastEvo)/240);
+            multiplier = multiplier + ((float)Math.sqrt(evo.cost));
         }
         if (RedVsBluePlugin.stage == stage) {
             multiplier = multiplier+1f;
@@ -150,7 +150,7 @@ public class Laboratory {
     }
 
     public static float getMultiplier(String evolution, Player player) {
-        return getMultiplier(Evolutions.evolutions.get(evolution));
+        return getMultiplier(Evolutions.evolutions.get(evolution), player);
     }
 
     public static void buyLab(Player player) {
