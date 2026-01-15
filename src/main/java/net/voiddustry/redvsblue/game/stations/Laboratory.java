@@ -10,6 +10,7 @@ import mindustry.game.Team;
 import mindustry.gen.*;
 import mindustry.ui.Menus;
 import mindustry.world.Tile;
+import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.evolution.Evolution;
@@ -47,7 +48,7 @@ public class Laboratory {
                     player.unit(unit);
                     oldUnit.kill();
 
-                    playerData.subtractScore(evolutionOption.cost);
+                    playerData.subtractScore(getFinalCost(evolutionOption));
                     playerData.setEvolutionStage(evolutionOption.tier);
 
                     Utils.sendBundled("game.evolved", player.name(), evolution.evolutions[option]);
@@ -83,7 +84,7 @@ public class Laboratory {
                                     String[][] buttons = new String[evolution.evolutions.length][1];
     
                                     for (int i = 0; i < evolution.evolutions.length; i++) {
-                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i], Evolutions.evolutions.get(evolution.evolutions[i]).cost);
+                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i], Evolutions.evolutions.get(getFinalCost(evolution.evolutions[i])));
                                     }
     
                                     Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
@@ -109,6 +110,19 @@ public class Laboratory {
                 StationUtils.drawStationName(lab.tileOn(), lab.owner().name + "[gold]'s\n[purple]Lab", 0.6F);
             });
         }, 0, 0.5F);
+    }
+
+    private static int getFinalCost(Evolution evo) {
+        int stage = evo.stage
+        float multiplier;
+        if (RedVsBluePlugin.stage == stage) {
+            multiplier = 1
+        } else if (RedVsBluePlugin.stage > stage) {
+            multiplier = 0.75
+        } else {
+            multiplier = (stage-RedVsBluePlguin.stage)^2
+        }
+        return (((float)evo.cost)*multiplier)
     }
 
     public static void buyLab(Player player) {
