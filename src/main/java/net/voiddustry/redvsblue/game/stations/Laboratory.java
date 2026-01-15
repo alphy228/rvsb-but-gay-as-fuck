@@ -135,7 +135,7 @@ public class Laboratory {
         int stage = evo.stage;
         float multiplier = 0;
         if (timeSinceLastEvo<180) {
-            multiplier = (float)((180-timeSinceLastEvo)/360);
+            multiplier = (float)((180-timeSinceLastEvo)/500);
             multiplier = multiplier + ((float)Math.sqrt(evo.cost));
         }
         if (RedVsBluePlugin.stage == stage) {
