@@ -797,3 +797,10 @@ block.tungsten-wall.targetable: false
 block.tungsten-wall.health: 99999
 block.tungsten-wall-large.targetable: false
 block.tungsten-wall-large.health: 99999
+
+//generators consumption
+block.combustion-generator.itemDuration: 7200
+block.steam-generator.itemDuration: 7200
+block.thorium-reactor.itemDuration: 1800
+block.thorium-reactor.powerProduction: 45
+block.rtg-generator.itemDuration: 72000
