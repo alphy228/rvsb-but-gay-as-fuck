@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.lang.Math;
 import java.time.Instant;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 
 import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
@@ -145,7 +147,9 @@ public class Laboratory {
         } else {
             multiplier = multiplier+(float)Math.pow(2,(stage-RedVsBluePlugin.stage));
         }
-        multiplier = (float)(Math.round(multiplier*1000)/1000f);
+        BigDecimal bd = new BigDecimal(String.valueOf(multiplier));
+        bd = bd.setScale(3, RoundingMode.HALF_UP);
+        multiplier = bd.floatValue();
         return multiplier;
     }
 
