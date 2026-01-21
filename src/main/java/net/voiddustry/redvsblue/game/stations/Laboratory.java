@@ -85,8 +85,9 @@ public class Laboratory {
 
                                 Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
                             }
-
+                            if (!(players.get(p.uuid()) == null)) {
                             players.get(p.uuid()).setCanEvolve(true);
+                            }
                             Call.infoPopup(p.con, Bundle.get("evolution.evolution-available", p.locale), 0.5F, 0, 0, 0, -200, 0);
                         }
                     }
