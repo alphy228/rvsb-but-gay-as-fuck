@@ -4,10 +4,12 @@ import arc.struct.Seq;
 import mindustry.content.Blocks;
 import mindustry.world.Block;
 
-public static class Buildings {
+import java.util.HashMap;
 
-    public static Map<Block, Integer> getPrices() {
-        Map<Block, Integer> prices = new HashMap<>();
+public class Buildings {
+
+    public static HashMap<Block, Integer> getPrices() {
+        HashMap<Block, Integer> prices = new HashMap<>();
 
         prices.put(Blocks.conveyor, 5);
         prices.put(Blocks.router, 12);
