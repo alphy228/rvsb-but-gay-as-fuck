@@ -43,6 +43,8 @@ public class Utils {
             state.rules.bannedBlocks.add(block);
         }
 
+        state.rules.buildSpeedMultiplier = 0;
+
         state.rules.waveSpacing = Integer.MAX_VALUE;
         state.rules.waves = true;
         state.rules.bannedUnits.add(UnitTypes.alpha);
