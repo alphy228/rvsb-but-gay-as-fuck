@@ -47,7 +47,7 @@ public class UpdateConstructBlocks implements Runnable {
           Block previous = cbuild.previous;
           Block current = cbuild.current; 
           float buildspeed = 0f;
-          int cost = prices.get(b.block());
+          int cost = prices.get(b.tile.block());
           //calculate build speed
           Seq<Unit> buildingUnits = new Seq<>();
           buildingUnits.clear();
@@ -77,9 +77,8 @@ public class UpdateConstructBlocks implements Runnable {
           if (buildspeed > 0f) {
             Log.info("Attempting to consume " + cost+ " ,from player " + player);
             Unit builderUnit = buildingUnits.random();
-            if (RedVsBluePlugin.players.get(player.uuid()).getScore()>=consumeAmount) {
-              RedVsBluePlugin.players.get(player.uuid()).subtractScore(consumeAmount);
-              remainingCost.put(tile,remc);
+            if (RedVsBluePlugin.players.get(player.uuid()).getScore()>=cost) {
+              RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
               int remainingItemCost2=0;
               Log.info("finishing construction");
               cbuild.progress=1.0001f;
