@@ -60,8 +60,8 @@ public class UpdateConstructBlocks implements Runnable {
                   if (u.buildPlan().worldContext) { 
                       if (u.buildPlan().build() == b && u.isBuilding()) {
                         
-                          if (u.player() != null) {
-                            player = u.player();
+                          if (u.player != null) {
+                            player = u.player;
                           }
                         
                           buildingUnits.add(u);
@@ -99,7 +99,7 @@ public class UpdateConstructBlocks implements Runnable {
             int stepCost = 0;
             
             totaliItemCost = totaliItemCost+prices.get(current);
-            stepCost = ((float)(remainingCost.get(tile)[i].amount))/((1f-cbuild.progress)*steps);
+            stepCost = ((float)(remainingCost.get(tile)))/((1f-cbuild.progress)*steps);
 
             //consume items and progress if items were succesfully consumed
               int consumeAmount=0;
@@ -111,7 +111,8 @@ public class UpdateConstructBlocks implements Runnable {
               Log.info("Attempting to consume " + consumeAmount + " ,from " + remainingCost.get(tile) + " remaining" + "progress: " + cbuild.progress);
               Unit builderUnit = buildingUnits.random();
               if (totaliItemCost != 0 || consumeAmount==0) { 
-                if (RedVsBluePlugin.players.get(player.uuid())>=consumeAmount || consumeAmount==0) {
+                if (RedVsBluePlugin.players.get(player.uuid()).getScore>=consumeAmount || consumeAmount==0) {
+                  RedVsBluePlugin.players.get(player.uuid()).substractScore(consumeAmount);
                   remc = remc-consumeAmount;
                   remainingCost.put(tile,remc);
                   int remainingItemCost2=0;
