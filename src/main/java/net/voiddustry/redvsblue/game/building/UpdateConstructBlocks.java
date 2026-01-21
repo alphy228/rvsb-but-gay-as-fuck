@@ -36,7 +36,7 @@ public class UpdateConstructBlocks implements Runnable {
   HashMap<Block, Integer> prices = Buildings.getPrices();
   @Override
   public void run() {
-    try {
+    //try {
       
       for (Building b : Groups.build) {
         if (b.tile.block() instanceof ConstructBlock cb) {
@@ -90,9 +90,9 @@ public class UpdateConstructBlocks implements Runnable {
           }
         }
       }
-    } catch (Exception e) {
-      Log.info("goofy ahh exception in the building system");
-      Log.info(e.toString());
-    }
+    //} catch (Exception e) {
+      //Log.info("goofy ahh exception in the building system");
+      //Log.info(e.toString());
+   // }
   }
 }
