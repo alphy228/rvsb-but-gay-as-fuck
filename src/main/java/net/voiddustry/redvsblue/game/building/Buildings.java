@@ -4,30 +4,20 @@ import arc.struct.Seq;
 import mindustry.content.Blocks;
 import mindustry.world.Block;
 
-public class Buildings {
+public static class Buildings {
 
-    public static class BuildingPrice {
-        public final Block block;
-        public final int price;
+    public static Map<Block, Integer> getPrices() {
+        Map<Block, Integer> prices = new HashMap<>();
 
-        public BuildingPrice(Block block, int price) {
-            this.block = block;
-            this.price = price;
-        }
-    }
+        prices.put(Blocks.conveyor, 5);
+        prices.put(Blocks.router, 12);
+        prices.put(Blocks.junction, 20);
+        prices.put(Blocks.mechanicalDrill, 50);
+        prices.put(Blocks.graphitePress, 120);
+        prices.put(Blocks.duo, 75);
+        prices.put(Blocks.powerNode, 30);
+        prices.put(Blocks.battery, 60);
 
-    public static Seq<BuildingPrice> create() {
-        Seq<BuildingPrice> buildings = new Seq<>();
-
-        buildings.add(new BuildingPrice(Blocks.conveyor, 5));
-        buildings.add(new BuildingPrice(Blocks.router, 12));
-        buildings.add(new BuildingPrice(Blocks.junction, 20));
-        buildings.add(new BuildingPrice(Blocks.mechanicalDrill, 50));
-        buildings.add(new BuildingPrice(Blocks.graphitePress, 120));
-        buildings.add(new BuildingPrice(Blocks.duo, 75));
-        buildings.add(new BuildingPrice(Blocks.powerNode, 30));
-        buildings.add(new BuildingPrice(Blocks.battery, 60));
-
-        return buildings;
+        return prices;
     }
 }
