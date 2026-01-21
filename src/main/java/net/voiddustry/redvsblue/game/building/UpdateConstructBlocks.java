@@ -47,7 +47,7 @@ public class UpdateConstructBlocks implements Runnable {
           Block previous = cbuild.previous;
           Block current = cbuild.current; 
           float buildspeed = 0f;
-          int cost = prices.get(b.tile.block());
+          int cost = prices.get(current);
           //calculate build speed
           Seq<Unit> buildingUnits = new Seq<>();
           buildingUnits.clear();
