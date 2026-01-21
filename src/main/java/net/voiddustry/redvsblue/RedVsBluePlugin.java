@@ -143,6 +143,7 @@ public class RedVsBluePlugin extends Plugin {
         SpawnEffect.initEffect();
         Boss.forEachBoss();
         Premium.init();
+        
 
         for (UnitType unit : Vars.content.units()) {
             if (unit == UnitTypes.crawler) {
@@ -391,6 +392,10 @@ public class RedVsBluePlugin extends Plugin {
 
             Timer timer = new Timer();
             timer.scheduleTask(task, 300, 300);
+            
+            UpdateConstructBlocks updateConstructBlocks = new UpdateConstructBlocks();
+            Timer.schedule(updateConstructBlocks, 10f, 0.2f);
+
 
             Groups.player.each(player -> {
                 if (player != null) {
