@@ -48,6 +48,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 import java.lang.Math;
+import java.time.Instant;
 
 import static net.voiddustry.redvsblue.util.MapVote.callMapVoting;
 import static net.voiddustry.redvsblue.util.Utils.*;
@@ -599,7 +600,7 @@ public class RedVsBluePlugin extends Plugin {
         });
 
         handler.<Player>register("blue", "Makes you blue, works only before stage 3", (args, player) -> {
-            if (stage <= 3 && playing && player.team() != Team.blue) {
+            if (stage <= 3 && playing && player.team() != Team.blue && players.get(player.uuid()).getLastRedeemTime+30<Instant.now().getEpochSecond()) {
                 Unit oldUnit = player.unit();
 
                 if (player.unit() != null) oldUnit.kill();
@@ -611,6 +612,7 @@ public class RedVsBluePlugin extends Plugin {
 
                 data.setUnit(unit);
                 player.unit(unit);
+                data.setLastRedeemTime(Instant.now().getEpochSecond());
                 sendBundled("game.redeemed", player.name);
             } else {
                 player.sendMessage(Bundle.get("game.late", player.locale));
