@@ -96,7 +96,7 @@ public class UpdateConstructBlocks implements Runnable {
               remainingCost.put(tile, prices.get(current));
             }
             int totaliItemCost = 0;
-            int stepCost = 0;
+            float stepCost = 0;
             
             totaliItemCost = totaliItemCost+prices.get(current);
             stepCost = ((float)(remainingCost.get(tile)))/((float)((1f-cbuild.progress)*steps));
