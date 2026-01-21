@@ -130,7 +130,6 @@ public class UpdateConstructBlocks implements Runnable {
             }
           }
         }
-      }
     } catch (Exception e) {
       Log.info("goofy ahh exception in the building system,you will see this a lot,nothing should break though");
       Log.info(e.toString());
