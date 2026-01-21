@@ -48,7 +48,8 @@ public class ClassChooseMenu {
             case 6 -> units.putAll(StageUnits.sixthStage);
             case 7 -> units.putAll(StageUnits.sevenStage);
             case 8,9 -> units.putAll(StageUnits.eighthAndNinthStage);
-            case 10,11 -> units.putAll(StageUnits.tenthStage);
+            case 10 -> units.putAll(StageUnits.tenthStage);
+            case 11,12 -> units.putAll(StageUnits.eleventhStage);
         }
     }
 }

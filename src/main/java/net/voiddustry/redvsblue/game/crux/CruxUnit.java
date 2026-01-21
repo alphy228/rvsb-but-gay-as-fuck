@@ -1,6 +1,7 @@
 package net.voiddustry.redvsblue.game.crux;
 
 import arc.util.Timer;
+import mindustry.Vars;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.content.UnitTypes;
@@ -13,6 +14,8 @@ import mindustry.type.UnitType;
 import mindustry.world.Tile;
 import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.util.Utils;
+
+import java.util.Random;
 
 public class CruxUnit {
     public static void callSpawn(Player player) {
@@ -30,6 +33,17 @@ public class CruxUnit {
             if (unit != null && !unit.dead) {
                 unit.health = Integer.MAX_VALUE;
                 unit.apply(StatusEffects.overclock, 180);;
+
+                //unit.apply(Vars.content.statusEffect("superShielded"), 120f);
+                unit.apply(Vars.content.statusEffect("shielded"), 300f);
+
+                if (unit.type == UnitTypes.obviate) {
+                    if (RedVsBluePlugin.stage == 11) {
+                        unit.apply(StatusEffects.shielded, 600f);
+                        unit.apply(StatusEffects.overdrive, 99999f);
+                        unit.apply(StatusEffects.fast, 99999f);
+                    }
+                }
 
                 Timer.schedule(() -> {
                     if (unit.type == UnitTypes.crawler) {
@@ -65,7 +79,43 @@ public class CruxUnit {
             if (cruxSpawn != null && cruxSpawn.block() != null) {
                 Call.logicExplosion(Team.crux, cruxSpawn.x*8, cruxSpawn.y*8, 80, 999999, true, true, true, true);
             }
+
+            if (RedVsBluePlugin.stage >= 11) {
+
+                boolean s11BossDead = true;
+                
+                for (Unit u : Groups.unit) {
+                    if (u.type==UnitTypes.evoke) {
+                        s11BossDead = false;
+                    }
+                }
+
+                if (s11BossDead) {
+                    Random rand = new Random();
+                    if (rand.nextInt(20) == 1) {
+                        UnitTypes.latum.spawn(Team.crux, cruxSpawn);
+                    }
+                    if (rand.nextInt(13) == 1) {
+                        UnitTypes.conquer.spawn(Team.crux, cruxSpawn);
+                    }
+                    if (rand.nextInt(7) == 1) {
+                        UnitTypes.tecta.spawn(Team.crux, cruxSpawn);
+                    }
+                }
+            }
+            
             Unit unit = unitType.spawn(Team.crux, cruxSpawn);
+
+            //unit.apply(Vars.content.statusEffect("superShielded"), 120f);
+            unit.apply(Vars.content.statusEffect("shielded"), 300f);
+
+            if (unit.type == UnitTypes.obviate) {
+                if (RedVsBluePlugin.stage == 11) {
+                    unit.apply(StatusEffects.shielded, 600f);
+                    unit.apply(StatusEffects.overdrive, 99999f);
+                    unit.apply(StatusEffects.fast, 99999f);
+                }
+            }
 
             Timer.schedule(() -> {
                 if (unit.type == UnitTypes.crawler) {
