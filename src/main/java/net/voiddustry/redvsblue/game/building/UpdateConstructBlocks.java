@@ -84,6 +84,8 @@ public class UpdateConstructBlocks implements Runnable {
               cbuild.progress=1.0001f;
               Call.constructFinish(tile,current,null,(byte)builderUnit.buildPlan().rotation,b.team,builderUnit.buildPlan().block.instantBuild ? builderUnit.buildPlan().config : null);
               tile.build.placed();
+            } else {
+              Vars.world.tile(b.x*8,b.y*8).setNet(Blocks.air,Team.derelict,0);
             }
           }
         }
