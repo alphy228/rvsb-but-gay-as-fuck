@@ -150,20 +150,21 @@ public class CruxUnit {
             final HashMap<UnitType, Integer> cruxUnits = new HashMap<>();
 
             if (!ClassChooseMenu.units.isEmpty()) {
-            ClassChooseMenu.units.keys().toSeq().each(type -> {
-                Groups.unit.each(u -> {
-                    if (u.team == Team.crux && u.type == type) {
-                        if (cruxUnits.get(type) == null) {
-                            cruxUnits.put(type, 0);
-                        } else {
-                            cruxUnits.put(type, cruxUnits.get(type)+1);
+                ClassChooseMenu.units.keys().toSeq().each(type -> {
+                    Groups.unit.each(u -> {
+                        if (u.team == Team.crux && u.type == type) {
+                            if (cruxUnits.get(type) == null) {
+                                cruxUnits.put(type, 0);
+                            } else {
+                                cruxUnits.put(type, cruxUnits.get(type)+1);
+                            }
                         }
+                    });
+                    if (cruxUnits.get(type) < cruxUnitsCount/ClassChooseMenu.units.keys().toSeq().size()) {
+                        spawnCrux(type);
                     }
                 });
-                if (cruxUnits.get(type) < cruxUnitsCount/ClassChooseMenu.units.keys().toSeq().size()) {
-                    spawnCrux(type);
-                }
-            });
+            }
         }
     }
 }
