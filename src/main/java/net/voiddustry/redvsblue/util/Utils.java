@@ -13,6 +13,7 @@ import mindustry.gen.*;
 
 import mindustry.type.UnitType;
 import java.util.Locale;
+import java.util.HashMap;
 
 import mindustry.type.Weapon;
 import mindustry.world.Block;
@@ -41,7 +42,7 @@ public class Utils {
 
     public static void initRules() {
 
-        Seq prices = Buildings.getPrices();
+        HashMap prices<Block, Integer> = Buildings.getPrices();
         for (Block block : Vars.content.blocks()) {
             if (!prices.containsKey(block)) {
                 state.rules.bannedBlocks.add(block);
