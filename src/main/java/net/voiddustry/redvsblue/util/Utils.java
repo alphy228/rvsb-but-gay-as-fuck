@@ -21,8 +21,6 @@ import mindustry.world.blocks.environment.*;
 
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
-import net.voiddustry.redvsblue.game.building.BlocksTypes;
-import net.voiddustry.redvsblue.game.building.BuildBlock;
 import net.voiddustry.redvsblue.game.building.Buildings;
 import net.voiddustry.redvsblue.game.crux.StageUnits;
 import net.voiddustry.redvsblue.game.starting_menu.StartingItems;
@@ -84,7 +82,6 @@ public class Utils {
     }
 
     public static void loadContent() {
-        BlocksTypes.load();
         StartingItems.load();
     }
 
@@ -96,7 +93,6 @@ public class Utils {
         ArmorWorkbench.initTimer();
         Recycler.initTimer();
         SuppressorTower.initTimer();
-        BuildBlock.init();
 
         Timer.schedule(() -> {
             if (playing) {
