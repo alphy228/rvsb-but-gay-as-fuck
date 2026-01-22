@@ -807,3 +807,7 @@ block.rtg-generator.itemDuration: 72000
 
 //statuses
 status.electrified.reloadMultiplier: 0.75
+
+//building system
+block.conveyor.requirements: []
+block.thorium-wall-large.requirements: []
