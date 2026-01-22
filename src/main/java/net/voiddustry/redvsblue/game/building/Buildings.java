@@ -13,14 +13,22 @@ public class Buildings {
     public static HashMap<Block, Integer> getPrices() {
         HashMap<Block, Integer> prices = new HashMap<>();
 
-        prices.put(Blocks.conveyor, 1);
-        prices.put(Blocks.router, 2);
-        prices.put(Blocks.junction, 2);
-        prices.put(Blocks.mechanicalDrill, 3);
-        prices.put(Blocks.graphitePress, 5);
-        prices.put(Blocks.duo, 5);
+        prices.put(Blocks.bridgeConveyor, 3);
+        prices.put(Blocks.bridgeConduit, 3);
+        prices.put(Blocks.unloader, 9);
+        prices.put(Blocks.powerNodeLarge, 3);
+        prices.put(Blocks.pneumaticDrill, 9);
+        prices.put(Blocks.container, 3);
+        prices.put(Blocks.berylliumWall, 2);
+        prices.put(Blocks.beryllumWallLarge, 6);
+        prices.put(Blocks.thoriumWall, 4);
+        prices.put(Blocks.thoriumWallLarge, 12);
+        prices.put(Blocks.blastDoor, 30);
+        prices.put(Blocks.combustionGenerator, 9);
+        prices.put(Blocks.rtgGenerator, 30);
+        prices.put(Blocks.laserDrill, 25);
         prices.put(Blocks.powerNode, 3);
-        prices.put(Blocks.battery, 6);
+        prices.put(Blocks.battery, 5);
 
         return prices;
     }
