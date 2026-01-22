@@ -160,7 +160,7 @@ public class CruxUnit {
                             }
                         }
                     });
-                    if (cruxUnits.get(type) < cruxUnitsCount/ClassChooseMenu.units.keys().toSeq().size+1) {
+                    if (cruxUnits.get(type) == null || cruxUnits.get(type) < cruxUnitsCount/ClassChooseMenu.units.keys().toSeq().size) {
                         spawnCrux(type);
                     }
                 });
