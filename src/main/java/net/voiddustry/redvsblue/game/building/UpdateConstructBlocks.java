@@ -26,6 +26,7 @@ import mindustry.game.Team;
 import mindustry.mod.*;
 import mindustry.net.Administration.*;
 import mindustry.content.Blocks;
+import mindustry.entities.units.BuildPlan;
 
 import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.game.building.Buildings;
@@ -45,11 +46,11 @@ public class UpdateConstructBlocks implements Runnable {
               BuildPlan bp = u.buildPlan();
 
               Tile tile = Vars.world.tile(bp.x,bp.y);
-              int cost = prices.get(bp.block);
+              Integer cost = prices.get(bp.block);
                            
-              if (u.getPlayer() != null && u.buildPlan().breaking == false && u.buildPlan().placeable()) {
+              if (u.getPlayer() != null && u.buildPlan().placeable(Team.blue)) {
                 Player player = u.getPlayer();
-                if (buildspeed > 0f) {
+                if (u.buildPlan().breaking == false) {
                   Log.info("Attempting to consume " + cost+ " ,from player " + player);
                   if (RedVsBluePlugin.players.get(player.uuid()).getScore()>=cost && (!(cost == null))) {
                     RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
