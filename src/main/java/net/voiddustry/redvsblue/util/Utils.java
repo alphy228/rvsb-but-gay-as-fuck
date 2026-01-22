@@ -22,6 +22,7 @@ import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
 import net.voiddustry.redvsblue.game.building.BlocksTypes;
 import net.voiddustry.redvsblue.game.building.BuildBlock;
+import net.voiddustry.redvsblue.game.building.Buildings;
 import net.voiddustry.redvsblue.game.crux.StageUnits;
 import net.voiddustry.redvsblue.game.starting_menu.StartingItems;
 import net.voiddustry.redvsblue.game.starting_menu.StartingMenu;
@@ -39,8 +40,12 @@ public class Utils {
     public static int money_per_min = 3;
 
     public static void initRules() {
-        for ( Block block : Vars.content.blocks()) {
-            state.rules.bannedBlocks.add(block);
+
+        Seq prices = Buildings.getPrices();
+        for (Block block : Vars.content.blocks()) {
+            if (!prices.containsKey(block)) {
+                state.rules.bannedBlocks.add(block);
+            }
         }
 
         state.rules.buildSpeedMultiplier = 0;
