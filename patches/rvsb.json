@@ -814,7 +814,7 @@ item.dormant-cyst.uiIcon: "unit-dagger-ui"
 item.dormant-cyst.fullIcon: "unit-dagger-preview"
 
 block.bridge-conduit.requirements: [dormant-cyst/3]
-block.item-bridge.requirements: [dormant-cyst/3]
+block.bridge-conveyor.requirements: [dormant-cyst/3]
 block.unloader.requirements: [dormant-cyst/9]
 block.power-node-large.requirements: [dormant-cyst/9]
 block.pneumatic-drill.requirements: [dormant-cyst/9]
