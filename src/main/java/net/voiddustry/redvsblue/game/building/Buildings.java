@@ -30,6 +30,7 @@ public class Buildings {
         prices.put(Blocks.forceProjector, 35);
         prices.put(Blocks.powerNode, 3);
         prices.put(Blocks.battery, 5);
+        prices.put(Blocks.mechanicalPump, 5);
 
         return prices;
     }
