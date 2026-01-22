@@ -77,7 +77,7 @@ public class CruxUnit {
         spawnCrux(unitType);
     }
 
-    private static void spawnCrux(UnitType) {
+    private static void spawnCrux(UnitType unitType) {
         if (Utils.gameRun) {
             Tile cruxSpawn = RedVsBluePlugin.redSpawns.random();
 
@@ -147,7 +147,6 @@ public class CruxUnit {
 
             int cruxUnitsCount = Math.round((players + stage) / (float) 2);
 
-
             final HashMap<UnitType, Integer> cruxUnits = new HashMap<>();
 
             if (!ClassChooseMenu.units.isEmpty()) {
@@ -162,7 +161,7 @@ public class CruxUnit {
                     }
                 });
                 if (cruxUnits.get(type) < cruxUnitsCount/ClassChooseMenu.units.keys().toSeq().size()) {
-                    spawnCrux();
+                    spawnCrux(type);
                 }
             });
         }
