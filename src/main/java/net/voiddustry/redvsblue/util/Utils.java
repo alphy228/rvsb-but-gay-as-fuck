@@ -42,7 +42,7 @@ public class Utils {
 
     public static void initRules() {
 
-        HashMap prices<Block, Integer> = Buildings.getPrices();
+        HashMap<Block, Integer> prices = Buildings.getPrices();
         for (Block block : Vars.content.blocks()) {
             if (!prices.containsKey(block)) {
                 state.rules.bannedBlocks.add(block);
