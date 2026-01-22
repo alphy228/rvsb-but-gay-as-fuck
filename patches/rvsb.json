@@ -827,8 +827,8 @@ block.blast-door.requirements: [dormant-cyst/30]
 block.combustion-generator.requirements: [dormant-cyst/9]
 block.rtg-generator.requirements: [dormant-cyst/30]
 block.laser-drill.requirements: [dormant-cyst/25]
-block.forceProjector.requirements: [dormant-cyst/35]
-block.powerNode.requirements: [dormant-cyst/3]
+block.force-projector.requirements: [dormant-cyst/35]
+block.power-node.requirements: [dormant-cyst/3]
 block.battery.requirements: [dormant-cyst/5]
 
 
