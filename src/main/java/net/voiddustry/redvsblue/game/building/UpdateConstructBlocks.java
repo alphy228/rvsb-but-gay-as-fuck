@@ -48,7 +48,7 @@ public class UpdateConstructBlocks implements Runnable {
               Tile tile = Vars.world.tile(bp.x,bp.y);
               Integer cost = prices.get(bp.block);
                            
-              if (u.getPlayer() != null && u.buildPlan().placeable(Team.blue)) {
+              if (u.getPlayer() != null && u.buildPlan().placeable(Team.blue) && u.dst(bp.x,bp.y)<Vars.buildingRange) {
                 Player player = u.getPlayer();
                 if (u.buildPlan().breaking == false) {
                   Log.info("Attempting to consume " + cost+ " ,from player " + player);
