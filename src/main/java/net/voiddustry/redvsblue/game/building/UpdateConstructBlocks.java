@@ -42,7 +42,7 @@ public class UpdateConstructBlocks implements Runnable {
       for (Unit u : Groups.unit) {
         if (u.buildPlan() != null) {
           if (u.buildPlan().worldContext) { 
-            //if (u.isBuilding) {
+            if (u.isBuilding) {
               BuildPlan bp = u.buildPlan();
 
               Tile tile = Vars.world.tile(bp.x,bp.y);
@@ -64,7 +64,7 @@ public class UpdateConstructBlocks implements Runnable {
                   }
                 }
               }
-            //}
+            }
           }
         }
       }
