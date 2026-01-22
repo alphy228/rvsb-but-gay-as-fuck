@@ -42,7 +42,7 @@ public class UpdateConstructBlocks implements Runnable {
         if (u.buildPlan() != null) {
           if (u.buildPlan().worldContext) { 
             if (u.isBuilding()) {
-              bp = u.buildPlan()
+              bp = u.buildPlan();
                 
               int cost = prices.get(bp.block);
                            
