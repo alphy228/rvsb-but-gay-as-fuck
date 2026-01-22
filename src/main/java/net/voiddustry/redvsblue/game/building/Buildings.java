@@ -16,7 +16,7 @@ public class Buildings {
         prices.put(Blocks.bridgeConveyor, 3);
         prices.put(Blocks.bridgeConduit, 3);
         prices.put(Blocks.unloader, 9);
-        prices.put(Blocks.powerNodeLarge, 3);
+        prices.put(Blocks.powerNodeLarge, 9);
         prices.put(Blocks.pneumaticDrill, 9);
         prices.put(Blocks.container, 3);
         prices.put(Blocks.berylliumWall, 2);
