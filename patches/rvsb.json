@@ -807,3 +807,27 @@ block.rtg-generator.itemDuration: 72000
 
 //statuses
 status.electrified.reloadMultiplier: 0.75
+
+//building system,match prices with Buildings.java
+item.dormant-cyst.localisedName: "points"
+
+block.bridge-conduit.requirements: [dormant-cyst/3]
+block.bridge-conveyor.requirements: [dormant-cyst/3]
+block.unloader.requirements: [dormant-cyst/9]
+block.power-node-large.requirements: [dormant-cyst/9]
+block.pneumatic-drill.requirements: [dormant-cyst/9]
+block.container.requirements: [dormant-cyst/3]
+block.beryllium-wall.requirements: [dormant-cyst/2]
+block.beryllium-wall.requirements: [dormant-cyst/2]
+block.beryllium-wall-large.requirements: [dormant-cyst/6]
+block.thorium-wall.requirements: [dormant-cyst/4]
+block.thorium-wall-large.requirements: [dormant-cyst/12]
+block.blast-door.requirements: [dormant-cyst/30]
+block.combustion-generator.requirements: [dormant-cyst/9]
+block.rtg-generator.requirements: [dormant-cyst/30]
+block.laserDrill.requirements: [dormant-cyst/25]
+block.forceProjector.requirements: [dormant-cyst/35]
+block.powerNode.requirements: [dormant-cyst/3]
+block.battery.requirements: [dormant-cyst/5]
+
+
