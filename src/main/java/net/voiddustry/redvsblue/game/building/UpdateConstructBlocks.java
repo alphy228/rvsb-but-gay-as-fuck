@@ -42,7 +42,7 @@ public class UpdateConstructBlocks implements Runnable {
         if (u.buildPlan() != null) {
           if (u.buildPlan().worldContext) { 
             if (u.isBuilding()) {
-              bp = u.buildPlan();
+              BuildPlan bp = u.buildPlan();
 
               Tile tile = Vars.world.tile(bp.x,bp.y);
               int cost = prices.get(bp.block);
@@ -51,11 +51,10 @@ public class UpdateConstructBlocks implements Runnable {
                 Player player = u.getPlayer();
                 if (buildspeed > 0f) {
                   Log.info("Attempting to consume " + cost+ " ,from player " + player);
-                  Unit builderUnit = buildingUnits.random();
                   if (RedVsBluePlugin.players.get(player.uuid()).getScore()>=cost && (!(cost == null))) {
                     RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
                     Log.info("finishing construction");
-                    Call.constructFinish(tile,bp.block,null,(byte)bp.rotation,player.team,bp.config);
+                    Call.constructFinish(tile,bp.block,null,(byte)bp.rotation,player.team(),bp.config);
                     tile.build.placed();
                   } else {
                     if (tile.block() instanceof ConstructBlock cb) {
