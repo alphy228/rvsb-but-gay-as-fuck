@@ -50,7 +50,7 @@ public class UpdateConstructBlocks implements Runnable {
                            
               if (u.getPlayer() != null && u.buildPlan().placeable(Team.blue) && u.dst(bp.x*8,bp.y*8)<Vars.buildingRange) {
                 Player player = u.getPlayer();
-                if (u.buildPlan().breaking == false) {
+                if (u.buildPlan().breaking == false && u.isBuilding()) {
                   Log.info("Attempting to consume " + cost + " ,from player " + player);
                   if (RedVsBluePlugin.players.get(player.uuid()).getScore()>=cost && (!(cost == null))) {
                     RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
