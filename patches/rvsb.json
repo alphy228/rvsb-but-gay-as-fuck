@@ -830,6 +830,8 @@ block.laser-drill.requirements: [dormant-cyst/25]
 block.force-projector.requirements: [dormant-cyst/35]
 block.power-node.requirements: [dormant-cyst/3]
 block.battery.requirements: [dormant-cyst/5]
+block.mechanical-pump.requirements: [dormant-cyst/4]
+
 
 //building for everyone
 unit.dagger.buildSpeed: 0.01
