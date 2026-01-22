@@ -27,6 +27,7 @@ public class Buildings {
         prices.put(Blocks.combustionGenerator, 9);
         prices.put(Blocks.rtgGenerator, 30);
         prices.put(Blocks.laserDrill, 25);
+        prices.put(Blocks.forceProjector, 35);
         prices.put(Blocks.powerNode, 3);
         prices.put(Blocks.battery, 5);
 
