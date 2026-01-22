@@ -20,7 +20,7 @@ public class Buildings {
         prices.put(Blocks.pneumaticDrill, 9);
         prices.put(Blocks.container, 3);
         prices.put(Blocks.berylliumWall, 2);
-        prices.put(Blocks.beryllumWallLarge, 6);
+        prices.put(Blocks.berylliumWallLarge, 6);
         prices.put(Blocks.thoriumWall, 4);
         prices.put(Blocks.thoriumWallLarge, 12);
         prices.put(Blocks.blastDoor, 30);
