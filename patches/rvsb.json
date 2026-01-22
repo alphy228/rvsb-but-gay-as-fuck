@@ -809,7 +809,9 @@ block.rtg-generator.itemDuration: 72000
 status.electrified.reloadMultiplier: 0.75
 
 //building system,match prices with Buildings.java
-item.dormant-cyst.localisedName: "points"
+item.dormant-cyst.name: "points"
+item.dormant-cyst.uiIcon: "unit-dagger-ui"
+item.dormant-cyst.fullIcon: "unit-dagger-preview"
 
 block.bridge-conduit.requirements: [dormant-cyst/3]
 block.item-bridge.requirements: [dormant-cyst/3]
@@ -824,7 +826,7 @@ block.thorium-wall-large.requirements: [dormant-cyst/12]
 block.blast-door.requirements: [dormant-cyst/30]
 block.combustion-generator.requirements: [dormant-cyst/9]
 block.rtg-generator.requirements: [dormant-cyst/30]
-block.laserDrill.requirements: [dormant-cyst/25]
+block.laser-drill.requirements: [dormant-cyst/25]
 block.forceProjector.requirements: [dormant-cyst/35]
 block.powerNode.requirements: [dormant-cyst/3]
 block.battery.requirements: [dormant-cyst/5]
