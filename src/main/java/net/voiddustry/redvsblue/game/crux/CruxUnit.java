@@ -145,7 +145,7 @@ public class CruxUnit {
             int players = Groups.player.size();
             int stage = RedVsBluePlugin.stage;
 
-            int cruxUnitsCount = Math.round((players + stage) / (float) 2);
+            int cruxUnitsCount = Math.round((players + stage) / (float) 3);
 
             final HashMap<UnitType, Integer> cruxUnits = new HashMap<>();
 
@@ -160,7 +160,7 @@ public class CruxUnit {
                             }
                         }
                     });
-                    if (cruxUnits.get(type) < cruxUnitsCount/ClassChooseMenu.units.keys().toSeq().size) {
+                    if (cruxUnits.get(type) < cruxUnitsCount/ClassChooseMenu.units.keys().toSeq().size+1) {
                         spawnCrux(type);
                     }
                 });
