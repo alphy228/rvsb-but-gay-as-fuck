@@ -13,7 +13,7 @@ public class Buildings {
     public static HashMap<Block, Integer> getPrices() {
         HashMap<Block, Integer> prices = new HashMap<>();
 
-        prices.put(Blocks.bridgeConveyor, 3);
+        prices.put(Blocks.itemBridge, 3);
         prices.put(Blocks.bridgeConduit, 3);
         prices.put(Blocks.unloader, 9);
         prices.put(Blocks.powerNodeLarge, 9);
