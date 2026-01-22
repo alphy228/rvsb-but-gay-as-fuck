@@ -331,7 +331,6 @@ public class RedVsBluePlugin extends Plugin {
             ArmorWorkbench.clearWorkbenches();
             Recycler.clearRecyclers();
             SuppressorTower.clearTowers();
-            BuildBlock.clear();
             Boss.bosses.clear();
 
             Vars.state.rules.bannedBlocks.clear();
