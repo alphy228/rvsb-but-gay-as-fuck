@@ -812,12 +812,11 @@ status.electrified.reloadMultiplier: 0.75
 item.dormant-cyst.localisedName: "points"
 
 block.bridge-conduit.requirements: [dormant-cyst/3]
-block.bridge-conveyor.requirements: [dormant-cyst/3]
+block.item-bridge.requirements: [dormant-cyst/3]
 block.unloader.requirements: [dormant-cyst/9]
 block.power-node-large.requirements: [dormant-cyst/9]
 block.pneumatic-drill.requirements: [dormant-cyst/9]
 block.container.requirements: [dormant-cyst/3]
-block.beryllium-wall.requirements: [dormant-cyst/2]
 block.beryllium-wall.requirements: [dormant-cyst/2]
 block.beryllium-wall-large.requirements: [dormant-cyst/6]
 block.thorium-wall.requirements: [dormant-cyst/4]
