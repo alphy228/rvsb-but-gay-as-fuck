@@ -51,8 +51,8 @@ public class Utils {
 
         state.rules.buildSpeedMultiplier = 0;
 
-        rules.env = Vars.defaultEnv;
-        rules.planet = Planets.sun;
+        state.rules.env = Vars.defaultEnv;
+        state.rules.planet = Planets.sun;
 
         state.rules.waveSpacing = Integer.MAX_VALUE;
         state.rules.waves = true;
