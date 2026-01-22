@@ -43,10 +43,11 @@ public class UpdateConstructBlocks implements Runnable {
           if (u.buildPlan().worldContext) { 
             if (u.isBuilding()) {
               bp = u.buildPlan();
-                
+
+              Tile tile = Vars.world.tile(bp.x,bp.y);
               int cost = prices.get(bp.block);
                            
-              if (u.getPlayer() != null && u.buildPlan().breaking == false) {
+              if (u.getPlayer() != null && u.buildPlan().breaking == false %% u.buildPlan().placeable()) {
                 Player player = u.getPlayer();
                 if (buildspeed > 0f) {
                   Log.info("Attempting to consume " + cost+ " ,from player " + player);
@@ -54,11 +55,12 @@ public class UpdateConstructBlocks implements Runnable {
                   if (RedVsBluePlugin.players.get(player.uuid()).getScore()>=cost && (!(cost == null))) {
                     RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
                     Log.info("finishing construction");
-                    Tile tile = Vars.world.tile(bp.x,bp.y);
                     Call.constructFinish(tile,bp.block,null,(byte)bp.rotation,player.team,bp.config);
                     tile.build.placed();
                   } else {
-                    Vars.world.tile((int)b.x,(int)b.y).setNet(Blocks.air,Team.derelict,0);
+                    if (tile.block() instanceof ConstructBlock cb) {
+                      tile.setNet(Blocks.air,Team.derelict,0);
+                    }
                   }
                 }
               }
@@ -68,7 +70,7 @@ public class UpdateConstructBlocks implements Runnable {
       }
     } catch (Exception e) {
       Log.info("goofy ahh exception in the building system");
-      Log.info(e.toString());
+      e.printStackTrace();
     }
   }
 }
