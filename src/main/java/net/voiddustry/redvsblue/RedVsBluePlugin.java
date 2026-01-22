@@ -336,8 +336,7 @@ public class RedVsBluePlugin extends Plugin {
             BuildBlock.clear();
             Boss.bosses.clear();
 
-            
-
+            Vars.state.rules.bannedBlocks.clear();
             initRules();
 
             StartingMenu.canOpenMenu = true;
