@@ -160,11 +160,12 @@ public class CruxUnit {
                                 minDist = Math.min(minDist, u.dst2(t));
                             }
                             
-                            
-                            if (cruxUnits.get(type) == null && minDist<100) {
-                                cruxUnits.put(type, 0);
-                            } else {
-                                cruxUnits.put(type, cruxUnits.get(type)+1);
+                            if (minDist<100) {
+                                if (cruxUnits.get(type) == null) {
+                                    cruxUnits.put(type, 0);
+                                } else {
+                                    cruxUnits.put(type, cruxUnits.get(type)+1);
+                                }
                             }
                         }
                     });
