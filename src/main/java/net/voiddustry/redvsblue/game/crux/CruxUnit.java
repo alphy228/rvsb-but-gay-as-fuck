@@ -17,6 +17,7 @@ import net.voiddustry.redvsblue.util.Utils;
 
 import java.util.Random;
 import java.util.HashMap;
+import java.lang.Math;
 
 public class CruxUnit {
     public static void callSpawn(Player player) {
@@ -153,7 +154,14 @@ public class CruxUnit {
                 ClassChooseMenu.units.keys().toSeq().each(type -> {
                     Groups.unit.each(u -> {
                         if (u.team == Team.crux && u.type == type) {
-                            if (cruxUnits.get(type) == null) {
+
+                            int minDist = 1000000;
+                            for (Tile t : RedVsBluePlugin.redSpawns) {
+                                minDist = Math.min(minDist, u.dst2(t));
+                            }
+                            
+                            
+                            if (cruxUnits.get(type) == null && minDist<100) {
                                 cruxUnits.put(type, 0);
                             } else {
                                 cruxUnits.put(type, cruxUnits.get(type)+1);
