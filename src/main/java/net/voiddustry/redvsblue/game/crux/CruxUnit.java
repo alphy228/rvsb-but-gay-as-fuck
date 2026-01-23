@@ -157,10 +157,10 @@ public class CruxUnit {
 
                             float minDist = 1000000;
                             for (Tile t : RedVsBluePlugin.redSpawns) {
-                                minDist = Math.min(minDist, Math.hypot(u.x-t.x*8,y.y-t.y*8));
+                                minDist = Math.min(minDist, u.dst2(t));
                             }
-                            
-                            if (minDist<100) {
+                        
+                            if (minDist<800) {
                                 if (cruxUnits.get(type) == null) {
                                     cruxUnits.put(type, 0);
                                 } else {
