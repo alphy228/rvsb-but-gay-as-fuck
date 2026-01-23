@@ -155,7 +155,7 @@ public class CruxUnit {
                     Groups.unit.each(u -> {
                         if (u.team == Team.crux && u.type == type) {
 
-                            float minDist = 1000000;
+                            double minDist = 1000000;
                             for (Tile t : RedVsBluePlugin.redSpawns) {
                                 minDist = Math.min(minDist, Math.hypot(u.x-t.x*8,u.y-t.y*8));
                             }
