@@ -146,7 +146,7 @@ public class CruxUnit {
             int players = Groups.player.size();
             int stage = RedVsBluePlugin.stage;
 
-            int cruxUnitsCount = Math.round((players + stage) / (float) 3);
+            int cruxUnitsCount = Math.round((players + stage) / (float) 4);
 
             final HashMap<UnitType, Integer> cruxUnits = new HashMap<>();
 
