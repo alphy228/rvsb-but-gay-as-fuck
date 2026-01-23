@@ -160,7 +160,7 @@ public class CruxUnit {
                                 minDist = Math.min(minDist, Math.hypot(u.x-t.x*8,u.y-t.y*8));
                             }
                         
-                            if (minDist<1000) {
+                            if (minDist<800) {
                                 if (cruxUnits.get(type) == null) {
                                     cruxUnits.put(type, 0);
                                 } else {
