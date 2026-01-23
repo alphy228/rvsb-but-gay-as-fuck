@@ -40,7 +40,7 @@ public class UpdateConstructBlocks implements Runnable {
     try {
       
       for (Unit u : Groups.unit) {
-        if (u.buildPlan() != null) {
+        if (u.team == Team.blue && u.buildPlan() != null) {
           if (u.buildPlan().worldContext) { 
             if (u.isBuilding()) {
               BuildPlan bp = u.buildPlan();
