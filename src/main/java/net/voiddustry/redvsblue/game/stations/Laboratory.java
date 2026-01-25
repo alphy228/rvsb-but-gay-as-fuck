@@ -148,7 +148,7 @@ public class Laboratory {
             multiplier = multiplier+1+((float)Math.pow(2,stage-RedVsBluePlugin.stage)/4);
         }
         BigDecimal bd = new BigDecimal(String.valueOf(multiplier));
-        bd = bd.setScale(3);
+        bd = bd.setScale(3, RoundingMode.HALF_UP);
         multiplier = bd.floatValue();
         return multiplier;
     }
