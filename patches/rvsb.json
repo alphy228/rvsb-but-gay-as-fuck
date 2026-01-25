@@ -831,6 +831,7 @@ block.force-projector.requirements: [dormant-cyst/35]
 block.power-node.requirements: [dormant-cyst/3]
 block.battery.requirements: [dormant-cyst/5]
 block.mechanical-pump.requirements: [dormant-cyst/4]
+block.segment.requirements: [dormant-cyst/80]
 
 
 //building for everyone
