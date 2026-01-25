@@ -366,6 +366,9 @@ public class RedVsBluePlugin extends Plugin {
             Vars.state.rules.canGameOver = false;
             Vars.state.rules.unitCap = 32;
 
+            //again lol
+            initRules();
+
             Building core = Vars.state.teams.cores(Team.blue).first();
 
             redSpawns.clear();
