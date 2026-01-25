@@ -145,10 +145,10 @@ public class Laboratory {
         } else if (RedVsBluePlugin.stage > stage) {
             multiplier = multiplier+0.75f;
         } else {
-            multiplier = multiplier+((float)Math.pow(2,(stage-RedVsBluePlugin.stage))/2);
+            multiplier = multiplier+(((float)Math.pow(2,(stage-RedVsBluePlugin.stage)))/2);
         }
         BigDecimal bd = new BigDecimal(String.valueOf(multiplier));
-        bd = bd.setScale(3, RoundingMode.HALF_UP);
+        bd = bd.setScale(3, ROUND_HALF_UP);
         multiplier = bd.floatValue();
         return multiplier;
     }
