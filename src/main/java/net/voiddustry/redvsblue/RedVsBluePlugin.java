@@ -333,7 +333,6 @@ public class RedVsBluePlugin extends Plugin {
             SuppressorTower.clearTowers();
             Boss.bosses.clear();
 
-            Vars.state.rules.bannedBlocks.clear();
             initRules();
 
             StartingMenu.canOpenMenu = true;
@@ -366,9 +365,12 @@ public class RedVsBluePlugin extends Plugin {
             Vars.state.rules.canGameOver = false;
             Vars.state.rules.unitCap = 32;
 
-            //again lol
-            Vars.state.rules.bannedBlocks.clear();
-            initRules();
+            Timer.schedule(() -> {
+                UpdateConstructBlocks updateConstructBlocks = new UpdateConstructBlocks();
+                Timer.schedule(updateConstructBlocks, 10f, 0.2f);
+                Vars.state.rules.bannedBlocks.clear();
+                initRules();
+            }, 5);
 
             Building core = Vars.state.teams.cores(Team.blue).first();
 
@@ -393,9 +395,6 @@ public class RedVsBluePlugin extends Plugin {
 
             Timer timer = new Timer();
             timer.scheduleTask(task, 300, 300);
-            
-            UpdateConstructBlocks updateConstructBlocks = new UpdateConstructBlocks();
-            Timer.schedule(updateConstructBlocks, 10f, 0.2f);
 
 
             Groups.player.each(player -> {
