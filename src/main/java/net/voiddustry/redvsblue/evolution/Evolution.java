@@ -24,10 +24,10 @@ public enum Evolution {
     ZENITH(UnitTypes.zenith, 3, 70*multp, new String[] { "minke" }, 2),
     RETUSA(UnitTypes.retusa, 3, 15*multp, new String[] { "oxynoe" }, 3),
 
-    FORTRESS(UnitTypes.fortress, 4, 48*multp, new String[] { "locus" }, 3),
+    FORTRESS(UnitTypes.fortress, 4, 48*multp, new String[] { "locus" }, 2),
     VELA(UnitTypes.vela, 4, 170*multp, new String[] { "corvus" }, 6),
     SPIROCT(UnitTypes.spiroct, 4, 95*multp, new String[] { "toxopid" }, 4),
-    MINKE(UnitTypes.minke, 4, 90*multp, new String[] { "avert" }, 3),
+    MINKE(UnitTypes.minke, 4, 90*multp, new String[] { "avert" }, 2),
     OXYNOE(UnitTypes.oxynoe, 4, 35*multp, new String[] { "mega" }, 3),
 
     LOCUS(UnitTypes.locus, 5, 55*multp, new String[] { "precept" }, 4),
