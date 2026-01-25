@@ -16,6 +16,8 @@ import net.voiddustry.redvsblue.RedVsBluePlugin;
 import net.voiddustry.redvsblue.util.Utils;
 
 import java.util.Random;
+import java.util.HashMap;
+import java.lang.Math;
 
 public class CruxUnit {
     public static void callSpawn(Player player) {
@@ -73,6 +75,10 @@ public class CruxUnit {
         if (!ClassChooseMenu.units.isEmpty()) {
             unitType = ClassChooseMenu.units.keys().toSeq().get(Utils.getRandomInt(0, ClassChooseMenu.units.size)); //Utils.getRandomInt(0, ClassChooseMenu.units.size)
         }
+        spawnCrux(unitType);
+    }
+
+    private static void spawnCrux(UnitType unitType) {
         if (Utils.gameRun) {
             Tile cruxSpawn = RedVsBluePlugin.redSpawns.random();
 
@@ -142,25 +148,31 @@ public class CruxUnit {
 
             int cruxUnitsCount = Math.round((players + stage) / (float) 3);
 
-            final int[] cruxUnits = {0};
-            final int[] cruxPlayersWithUnits = {0};
+            final HashMap<UnitType, Integer> cruxUnits = new HashMap<>();
 
-            Groups.player.each(p -> {
-                if (!(p.unit() == null)) {
-                    if (p.unit().team == Team.crux) {
-                        cruxPlayersWithUnits[0]++;
+            if (!ClassChooseMenu.units.isEmpty()) {
+                ClassChooseMenu.units.keys().toSeq().each(type -> {
+                    Groups.unit.each(u -> {
+                        if (u.team == Team.crux && u.type == type) {
+
+                            double minDist = 1000000;
+                            for (Tile t : RedVsBluePlugin.redSpawns) {
+                                minDist = Math.min(minDist, Math.hypot(u.x-t.x*8,u.y-t.y*8));
+                            }
+                        
+                            if (minDist<800) {
+                                if (cruxUnits.get(type) == null) {
+                                    cruxUnits.put(type, 0);
+                                } else {
+                                    cruxUnits.put(type, cruxUnits.get(type)+1);
+                                }
+                            }
+                        }
+                    });
+                    if (cruxUnits.get(type) == null || cruxUnits.get(type) < cruxUnitsCount/ClassChooseMenu.units.keys().toSeq().size) {
+                        spawnCrux(type);
                     }
-                }
-            });
-
-            Groups.unit.each(u -> {
-                if (u.team == Team.crux) {
-                    cruxUnits[0]++;
-                }
-            });
-
-            if (cruxUnitsCount > (cruxUnits[0]-cruxPlayersWithUnits[0])) {
-                spawnCrux();
+                });
             }
         }
     }

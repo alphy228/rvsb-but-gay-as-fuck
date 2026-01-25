@@ -41,7 +41,7 @@ public class Laboratory {
 
         PlayerData playerData = players.get(player.uuid());
 
-        if (playerData.getScore() >= evolutionOption.cost*getMultiplier(evolutionOption, player)) {
+        if (playerData.getScore() >= ((int)(evolutionOption.cost*getMultiplier(evolutionOption, player)))) {
             if (player.unit() != null && (player.tileOn().block() == Blocks.air || evolutionOption.unitType.flying==true || evolutionOption.unitType.canBoost == true || evolutionOption.unitType.groundLayer==Layer.legUnit)) {
                 Unit unit = evolutionOption.unitType.spawn(Team.blue, player.x(), player.y());
                 unit.health = unit.type.health/2;
@@ -137,7 +137,7 @@ public class Laboratory {
         int stage = evo.stage;
         float multiplier = 0;
         if (timeSinceLastEvo<180) {
-            multiplier = (float)((180-timeSinceLastEvo)/360);
+            multiplier = (float)((180-timeSinceLastEvo)/720);
             multiplier = multiplier + (((float)Math.sqrt(evo.cost))/evo.cost)*multiplier;
         }
         if (RedVsBluePlugin.stage == stage) {
@@ -145,7 +145,7 @@ public class Laboratory {
         } else if (RedVsBluePlugin.stage > stage) {
             multiplier = multiplier+0.75f;
         } else {
-            multiplier = multiplier+(float)Math.pow(2,(stage-RedVsBluePlugin.stage));
+            multiplier = multiplier+((float)Math.pow(2,(stage-RedVsBluePlugin.stage))/2);
         }
         BigDecimal bd = new BigDecimal(String.valueOf(multiplier));
         bd = bd.setScale(3, RoundingMode.HALF_UP);

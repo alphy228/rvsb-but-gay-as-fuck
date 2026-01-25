@@ -33,8 +33,7 @@ import net.voiddustry.redvsblue.evolution.Evolutions;
 import net.voiddustry.redvsblue.game.crux.*;
 import net.voiddustry.redvsblue.game.stations.StationsMenu;
 import net.voiddustry.redvsblue.game.stations.Laboratory;
-import net.voiddustry.redvsblue.game.building.BuildBlock;
-import net.voiddustry.redvsblue.game.building.BuildMenu;
+import net.voiddustry.redvsblue.game.building.UpdateConstructBlocks;
 import net.voiddustry.redvsblue.game.starting_menu.StartingMenu;
 import net.voiddustry.redvsblue.game.stations.*;
 import net.voiddustry.redvsblue.game.units.SpecialUnits;
@@ -143,6 +142,7 @@ public class RedVsBluePlugin extends Plugin {
         SpawnEffect.initEffect();
         Boss.forEachBoss();
         Premium.init();
+        
 
         for (UnitType unit : Vars.content.units()) {
             if (unit == UnitTypes.crawler) {
@@ -331,11 +331,9 @@ public class RedVsBluePlugin extends Plugin {
             ArmorWorkbench.clearWorkbenches();
             Recycler.clearRecyclers();
             SuppressorTower.clearTowers();
-            BuildBlock.clear();
             Boss.bosses.clear();
 
-            
-
+            Vars.state.rules.bannedBlocks.clear();
             initRules();
 
             StartingMenu.canOpenMenu = true;
@@ -391,6 +389,10 @@ public class RedVsBluePlugin extends Plugin {
 
             Timer timer = new Timer();
             timer.scheduleTask(task, 300, 300);
+            
+            UpdateConstructBlocks updateConstructBlocks = new UpdateConstructBlocks();
+            Timer.schedule(updateConstructBlocks, 10f, 0.2f);
+
 
             Groups.player.each(player -> {
                 if (player != null) {
@@ -521,11 +523,11 @@ public class RedVsBluePlugin extends Plugin {
 //            Log.info(StartingMenu.canOpenMenu);
 //            StartingMenu.openMenu(player, 0);
 //        });
-        handler.<Player>register("b", "Open Building menu", (args, player) -> {
-            if (playing && player.team() == Team.blue) {
-                BuildMenu.openMenu(player);
-            }
-        });
+       // handler.<Player>register("b", "Open Building menu", (args, player) -> {
+          //  if (playing && player.team() == Team.blue) {
+              //  BuildMenu.openMenu(player);
+            //}
+       // });
 
         handler.<Player>register("bc", "Boss select menu", (args, player) -> {
             if (playing) {

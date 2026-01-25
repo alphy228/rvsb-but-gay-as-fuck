@@ -808,6 +808,91 @@ block.rtg-generator.itemDuration: 72000
 //statuses
 status.electrified.reloadMultiplier: 0.75
 
-//building system
-block.conveyor.requirements: []
-block.thorium-wall-large.requirements: []
+//building system,match prices with Buildings.java
+item.dormant-cyst.localizedName: " Points"
+item.dormant-cyst.uiIcon: "unit-dagger-ui"
+item.dormant-cyst.fullIcon: "unit-dagger-preview"
+
+block.bridge-conduit.requirements: [dormant-cyst/3]
+block.bridge-conveyor.requirements: [dormant-cyst/3]
+block.unloader.requirements: [dormant-cyst/9]
+block.power-node-large.requirements: [dormant-cyst/9]
+block.pneumatic-drill.requirements: [dormant-cyst/9]
+block.container.requirements: [dormant-cyst/3]
+block.beryllium-wall.requirements: [dormant-cyst/2]
+block.beryllium-wall-large.requirements: [dormant-cyst/6]
+block.thorium-wall.requirements: [dormant-cyst/4]
+block.thorium-wall-large.requirements: [dormant-cyst/12]
+block.blast-door.requirements: [dormant-cyst/30]
+block.combustion-generator.requirements: [dormant-cyst/9]
+block.rtg-generator.requirements: [dormant-cyst/30]
+block.laser-drill.requirements: [dormant-cyst/25]
+block.force-projector.requirements: [dormant-cyst/35]
+block.power-node.requirements: [dormant-cyst/3]
+block.battery.requirements: [dormant-cyst/5]
+block.mechanical-pump.requirements: [dormant-cyst/4]
+block.segment.requirements: [dormant-cyst/80]
+
+
+//building for everyone
+unit.dagger.buildSpeed: 0.01
+unit.mace.buildSpeed: 0.01
+unit.fortress.buildSpeed: 0.01
+unit.scepter.buildSpeed: 0.01
+unit.reign.buildSpeed: 0.01
+
+unit.flare.buildSpeed: 0.01
+unit.horizon.buildSpeed: 0.01
+unit.zenith.buildSpeed: 0.01
+unit.antumbra.buildSpeed: 0.01
+unit.eclipse.buildSpeed: 0.01
+
+unit.nova.buildSpeed: 0.01
+unit.pulsar.buildSpeed: 0.01
+unit.quasar.buildSpeed: 0.01
+unit.vela.buildSpeed: 0.01
+unit.corvus.buildSpeed: 0.01
+
+unit.crawler.buildSpeed: 0.01
+unit.atrax.buildSpeed: 0.01
+unit.spiroct.buildSpeed: 0.01
+unit.arkyid.buildSpeed: 0.01
+unit.toxopid.buildSpeed: 0.01
+
+unit.mono.buildSpeed: 0.01
+unit.poly.buildSpeed: 0.01
+unit.mega.buildSpeed: 0.01
+unit.quad.buildSpeed: 0.01
+unit.oct.buildSpeed: 0.01
+
+unit.risso.buildSpeed: 0.01
+unit.minke.buildSpeed: 0.01
+unit.bryde.buildSpeed: 0.01
+unit.sei.buildSpeed: 0.01
+unit.omura.buildSpeed: 0.01
+
+unit.retusa.buildSpeed: 0.01
+unit.oxynoe.buildSpeed: 0.01
+unit.cyerce.buildSpeed: 0.01
+unit.aegires.buildSpeed: 0.01
+unit.navanax.buildSpeed: 0.01
+
+unit.stell.buildSpeed: 0.01
+unit.locus.buildSpeed: 0.01
+unit.precept.buildSpeed: 0.01
+unit.vanquish.buildSpeed: 0.01
+unit.conquer.buildSpeed: 0.01
+
+unit.merui.buildSpeed: 0.01
+unit.cleroi.buildSpeed: 0.01
+unit.anthicus.buildSpeed: 0.01
+unit.tecta.buildSpeed: 0.01
+unit.collaris.buildSpeed: 0.01
+
+unit.elude.buildSpeed: 0.01
+unit.avert.buildSpeed: 0.01
+unit.obviate.buildSpeed: 0.01
+unit.quell.buildSpeed: 0.01
+unit.disrupt.buildSpeed: 0.01
+
+
