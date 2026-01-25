@@ -34,7 +34,7 @@ public enum Evolution {
     CORVUS(UnitTypes.corvus, 5, 300*multp, new String[] { "aegires" }, 7),
     MEGA(UnitTypes.mega, 5, 100*multp, new String[] { "cyerce" }, 4),
 
-    PRECEPT(UnitTypes.precept, 6, 60*multp, new String[] { "scepter" }, 4),
+    PRECEPT(UnitTypes.precept, 6, 60*multp, new String[] { "scepter" }, 5),
     AEGIRES(UnitTypes.aegires, 6, 450*multp, new String[] { "navanax" }, 8),
     AVERT(UnitTypes.avert, 6, 27*multp, new String[] { "bryde" , "obviate" }, 4),
     CYERCE(UnitTypes.cyerce, 6, 150*multp, new String[] { "quad" }, 5),
