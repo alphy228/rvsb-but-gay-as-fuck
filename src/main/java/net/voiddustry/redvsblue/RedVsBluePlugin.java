@@ -367,6 +367,7 @@ public class RedVsBluePlugin extends Plugin {
             Vars.state.rules.unitCap = 32;
 
             //again lol
+            Vars.state.rules.bannedBlocks.clear();
             initRules();
 
             Building core = Vars.state.teams.cores(Team.blue).first();
