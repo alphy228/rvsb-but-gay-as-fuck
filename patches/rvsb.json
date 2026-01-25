@@ -814,24 +814,61 @@ item.dormant-cyst.uiIcon: "unit-dagger-ui"
 item.dormant-cyst.fullIcon: "unit-dagger-preview"
 
 block.bridge-conduit.requirements: [dormant-cyst/3]
+block.bridge-conduit.category: effect
+
 block.bridge-conveyor.requirements: [dormant-cyst/3]
+block.bridge-conveyor.category: effect
+
 block.unloader.requirements: [dormant-cyst/9]
+block.unloader.category: effect
+
 block.power-node-large.requirements: [dormant-cyst/9]
+block.power-node-large.category: effect
+
 block.pneumatic-drill.requirements: [dormant-cyst/9]
+block.pneumatic-drill.category: effect
+
 block.container.requirements: [dormant-cyst/3]
+block.container.category: effect
+
 block.beryllium-wall.requirements: [dormant-cyst/2]
+block.beryllium-wall.category: effect
+
 block.beryllium-wall-large.requirements: [dormant-cyst/6]
+block.beryllium-wall-large.category: effect
+
 block.thorium-wall.requirements: [dormant-cyst/4]
+block.thorium-wall.category: effect
+
 block.thorium-wall-large.requirements: [dormant-cyst/12]
+block.thorium-wall-large.category: effect
+
 block.blast-door.requirements: [dormant-cyst/30]
+block.blast-door.category: effect
+
 block.combustion-generator.requirements: [dormant-cyst/9]
+block.combustion-generator.category: effect
+
 block.rtg-generator.requirements: [dormant-cyst/30]
+block.rtg-generator.category: effect
+
 block.laser-drill.requirements: [dormant-cyst/25]
+block.laser-drill.category: effect
+
 block.force-projector.requirements: [dormant-cyst/35]
+block.force-projector.category: effect
+
 block.power-node.requirements: [dormant-cyst/3]
+block.power-node.category: effect
+
 block.battery.requirements: [dormant-cyst/5]
+block.battery.category: effect
+
 block.mechanical-pump.requirements: [dormant-cyst/4]
+block.mechanical-pump.category: effect
+
 block.segment.requirements: [dormant-cyst/80]
+block.segment.category: effect
 
 
 //building for everyone
