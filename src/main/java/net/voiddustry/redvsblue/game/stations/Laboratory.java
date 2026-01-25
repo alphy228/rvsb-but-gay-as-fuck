@@ -145,7 +145,7 @@ public class Laboratory {
         } else if (RedVsBluePlugin.stage > stage) {
             multiplier = multiplier+0.75f;
         } else {
-            multiplier = multiplier+1+((float)Math.pow(2,stage-RedVsBluePlugin.stage)/2);
+            multiplier = multiplier+1+((float)Math.pow(2,stage-RedVsBluePlugin.stage)/4);
         }
         BigDecimal bd = new BigDecimal(String.valueOf(multiplier));
         bd = bd.setScale(3);
