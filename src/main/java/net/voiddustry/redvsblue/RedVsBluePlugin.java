@@ -365,9 +365,6 @@ public class RedVsBluePlugin extends Plugin {
 
             players.clear();
 
-            //again
-            initRules();
-
             Vars.state.rules.canGameOver = false;
             Vars.state.rules.unitCap = 32;
 
