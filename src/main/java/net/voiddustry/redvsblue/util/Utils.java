@@ -5,6 +5,7 @@ import arc.graphics.Color;
 import arc.struct.Seq;
 import arc.util.Time;
 import arc.util.Timer;
+import arc.util.serialization.*;
 import mindustry.Vars;
 import mindustry.content.*;
 import mindustry.entities.bullet.BasicBulletType;
@@ -38,14 +39,24 @@ public class Utils {
     public static boolean hardcore;
     public static int money_per_min = 3;
 
-    public static void initRules() {
-
+    public static void initGlobalRules() {
+        
         HashMap<Block, Integer> prices = Buildings.getPrices();
         for (Block block : Vars.content.blocks()) {
             if (!prices.containsKey(block)) {
                 state.rules.bannedBlocks.add(block);
             }
         }
+
+        Core.settings.defaults(
+            "bans", "",
+            "admins", "",
+            "shufflemode", "custom",
+            "globalrules", "{reactorExplosions: false, logicUnitBuild: false, logicUnitDeconstruct: false, bannedBlocks: " + JsonIO.json.toJson(Vars.state.rules.bannedBlocks) + "}"
+        );
+    }
+
+    public static void initRules() {
 
         state.rules.buildSpeedMultiplier = 0;
 
