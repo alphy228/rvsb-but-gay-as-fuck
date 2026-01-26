@@ -41,8 +41,8 @@ public class Utils {
     public static boolean hardcore;
     public static int money_per_min = 3;
 
-    public static void initGlobalRules() {
-        
+    public static void initRules() {
+
         HashMap<Block, Integer> prices = Buildings.getPrices();
         for (Block block : Vars.content.blocks()) {
             if (!prices.containsKey(block)) {
@@ -50,15 +50,6 @@ public class Utils {
             }
         }
 
-        Core.settings.defaults(
-            "bans", "",
-            "admins", "",
-            "shufflemode", "custom",
-            "globalrules", "{reactorExplosions: false, logicUnitBuild: false, logicUnitDeconstruct: false, bannedBlocks: " + JsonIO.json.toJson(Vars.state.rules.bannedBlocks) + "}"
-        );
-    }
-
-    public static void initRules() {
 
         state.rules.buildSpeedMultiplier = 0;
 
