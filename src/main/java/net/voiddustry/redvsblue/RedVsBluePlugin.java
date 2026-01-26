@@ -135,7 +135,7 @@ public class RedVsBluePlugin extends Plugin {
 
         Log.info("&gRedVsBlue Plugin &rStarted!");
 
-        Utils.initGlobalRules();
+
         Utils.initRules();
         Utils.initTimers();
         Utils.loadContent();
