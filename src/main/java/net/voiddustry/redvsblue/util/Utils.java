@@ -12,6 +12,7 @@ import mindustry.content.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.game.Team;
 import mindustry.gen.*;
+import mindustry.io.JsonIO;
 
 import mindustry.type.UnitType;
 import java.util.Locale;
