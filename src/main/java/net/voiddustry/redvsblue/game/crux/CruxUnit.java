@@ -25,7 +25,7 @@ public class CruxUnit {
 
     private final HashMap<Unit, Long> spawnTimes = new HashMap<>();
 
-    public static void addEvent {
+    public static void addEvent() {
         Events.on(EventType.UnitDestroyEvent.class, event -> {
                 spawnTimes.remove(event.unit);
         });
