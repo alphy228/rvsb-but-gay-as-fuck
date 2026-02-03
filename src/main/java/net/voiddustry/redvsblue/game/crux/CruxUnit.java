@@ -1,12 +1,13 @@
 package net.voiddustry.redvsblue.game.crux;
 
 import arc.util.Timer;
+import arc.util.Events;
 import mindustry.Vars;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.content.UnitTypes;
 import mindustry.game.Team;
-import mindustry.game.EventType.*;
+import mindustry.game.EventType;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
@@ -24,7 +25,7 @@ public class CruxUnit {
 
     private final HashMap<Unit, Long> spawnTimes = new HashMap<>();
 
-    Events.on(UnitDestroyEvent.class, event -> {
+    Events.on(EventType.UnitDestroyEvent.class, event -> {
             spawnTimes.remove(event.unit);
     });
     
