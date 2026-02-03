@@ -168,7 +168,7 @@ public class CruxUnit {
                     Groups.unit.each(u -> {
                         if (u.team == Team.crux && u.type == type) {
                         
-                            if (spawnTimes.get(u)-System.currentTimeMillis()<30000) {
+                            if ((!(spawnTimes.get(u) == null)) && System.currentTimeMillis()-spawnTimes.get(u)<20000) {
                                 if (cruxUnits.get(type) == null) {
                                     cruxUnits.put(type, 0);
                                 } else {
