@@ -25,9 +25,11 @@ public class CruxUnit {
 
     private final HashMap<Unit, Long> spawnTimes = new HashMap<>();
 
-    Events.on(EventType.UnitDestroyEvent.class, event -> {
-            spawnTimes.remove(event.unit);
-    });
+    public static void addEvent {
+        Events.on(EventType.UnitDestroyEvent.class, event -> {
+                spawnTimes.remove(event.unit);
+        });
+    }
     
     public static void callSpawn(Player player) {
         
