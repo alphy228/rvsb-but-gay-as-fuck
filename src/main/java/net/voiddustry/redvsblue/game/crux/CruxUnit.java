@@ -1,7 +1,7 @@
 package net.voiddustry.redvsblue.game.crux;
 
 import arc.util.Timer;
-import arc.util.Events;
+import arc.Events;
 import mindustry.Vars;
 import mindustry.content.Items;
 import mindustry.content.StatusEffects;
