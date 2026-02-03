@@ -23,7 +23,7 @@ import java.lang.Math;
 
 public class CruxUnit {
 
-    private final HashMap<Unit, Long> spawnTimes = new HashMap<>();
+    private static final HashMap<Unit, Long> spawnTimes = new HashMap<>();
 
     public static void addEvent() {
         Events.on(EventType.UnitDestroyEvent.class, event -> {
