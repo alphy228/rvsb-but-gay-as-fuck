@@ -606,7 +606,7 @@ public class RedVsBluePlugin extends Plugin {
         });
 
         handler.<Player>register("blue", "Makes you blue, works only before stage 3", (args, player) -> {
-            if (stage <= 3 && playing && player.team() != Team.blue && players.get(player.uuid()).getLastRedeemTime()+90<Instant.now().getEpochSecond()) {
+            if (stage <= 3 && playing && player.team() != Team.blue && players.get(player.uuid()).getLastRedeemTime()+45<Instant.now().getEpochSecond()) {
                 Unit oldUnit = player.unit();
 
                 if (player.unit() != null) oldUnit.kill();
