@@ -143,6 +143,7 @@ public class RedVsBluePlugin extends Plugin {
         SpawnEffect.initEffect();
         Boss.forEachBoss();
         Premium.init();
+        CruxUnit.addEvent();
         
 
         for (UnitType unit : Vars.content.units()) {
