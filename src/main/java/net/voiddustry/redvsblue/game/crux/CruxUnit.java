@@ -6,6 +6,7 @@ import mindustry.content.Items;
 import mindustry.content.StatusEffects;
 import mindustry.content.UnitTypes;
 import mindustry.game.Team;
+import mindustry.game.EventType.*;
 import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
@@ -20,6 +21,13 @@ import java.util.HashMap;
 import java.lang.Math;
 
 public class CruxUnit {
+
+    private final HashMap<Unit, Long> spawnTimes = new HashMap<>();
+
+    Events.on(UnitDestroyEvent.class, event -> {
+            spawnTimes.remove(event.unit);
+    });
+    
     public static void callSpawn(Player player) {
         
         UnitType type = ClassChooseMenu.selectedUnit.get(player.uuid());
@@ -111,6 +119,7 @@ public class CruxUnit {
             }
             
             Unit unit = unitType.spawn(Team.crux, cruxSpawn);
+            spawnTimes.put(unit, System.currentTimeMillis());
 
             //unit.apply(Vars.content.statusEffect("superShielded"), 120f);
             unit.apply(Vars.content.statusEffect("shielded"), 300f);
@@ -141,6 +150,7 @@ public class CruxUnit {
         }
     };
 
+
     public static void checkUnitCount() {
         if (Utils.gameRun) {
             int players = Groups.player.size();
@@ -154,13 +164,8 @@ public class CruxUnit {
                 ClassChooseMenu.units.keys().toSeq().each(type -> {
                     Groups.unit.each(u -> {
                         if (u.team == Team.crux && u.type == type) {
-
-                            double minDist = 1000000;
-                            for (Tile t : RedVsBluePlugin.redSpawns) {
-                                minDist = Math.min(minDist, Math.hypot(u.x-t.x*8,u.y-t.y*8));
-                            }
                         
-                            if (minDist<800) {
+                            if (spawnTimes.get(u)-System.currentTimeMillis()<30000) {
                                 if (cruxUnits.get(type) == null) {
                                     cruxUnits.put(type, 0);
                                 } else {
