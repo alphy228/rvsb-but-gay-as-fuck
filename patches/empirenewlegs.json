@@ -73,6 +73,8 @@ stepShake: 1.2f
 drownTimeMultiplier: 4
 mechFrontSway: 1f
 mechSideSway: 0.6f
+aiController: groundAi
+controller: groundAi
 
 stepSound: mechStepHeavy
 stepSoundPitch: 0.8
@@ -383,6 +385,7 @@ buildingDamageMultiplier: 999
 }
 ]
 }
+
 
 
 
