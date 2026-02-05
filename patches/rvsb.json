@@ -58,7 +58,7 @@ unit.disrupt.speed: 2
 //y: 4
 //xScl: 0.4
 //yScl: 2.5
-//heatColor: fc4e03
+//heatColor: "fc4e03"
 //}
 //{
 //name: obviate
@@ -70,7 +70,7 @@ unit.disrupt.speed: 2
 //y: -4
 //xScl: 0.6
 //yScl: 3.4
-//heatColor: fc4e03
+//heatColor: "fc4e03"
 //}
 //{
 //name: obviate
@@ -82,7 +82,7 @@ unit.disrupt.speed: 2
 //y: -12
 //xScl: 0.8
 //yScl: 4.5
-//heatColor: fc4e03
+//heatColor: "fc4e03"
 //}
 
 //mirror parts
@@ -96,7 +96,7 @@ unit.disrupt.speed: 2
 //y: 4
 //xScl: 0.4
 //yScl: 2.5
-//heatColor: fc4e03
+//heatColor: "fc4e03"
 //}
 //{
 //name: obviate
@@ -108,7 +108,7 @@ unit.disrupt.speed: 2
 //y: -4
 //xScl: 0.6
 //yScl: 3.4
-//heatColor: fc4e03
+//heatColor: "fc4e03"
 //}
 //{
 //name: obviate
@@ -120,7 +120,7 @@ unit.disrupt.speed: 2
 //y: -12
 //xScl: 0.8
 //yScl: 4.5
-//heatColor: fc4e03
+//heatColor: "fc4e03"
 //}
 
 //]
@@ -159,7 +159,7 @@ unit.disrupt.speed: 2
 //splashDamage: 900
 //weaveScale: 8
 //weaveMag: 1
-//trailColor: 760ee6
+//trailColor: "760ee6"
 //trailWidth: 5f
 //trailLength: 10
 //sprite: missile-large
@@ -173,9 +173,9 @@ unit.disrupt.speed: 2
 //speed: 3
 //lightRadius: 180f
 //lightOpacity: 0.7f
-//lightColor: 760ee6
-//backColor: 760ee6
-//frontColor: ffffff
+//lightColor: "760ee6"
+//backColor: "760ee6"
+//frontColor: "ffffff"
 //lifetime: 25f
 //fragBullets: 5
 //fragRandomSpread: 360f
@@ -188,11 +188,11 @@ unit.disrupt.speed: 2
 //waveStroke: 6
 //waveLife: 10f
 //waveRadBase: 7f
-//waveColor: 760ee6
+//waveColor: "760ee6"
 //waveRad: 120f
 //smokes: 18
-//smokeColor: ffffff
-//sparkColor: 760ee6
+//smokeColor: "ffffff"
+//sparkColor: "760ee6"
 //sparks: 18
 //sparkRad: 120f
 //sparkStroke: 1.5f
@@ -210,8 +210,8 @@ unit.disrupt.speed: 2
 //hitSize: 0
 //damage: 0
 //lifetime: 60
-//backColor: 760ee6
-//trailColor: 760ee6
+//backColor: "760ee6"
+//trailColor: "760ee6"
 //trailWidth: 3
 //trailLength: 12
 //despawnEffect: hitBulletColor
@@ -338,7 +338,7 @@ firstShotDelay: 105
 }
 bullet: {
 type: laserBulletType
-colors: [4d0505,940909,ff0000]
+colors: ["4d0505","940909","ff0000"]
 lifetime: 55
 maxRange: 320
 range: 320
@@ -374,7 +374,7 @@ firstShotDelay: 70
 bullet: {
 lifetime: 8
 damage: 0
-colors: [666666,999999,aaaaaa]
+colors: ["666666","999999","aaaaaa"]
 type: laserBulletType
 maxRange: 320
 range: 320
@@ -396,7 +396,7 @@ firstShotDelay: 30
 bullet: {
 lifetime: 8
 damage: 0
-colors: [666666,999999,aaaaaa]
+colors: ["666666","999999","aaaaaa"]
 type: laserBulletType
 maxRange: 320
 range: 320
@@ -511,9 +511,9 @@ damage: 10
    //   lifetime: 50f
  //     waveStroke: 5f
  //     waveLife: 8f
-  //    waveColor: ffffff
- //     sparkColor: 665c9f
- //     smokeColor: 665c9f
+  //    waveColor: "ffffff"
+ //     sparkColor: "665c9f"
+ //     smokeColor: "665c9f"
  //     waveRad: 40f
   //    smokeSize: 4f
   //    smokes: 7
@@ -586,9 +586,9 @@ damage: 10
 //      lifetime: 90f
 //      waveStroke: 5f
 //      waveLife: 8f
-//      waveColor: ffffff
-//      sparkColor: 665c9f
-//      smokeColor: 665c9f
+//      waveColor: "ffffff"
+//      sparkColor: "665c9f"
+//      smokeColor: "665c9f"
 //      waveRad: 40f
 //      smokeSize: 4f
 //      smokes: 7
@@ -646,7 +646,7 @@ unit.anthicus.weapons: [
     length: 340
     pierceDamageFactor: 0.1
     pointEffect: railTrail
-    hitColor: 89cffa
+    hitColor: "89cffa"
     pierceArmor: true
     hitEffect: hitSquaresColor
     }
@@ -675,13 +675,13 @@ unit.anthicus.weapons: [
     range: 350
     maxRange: 350
     type: continuousFlameBulletType
-    flareColor: 89cffa
+    flareColor: "89cffa"
     pierceCap: 1
     damage: 1.6
     length: 350
     pierceDamageFactor: 0.1
     width: 4f
-    colors: [89cffa,ffffff,30a7f0,ffffff]
+    colors: ["89cffa","ffffff","30a7f0","ffffff"]
 }
 }
 {
@@ -743,8 +743,8 @@ maxRange: 144f
 speed: 10f
 lifetime: 14f
 type: laserBoltBulletType
-backColor: 99ff99
-frontColor: ffffff
+backColor: "99ff99"
+frontColor: "ffffff"
 healPercent: 5f
 collidesTeam: true
 damage: 25f
