@@ -48,9 +48,9 @@ public class UpdateConstructBlocks implements Runnable {
               int cost = 0;
               Tile tile = Vars.world.tile(bp.x,bp.y);
               
-              for(int i = 0; i < bp.block.requirements.length; i++){
-                if (bp.block.requirements[i].item==Items.dormantCyst) {
-                  cost = bp.block.requirements[i].amount;
+              for(int i = 0; i < u.buildPlan().block.requirements.length; i++){
+                if (u.buildPlan().block.requirements[i].item==Items.dormantCyst) {
+                  cost = u.buildPlan().requirements[i].amount;
                   break;
                 }
               }
