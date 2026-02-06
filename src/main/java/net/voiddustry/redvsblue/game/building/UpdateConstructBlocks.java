@@ -29,12 +29,10 @@ import mindustry.content.Blocks;
 import mindustry.entities.units.BuildPlan;
 
 import net.voiddustry.redvsblue.RedVsBluePlugin;
-import net.voiddustry.redvsblue.game.building.Buildings;
 
 
 // updates construct blocks instead of the game doing it, original in usurvplugin
 public class UpdateConstructBlocks implements Runnable {
-  HashMap<Block, Integer> prices = Buildings.getPrices();
   @Override
   public void run() {
     try {
@@ -44,15 +42,20 @@ public class UpdateConstructBlocks implements Runnable {
           if (u.buildPlan().worldContext) { 
             if (u.isBuilding()) {
               BuildPlan bp = u.buildPlan();
-
+              int cost = 0;
               Tile tile = Vars.world.tile(bp.x,bp.y);
-              Integer cost = prices.get(bp.block);
+              for(int i = 0; i < bp.block.requirements.length; i++){
+                if (bp.block.requirements[i].item==Items.dormantCyst) {
+                  cost = bp.block.requirements[i].amount;
+                  break;
+                }
+              }
                            
               if (u.getPlayer() != null && u.buildPlan().placeable(Team.blue) && u.dst(bp.x*8,bp.y*8)<Vars.buildingRange) {
                 Player player = u.getPlayer();
                 if (u.buildPlan().breaking == false && u.isBuilding()) {
                   //Log.info("Attempting to consume " + cost + " ,from player " + player);
-                  if (RedVsBluePlugin.players.get(player.uuid()).getScore()>=cost && (!(cost == null))) {
+                  if (RedVsBluePlugin.players.get(player.uuid()).getScore()>=cost && cost!=0) {
                     RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
                     //Log.info("finishing construction");
                     Call.constructFinish(tile,bp.block,null,(byte)bp.rotation,player.team(),bp.config);
