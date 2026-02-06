@@ -6,37 +6,40 @@ unit.flare.rotateSpeed: 99999
 unit.flare.health: 120
 unit.flare.weapons: [
     {
-        x: 5f
-        y: 5f
-        reload: 20f
+        x: 2f
+        y: 0f
+        reload: 40f
         ejectEffect: casing1
         shootSound: shoot
         bullet: {
-            damage: 9
+            damage: 15
             type: basicBulletType
             width: 7f
             height: 9f
             lifetime: 45f
             shootEffect: shootSmall
             smokeEffect: shootSmallSmoke
+            keepVelocity: true
         }
     }
     {
-        x: -5f
-        y: -5f
-        reload: 20f
+        x: -2f
+        y: 0f
+        reload: 40f
         ejectEffect: casing1
         shootSound: shoot
         shoot: {
-            firstShotDelay: 10
+            firstShotDelay: 20
         }
         bullet: {
+            damage: 15
             type: basicBulletType
             width: 7f
             height: 9f
             lifetime: 45f
             shootEffect: shootSmall
             smokeEffect: shootSmallSmoke
+            keepVelocity: true
         }
     }
 ]
