@@ -6,8 +6,8 @@ unit.flare.rotateSpeed: 99999
 unit.flare.health: 120
 unit.flare.weapons: [
     {
-        x: 0f
-        y: 2f
+        x: 5f
+        y: 5f
         reload: 20f
         ejectEffect: casing1
         shootSound: shoot
@@ -22,8 +22,8 @@ unit.flare.weapons: [
         }
     }
     {
-        x: 0f
-        y: -2f
+        x: -5f
+        y: -5f
         reload: 20f
         ejectEffect: casing1
         shootSound: shoot
