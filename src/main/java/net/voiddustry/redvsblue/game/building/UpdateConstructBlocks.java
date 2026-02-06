@@ -30,7 +30,7 @@ import mindustry.entities.units.BuildPlan;
 import mindustry.type.Category;
 
 import net.voiddustry.redvsblue.RedVsBluePlugin;
-import net.voiddustry.game.stations.*;
+import net.voiddustry.redvsblue.game.stations.*;
 
 
 // updates construct blocks instead of the game doing it, original in usurvplugin
