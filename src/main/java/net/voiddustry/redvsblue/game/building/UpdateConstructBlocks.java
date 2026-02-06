@@ -50,7 +50,7 @@ public class UpdateConstructBlocks implements Runnable {
               
               for(int i = 0; i < bp.block.requirements.length; i++){
                 if (bp.block.requirements[i].item==Items.dormantCyst) {
-                  cost = bp.requirements[i].amount;
+                  cost = bp.block.requirements[i].amount;
                   break;
                 }
               }
