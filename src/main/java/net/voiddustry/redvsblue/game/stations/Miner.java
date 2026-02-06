@@ -55,7 +55,7 @@ public class Miner {
                     if (!player.dead() && player.team() == Team.blue && tileUnderPlayer.block().isAir()) {
                         MinerData minerData = new MinerData(player, tileUnderPlayer);
                         minersMap.put(player.uuid(), minerData);
-                        Call.constructFinish(tileUnderPlayer, Blocks.combustionGenerator, null, (byte) 0, Team.blue, null);
+                        Call.constructFinish(tileUnderPlayer, Blocks.pulveriser, null, (byte) 0, Team.blue, null);
                         Call.effect(Fx.explosion, tileUnderPlayer.x*8, tileUnderPlayer.y*8, 5, Color.red);
                         players.get(player.uuid()).subtractScore(20);
                     }
@@ -69,7 +69,7 @@ public class Miner {
             if (miner != null) {
                 if (miner.getTileOn().block() == Blocks.air || miner.getOwner().team() != Team.blue) {
                     minersMap.remove(owner, miner);
-                    if (miner.getTileOn().block() == Blocks.combustionGenerator) {
+                    if (miner.getTileOn().block() == Blocks.pulveriser) {
                         miner.getTileOn().build.kill();
                     }
                 } else {
