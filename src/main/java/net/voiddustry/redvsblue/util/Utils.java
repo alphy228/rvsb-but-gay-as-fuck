@@ -24,7 +24,6 @@ import mindustry.world.blocks.environment.*;
 
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
-import net.voiddustry.redvsblue.game.building.Buildings;
 import net.voiddustry.redvsblue.game.crux.StageUnits;
 import net.voiddustry.redvsblue.game.starting_menu.StartingItems;
 import net.voiddustry.redvsblue.game.starting_menu.StartingMenu;
@@ -43,10 +42,13 @@ public class Utils {
 
     public static void initRules() {
 
-        HashMap<Block, Integer> prices = Buildings.getPrices();
         for (Block block : Vars.content.blocks()) {
-            if (!prices.containsKey(block)) {
-                state.rules.bannedBlocks.add(block);
+            state.rules.bannedBlocks.add(block);
+            for(int i = 0; i < bp.block.requirements.length; i++){
+                if (bp.block.requirements[i].item==Items.dormantCyst) {
+                    state.rules.bannedBlocks.remove(block);
+                    break;
+                }
             }
         }
 
