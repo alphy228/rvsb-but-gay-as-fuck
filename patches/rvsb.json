@@ -12,6 +12,7 @@ unit.flare.weapons: [
         ejectEffect: casing1
         shootSound: shoot
         bullet: {
+            speed: 3
             damage: 15
             type: basicBulletType
             width: 7f
@@ -32,6 +33,7 @@ unit.flare.weapons: [
             firstShotDelay: 20
         }
         bullet: {
+            speed: 3
             damage: 15
             type: basicBulletType
             width: 7f
