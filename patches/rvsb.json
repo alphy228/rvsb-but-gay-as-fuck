@@ -4,6 +4,8 @@ name: rvsb
 unit.flare.omniMovement: true
 unit.flare.rotateSpeed: 99999
 unit.flare.health: 120
+unit.flare.maxRange: 80
+unit.flare.rotateMoveFirst: false
 unit.flare.weapons: [
     {
         x: 2f
@@ -12,7 +14,9 @@ unit.flare.weapons: [
         ejectEffect: casing1
         shootSound: shoot
         bullet: {
-            speed: 3
+            range: 80
+            maxRange: 80
+            speed: 2.2
             damage: 15
             type: basicBulletType
             width: 7f
@@ -33,7 +37,9 @@ unit.flare.weapons: [
             firstShotDelay: 20
         }
         bullet: {
-            speed: 3
+            range: 80
+            maxRange: 80
+            speed: 2.2
             damage: 15
             type: basicBulletType
             width: 7f
