@@ -44,8 +44,8 @@ public class Utils {
 
         for (Block block : Vars.content.blocks()) {
             state.rules.bannedBlocks.add(block);
-            for(int i = 0; i < bp.block.requirements.length; i++){
-                if (bp.block.requirements[i].item==Items.dormantCyst) {
+            for(int i = 0; i < block.requirements.length; i++){
+                if (block.requirements[i].item==Items.dormantCyst) {
                     state.rules.bannedBlocks.remove(block);
                     break;
                 }
