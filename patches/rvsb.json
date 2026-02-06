@@ -921,31 +921,31 @@ block.mechanical-pump.category: effect
 
 block.mender.requirements: [dormant-cyst/10]
 block.mender.category: logic
-block.pulverizer.localisedName: "Repair point"
+block.pulverizer.localizedName: "Repair point"
 
 block.phase-wall.requirements: [dormant-cyst/20]
 block.phase-wall.category: logic
-block.pulverizer.localisedName: "Supressor tower"
+block.pulverizer.localizedName: "Supressor tower"
 
 block.radar.requirements: [dormant-cyst/8]
 block.radar.category: logic
-block.pulverizer.localisedName: "Workbench"
+block.pulverizer.localizedName: "Workbench"
 
 block.carbide-wall.requirements: [dormant-cyst/7]
 block.carbide-wall.category: logic
-block.pulverizer.localisedName: "Laboratory"
+block.pulverizer.localizedName: "Laboratory"
 
 block.beam-node.requirements: [dormant-cyst/18]
 block.beam-node.category: logic
-block.pulverizer.localisedName: "Booster"
+block.pulverizer.localizedName: "Booster"
 
 block.slag-incinerator.requirements: [dormant-cyst/80]
 block.slag-incinerator.category: logic
-block.pulverizer.localisedName: "Recycler"
+block.pulverizer.localizedName: "Recycler"
 
 block.pulverizer.requirements: [dormant-cyst/6]
 block.pulverizer.category: logic
-block.pulverizer.localisedName: "Miner"
+block.pulverizer.localizedName: "Miner"
 
 
 
