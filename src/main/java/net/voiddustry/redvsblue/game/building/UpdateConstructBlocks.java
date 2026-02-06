@@ -27,8 +27,10 @@ import mindustry.mod.*;
 import mindustry.net.Administration.*;
 import mindustry.content.Blocks;
 import mindustry.entities.units.BuildPlan;
+import mindustry.type.Category;
 
 import net.voiddustry.redvsblue.RedVsBluePlugin;
+import net.voiddustry.game.stations.*;
 
 
 // updates construct blocks instead of the game doing it, original in usurvplugin
@@ -42,8 +44,10 @@ public class UpdateConstructBlocks implements Runnable {
           if (u.buildPlan().worldContext) { 
             if (u.isBuilding()) {
               BuildPlan bp = u.buildPlan();
+              
               int cost = 0;
               Tile tile = Vars.world.tile(bp.x,bp.y);
+              
               for(int i = 0; i < bp.block.requirements.length; i++){
                 if (bp.block.requirements[i].item==Items.dormantCyst) {
                   cost = bp.block.requirements[i].amount;
@@ -58,7 +62,25 @@ public class UpdateConstructBlocks implements Runnable {
                   if (RedVsBluePlugin.players.get(player.uuid()).getScore()>=cost && cost!=0) {
                     RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
                     //Log.info("finishing construction");
+                    if (bp.block.category == Category.logic) {
+                      if (bp.block == Blocks.pulverizer) {
+                        
+                      } else if (bp.block == Blocks.mender) {
+                        
+                      } else if (bp.block == Blocks.phaseWall) {
+                        
+                      } else if (bp.block == Blocks.radar) {
+                        
+                      } else if (bp.block == Blocks.carbideWall) {
+                        
+                      } else if (bp.block == Blocks.beamNode) {
+                        
+                      } else if (bp.block == Blocks.slagIncinerator) {
+                        
+                      }
+                    } else {
                     Call.constructFinish(tile,bp.block,null,(byte)bp.rotation,player.team(),bp.config);
+                    }
                     tile.build.placed();
                   } else {
                     if (tile.block() instanceof ConstructBlock cb) {
