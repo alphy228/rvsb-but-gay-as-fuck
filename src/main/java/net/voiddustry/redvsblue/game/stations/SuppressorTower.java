@@ -55,7 +55,7 @@ public class SuppressorTower {
         Timer.schedule(SuppressorTower::renderSuppressorTowers, 0, 0.5F);
     }
 
-    public static void buyTower(Player player) {
+    public static void buyTower(Player player, Tile tile) {
         if (players.get(player.uuid()).getScore() < 20) {
             player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 20));
         } else {
@@ -63,12 +63,15 @@ public class SuppressorTower {
                 if (!player.dead()) {
                     Tile playerTileOn = player.tileOn();
                     Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
+                    if (tile == null) {
+                        tile = tileUnderPlayer;
+                    }
 
-                    if (!player.dead() && player.team() == Team.blue && tileUnderPlayer.block().isAir()) {
-                        StationData towerData = new StationData(player, tileUnderPlayer);
+                    if (!player.dead() && player.team() == Team.blue && tile.block().isAir()) {
+                        StationData towerData = new StationData(player, tile);
                         suppressorTowerMap.put(player.uuid(), towerData);
-                        Call.constructFinish(tileUnderPlayer, Blocks.phaseWall, null, (byte) 0, Team.blue, null);
-                        Call.effect(Fx.regenParticle, tileUnderPlayer.x*8, tileUnderPlayer.y*8, 0, Color.red);
+                        Call.constructFinish(tile, Blocks.phaseWall, null, (byte) 0, Team.blue, null);
+                        Call.effect(Fx.regenParticle, tile.x*8, tile.y*8, 0, Color.red);
                         players.get(player.uuid()).subtractScore(20);
                     }
                 }
