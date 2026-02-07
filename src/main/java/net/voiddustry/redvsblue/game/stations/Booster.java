@@ -73,7 +73,7 @@ public class Booster {
     public static void renderBoosters() {
         boostersMap.forEach((owner, booster) -> {
             if (booster != null) {
-                if (booster.tileOn().block() == Blocks.air || booster.owner().team() != Team.blue) {
+                if (booster.tileOn().block() != Blocks.beamNode || booster.owner().team() != Team.blue) {
                     boostersMap.remove(owner);
                     if (booster.tileOn().block() == Blocks.beamNode) {
                         booster.tileOn().build.kill();
