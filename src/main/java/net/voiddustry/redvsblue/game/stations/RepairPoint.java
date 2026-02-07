@@ -83,7 +83,7 @@ public class RepairPoint {
     public static void renderRepairPoints() {
         repairPointsMap.forEach((owner, repairPoint) -> {
             if (repairPoint != null) {
-                if (repairPoint.tileOn().block() == Blocks.air || repairPoint.owner().team() != Team.blue) {
+                if (repairPoint.tileOn().block() != Blocks.mender || repairPoint.owner().team() != Team.blue) {
                     repairPointsMap.remove(owner);
                     if (repairPoint.tileOn().block() == Blocks.mender) {
                         repairPoint.tileOn().build.kill();
