@@ -63,19 +63,19 @@ public class UpdateConstructBlocks implements Runnable {
                     //Log.info("finishing construction");
                     if (bp.block.category == Category.logic) {
                       if (bp.block == Blocks.pulverizer) {
-                        
+                        Miner.buyMiner(player, tile);
                       } else if (bp.block == Blocks.mender) {
-                        
+                        RepairPoint.buyRepairPoint(player, tile);
                       } else if (bp.block == Blocks.phaseWall) {
-                        
+                        SupressorTower.buyTower(player, tile);
                       } else if (bp.block == Blocks.radar) {
-                        
+                        Workbench.buyWorkbench(player, tile);
                       } else if (bp.block == Blocks.carbideWall) {
-                        
+                        Laboratory.buyLab(player, tile);
                       } else if (bp.block == Blocks.beamNode) {
-                        
+                        Booster.buyBooster(player, tile);
                       } else if (bp.block == Blocks.slagIncinerator) {
-                        
+                        Recycler.buyRecycler(player, tile);
                       }
                     } else {
                     RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
