@@ -184,7 +184,7 @@ public class Laboratory {
     public static void renderLabs() {
         labsMap.forEach((owner, lab) -> {
             if (lab != null) {
-                if (lab.tileOn().block() == Blocks.air || lab.owner().team() != Team.blue) {
+                if (lab.tileOn().block() == Blocks.carbideWall || lab.owner().team() != Team.blue) {
                     labsMap.remove(owner);
                     if (lab.tileOn().block() == Blocks.carbideWall) {
                         lab.tileOn().build.kill();
