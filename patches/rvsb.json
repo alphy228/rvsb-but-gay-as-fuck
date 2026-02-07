@@ -925,7 +925,7 @@ block.mender.localizedName: "Repair point"
 
 block.phase-wall.requirements: [dormant-cyst/20]
 block.phase-wall.category: logic
-block.phase-wall.localizedName: "Supressor tower"
+block.phase-wall.localizedName: "Suppressor tower"
 
 block.radar.requirements: [dormant-cyst/8]
 block.radar.category: logic
