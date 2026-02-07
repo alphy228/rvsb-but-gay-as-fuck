@@ -82,7 +82,7 @@ public class Recycler {
     public static void renderRecycler() {
         recyclersmap.forEach((owner, recycler) -> {
             if (recycler != null) {
-                if (recycler.tileOn().block() == Blocks.air || recycler.owner().team() != Team.blue) {
+                if (recycler.tileOn().block() != Blocks.slagIncinerator || recycler.owner().team() != Team.blue) {
                     recyclersmap.remove(owner);
                     if (recycler.tileOn().block() == Blocks.slagIncinerator) {
                         recycler.tileOn().build.kill();
