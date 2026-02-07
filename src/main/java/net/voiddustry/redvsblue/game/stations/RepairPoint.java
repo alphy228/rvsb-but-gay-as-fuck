@@ -56,7 +56,7 @@ public class RepairPoint {
         Timer.schedule(RepairPoint::renderRepairPoints, 0, 1);
     }
 
-    public static void buyRepairPoint(Player player) {
+    public static void buyRepairPoint(Player player, Tile tile) {
         if (players.get(player.uuid()).getScore() < 10) {
             player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 10));
         } else {
@@ -64,12 +64,15 @@ public class RepairPoint {
                 if (!player.dead()) {
                     Tile playerTileOn = player.tileOn();
                     Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
+                    if (tile == null) {
+                        tile = tileUnderPlayer;
+                    }
 
-                    if (!player.dead() && player.team() == Team.blue && tileUnderPlayer.block().isAir()) {
-                        StationData repairPointsData = new StationData(player, tileUnderPlayer);
+                    if (!player.dead() && player.team() == Team.blue && tile.block().isAir()) {
+                        StationData repairPointsData = new StationData(player, tile);
                         repairPointsMap.put(player.uuid(), repairPointsData);
-                        Call.constructFinish(tileUnderPlayer, Blocks.mender, null, (byte) 0, Team.blue, null);
-                        Call.effect(Fx.regenParticle, tileUnderPlayer.x*8, tileUnderPlayer.y*8, 0, Color.red);
+                        Call.constructFinish(tile, Blocks.mender, null, (byte) 0, Team.blue, null);
+                        Call.effect(Fx.regenParticle, tile.x*8, tile.y*8, 0, Color.red);
                         players.get(player.uuid()).subtractScore(10);
                     }
                 }
