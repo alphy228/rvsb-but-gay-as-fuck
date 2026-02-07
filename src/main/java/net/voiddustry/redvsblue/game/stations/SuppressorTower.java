@@ -2,6 +2,7 @@ package net.voiddustry.redvsblue.game.stations;
 
 import arc.graphics.Color;
 import arc.util.Timer;
+import arc.struct.Seq;
 
 import arc.util.Timer;
 import mindustry.Vars;
