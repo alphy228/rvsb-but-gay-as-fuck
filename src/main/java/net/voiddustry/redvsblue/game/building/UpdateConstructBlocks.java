@@ -60,7 +60,6 @@ public class UpdateConstructBlocks implements Runnable {
                 if (u.buildPlan().breaking == false && u.isBuilding()) {
                   //Log.info("Attempting to consume " + cost + " ,from player " + player);
                   if (RedVsBluePlugin.players.get(player.uuid()).getScore()>=cost && cost!=0) {
-                    RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
                     //Log.info("finishing construction");
                     if (bp.block.category == Category.logic) {
                       if (bp.block == Blocks.pulverizer) {
@@ -79,6 +78,7 @@ public class UpdateConstructBlocks implements Runnable {
                         
                       }
                     } else {
+                    RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
                     Call.constructFinish(tile,bp.block,null,(byte)bp.rotation,player.team(),bp.config);
                     }
                     tile.build.placed();
