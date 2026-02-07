@@ -55,7 +55,7 @@ public class Recycler {
         Timer.schedule(Recycler::renderRecycler, 0, 1);
     }
 
-    public static void buyRecycler(Player player) {
+    public static void buyRecycler(Player player, Tile tile) {
         if (players.get(player.uuid()).getScore() < 6) {
             player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 6));
         } else {
@@ -63,12 +63,15 @@ public class Recycler {
                 if (!player.dead()) {
                     Tile playerTileOn = player.tileOn();
                     Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
+                    if (tile == null) {
+                        tile = tileUnderPlayer;
+                    }
 
-                    if (!player.dead() && player.team() == Team.blue && tileUnderPlayer.block().isAir()) {
-                        StationData recyclerData = new StationData(player, tileUnderPlayer);
+                    if (!player.dead() && player.team() == Team.blue && tile.block().isAir()) {
+                        StationData recyclerData = new StationData(player, tile);
                         recyclersmap.put(player.uuid(), recyclerData);
-                        Call.constructFinish(tileUnderPlayer, Blocks.slagIncinerator, null, (byte) 0, Team.blue, null);
-                        Call.effect(Fx.regenParticle, tileUnderPlayer.x*8, tileUnderPlayer.y*8, 0, Color.red);
+                        Call.constructFinish(tile, Blocks.slagIncinerator, null, (byte) 0, Team.blue, null);
+                        Call.effect(Fx.regenParticle, tile.x*8, tile.y*8, 0, Color.red);
                         players.get(player.uuid()).subtractScore(6);
                     }
                 }
