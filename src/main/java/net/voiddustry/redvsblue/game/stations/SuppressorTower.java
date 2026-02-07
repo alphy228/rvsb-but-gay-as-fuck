@@ -68,14 +68,15 @@ public class SuppressorTower {
                         tile = tileUnderPlayer;
                     }
 
+                    final placeTile = tile;
                     if (!player.dead() && player.team() == Team.blue && tile.block().isAir()) {
                         Call.constructFinish(tile, Blocks.phaseWall, null, (byte) 0, Team.blue, null);
                         players.get(player.uuid()).subtractScore(20);
                         StationUtils.drawStationName(tile, player.name + "[gold]'s\n[accent]Suppressor Tower" + " - deploying", 10.5F);
                         Timer.schedule(tile -> {
-                            StationData towerData = new StationData(player, tile);
+                            StationData towerData = new StationData(player, placeTile);
                             suppressorTowerMap.put(player.uuid(), towerData);
-                            Call.effect(Fx.regenParticle, tile.x*8, tile.y*8, 0, Color.red);
+                            Call.effect(Fx.regenParticle, placeTile.x*8, placeTile.y*8, 0, Color.red);
                         }, 10);
                     }
                 }
