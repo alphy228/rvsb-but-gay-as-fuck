@@ -652,9 +652,8 @@ public class RedVsBluePlugin extends Plugin {
             try {
                 Player player = null;
                 for (Player p : Groups.player) {
-                    if (p.name == args[1].trim()) {
+                    if (p.name.trim() == args[1].trim()) {
                         player = p;
-                        break;
                     }
                 }
                 players.get(player.uuid()).setScore(players.get(player.uuid()).getScore() + Integer.parseInt(args[0]));
