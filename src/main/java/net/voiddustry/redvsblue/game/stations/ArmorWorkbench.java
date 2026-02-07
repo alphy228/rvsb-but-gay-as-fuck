@@ -100,10 +100,10 @@ public class ArmorWorkbench {
                     if (tile == null) {
                         tile = tileUnderPlayer;
                     }
-                    if (!player.dead() && player.team() == Team.blue && tileUnderPlayer.block().isAir()) {
-                        StationData workbenchData = new StationData(player, tileUnderPlayer);
+                    if (!player.dead() && player.team() == Team.blue && tile.block().isAir()) {
+                        StationData workbenchData = new StationData(player, tile);
                         workbenches.put(player.uuid(), workbenchData);
-                        Call.constructFinish(tileUnderPlayer, Blocks.radar, null, (byte) 0, Team.blue, null);
+                        Call.constructFinish(tile, Blocks.radar, null, (byte) 0, Team.blue, null);
                         Call.effect(Fx.regenParticle, tile.x * 8, tile.y * 8, 0, Color.red);
                         players.get(player.uuid()).subtractScore(8);
                     }
