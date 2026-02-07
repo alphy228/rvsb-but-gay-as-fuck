@@ -56,7 +56,7 @@ public class SuppressorTower {
         Timer.schedule(SuppressorTower::renderSuppressorTowers, 0, 0.5F);
     }
 
-    public static void buyTower(Player player, final Tile tile) {
+    public static void buyTower(Player player, Tile tile) {
         if (players.get(player.uuid()).getScore() < 20) {
             player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 20));
         } else {
