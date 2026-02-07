@@ -72,7 +72,7 @@ public class SuppressorTower {
                         Call.constructFinish(tile, Blocks.phaseWall, null, (byte) 0, Team.blue, null);
                         players.get(player.uuid()).subtractScore(20);
                         StationUtils.drawStationName(tile, player.name + "[gold]'s\n[accent]Suppressor Tower" + " - deploying", 10.5F);
-                        Timer.schedule(() -> {
+                        Timer.schedule(tile -> {
                             StationData towerData = new StationData(player, tile);
                             suppressorTowerMap.put(player.uuid(), towerData);
                             Call.effect(Fx.regenParticle, tile.x*8, tile.y*8, 0, Color.red);
