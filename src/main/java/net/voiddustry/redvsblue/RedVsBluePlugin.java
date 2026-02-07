@@ -192,7 +192,6 @@ public class RedVsBluePlugin extends Plugin {
         });
 
         Events.on(EventType.PlayerChatEvent.class, event -> {
-            Call.sound(Sounds.uiChat, 2, 2, 1);
             if (Utils.voting) {
                 if (Strings.canParseInt(event.message)) {
                     MapVote.registerVote(event.player, Strings.parseInt(event.message));
@@ -648,6 +647,22 @@ public class RedVsBluePlugin extends Plugin {
 //                Premium.init();
 //            }
 //        });
+
+        handler.register("givePoints", "<number> <playername>",  "now actually works", (args) -> {
+            try {
+                Player player = null;
+                for (Player p : Groups.player) {
+                    if (p.name == args[1].trim()) {
+                        player = p;
+                        break;
+                    }
+                }
+                players.get(player.uuid()).setScore(players.get(player.uuid()).getScore() + args[0]);
+                Log.info("Gave " + args[0] + " points to player " + player.name);
+            } catch (Exception e) {
+                Log.info("An error occured while executing the command");
+            }
+        });
 
         handler.register("restart", "now actually works", (args) -> {
             Groups.player.each(p -> p.kick("[scarlet]Server is restarting"));
