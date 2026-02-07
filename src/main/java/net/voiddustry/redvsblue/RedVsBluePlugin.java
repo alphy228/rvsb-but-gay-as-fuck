@@ -648,15 +648,15 @@ public class RedVsBluePlugin extends Plugin {
 //            }
 //        });
 
-        handler.register("givePoints", "<number> <playername...>",  "give people money, admin abuse, breaks capitalism, evil", (args) -> {
+        handler.register("setpoints", "[number] [playername...]",  "give people money, or take it(better), admin abuse, breaks capitalism, evil", (args) -> {
             try {
                 Player player = null;
                 for (Player p : Groups.player) {
-                    if (p.name.trim() == args[1].trim()) {
+                    if (p.name.contains(args[1].trim())) {
                         player = p;
                     }
                 }
-                players.get(player.uuid()).setScore(players.get(player.uuid()).getScore() + Integer.parseInt(args[0]));
+                players.get(player.uuid()).setScore(Integer.parseInt(args[0]));
                 Log.info("Gave " + args[0] + " points to player " + player.name);
             } catch (Exception e) {
                 Log.info("An error occured while executing the command");
