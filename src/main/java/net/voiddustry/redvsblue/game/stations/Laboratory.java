@@ -157,7 +157,7 @@ public class Laboratory {
         return getMultiplier(Evolutions.evolutions.get(evolution), player);
     }
 
-    public static void buyLab(Player player) {
+    public static void buyLab(Player player, Tile tile) {
         if (players.get(player.uuid()).getScore() < 7) {
             player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 7));
         } else {
@@ -165,12 +165,15 @@ public class Laboratory {
                 if (!player.dead()) {
                     Tile playerTileOn = player.tileOn();
                     Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
+                    if (tile == null) {
+                        tile = tileUnderPlayer;
+                    }
 
-                    if (!player.dead() && player.team() == Team.blue && tileUnderPlayer.block().isAir()) {
-                        StationData laboratoryData = new StationData(player, tileUnderPlayer);
+                    if (!player.dead() && player.team() == Team.blue && tile.block().isAir()) {
+                        StationData laboratoryData = new StationData(player, tile);
                         labsMap.put(player.uuid(), laboratoryData);
-                        Call.constructFinish(tileUnderPlayer, Blocks.carbideWall, null, (byte) 0, Team.blue, null);
-                        Call.effect(Fx.regenParticle, tileUnderPlayer.x*8, tileUnderPlayer.y*8, 0, Color.red);
+                        Call.constructFinish(tile, Blocks.carbideWall, null, (byte) 0, Team.blue, null);
+                        Call.effect(Fx.regenParticle, tile.x*8, tile.y*8, 0, Color.red);
                         players.get(player.uuid()).subtractScore(7);
                     }
                 }
