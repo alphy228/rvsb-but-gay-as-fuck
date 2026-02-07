@@ -657,7 +657,7 @@ public class RedVsBluePlugin extends Plugin {
                         break;
                     }
                 }
-                players.get(player.uuid()).setScore(players.get(player.uuid()).getScore() + args[0]);
+                players.get(player.uuid()).setScore(players.get(player.uuid()).getScore() + Integer.parseInt(args[0]));
                 Log.info("Gave " + args[0] + " points to player " + player.name);
             } catch (Exception e) {
                 Log.info("An error occured while executing the command");
