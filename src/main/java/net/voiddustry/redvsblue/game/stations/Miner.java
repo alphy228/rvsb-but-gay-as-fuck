@@ -43,7 +43,7 @@ public class Miner {
         Timer.schedule(Miner::renderMiners, 0, 1);
     }
 
-    public static void buyMiner(Player player) {
+    public static void buyMiner(Player player, Tile tile) {
         if ((!(players.get(player.uuid()) == null)) && players.get(player.uuid()).getScore() < 20) {
             player.sendMessage(Bundle.format("station.not-enough-money", 20));
         } else {
