@@ -51,12 +51,15 @@ public class Miner {
                 if (!player.dead()) {
                     Tile playerTileOn = player.tileOn();
                     Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
+                    if (tile == null) {
+                        tile = tileUnderPlayer;
+                    }
 
-                    if (!player.dead() && player.team() == Team.blue && tileUnderPlayer.block().isAir()) {
-                        MinerData minerData = new MinerData(player, tileUnderPlayer);
+                    if (!player.dead() && player.team() == Team.blue && tile.block().isAir()) {
+                        MinerData minerData = new MinerData(player, tile);
                         minersMap.put(player.uuid(), minerData);
-                        Call.constructFinish(tileUnderPlayer, Blocks.pulverizer, null, (byte) 0, Team.blue, null);
-                        Call.effect(Fx.explosion, tileUnderPlayer.x*8, tileUnderPlayer.y*8, 5, Color.red);
+                        Call.constructFinish(tile, Blocks.pulverizer, null, (byte) 0, Team.blue, null);
+                        Call.effect(Fx.explosion, tile.x*8, tile.y*8, 5, Color.red);
                         players.get(player.uuid()).subtractScore(20);
                     }
                 }
