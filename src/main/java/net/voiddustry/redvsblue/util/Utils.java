@@ -63,6 +63,7 @@ public class Utils {
         state.rules.bannedUnits.add(UnitTypes.alpha);
 
         state.rules.hideBannedBlocks = true;
+        state.rules.blockWhitelist = false;
 
         state.rules.teams.get(Team.malis).blockHealthMultiplier = 2;
 
