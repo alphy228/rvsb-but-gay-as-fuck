@@ -70,7 +70,7 @@ public class Miner {
     public static void renderMiners() {
         minersMap.forEach((owner, miner) -> {
             if (miner != null) {
-                if (miner.getTileOn().block() == Blocks.pulveriser || miner.getOwner().team() != Team.blue) {
+                if (miner.getTileOn().block() != Blocks.pulveriser || miner.getOwner().team() != Team.blue) {
                     minersMap.remove(owner, miner);
                     if (miner.getTileOn().block() == Blocks.pulverizer) {
                         miner.getTileOn().build.kill();
