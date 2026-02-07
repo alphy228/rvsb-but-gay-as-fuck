@@ -226,6 +226,10 @@ public class RedVsBluePlugin extends Plugin {
             }
         });
 
+        Events.on(EventType.PlayEvent.class, event -> {
+            Utils.initRules();
+        });
+
         
         //blue kill registration
         Events.on(EventType.UnitDestroyEvent.class, event -> {
