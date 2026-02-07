@@ -80,8 +80,8 @@ public class UpdateConstructBlocks implements Runnable {
                     } else {
                     RedVsBluePlugin.players.get(player.uuid()).subtractScore(cost);
                     Call.constructFinish(tile,bp.block,null,(byte)bp.rotation,player.team(),bp.config);
-                    }
                     tile.build.placed();
+                    }
                   } else {
                     if (tile.block() instanceof ConstructBlock cb) {
                       tile.setNet(Blocks.air,Team.derelict,0);
