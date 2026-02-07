@@ -376,7 +376,7 @@ public class RedVsBluePlugin extends Plugin {
                 Timer.schedule(updateConstructBlocks, 10f, 0.2f);
                 Vars.state.rules.bannedBlocks.clear();
                 initRules();
-            }, 5);
+            }, 0.5);
 
             Building core = Vars.state.teams.cores(Team.blue).first();
 
