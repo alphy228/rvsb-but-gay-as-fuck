@@ -648,7 +648,7 @@ public class RedVsBluePlugin extends Plugin {
 //            }
 //        });
 
-        handler.register("givePoints", "<number> <playername>",  "now actually works", (args) -> {
+        handler.register("givePoints", "<number> <playername...>",  "give people money, admin abuse, breaks capitalism, evil", (args) -> {
             try {
                 Player player = null;
                 for (Player p : Groups.player) {
@@ -661,6 +661,7 @@ public class RedVsBluePlugin extends Plugin {
                 Log.info("Gave " + args[0] + " points to player " + player.name);
             } catch (Exception e) {
                 Log.info("An error occured while executing the command");
+                e.printStackTrace();
             }
         });
 
