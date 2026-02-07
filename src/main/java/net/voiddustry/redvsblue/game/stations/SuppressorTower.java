@@ -87,7 +87,7 @@ public class SuppressorTower {
     public static void renderSuppressorTowers() {
         suppressorTowerMap.forEach((owner, tower) -> {
             if (tower != null) {
-                if (tower.tileOn().block() == Blocks.air || tower.owner().team() != Team.blue) {
+                if (tower.tileOn().block() != Blocks.phaseWall || tower.owner().team() != Team.blue) {
                     suppressorTowerMap.remove(owner);
                     if (tower.tileOn().block() == Blocks.phaseWall) {
                         tower.tileOn().build.kill();
