@@ -24,6 +24,7 @@ import static net.voiddustry.redvsblue.RedVsBluePlugin.players;
 
 public class SuppressorTower {
     private static final Map<String, StationData> suppressorTowerMap = new ConcurrentHashMap<>();
+    private static final Seq<String> suppressorPlaced = new Seq<>();
 
     public static void initTimer() {
         Timer.schedule(() -> suppressorTowerMap.forEach((owner, pointData) -> {
@@ -60,7 +61,7 @@ public class SuppressorTower {
         if (players.get(player.uuid()).getScore() < 20) {
             player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 20));
         } else {
-            if (!suppressorTowerMap.containsKey(player.uuid())) {
+            if (!suppressorTowerMap.containsKey(player.uuid()) || !suppressorPlaced.has(player.uuid())) {
                 if (!player.dead()) {
                     Tile playerTileOn = player.tileOn();
                     Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
@@ -73,9 +74,11 @@ public class SuppressorTower {
                         Call.constructFinish(tile, Blocks.phaseWall, null, (byte) 0, Team.blue, null);
                         players.get(player.uuid()).subtractScore(20);
                         StationUtils.drawStationName(tile, player.name + "[gold]'s\n[accent]Suppressor Tower" + " - deploying", 10.5F);
+                        suppressorPlaced.add(player.uuid());
                         Timer.schedule(() -> {
                             StationData towerData = new StationData(player, placeTile);
                             suppressorTowerMap.put(player.uuid(), towerData);
+                            suppressorPlaced.remove(player.uuid());
                             Call.effect(Fx.regenParticle, placeTile.x*8, placeTile.y*8, 0, Color.red);
                         }, 10);
                     }
@@ -99,5 +102,6 @@ public class SuppressorTower {
 
     public static void clearTowers() {
         suppressorTowerMap.clear();
+        suppressorPlaced.clear();
     }
 }
