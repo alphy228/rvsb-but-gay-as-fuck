@@ -1,6 +1,7 @@
 package net.voiddustry.redvsblue.game.stations;
 
 import arc.graphics.Color;
+import arc.util.Timer;
 
 import arc.util.Timer;
 import mindustry.Vars;
@@ -68,11 +69,15 @@ public class SuppressorTower {
                     }
 
                     if (!player.dead() && player.team() == Team.blue && tile.block().isAir()) {
-                        StationData towerData = new StationData(player, tile);
-                        suppressorTowerMap.put(player.uuid(), towerData);
                         Call.constructFinish(tile, Blocks.phaseWall, null, (byte) 0, Team.blue, null);
-                        Call.effect(Fx.regenParticle, tile.x*8, tile.y*8, 0, Color.red);
                         players.get(player.uuid()).subtractScore(20);
+                        String text = player.name + "[gold]'s\n[accent]Suppressor Tower" + " - deploying";
+                        StationUtils.drawStationName(pointData.tileOn(), text, 10.5F);
+                        Timer.schedule(() -> {
+                            StationData towerData = new StationData(player, tile);
+                            suppressorTowerMap.put(player.uuid(), towerData);
+                            Call.effect(Fx.regenParticle, tile.x*8, tile.y*8, 0, Color.red);
+                        }, 10);
                     }
                 }
             }
