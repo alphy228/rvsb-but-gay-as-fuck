@@ -115,7 +115,7 @@ public class ArmorWorkbench {
     public static void renderWorkbenches() {
         workbenches.forEach((owner, workbench) -> {
             if (workbench != null) {
-                if (workbench.tileOn().block() == Blocks.air || workbench.owner().team() != Team.blue) {
+                if (workbench.tileOn().block() != Blocks.radar || workbench.owner().team() != Team.blue) {
                     workbenches.remove(owner);
                     if (workbench.tileOn().block() == Blocks.radar) {
                         workbench.tileOn().build.kill();
