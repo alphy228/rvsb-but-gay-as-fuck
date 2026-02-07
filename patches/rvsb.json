@@ -939,11 +939,11 @@ block.beam-node.requirements: [dormant-cyst/18]
 block.beam-node.category: logic
 block.pulverizer.localizedName: "Booster"
 
-block.slag-incinerator.requirements: [dormant-cyst/80]
+block.slag-incinerator.requirements: [dormant-cyst/6]
 block.slag-incinerator.category: logic
 block.pulverizer.localizedName: "Recycler"
 
-block.pulverizer.requirements: [dormant-cyst/6]
+block.pulverizer.requirements: [dormant-cyst/20]
 block.pulverizer.category: logic
 block.pulverizer.localizedName: "Miner"
 
