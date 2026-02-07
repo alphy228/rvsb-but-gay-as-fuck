@@ -68,7 +68,7 @@ public class SuppressorTower {
                         tile = tileUnderPlayer;
                     }
 
-                    final placeTile = tile;
+                    final Tile placeTile = tile;
                     if (!player.dead() && player.team() == Team.blue && tile.block().isAir()) {
                         Call.constructFinish(tile, Blocks.phaseWall, null, (byte) 0, Team.blue, null);
                         players.get(player.uuid()).subtractScore(20);
