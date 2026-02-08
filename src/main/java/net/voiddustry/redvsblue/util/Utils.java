@@ -21,6 +21,7 @@ import java.util.HashMap;
 import mindustry.type.Weapon;
 import mindustry.world.Block;
 import mindustry.world.blocks.environment.*;
+import mindustry.world.meta.BuildVisibility;
 
 import net.voiddustry.redvsblue.Bundle;
 import net.voiddustry.redvsblue.PlayerData;
@@ -47,6 +48,7 @@ public class Utils {
             for(int i = 0; i < block.requirements.length; i++){
                 if (block.requirements[i].item==Items.dormantCyst) {
                     state.rules.bannedBlocks.remove(block);
+                    block.buildVisibility=BuildVisibility.shown;
                     break;
                 }
             }
