@@ -81,204 +81,207 @@ unit.flare.abilities.+: [
 unit.disrupt.speed: 2
 
 //disrupt ability "wings"
-//unit.disrupt.weapons.+: [ {
-//alwaysShooting: true
+//disrupt ability uses emanate as "base" because minShootVelocity is broken
+unit.emanate.hitSize: 0
+unit.emanate.region: dagger
+unit.emanate.weapons.+: [ {
+alwaysShooting: true
 //minShootVelocity: 28.8
-//x: 0
-//y: 0
-//name: small-mount-weapon
-//recoil: 0
-//recoils: 0
-//recoilTime: 0
-//reload: 10
-//shake: 3.5f
-//inaccuracy: 360
-//shootSound: loopFlux
-//bullet: {
-//type: lightningBulletType
-//lightningLength: 1
-//lightningLengthRand: 15
-//damage: 100
-//}
-//parts: [ {
-//name: obviate
-//rotation: -85
-//type: regionPart
-//layerOffset: -11000f
-//heatLayerOffset: 10999.5f
-//x: 14
-//y: 4
-//xScl: 0.4
-//yScl: 2.5
-//heatColor: "fc4e03"
-//}
-//{
-//name: obviate
-//rotation: -90
-//type: regionPart
-//layerOffset: -11000f
-//heatLayerOffset: 10999.5f
-//x: 16
-//y: -4
-//xScl: 0.6
-//yScl: 3.4
-//heatColor: "fc4e03"
-//}
-//{
-//name: obviate
-//rotation: -103
-//type: regionPart
-//layerOffset: -11000f
-//heatLayerOffset: 10999.5f
-//x: 18
-//y: -12
-//xScl: 0.8
-//yScl: 4.5
-//heatColor: "fc4e03"
-//}
+x: 0
+y: 0
+name: small-mount-weapon
+recoil: 0
+recoils: 0
+recoilTime: 0
+reload: 10
+shake: 3.5f
+inaccuracy: 360
+shootSound: loopFlux
+bullet: {
+type: lightningBulletType
+lightningLength: 1
+lightningLengthRand: 15
+damage: 100
+}
+parts: [ {
+name: obviate
+rotation: -85
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: 14
+y: 4
+xScl: 0.4
+yScl: 2.5
+heatColor: "fc4e03"
+}
+{
+name: obviate
+rotation: -90
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: 16
+y: -4
+xScl: 0.6
+yScl: 3.4
+heatColor: "fc4e03"
+}
+{
+name: obviate
+rotation: -103
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: 18
+y: -12
+xScl: 0.8
+yScl: 4.5
+heatColor: "fc4e03"
+}
 
-//mirror parts
-//{
-//name: obviate
-//rotation: 85
-//type: regionPart
-//layerOffset: -11000f
-//heatLayerOffset: 10999.5f
-//x: -14
-//y: 4
-//xScl: 0.4
-//yScl: 2.5
-//heatColor: "fc4e03"
-//}
-//{
-//name: obviate
-//rotation: 90
-//type: regionPart
-//layerOffset: -11000f
-//heatLayerOffset: 10999.5f
-//x: -16
-//y: -4
-//xScl: 0.6
-//yScl: 3.4
-//heatColor: "fc4e03"
-//}
-//{
-//name: obviate
-//rotation: 103
-//type: regionPart
-//layerOffset: -11000f
-//heatLayerOffset: 10999.5f
-//x: -18
-//y: -12
-//xScl: 0.8
-//yScl: 4.5
-//heatColor: "fc4e03"
-//}
+mirror parts
+{
+name: obviate
+rotation: 85
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: -14
+y: 4
+xScl: 0.4
+yScl: 2.5
+heatColor: "fc4e03"
+}
+{
+name: obviate
+rotation: 90
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: -16
+y: -4
+xScl: 0.6
+yScl: 3.4
+heatColor: "fc4e03"
+}
+{
+name: obviate
+rotation: 103
+type: regionPart
+layerOffset: -11000f
+heatLayerOffset: 10999.5f
+x: -18
+y: -12
+xScl: 0.8
+yScl: 4.5
+heatColor: "fc4e03"
+}
 
-//]
-//}
+]
+}
 
 //disrupt ability additional sfx
-//{
-//alwaysShooting: true
+{
+alwaysShooting: true
 //minShootVelocity: 28.8
-//reload: 20
-//shootSound: loopMalign
-//bullet: {
-//lifetime: 0
-//speed: 0
-//}
-//}
+reload: 20
+shootSound: loopMalign
+bullet: {
+lifetime: 0
+speed: 0
+}
+}
 
-// disrupt ability bombs
-//{
-//shake: 7
-//alwaysShooting: true
-//x: 0
-//y: 0
+//disrupt ability bombs
+{
+shake: 7
+alwaysShooting: true
+x: 0
+y: 0
 //minShootVelocity: 28.8
-//reload: 540
-//shoot: {
-//firstShotDelay: 60
-//}
-//shootSound: none
-//chargeSound: chargeVela
-//bullet: {
-//splashDamagePierce: true
-//despawnHit: true
-//type: missileBulletType
-//splashDamageRadius: 80f
-//splashDamage: 900
-//weaveScale: 8
-//weaveMag: 1
-//trailColor: "760ee6"
-//trailWidth: 5f
-//trailLength: 10
-//sprite: missile-large
-//width: 30f
-//height: 30f
-//shrinkY: -0.5f
-//shrinkY: -0.5f
-//drag: 0f
-//homingPower: 0
-//keepVelocity: false
-//speed: 3
-//lightRadius: 180f
-//lightOpacity: 0.7f
-//lightColor: "760ee6"
-//backColor: "760ee6"
-//frontColor: "ffffff"
-//lifetime: 25f
-//fragBullets: 5
-//fragRandomSpread: 360f
-//fragVelocityMin: 0.3f
-//hitSound: explosionQuad
-//despawnSound: explosionQuad
-//hitEffect: {
-//lifetime: 90f
-//type: explosionEffect
-//waveStroke: 6
-//waveLife: 10f
-//waveRadBase: 7f
-//waveColor: "760ee6"
-//waveRad: 120f
-//smokes: 18
-//smokeColor: "ffffff"
-//sparkColor: "760ee6"
-//sparks: 18
-//sparkRad: 120f
-//sparkStroke: 1.5f
-//sparkLen: 4f
-//}
-//fragBullet: {
-//velocityScaleRandMin: 0.3
-//velocityScaleRandMax: 1
-//despawnHit: true
-//type: missileBulletType
-//despawnEffect: none
-//homingPower: 0f
-//width: 12
-//height: 22
-//hitSize: 0
-//damage: 0
-//lifetime: 60
-//backColor: "760ee6"
-//trailColor: "760ee6"
-//trailWidth: 3
-//trailLength: 12
-//despawnEffect: hitBulletColor
-//hitEffect: hitBulletColor
-//keepVelocity: false
-//fragBullets: 1
-//fragBullet: {
-//speed: 0f
-//keepVelocity: false
-//spawnUnit: incite
-//}
-//}
-//}
-//}
-//]
+reload: 540
+shoot: {
+firstShotDelay: 60
+}
+shootSound: none
+chargeSound: chargeVela
+bullet: {
+splashDamagePierce: true
+despawnHit: true
+type: missileBulletType
+splashDamageRadius: 80f
+splashDamage: 900
+weaveScale: 8
+weaveMag: 1
+trailColor: "760ee6"
+trailWidth: 5f
+trailLength: 10
+sprite: missile-large
+width: 30f
+height: 30f
+shrinkY: -0.5f
+shrinkY: -0.5f
+drag: 0f
+homingPower: 0
+keepVelocity: false
+speed: 3
+lightRadius: 180f
+lightOpacity: 0.7f
+lightColor: "760ee6"
+backColor: "760ee6"
+frontColor: "ffffff"
+lifetime: 25f
+fragBullets: 5
+fragRandomSpread: 360f
+fragVelocityMin: 0.3f
+hitSound: explosionQuad
+despawnSound: explosionQuad
+hitEffect: {
+lifetime: 90f
+type: explosionEffect
+waveStroke: 6
+waveLife: 10f
+waveRadBase: 7f
+waveColor: "760ee6"
+waveRad: 120f
+smokes: 18
+smokeColor: "ffffff"
+sparkColor: "760ee6"
+sparks: 18
+sparkRad: 120f
+sparkStroke: 1.5f
+sparkLen: 4f
+}
+fragBullet: {
+velocityScaleRandMin: 0.3
+velocityScaleRandMax: 1
+despawnHit: true
+type: missileBulletType
+despawnEffect: none
+homingPower: 0f
+width: 12
+height: 22
+hitSize: 0
+damage: 0
+lifetime: 60
+backColor: "760ee6"
+trailColor: "760ee6"
+trailWidth: 3
+trailLength: 12
+despawnEffect: hitBulletColor
+hitEffect: hitBulletColor
+keepVelocity: false
+fragBullets: 1
+fragBullet: {
+speed: 0f
+keepVelocity: false
+spawnUnit: incite
+}
+}
+}
+}
+]
 
 
 //disrupt drone(incite)
@@ -300,6 +303,8 @@ unit.incite.useUnitCap: false
 unit.incite.health: 60
 unit.incite.hittable: true
 unit.incite.targetable: true
+unit.incite.controller: FlyingAI
+unit.incite.aiController: FlyingAI
 
 
 //drone timed death
@@ -503,15 +508,32 @@ damage: 10
 
 
 
-//quell and disrupt missile change for kill reward to work,yeah they pierce now,quell missile is same as disrupt except a bit more damage
-//unit.disrupt-missile.range: 23
-//unit.disrupt-missile.maxRange: 23
-//unit.disrupt.targetAir: true
-//unit.disrupt-missile.targetAir: true
-//unit.disrupt.weapons.0.bullet.collidesAir: true
-//unit.disrupt-missile.health: 99999
-//unit.disrupt-missile.weapons: [ 
- // {
+//quell and disrupt missiles
+unit.disrupt.targetAir: true
+unit.disrupt-missile.targetAir: true
+unit.disrupt-missile.weapons.0: {
+reload: 9999
+bullet: {
+collidesAir: true
+killShooter: false
+fragBullets: 1
+fragBullet: {
+type: basicBulletType
+collides: false
+speed: 0f
+lifetime: 5f
+drawSize: 0
+fragBullets: 1
+fragBullet: {
+killShooter: true
+instantDisappear: true
+}
+}
+}
+}
+unit.disrupt-missile.health: 99999
+// unit.disrupt-missile.weapons: [ 
+//  {
 //  shootSound: none
 //  shootStatusDuration: 2
 //  shootStatus: freezing
@@ -527,15 +549,15 @@ damage: 10
 //  {
 //  shootSound: none
 //  shootStatusDuration: 2
- // shootStatus: tarred
- // shootCone: 360f
+//  shootStatus: tarred
+//  shootCone: 360f
 //    bullet: {
 //    range: 13
 //    maxRange: 13
- //   lifetime: 1f
- //  type: basicBulletType
- //   damage: 0
- //   }
+//    lifetime: 1f
+//   type: basicBulletType
+//    damage: 0
+//    }
 //  }
 //  {
 //  shootCone: 360f
@@ -546,58 +568,74 @@ damage: 10
 //  shootStatus: slow
 //  shootOnDeath: true
 //  bullet: {
- //   range: 13
- //   maxRange: 13
+//    range: 13
+//    maxRange: 13
 //    type: basicBulletType
- //   lightning: 1
- //   sprite: ""
+//    lightning: 1
+//    sprite: ""
 //    lifetime: 1f
 //    collidesAir: true
 //    suppressionRange: 140f
 //    width: 49.6f
 //    height: 49.6f
 //    damage: 33f
- //   pierce: true
-  //  shootEffect: {
-  //    type: ExplosionEffect
-   //   lifetime: 50f
- //     waveStroke: 5f
- //     waveLife: 8f
-  //    waveColor: "ffffff"
- //     sparkColor: "665c9f"
- //     smokeColor: "665c9f"
- //     waveRad: 40f
-  //    smokeSize: 4f
-  //    smokes: 7
- //     smokeSizeBase: 0f
-  //    sparks: 10
+//    pierce: true
+//    shootEffect: {
+//      type: ExplosionEffect
+//      lifetime: 50f
+//      waveStroke: 5f
+//      waveLife: 8f
+//      waveColor: "ffffff"
+//      sparkColor: "665c9f"
+//      smokeColor: "665c9f"
+//      waveRad: 40f
+//      smokeSize: 4f
+//      smokes: 7
+//      smokeSizeBase: 0f
+//      sparks: 10
 //      sparkRad: 40f
- //     sparkLen: 6f
- //     sparkStroke: 2f
- //   }
+//      sparkLen: 6f
+//      sparkStroke: 2f
+//    }
 //  }
-//}
-//]
+// }
+// ]
 
-//unit.quell-missile.range: 40
-//unit.quell-missile.maxRange: 40
-//unit.quell.targetAir: true
-//unit.quell-missile.targetAir: true
-//unit.quell.weapons.0.bullet.collidesAir: true
-//unit.quell-missile.health: 99999
-//unit.quell-missile.weapons: [ 
+unit.quell.targetAir: true
+unit.quell-missile.targetAir: true
+unit.quell-missile.weapons.0: {
+reload: 9999
+bullet: {
+collidesAir: true
+killShooter: false
+fragBullets: 1
+fragBullet: {
+type: basicBulletType
+collides: false
+speed: 0f
+lifetime: 5f
+drawSize: 0
+fragBullets: 1
+fragBullet: {
+killShooter: true
+instantDisappear: true
+}
+}
+}
+}
+// unit.quell-missile.weapons: [ 
 //  {
- // shootSound: none
+//  shootSound: none
 //  shootStatusDuration: 2
 //  shootStatus: freezing
 //  shootCone: 360f
- // bullet: {
+//  bullet: {
 //    range: 13
 //    maxRange: 13
- //   lifetime: 1f
-  //  type: basicBulletType
- //   damage: 0
- //   }
+//    lifetime: 1f
+//    type: basicBulletType
+//    damage: 0
+//    }
 //  }
 //  {
 //  shootSound: none
@@ -651,8 +689,8 @@ damage: 10
 //      sparkStroke: 2f
 //    }
 //  }
-//}
-//]
+// }
+// ]
 
 
 
@@ -1009,5 +1047,3 @@ unit.avert.buildSpeed: 0.01
 unit.obviate.buildSpeed: 0.01
 unit.quell.buildSpeed: 0.01
 unit.disrupt.buildSpeed: 0.01
-
-
