@@ -90,7 +90,6 @@ public class ArmorWorkbench {
     }
 
     public static void buyWorkbench(Player player, Tile tile) {
-        Log.info("wrokbench");
         if (players.get(player.uuid()).getScore() < 8) {
             player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 8));
         } else {
