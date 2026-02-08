@@ -17,7 +17,7 @@ unit.flare.weapons: [
             range: 80
             maxRange: 80
             speed: 2.2
-            damage: 15
+            damage: 10
             type: basicBulletType
             width: 7f
             height: 9f
@@ -40,7 +40,7 @@ unit.flare.weapons: [
             range: 80
             maxRange: 80
             speed: 2.2
-            damage: 15
+            damage: 10
             type: basicBulletType
             width: 7f
             height: 9f
