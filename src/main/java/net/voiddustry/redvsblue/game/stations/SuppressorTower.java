@@ -62,7 +62,7 @@ public class SuppressorTower {
         if (players.get(player.uuid()).getScore() < 20) {
             player.sendMessage(Bundle.format("station.not-enough-money", Bundle.findLocale(player.locale), 20));
         } else {
-            if (!suppressorTowerMap.containsKey(player.uuid()) || !suppressorPlaced.contains(player.uuid())) {
+            if (!suppressorTowerMap.containsKey(player.uuid()) && !suppressorPlaced.contains(player.uuid())) {
                 if (!player.dead()) {
                     Tile playerTileOn = player.tileOn();
                     Tile tileUnderPlayer = Vars.world.tile(playerTileOn.x, playerTileOn.y - 1);
