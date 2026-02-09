@@ -43,18 +43,21 @@ public class Utils {
 
     public static void initRules() {
 
+        state.rules.bannedBlocks.clear();
+        state.rules.revealedBlocks.clear();
+
         for (Block block : Vars.content.blocks()) {
             state.rules.bannedBlocks.add(block);
             for(int i = 0; i < block.requirements.length; i++){
                 if (block.requirements[i].item==Items.dormantCyst) {
                     state.rules.bannedBlocks.remove(block);
-                    block.buildVisibility=BuildVisibility.shown;
+                    state.rules.revealedBlocks.add(block);
+                    
                     break;
                 }
             }
         }
-
-
+        
         state.rules.buildSpeedMultiplier = 0;
 
         state.rules.env = Vars.defaultEnv;
