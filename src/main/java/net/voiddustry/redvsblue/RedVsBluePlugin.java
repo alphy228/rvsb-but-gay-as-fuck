@@ -358,7 +358,7 @@ public class RedVsBluePlugin extends Plugin {
                 Log.info("[scarlet]The server is restarting");
                 //net.dispose(); where do you find this mythical method
                 Groups.player.each(p -> p.kick("[scarlet]Server is restarting"));
-                Core.app.exit();
+                System.exit(0);
             }
             
         });
@@ -667,7 +667,7 @@ public class RedVsBluePlugin extends Plugin {
         handler.register("restart", "now actually works", (args) -> {
             Groups.player.each(p -> p.kick("[scarlet]Server is restarting"));
             Log.info("Server is restarting");
-            Core.app.exit();
+            System.exit(0);
         });
         
         handler.register("setstage","<number>" ,"Sets rvsb stage", (args) -> {
