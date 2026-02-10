@@ -140,7 +140,7 @@ yScl: 4.5
 heatColor: "fc4e03"
 }
 
-mirror parts
+//mirror parts
 {
 name: obviate
 rotation: 85
