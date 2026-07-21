@@ -7,7 +7,7 @@ hitSize: 24
 
 rotateSpeed: 1.8
 mechFrontSway: 1
-buildSpeed: 3
+buildSpeed: 0.01
 
 mechStepParticles: true
 stepShake: 0.15
