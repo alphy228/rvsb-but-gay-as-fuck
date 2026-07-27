@@ -99,7 +99,7 @@ targetable: true
 autoFindTarget: true
 useUnitCap: true
 createScorch: true
-speed: 0.6f
+speed: 0.4f
 range: 340
 maxRange: 420
 rotateSpeed: 1.1
@@ -636,15 +636,15 @@ fragBullet: {
 type: explosionBulletType
 collidesAir: true
 killShooter: false
-splashDamage: 260
+splashDamage: 120
 scaledSplashDamage: true
-splashDamageRadius: 60
+splashDamageRadius: 40
 buildingDamageMultiplier: 1.5
 status: sapped
 statusDuration: 480
 lightning: 5
 lightningLength: 22
-lightningDamage: 30
+lightningDamage: 15
 lightningColor: "c45edd"
 hitSound: shockwaveTower
 despawnHit: true
