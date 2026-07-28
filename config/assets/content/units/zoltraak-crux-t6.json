@@ -1,0 +1,503 @@
+{
+  localizedName: Zoltraak
+  description: Destroys enemies with chain lightning and empowered EMP blasts, can overcharge nearby enemies, shutting down their systems
+  details: Shield can never be broken.     -Never is here.
+  uiIcon: unit-navanax-ui
+  fullIcon: unit-navanax-ui
+  health: 45000
+  flying: true
+  wobble: false
+  controller: FlyingAI
+  speed: 0.2
+  rotateSpeed: 1.0
+  hitSize: 60.0
+  generateFullIcon: false
+
+  parts: [
+    {
+      type: RegionPart
+      y: 10.0
+      name: navanax
+      layerOffset: -0.5
+      xScl: 0.9
+      yScl: 0.9
+    }
+    {
+      type: RegionPart
+      name: oxynoe
+      mirror: true
+      x: 20.0
+      y: -30.0
+      layerOffset: 0.5
+    }
+    {
+      type: RegionPart
+      name: oxynoe
+      mirror: true
+      x: 21.0
+      y: -35.0
+      layerOffset: 0.5
+    }
+    {
+      type: RegionPart
+      name: oxynoe
+      mirror: true
+      x: 22.0
+      y: -40.0
+      layerOffset: 0.5
+    }
+    {
+      type: HaloPart
+      shapes: 6.0
+      color: d9ffda00
+      colorTo: 92ff95ff
+      haloRadius: 17.0
+      haloRadiusTo: 10.0
+      hollow: true
+      layerOffset: 10.0
+      sides: 6.0
+    }
+    {
+      type: HaloPart
+      shapes: 6.0
+      color: d9ffda00
+      colorTo: 92ff95ff
+      haloRadius: 25.0
+      haloRadiusTo: 10.0
+      hollow: true
+      layerOffset: 10.0
+      sides: 6.0
+      haloRotation: 30.0
+    }
+    {
+      type: RegionPart
+      y: -10.0
+      name: navanax
+      layerOffset: -0.5
+    }
+  ]
+
+  armor: 10.0
+
+  weapons: [
+    {
+      rotationLimit: 100.0
+      reload: 600.0
+      x: 20.0
+      type: Weapon
+
+      parts: [
+        {
+          type: RegionPart
+          name: oxynoe
+        }
+        {
+          type: RegionPart
+          y: 6.0
+          name: retusa
+          outline: false
+        }
+        {
+          type: RegionPart
+          y: 10.0
+          name: emp-cannon-mount
+          outline: false
+          moveY: -5.0
+        }
+      ]
+
+      rotate: true
+      name: oxynoe
+
+      ejectEffect: {
+        type: RadialEffect
+        effect: shootBigColor
+        layer: 150.0
+        rotationSpacing: 10.0
+        amount: 5.0
+        rotWithParent: true
+        effectRotationOffset: -25.0
+        lifetime: 30.0
+      }
+
+      layerOffset: 2.0
+
+      bullet: {
+        sprite: large-bomb-back
+        backSprite: mine-bomb-back
+        backColor: d6ffd7ff
+        shrinkY: 0.0
+        width: 25.0
+        height: 25.0
+        trailColor: ecffecff
+        trailLength: 20.0
+        trailWidth: 5.0
+
+        despawnEffect: {
+          type: MultiEffect
+
+          effects: [
+            {
+              type: RadialEffect
+              effect: scatheSlash
+              amount: 6.0
+              rotationSpacing: 60.0
+              lifetime: 100.0
+            }
+            {
+              type: RadialEffect
+              effect: scatheSlash
+              amount: 12.0
+              rotationSpacing: 30.0
+              lifetime: 50.0
+              lengthOffset: 150.0
+              effectRotationOffset: 90.0
+            }
+            {
+              type: WaveEffect
+              sizeTo: 150.0
+              strokeTo: 0.0
+              sides: 12.0
+              sizeFrom: 150.0
+              lightColor: dcffa4ff
+            }
+          ]
+
+          lifetime: 100.0
+        }
+
+        hitEffect: {
+          type: MultiEffect
+
+          effects: [
+            {
+              type: RadialEffect
+              effect: scatheSlash
+              amount: 6.0
+              rotationSpacing: 60.0
+              lifetime: 100.0
+            }
+            {
+              type: RadialEffect
+              effect: scatheSlash
+              amount: 12.0
+              rotationSpacing: 30.0
+              lifetime: 50.0
+              lengthOffset: 150.0
+              effectRotationOffset: 90.0
+            }
+            {
+              type: WaveEffect
+              sizeTo: 150.0
+              strokeTo: 0.0
+              sides: 12.0
+              sizeFrom: 150.0
+              lightColor: dcffa4ff
+            }
+          ]
+
+          lifetime: 100.0
+        }
+
+        speed: 12.0
+        lifetime: 60.0
+        damage: 500.0
+        splashDamageRadius: 150.0
+        splashDamage: 250.0
+        splashDamagePierce: true
+        pierceDamageFactor: 0.2
+        fragRandomSpread: 0.0
+        fragSpread: 60.0
+        fragBullets: 6.0
+        fragVelocityMin: 1.0
+        fragOffsetMax: 0.0
+
+        fragBullet: {
+          sprite: large-bomb-back
+          backSprite: mine-bomb-back
+          backColor: d6ffd7ff
+          shrinkY: 0.0
+          width: 10.0
+          height: 10.0
+          trailColor: dbffdcff
+          trailLength: 20.0
+          trailWidth: 5.0
+
+          despawnEffect: {
+            type: MultiEffect
+
+            effects: [
+              {
+                type: RadialEffect
+                effect: scatheSlash
+                amount: 6.0
+                rotationSpacing: 90.0
+                lifetime: 100.0
+              }
+              {
+                type: RadialEffect
+                effect: scatheSlash
+                amount: 12.0
+                rotationSpacing: 90.0
+                lifetime: 50.0
+                lengthOffset: 70.0
+                effectRotationOffset: 90.0
+              }
+              {
+                type: WaveEffect
+                sizeTo: 70.0
+                strokeTo: 0.0
+                sides: 8.0
+                sizeFrom: 70.0
+                lightColor: dcffa4ff
+              }
+            ]
+
+            lifetime: 100.0
+          }
+
+          hitEffect: {
+            type: MultiEffect
+
+            effects: [
+              {
+                type: RadialEffect
+                effect: scatheSlash
+                rotationSpacing: 90.0
+                lifetime: 100.0
+              }
+              {
+                type: RadialEffect
+                effect: scatheSlash
+                rotationSpacing: 90.0
+                lifetime: 50.0
+                lengthOffset: 70.0
+                effectRotationOffset: 90.0
+              }
+              {
+                type: WaveEffect
+                sizeTo: 70.0
+                sides: 8.0
+                sizeFrom: 70.0
+                lightColor: dcffa4ff
+              }
+            ]
+
+            lifetime: 100.0
+          }
+
+          speed: 5.0
+          lifetime: 80.0
+          damage: 250.0
+          splashDamageRadius: 70.0
+          splashDamage: 100.0
+          pierceDamageFactor: 0.2
+          fragRandomSpread: 0.0
+          fragSpread: 360.0
+          fragVelocityMin: 1.0
+          fragOffsetMax: 0.0
+          type: BasicBulletType
+          bulletInterval: 10.0
+
+          intervalBullet: {
+            type: EmpBulletType
+            sprite: large-bomb-back
+            backSprite: mine-bomb-back
+            backColor: c4ffc5ff
+            shrinkY: 0.0
+            width: 15.0
+            height: 15.0
+            trailColor: dbffdcff
+
+            despawnEffect: {
+              type: MultiEffect
+
+              effects: [
+                {
+                  type: RadialEffect
+                  effect: scatheSlash
+                  rotationSpacing: 90.0
+                  lifetime: 40.0
+                }
+                {
+                  type: WaveEffect
+                  sizeTo: 60.0
+                  strokeTo: 0.0
+                  sides: 8.0
+                  sizeFrom: 60.0
+                  lightColor: dcffa4ff
+                }
+                {
+                  type: RadialEffect
+                  effect: scatheSlash
+                  lifetime: 40.0
+                  lengthOffset: 60.0
+                  rotationOffset: 0.0
+                  effectRotationOffset: 90.0
+                }
+              ]
+
+              lifetime: 100.0
+            }
+
+            splashDamagePierce: true
+            pierceDamageFactor: 0.2
+            fragRandomSpread: 0.0
+            powerSclDecrease: 1.0
+            radius: 60.0
+            speed: 0.0
+            collides: false
+            lifetime: 200.0
+            damage: 350.0
+            keepVelocity: false
+            hitPowerEffect: hitSquaresColor
+            shootSound: shootPayload
+            hitSound: shootScepterSecondary
+            despawnSound: shootScepterSecondary
+            status: freezing
+            splashDamage: 100.0
+            splashDamageRadius: 10.0
+            unitDamageScl: 1.2
+          }
+
+          pierce: true
+          pierceBuilding: true
+          removeAfterPierce: false
+          hitSound: shootScepterSecondary
+          despawnSound: shootScepterSecondary
+        }
+
+        fragAngle: 0.0
+        hitSound: shootNavanax
+        despawnSound: shootScepterSecondary
+        status: slow
+        statusDuration: 1000.0
+      }
+
+      shoot: {
+        shotDelay: 30.0
+      }
+
+      shootSound: shootBeamPlasmaSmall
+      shootSoundVolume: 0.5
+      y: -10.0
+    }
+    {
+      type: Weapon
+      name: plasma-laser-mount
+      reload: 50.0
+
+      bullet: {
+        type: ShrapnelBulletType
+        toColor: d0ffc1ff
+        serrations: 1.0
+        length: 240.0
+        width: 30.0
+        hitLarge: true
+        status: blasted
+        knockback: 30.0
+        damage: 250.0
+      }
+
+      shootSound: shockwaveTower
+
+      parts: [
+        {
+          type: RegionPart
+          name: plasma-laser-mount
+          y: 0.0
+          heat: plasma-laser-mount
+          outline: false
+        }
+        {
+          type: RegionPart
+          outline: false
+          name: plasma-missile-mount
+          y: -8.0
+        }
+      ]
+
+      layerOffset: 5.0
+      alternate: false
+      y: -30.0
+      rotate: true
+      autoTarget: true
+      controllable: false
+      aiControllable: false
+      shootSoundVolume: 0.2
+      x: 25.0
+    }
+    {
+      type: Weapon
+      name: plasma-laser-mount
+      reload: 50.0
+
+      bullet: {
+        type: ShrapnelBulletType
+        toColor: d0ffc1ff
+        serrations: 1.0
+        length: 240.0
+        width: 30.0
+        hitLarge: true
+        status: blasted
+        knockback: 30.0
+        damage: 250.0
+      }
+
+      shootSound: shockwaveTower
+
+      parts: [
+        {
+          type: RegionPart
+          name: plasma-laser-mount
+          y: 0.0
+          heat: plasma-laser-mount
+          outline: false
+        }
+        {
+          type: RegionPart
+          outline: false
+          name: plasma-missile-mount
+          y: -8.0
+        }
+      ]
+
+      layerOffset: 5.0
+      alternate: false
+      y: 25.0
+      rotate: true
+      autoTarget: true
+      controllable: false
+      aiControllable: false
+      shootSoundVolume: 0.2
+      x: 25.0
+    }
+  ]
+
+  flyingLayer: 90.0
+  rotateToBuilding: false
+
+  abilities: [
+    {
+      type: EnergyFieldAbility
+      status: unmoving
+      color: ebffeeff
+      damage: 0.0
+      sectors: 6.0
+      sectorRad: 0.12
+      rotateSpeed: 0.2
+      range: 350.0
+      statusDuration: 500.0
+      reload: 1200.0
+      healPercent: 0.0
+      maxTargets: 100.0
+      curStroke: 0.2
+      hitBuildings: false
+    }
+  ]
+
+  softShadowRegion: particle
+  credit: Made by Destro
+  allDatabaseTabs: true
+  hideDetails: false
+}

@@ -1,0 +1,12 @@
+{
+  unit: {
+    dp-zoltraak-crux-t6: {
+      cellRegion: navanax-cell
+      region: navanax
+      shadowRegion: navanax
+      flyingLayer: 80.0
+      fullIcon: unit-navanax-ui
+      uiIcon: unit-navanax-ui
+    }
+  }
+}
