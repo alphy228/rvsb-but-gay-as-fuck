@@ -2,7 +2,8 @@ name: "daybreak blue unit"
 
 unit.evoke: {
   localizedName: "Daybreak"
-  description: "."
+  description: "Eclipse. Mark II."
+  details: ""
 
   // Base sprites
   region: "eclipse"
@@ -22,7 +23,6 @@ unit.evoke: {
   flying: true
   lowAltitude: false
   flyingLayer: 90
-  wobble: false
   omniMovement: true
   circleTarget: false
   faceTarget: true
@@ -44,17 +44,14 @@ unit.evoke: {
   coreUnitDock: false
 
   // Stats
-  speed: 0.55
-  accel: 0.035
-  drag: 0.028
+  speed: 0.50
   rotateSpeed: 0.85
-  hitSize: 70
+  hitSize: 62
   health: 31000
-  armor: 20
+  armor: 18
   range: 400
   maxRange: 400
   aimDst: 140
-  fogRadius: 55
 
   // Effects & engines
   loopSound: "loopHover"
@@ -280,11 +277,11 @@ unit.evoke: {
       ]
 
 bullet: {
-      type: EmpBulletType
+      type: BasicBulletType
       layer: 100
 
-      speed: 200
-      lifetime: 2
+      speed: 40
+      lifetime: 10
 
       sprite: "none"
       trailLength: 0
@@ -292,25 +289,22 @@ bullet: {
       lightRadius: 0
       lightOpacity: 0
 
-      damage: 600
+      damage: 350
       splashDamage: 300
-      splashDamageRadius: 50
-
-      unitDamageScl: 1
-      healPercent: 0
-      powerDamageScl: 0
-      timeIncrease: 0
-      timeDuration: 0
+      splashDamageRadius: 55
+      
+      hittable: false
 
       hitColor: "ff9c5a"
       lightColor: "ff9c5a"
 
-      shootEffect: "none"
+      shootEffect: "railShoot"
       smokeEffect: "none"
       hitSound: "explosionArtilleryShockBig"
 
-      status: "slow"
-      statusDuration: 290
+      status: slow
+      statusDuration: 120
+
       hitShake: 4
       despawnHit: true
 
@@ -358,10 +352,7 @@ bullet: {
           damage: 1
           length: 400
           width: 18
-          lifetime: 16
-          sideAngle: 12
-          sideWidth: 1.2
-          sideLength: 40
+          lifetime: 24
           colors: ["ff9c5a44", "ff9c5a", "ffffff"]
           hitColor: "ff9c5a"
           lightColor: "ff9c5a"
@@ -369,6 +360,7 @@ bullet: {
           smokeEffect: "none"
           hitEffect: "none"
           despawnEffect: "none"
+          pierceCap: 1
         }
       ]
     }
