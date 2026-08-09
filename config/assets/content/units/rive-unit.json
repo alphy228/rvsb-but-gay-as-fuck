@@ -86,7 +86,7 @@ weapons: [
     
     bullet: {
       type: ExplosionBulletType
-      splashDamage: 4000
+      splashDamage: 1400
       splashDamageRadius: 8
       killShooter: true
       
@@ -126,7 +126,7 @@ weapons: [
       fragBullets: 1
       fragBullet: {
         type: ExplosionBulletType
-        splashDamage: 1200
+        splashDamage: 600
         splashDamageRadius: 126
         status: burning
         statusDuration: 240
