@@ -1,0 +1,581 @@
+type: flying
+name: Giga
+description: "гигабайт"
+details: ""
+// flight
+flying: true
+lowAltitude: false
+flyingLayer: 90
+engineLayer: 89.97
+omniMovement: true
+faceTarget: true
+circleTarget: false
+speed: 1.2
+rotateSpeed: 2.5
+// stats
+health: 4200
+armor: 7
+hitSize: 39.6
+range: 170
+maxRange: 190
+aimDst: 100
+itemCapacity: 50
+buildSpeed: 0.01
+// targeting & control
+canAttack: true
+targetAir: true
+targetGround: true
+targetable: true
+hittable: true
+autoFindTarget: true
+playerControllable: true
+logicControllable: true
+useUnitCap: true
+coreUnitDock: false
+// visuals: invisible base region, no default engine, big soft shadow
+drawBody: false
+engineSize: 0
+softShadowRegion: particle
+loopSound: loopHover
+loopSoundVolume: 0.5
+trailLength: 12
+trailScl: 3
+engines: [
+  { radius: 5.5, x: 9.35,  y: -32.65, rotation: 270 }
+  { radius: 5.5, x: -9.35, y: -32.65, rotation: 270 }
+]
+weapons: [
+// ===== RIGHT lance (fixed forward, no recoil, charge + heat glow) =====
+{
+  name: beam-weapon
+  mirror: false
+  alternate: true
+  otherSide: 1
+  flipSprite: false
+  top: true
+  x: 9.35
+  y: -3.3
+  shootY: 8.95
+  reload: 38
+  recoil: 2
+  recoilTime: 1
+  recoils: 1
+  shake: 1.5
+  shoot: { firstShotDelay: 12 }
+  shootSound: shootLancer
+  shootSoundVolume: 0.3
+  ejectEffect: none
+  layerOffset: 0.01
+  cooldownTime: 100
+  parts: [
+    {
+      name: beam-weapon
+      outline: false
+      under: true
+      xScl: 1.3
+      yScl: 1.3
+      y: -2.6
+      layerOffset: -0.0004
+    }
+
+    // normal mount
+    {
+      name: heal-weapon-mount
+      outline: false
+      xScl: 0.88
+      yScl: 0.94
+      y: 5.3
+      layerOffset: 0.0001
+    }
+
+    // charge glow: invisible -> pure white
+    {
+      name: heal-weapon-mount
+      outline: false
+      xScl: 0.88
+      yScl: 0.94
+      y: 5.3
+      progress: charge
+      color: ffffff00
+      colorTo: ffffffff
+      mixColor: ffffffff
+      mixColorTo: ffffffff
+      blending: additive
+      layerOffset: 0.0002
+    }
+
+    // heat glow: snaps to opaque vanilla heat color on fire, slow cooldown
+    {
+      name: heal-weapon-mount
+      outline: false
+      xScl: 0.88
+      yScl: 0.94
+      y: 5.3
+      progress: heat
+      color: ab340000
+      colorTo: ab3400ff
+      blending: additive
+      layerOffset: 0.0003
+    }
+  ]
+  bullet: {
+    type: LaserBulletType
+    damage: 45
+    length: 160
+    width: 18
+    lifetime: 20
+    largeHit: false
+    healAmount: 10
+    collidesTeam: true
+    collidesAir: true
+    collidesGround: true
+    sideAngle: 25
+    sideWidth: 1
+    sideLength: 30
+    colors: ["98ffa955", "98ffa9aa", "98ffa9", "ffffff"]
+    hitColor: 98ffa9
+    lightColor: 98ffa9
+    lightning: 1
+    lightningLength: 6
+    lightningDamage: 8
+    lightningColor: 98ffa9
+    status: shocked
+    statusDuration: 40
+    shootEffect: shootHeal
+    smokeEffect: none
+    hitEffect: hitMeltHeal
+    despawnEffect: none
+  }
+}
+// ===== LEFT lance (flipSprite mirror, charge + heat glow) =====
+{
+  name: beam-weapon
+  mirror: false
+  alternate: true
+  otherSide: 0
+  flipSprite: true
+  top: true
+  x: -9.35
+  y: -3.3
+  shootY: 8.95
+  reload: 38
+  recoil: 0
+  shake: 1.5
+  recoil: 2
+  recoils: 1
+  recoilTime: 1
+  shoot: { firstShotDelay: 12 }
+  shootSound: shootLancer
+  shootSoundVolume: 0.3
+  ejectEffect: none
+  layerOffset: 0.01
+  cooldownTime: 100
+  parts: [
+    {
+      name: beam-weapon
+      outline: false
+      under: true
+      xScl: 1.3
+      yScl: 1.3
+      y: -2.6
+      layerOffset: -0.0004
+    }
+
+    // normal mount
+    {
+      name: heal-weapon-mount
+      outline: false
+      xScl: 0.88
+      yScl: 0.94
+      y: 5.3
+      layerOffset: 0.0001
+    }
+
+    // charge glow: invisible -> pure white
+    {
+      name: heal-weapon-mount
+      outline: false
+      xScl: 0.88
+      yScl: 0.94
+      y: 5.3
+      progress: charge
+      color: ffffff00
+      colorTo: ffffffff
+      mixColor: ffffffff
+      mixColorTo: ffffffff
+      blending: additive
+      layerOffset: 0.0002
+    }
+
+    // heat glow: snaps to opaque vanilla heat color on fire, slow cooldown
+    {
+      name: heal-weapon-mount
+      outline: false
+      xScl: 0.88
+      yScl: 0.94
+      y: 5.3
+      progress: heat
+      color: ab340000
+      colorTo: ab3400ff
+      blending: additive
+      layerOffset: 0.0003
+    }
+  ]
+  bullet: {
+    type: LaserBulletType
+    damage: 45
+    length: 160
+    width: 18
+    lifetime: 20
+    largeHit: false
+    healAmount: 10
+    collidesTeam: true
+    collidesAir: true
+    collidesGround: true
+    sideAngle: 25
+    sideWidth: 1
+    sideLength: 30
+    colors: ["98ffa955", "98ffa9aa", "98ffa9", "ffffff"]
+    hitColor: 98ffa9
+    lightColor: 98ffa9
+    lightning: 1
+    lightningLength: 6
+    lightningDamage: 8
+    lightningColor: 98ffa9
+    status: shocked
+    statusDuration: 40
+    shootEffect: shootHeal
+    smokeEffect: none
+    hitEffect: hitMeltHeal
+    despawnEffect: none
+  }
+}
+// ===== RIGHT missile pod (rotates) =====
+{
+  name: plasma-missile-mount
+  mirror: false
+  alternate: true
+  otherSide: 3
+  flipSprite: false
+  top: true
+  x: 16.5
+  y: -20.9
+  shootY: 9.9
+  rotate: true
+  rotateSpeed: 3
+  rotationLimit: 160
+  reload: 85
+  recoil: 2.6
+  recoilTime: 35
+  shake: 1
+  inaccuracy: 8
+  velocityRnd: 0.15
+  shootSound: shootMissilePlasma
+  shootSoundVolume: 0.35
+  ejectEffect: none
+  layerOffset: 0.01
+  shoot: { shots: 4, shotDelay: 4 }
+  parts: [
+    {
+      name: plasma-missile-mount
+      outline: false
+      under: true
+      xScl: 1.3
+      yScl: 1.3
+      y: -1.3
+      progress: recoil
+      moveY: -1.3
+      layerOffset: -0.0003
+    }
+    {
+      name: plasma-laser-mount
+      outline: false
+      xScl: 0.77
+      yScl: 0.83
+      y: 4
+      layerOffset: 0.0001
+    }
+  ]
+  bullet: {
+    type: MissileBulletType
+    sprite: missile
+    backSprite: missile-back
+    speed: 3.5
+    lifetime: 55
+    damage: 16
+    width: 8
+    height: 10
+    hitSize: 5
+    shrinkY: 0
+    homingPower: 0.16
+    homingRange: 150
+    weaveScale: 3
+    weaveMag: 8
+    splashDamage: 30
+    splashDamageRadius: 20
+    healAmount: 4
+    collidesTeam: true
+    backColor: 98ffa9
+    frontColor: ffffff
+    trailColor: 98ffa9
+    hitColor: 98ffa9
+    trailLength: 8
+    trailWidth: 2
+    shootEffect: shootHeal
+    smokeEffect: none
+    hitEffect: hitMeltHeal
+    despawnEffect: hitMeltHeal
+    hitSound: explosionMissile
+    status: shocked
+    statusDuration: 40
+  }
+}
+// ===== LEFT missile pod (flipSprite mirror, staggered) =====
+{
+  name: plasma-missile-mount
+  mirror: false
+  alternate: true
+  otherSide: 2
+  flipSprite: true
+  top: true
+  x: -16.5
+  y: -20.9
+  shootY: 9.9
+  rotate: true
+  rotateSpeed: 3
+  rotationLimit: 160
+  reload: 85
+  recoil: 2.6
+  recoilTime: 35
+  shake: 1
+  inaccuracy: 8
+  velocityRnd: 0.15
+  shootSound: shootMissilePlasma
+  shootSoundVolume: 0.35
+  ejectEffect: none
+  layerOffset: 0.01
+  shoot: { shots: 4, shotDelay: 4, firstShotDelay: 10 }
+  parts: [
+    {
+      name: plasma-missile-mount
+      outline: false
+      under: true
+      xScl: 1.3
+      yScl: 1.3
+      y: -1.3
+      progress: recoil
+      moveY: -1.3
+      layerOffset: -0.0003
+    }
+    {
+      name: plasma-laser-mount
+      outline: false
+      xScl: 0.77
+      yScl: 0.83
+      y: 4
+      layerOffset: 0.0001
+    }
+  ]
+  bullet: {
+    type: MissileBulletType
+    sprite: missile
+    backSprite: missile-back
+    speed: 3.5
+    lifetime: 55
+    damage: 16
+    width: 8
+    height: 10
+    hitSize: 5
+    shrinkY: 0
+    homingPower: 0.16
+    homingRange: 150
+    weaveScale: 3
+    weaveMag: 8
+    splashDamage: 30
+    splashDamageRadius: 20
+    healAmount: 4
+    collidesTeam: true
+    backColor: 98ffa9
+    frontColor: ffffff
+    trailColor: 98ffa9
+    hitColor: 98ffa9
+    trailLength: 8
+    trailWidth: 2
+    shootEffect: shootHeal
+    smokeEffect: none
+    hitEffect: hitMeltHeal
+    despawnEffect: hitMeltHeal
+    hitSound: explosionMissile
+    status: shocked
+    statusDuration: 40
+  }
+}
+// lmao
+// ===== unit body (still exactly 10 parts) =====
+{
+  name: verdant-hull
+  display: false
+  controllable: false
+  aiControllable: false
+  autoTarget: false
+  alwaysShooting: false
+  mirror: false
+  top: false
+  x: 0
+  y: -11
+  reload: 999999
+  recoil: 0
+  layerOffset: -0.001
+  ejectEffect: none
+  shootSound: none
+  parts: [
+// --- swept wings ---
+    {
+      name: mega
+      outline: false
+      x: 16
+      y: 0
+      rotation: -50
+      xScl: 1.3
+      yScl: 1.3
+      layerOffset: -0.002
+    }
+    {
+      name: mega
+      outline: false
+      x: -16
+      y: 0
+      rotation: 50
+      xScl: -1.3
+      yScl: 1.3
+      layerOffset: -0.002
+    }
+// --- side pontoons ---
+    {
+      name: oxynoe
+      outline: false
+      x: 13.75
+      y: -2.75
+      rotation: -25
+      xScl: 0.88
+      yScl: 0.99
+      layerOffset: 0.0001
+    }
+    {
+      name: oxynoe
+      outline: false
+      x: -13.75
+      y: -2.75
+      rotation: 25
+      xScl: -0.88
+      yScl: 0.99
+      layerOffset: 0.0001
+    }
+// --- engine pods (poly, replaces mono nacelles) ---
+    {
+      name: poly
+      outline: false
+      x: 10.35
+      y: -14.05
+      rotation: -12
+      xScl: 1.27
+      yScl: 1.3
+      layerOffset: 0.0002
+    }
+    {
+      name: poly
+      outline: false
+      x: -10.35
+      y: -14.05
+      rotation: 12
+      xScl: -1.27
+      yScl: 1.3
+      layerOffset: 0.0002
+    }
+// --- main deck ---
+    {
+      name: pulsar
+      outline: false
+      xScl: 1.3
+      yScl: 1.21
+      y: -6.6
+      layerOffset: 0.0003
+    }
+// --- superstructure ---
+    {
+      name: vela
+      outline: false
+      xScl: 0.77
+      yScl: 0.83
+      y: 2.2
+      layerOffset: 0.0004
+    }
+// --- forward hull ---
+    {
+      name: nova
+      outline: false
+      xScl: 1.27
+      yScl: 1.16
+      y: 7.7
+      layerOffset: 0.0005
+    }
+// --- dome ---
+    {
+      name: quasar
+      outline: false
+      xScl: 1.05
+      yScl: 1.0
+      y: 11
+      layerOffset: 0.0006
+    }
+
+    {
+      name: beam-weapon
+      x: -6.35
+      y: 2
+      layerOffset: 0.0007
+    }
+    {
+      name: beam-weapon
+      x: 6.35
+      y: 2
+      xScl: -1
+      layerOffset: 0.0007
+    }
+    {
+      name: beam-weapon
+      x: -3.35
+      y: 1
+      layerOffset: 0.0007
+    }
+    {
+      name: beam-weapon
+      x: 3.35
+      y: 1
+      xScl: -1
+      layerOffset: 0.0007
+    }
+// --- prow blade ---
+    {
+      name: retusa
+      outline: false
+      xScl: 0.94
+      yScl: 1.3
+      y: 17.05
+      layerOffset: 0.0007
+    }
+  ]
+  bullet: {
+    type: BasicBulletType
+    speed: 0
+    lifetime: 1
+    damage: 0
+    collides: false
+    hittable: false
+    shootEffect: none
+    smokeEffect: none
+    hitEffect: none
+    despawnEffect: none
+  }
+}
+]
