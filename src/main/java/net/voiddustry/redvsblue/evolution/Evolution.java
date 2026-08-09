@@ -63,8 +63,8 @@ public enum Evolution {
     CONQUER(UnitTypes.conquer, 10, 450*multp, new String[] { "merui", "nova", "flare", "mono" }, 7),
     SEI(UnitTypes.sei, 10, 350*multp, new String[] { "omura" }, 8),
     
-    OMURA(UnitTypes.omura, 11, 1650*multp, new String[] { "merui", "nova", "dagger", "mono" }, 9);
-    DAYBREAK(Vars.content.unit("dp-daybreak-unit"), 8, 960*multp, new String[] { "merui", "nova", "flare", "dagger" }, 9),
+    OMURA(UnitTypes.omura, 11, 1650*multp, new String[] { "merui", "nova", "dagger", "mono" }, 9),
+    DAYBREAK(Vars.content.unit("dp-daybreak-unit"), 8, 960*multp, new String[] { "merui", "nova", "flare", "dagger" }, 9);
 
     public final UnitType unitType;
     public final int tier, cost, stage;

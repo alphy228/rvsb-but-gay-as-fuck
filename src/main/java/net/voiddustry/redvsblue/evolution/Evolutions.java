@@ -63,7 +63,7 @@ public class Evolutions {
         "eclipse", Evolution.ECLIPSE,
 
 
-        "omura", Evolution.OMURA
-        "dp-daybreak-unit", Evolution.DAYBREAK,
+        "omura", Evolution.OMURA,
+        "dp-daybreak-unit", Evolution.DAYBREAK
     );
 }
