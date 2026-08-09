@@ -32,6 +32,9 @@
   useUnitCap: true
   coreUnitDock: false
 
+  buildSpeed: 0.01
+  itemCapacity: 250
+
   // Stats
   speed: 0.50
   rotateSpeed: 0.85
