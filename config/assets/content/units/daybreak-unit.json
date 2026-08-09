@@ -1,17 +1,6 @@
-name: "daybreak blue unit"
-
-unit.evoke: {
-  localizedName: "Daybreak"
+  name: "Daybreak"
   description: "Eclipse. Mark II."
   details: ""
-
-  // Base sprites
-  region: "eclipse"
-  shadowRegion: "eclipse"
-  previewRegion: "unit-eclipse-full"
-  uiIcon: "unit-eclipse-full"
-  fullIcon: "unit-eclipse-full"
-  cellRegion: "eclipse-cell"
 
   // Outlines
   outlines: true
@@ -51,7 +40,6 @@ unit.evoke: {
   armor: 18
   range: 400
   maxRange: 400
-  aimDst: 140
 
   // Effects & engines
   loopSound: "loopHover"
@@ -68,7 +56,7 @@ unit.evoke: {
     { radius: 4,   x: -38, y: -26, rotation: 255 }
   ]
 
-  // Hull parts – dagger (reign), flare (antumbra), risso (omura), alpha tree replaced by sei-launcher
+  
   parts: [
     { type: RegionPart, name: "omura",        y: -16, xScl: 0.68, yScl: 0.63, layerOffset: -0.006, outline: false }
     { type: RegionPart, name: "antumbra",     x: 18, y: 2, rotation: -12, xScl: 0.7, yScl: 0.7, layerOffset: -0.005, outline: false }
@@ -85,6 +73,7 @@ unit.evoke: {
     // Range 28 tiles (was 23 + 5) -> laser length 224
     {
       name: "large-laser-mount"
+      mirror: false
       x: 26
       y: 7
       shootY: 19
@@ -99,7 +88,7 @@ unit.evoke: {
       shake: 4.5
       shootSound: "shootEclipse"
       ejectEffect: "none"
-      shoot: { firstShotDelay: 26 }
+      shoot: { firstShotDelay: 36 }
 
       parts: [
         { type: RegionPart, name: "large-laser-mount",  xScl: 1.3, yScl: 1.12, layerOffset: 0.0002, outline: true }
@@ -111,7 +100,7 @@ unit.evoke: {
       bullet: {
         type: LaserBulletType
         layer: 100
-        damage: 420
+        damage: 185
         length: 224
         width: 33
         lifetime: 21
@@ -119,11 +108,6 @@ unit.evoke: {
         sideAngle: 18
         sideWidth: 1.7
         sideLength: 60
-        lightningSpacing: 30
-        lightningLength: 8
-        lightningLengthRand: 8
-        lightningDamage: 34
-        lightningColor: "ff9c5a"
         colors: ["ec7458aa", "ff9c5a", "ffffff"]
         hitColor: "ff9c5a"
         lightColor: "ff9c5a"
@@ -137,6 +121,7 @@ unit.evoke: {
     // ===== LEFT thermal lance (manual copy) =====
     {
       name: "large-laser-mount"
+      mirror: false
       x: -26
       y: 7
       shootY: 19
@@ -163,7 +148,7 @@ unit.evoke: {
       bullet: {
         type: LaserBulletType
         layer: 100
-        damage: 420
+        damage: 185
         length: 224
         width: 33
         lifetime: 21
@@ -171,11 +156,6 @@ unit.evoke: {
         sideAngle: 18
         sideWidth: 1.7
         sideLength: 60
-        lightningSpacing: 30
-        lightningLength: 8
-        lightningLengthRand: 8
-        lightningDamage: 34
-        lightningColor: "ff9c5a"
         colors: ["ec7458aa", "ff9c5a", "ffffff"]
         hitColor: "ff9c5a"
         lightColor: "ff9c5a"
@@ -193,6 +173,7 @@ unit.evoke: {
     // at the moment of firing - no second weapon, no frag hacks.
     {
       name: "omura-cannon"
+      mirror: false
       x: 0
       y: -6
       shootY: 27
@@ -370,6 +351,7 @@ bullet: {
     // Range 32.5 tiles (was 25 + 7.5) -> speed 4.1 * lifetime 63 ≈ 258
     {
       name: "zenith-missiles"
+      mirror: false
       x: 34
       y: -16
       shootY: 9
@@ -402,7 +384,7 @@ bullet: {
         backSprite: "missile-back"
         speed: 4.1
         lifetime: 63
-        damage: 72
+        damage: 28
         width: 10.5
         height: 13.5
         hitSize: 7.5
@@ -412,7 +394,7 @@ bullet: {
         homingPower: 0
         weaveScale: 7.8
         weaveMag: 1.7
-        splashDamage: 105
+        splashDamage: 102
         splashDamageRadius: 31
         buildingDamageMultiplier: 1.12
         backColor: "f99f7a"
@@ -433,6 +415,7 @@ bullet: {
     // ===== LEFT missile battery (manual copy) =====
     {
       name: "zenith-missiles"
+      mirror: false
       x: -34
       y: -16
       shootY: 9
@@ -465,7 +448,7 @@ bullet: {
         backSprite: "missile-back"
         speed: 4.1
         lifetime: 63
-        damage: 72
+        damage: 28
         width: 10.5
         height: 13.5
         hitSize: 7.5
@@ -475,7 +458,7 @@ bullet: {
         homingPower: 0
         weaveScale: 7.8
         weaveMag: 1.7
-        splashDamage: 105
+        splashDamage: 102
         splashDamageRadius: 31
         buildingDamageMultiplier: 1.12
         backColor: "f99f7a"
@@ -493,4 +476,3 @@ bullet: {
       }
     }
   ]
-}

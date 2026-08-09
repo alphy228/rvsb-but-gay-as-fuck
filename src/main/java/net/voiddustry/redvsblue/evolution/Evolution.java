@@ -51,19 +51,20 @@ public enum Evolution {
 
     VANQUISH(UnitTypes.vanquish, 8, 250*multp, new String[] { "reign" }, 6),
     COLLARIS(UnitTypes.collaris, 8, 1170*multp, new String[] { "nova", "flare", "dagger", "mono" }, 7),
-    ANTUMBRA(UnitTypes.antumbra, 8, 180*multp, new String[] { "eclipse" }, 6),
+    ANTUMBRA(UnitTypes.antumbra, 8, 180*multp, new String[] { "eclipse" , "sei"}, 6),
     OCT(UnitTypes.oct, 8, 1500*multp, new String[] { "merui", "nova", "flare", "dagger" }, 9),
     QUELL(UnitTypes.quell, 8, 180*multp, new String[] { "disrupt" }, 6),
 
     REIGN(UnitTypes.reign, 9, 450*multp, new String[] { "conquer" }, 7),
-    ECLIPSE(UnitTypes.eclipse, 9, 270*multp, new String[] { "sei" }, 6),
+    ECLIPSE(UnitTypes.eclipse, 9, 270*multp, new String[] { "dp-daybreak-unit" }, 6),
     DISRUPT(UnitTypes.disrupt, 9, 800*multp, new String[] { "nova", "flare", "dagger"}, 8),
 
 
     CONQUER(UnitTypes.conquer, 10, 450*multp, new String[] { "merui", "nova", "flare", "mono" }, 7),
-    SEI(UnitTypes.sei, 10, 270*multp, new String[] { "omura" }, 8),
+    SEI(UnitTypes.sei, 10, 350*multp, new String[] { "omura" }, 8),
     
     OMURA(UnitTypes.omura, 11, 1650*multp, new String[] { "merui", "nova", "dagger", "mono" }, 9);
+    DAYBREAK(Vars.content.unit("dp-daybreak-unit"), 8, 960*multp, new String[] { "merui", "nova", "flare", "dagger" }, 9),
 
     public final UnitType unitType;
     public final int tier, cost, stage;
