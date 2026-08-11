@@ -1,5 +1,8 @@
 name: rvsb
 
+//precept "buff"
+unit.precept.hitSize: 24.9
+
 //flare rework
 unit.flare.omniMovement: true
 unit.flare.rotateSpeed: 99999
