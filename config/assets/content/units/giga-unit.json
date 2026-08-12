@@ -2,6 +2,9 @@ type: payload
 name: Giga
 description: "гигабайт"
 details: ""
+
+hidden: true
+
 // flight
 flying: true
 lowAltitude: false
@@ -66,7 +69,7 @@ weapons: [
   shake: 1.5
   shoot: { firstShotDelay: 12 }
   shootSound: shootLancer
-  shootSoundVolume: 0.3
+  shootSoundVolume: 0.4
   ejectEffect: none
   layerOffset: 0.01
   cooldownTime: 100
@@ -118,7 +121,7 @@ weapons: [
     width: 18
     lifetime: 20
     largeHit: false
-    healAmount: 10
+    healAmount: 100
     collidesTeam: true
     collidesAir: true
     collidesGround: true
@@ -159,7 +162,7 @@ weapons: [
   recoilTime: 90
   shoot: { firstShotDelay: 12 }
   shootSound: shootLancer
-  shootSoundVolume: 0.3
+  shootSoundVolume: 0.4
   ejectEffect: none
   layerOffset: 0.01
   cooldownTime: 100
@@ -211,7 +214,7 @@ weapons: [
     width: 18
     lifetime: 20
     largeHit: false
-    healAmount: 10
+    healAmount: 100
     collidesTeam: true
     collidesAir: true
     collidesGround: true
@@ -296,7 +299,7 @@ weapons: [
     weaveMag: 8
     splashDamage: 30
     splashDamageRadius: 20
-    healAmount: 4
+    healAmount: 40
     collidesTeam: true
     backColor: 98ffa9
     frontColor: ffffff
@@ -309,6 +312,7 @@ weapons: [
     hitEffect: hitMeltHeal
     despawnEffect: hitMeltHeal
     hitSound: explosionMissile
+    hitSoundVolume: 0.3
     status: shocked
     statusDuration: 40
   }
@@ -376,7 +380,7 @@ weapons: [
     weaveMag: 8
     splashDamage: 30
     splashDamageRadius: 20
-    healAmount: 4
+    healAmount: 40
     collidesTeam: true
     backColor: 98ffa9
     frontColor: ffffff
@@ -389,6 +393,7 @@ weapons: [
     hitEffect: hitMeltHeal
     despawnEffect: hitMeltHeal
     hitSound: explosionMissile
+    hitSoundVolume: 0.3
     status: shocked
     statusDuration: 40
   }
