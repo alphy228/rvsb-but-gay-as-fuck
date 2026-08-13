@@ -15,6 +15,7 @@ faceTarget: true
 circleTarget: false
 speed: 1.45
 rotateSpeed: 2.5
+strafePenalty: 0.5
 // stats
 health: 5200
 armor: 7

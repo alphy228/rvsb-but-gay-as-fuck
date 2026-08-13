@@ -1,0 +1,8 @@
+unit.dp-omni-unit: {
+  localizedName: Omni
+  region: cyerce
+  shadowRegion: omura
+  cellRegion: aegires-cell
+  uiIcon: unit-oct-ui
+  fullIcon: unit-oct-full
+}
