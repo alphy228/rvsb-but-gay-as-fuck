@@ -1,10 +1,10 @@
 // poseidon made by xexebe
 unit.dp-poseidon-crux-t6: {
 	localizedName: Poseidon
-	uiIcon: poseidon-crux-t6-ui
-	shadowRegion: poseidon-crux-t6-shadow
-	fullIcon: poseidon-crux-t6-full
+	uiIcon: dp-poseidon-crux-t6-ui
+	shadowRegion: dp-poseidon-crux-t6-shadow
+	fullIcon: dp-poseidon-crux-t6-full
 	cellRegion: omura-cell
 	region: omura
-	previewRegion: poseidon-crux-t6-full
+	previewRegion: dp-poseidon-crux-t6-full
 }

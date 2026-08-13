@@ -5,7 +5,7 @@ unit.dp-vela-blue-unit: {
 
 	baseRegion: vela-base
 	legRegion: vela-leg
-	uiIcon: vela-blue-unit-ui
-	fullIcon: vela-blue-unit-full
-	shadowRegion: vela-blue-unit-shadow
+	uiIcon: dp-vela-blue-unit-ui
+	fullIcon: dp-vela-blue-unit-full
+	shadowRegion: dp-vela-blue-unit-shadow
 }

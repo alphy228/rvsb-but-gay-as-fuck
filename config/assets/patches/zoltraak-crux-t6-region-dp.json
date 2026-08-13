@@ -3,10 +3,10 @@
     dp-zoltraak-crux-t6: {
       cellRegion: navanax-cell
       region: navanax
-      shadowRegion: zoltraak-crux-t6-shadow
+      shadowRegion: dp-zoltraak-crux-t6-shadow
       flyingLayer: 80.0
-      fullIcon: zoltraak-crux-t6-full
-      uiIcon: zoltraak-crux-t6-ui
+      fullIcon: dp-zoltraak-crux-t6-full
+      uiIcon: dp-zoltraak-crux-t6-ui
     }
   }
 }

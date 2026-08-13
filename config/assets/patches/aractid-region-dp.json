@@ -6,7 +6,7 @@ unit.dp-aractid-unit: {
 	legRegion: arkyid-leg
 	legBaseRegion: arkyid-leg-base
 	footRegion: spiroct-foot
-	uiIcon: aractid-unit-ui
-	fullIcon: aractid-unit-full
-	shadowRegion: aractid-unit-shadow
+	uiIcon: dp-aractid-unit-ui
+	fullIcon: dp-aractid-unit-full
+	shadowRegion: dp-aractid-unit-shadow
 }

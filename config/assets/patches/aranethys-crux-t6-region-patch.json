@@ -2,11 +2,11 @@
 unit.dp-aranethys-crux-t6: {
 	localizedName: Aranethys
 	footRegion: arkyid-foot
-	uiIcon: aranethys-crux-t6-ui
+	uiIcon: dp-aranethys-crux-t6-ui
 	cellRegion: quad-cell
 	legRegion: arkyid-leg
 	region: toxopid
 	legBaseRegion: toxopid-leg-base
-	fullIcon: aranethys-crux-t6-full
-	shadowRegion: aranethys-crux-t6-shadow
+	fullIcon: dp-aranethys-crux-t6-full
+	shadowRegion: dp-aranethys-crux-t6-shadow
 }
