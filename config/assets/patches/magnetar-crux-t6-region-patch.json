@@ -2,13 +2,14 @@
 unit.dp-magnetar-crux-t6: {
 	localizedName: Magnetar
 	region: corvus
-	shadowRegion: corvus
+	shadowRegion: magnetar-crux-t6-shadow
 	cellRegion: quad
-	uiIcon: unit-corvus-ui
+	uiIcon: magnetar-crux-t6-ui
 	legRegion: corvus-leg
 	jointRegion: corvus-joint
 	footRegion: corvus-foot
 	baseRegion: corvus-base
 	legBaseRegion: corvus-leg-base
 	baseJointRegion: corvus-joint-base
+	fullIcon: magnetar-crux-t6-full
 }

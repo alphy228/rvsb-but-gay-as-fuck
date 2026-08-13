@@ -2,9 +2,11 @@
 unit.dp-venomreach-crux-t6: {
 	localizedName: Venomreach
 	footRegion: arkyid-foot
-	uiIcon: unit-toxopid-ui
+	uiIcon: venomreach-crux-t6-ui
 	cellRegion: toxopid-cell
 	legRegion: arkyid-leg
 	region: toxopid
 	legBaseRegion: toxopid-leg-base
+	fullIcon: venomreach-crux-t6-full
+	shadowRegion: venomreach-crux-t6-shadow
 }

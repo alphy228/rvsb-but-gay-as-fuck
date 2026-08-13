@@ -2,7 +2,7 @@ unit.dp-rive-unit: {
   localizedName: Rive
   region: obviate
   cellRegion: quell-cell
-  shadowRegion: quell
-  uiIcon: unit-obviate-ui
-  fullIcon: unit-obviate-full
+  shadowRegion: rive-unit-shadow
+  uiIcon: rive-unit-ui
+  fullIcon: rive-unit-full
 }

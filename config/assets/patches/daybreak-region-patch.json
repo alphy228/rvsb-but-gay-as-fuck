@@ -1,9 +1,9 @@
   unit.dp-daybreak-unit: {
   localizedName: "Daybreak"
   region: "eclipse"
-  shadowRegion: "eclipse"
-  previewRegion: "unit-eclipse-full"
-  uiIcon: "unit-eclipse-full"
-  fullIcon: "unit-eclipse-full"
+  shadowRegion: "daybreak-unit-shadow"
+  previewRegion: "daybreak-unit-full"
+  uiIcon: "daybreak-unit-ui"
+  fullIcon: "daybreak-unit-full"
   cellRegion: "eclipse-cell"
   }
