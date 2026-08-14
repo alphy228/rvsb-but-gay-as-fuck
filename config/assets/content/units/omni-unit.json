@@ -18,13 +18,13 @@ rotateSpeed: 0.85
 strafePenalty: 0.2
 // stats
 health: 22000
-armor: 18
+armor: 14
 hitSize: 38
 range: 290
 maxRange: 310
 aimDst: 120
 itemCapacity: 280
-buildSpeed: 5.8
+buildSpeed: 0.01
 buildBeamOffset: 36
 mineTier: 4
 mineSpeed: 9.5
@@ -142,43 +142,34 @@ parts: [
   { name: retusa, outline: false, x: -2.8, y: 18.2, rotation: 5, xScl: -0.75, yScl: 1.12, layerOffset: -0.00118, heatLayerOffset: 0.011 }
 
   // =================================================================
-  // FORK CREST — center spine widens then splits
+  // FORKED NOSE — minimal, keeps original silhouette and just splits tip
   // =================================================================
-  { name: nova, outline: false, x: 0, y: 23.6, xScl: 1.15, yScl: 0.9, layerOffset: -0.00114, heatLayerOffset: 0.011 }
-  { name: pulsar, outline: false, x: 0, y: 25.0, xScl: 0.9, yScl: 0.85, layerOffset: -0.00112, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: 0, y: 27.0, xScl: 1.0, yScl: 1.0, layerOffset: -0.00113, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 0, y: 24.0, xScl: 0.78, yScl: 1.22, layerOffset: -0.00114, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 0, y: 26.6, xScl: 0.82, yScl: 0.88, layerOffset: -0.00113, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 0, y: 29.6, xScl: 0.76, yScl: 1.16, layerOffset: -0.00112, heatLayerOffset: 0.011 }
 
-  { name: nova, outline: false, x: 6.8, y: 22.4, rotation: -14, xScl: 0.95, yScl: 0.95, layerOffset: -0.00115, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -6.8, y: 22.4, rotation: 14, xScl: -0.95, yScl: 0.95, layerOffset: -0.00115, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: 8.4, y: 26.6, rotation: -11, xScl: 0.9, yScl: 1.0, layerOffset: -0.00114, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: -8.4, y: 26.6, rotation: 11, xScl: -0.9, yScl: 1.0, layerOffset: -0.00114, heatLayerOffset: 0.011 }
-
-  // =================================================================
-  // TWIN PRONGS — original wide fork
-  // =================================================================
-  { name: retusa, outline: false, x: 9.6, y: 31.0, rotation: -9, xScl: 0.78, yScl: 1.2, layerOffset: -0.00113, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: -9.6, y: 31.0, rotation: 9, xScl: -0.78, yScl: 1.2, layerOffset: -0.00113, heatLayerOffset: 0.011 }
-
-  { name: nova, outline: false, x: 10.4, y: 35.4, rotation: -9, xScl: 0.84, yScl: 0.9, layerOffset: -0.00112, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -10.4, y: 35.4, rotation: 9, xScl: -0.84, yScl: 0.9, layerOffset: -0.00112, heatLayerOffset: 0.011 }
-
-  { name: oxynoe, outline: false, x: 11.1, y: 39.6, rotation: -8, xScl: 0.8, yScl: 0.92, layerOffset: -0.00111, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: -11.1, y: 39.6, rotation: 8, xScl: -0.8, yScl: 0.92, layerOffset: -0.00111, heatLayerOffset: 0.011 }
-
-  { name: retusa, outline: false, x: 11.7, y: 43.8, rotation: -8, xScl: 0.76, yScl: 1.16, layerOffset: -0.0011, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: -11.7, y: 43.8, rotation: 8, xScl: -0.76, yScl: 1.16, layerOffset: -0.0011, heatLayerOffset: 0.011 }
-
-  { name: nova, outline: false, x: 12.2, y: 47.8, rotation: -7, xScl: 0.78, yScl: 0.84, layerOffset: -0.00109, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -12.2, y: 47.8, rotation: 7, xScl: -0.78, yScl: 0.84, layerOffset: -0.00109, heatLayerOffset: 0.011 }
-
-  { name: retusa, outline: false, x: 12.6, y: 51.6, rotation: -7, xScl: 0.75, yScl: 1.12, layerOffset: -0.00108, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: -12.6, y: 51.6, rotation: 7, xScl: -0.75, yScl: 1.12, layerOffset: -0.00108, heatLayerOffset: 0.011 }
-
-  { name: nova, outline: false, x: 12.9, y: 55.0, rotation: -6, xScl: 0.72, yScl: 0.78, layerOffset: -0.00107, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -12.9, y: 55.0, rotation: 6, xScl: -0.72, yScl: 0.78, layerOffset: -0.00107, heatLayerOffset: 0.011 }
-
-  { name: retusa, outline: false, x: 13.2, y: 58.0, rotation: -6, xScl: 0.7, yScl: 1.05, layerOffset: -0.00106, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: -13.2, y: 58.0, rotation: 6, xScl: -0.7, yScl: 1.05, layerOffset: -0.00106, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 1.8, y: 32.2, rotation: -2, xScl: 0.78, yScl: 0.84, layerOffset: -0.00111, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -1.8, y: 32.2, rotation: 2, xScl: -0.78, yScl: 0.84, layerOffset: -0.00111, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 2.3, y: 35.2, rotation: -2, xScl: 0.75, yScl: 1.12, layerOffset: -0.0011, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -2.3, y: 35.2, rotation: 2, xScl: -0.75, yScl: 1.12, layerOffset: -0.0011, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 2.8, y: 37.8, rotation: -3, xScl: 0.76, yScl: 0.82, layerOffset: -0.00109, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -2.8, y: 37.8, rotation: 3, xScl: -0.76, yScl: 0.82, layerOffset: -0.00109, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 3.3, y: 40.8, rotation: -3, xScl: 0.75, yScl: 1.1, layerOffset: -0.00108, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -3.3, y: 40.8, rotation: 3, xScl: -0.75, yScl: 1.1, layerOffset: -0.00108, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 3.8, y: 43.4, rotation: -4, xScl: 0.75, yScl: 0.8, layerOffset: -0.00107, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -3.8, y: 43.4, rotation: 4, xScl: -0.75, yScl: 0.8, layerOffset: -0.00107, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 4.3, y: 46.2, rotation: -4, xScl: 0.75, yScl: 1.08, layerOffset: -0.00106, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -4.3, y: 46.2, rotation: 4, xScl: -0.75, yScl: 1.08, layerOffset: -0.00106, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 4.8, y: 48.8, rotation: -4, xScl: 0.74, yScl: 0.78, layerOffset: -0.00105, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -4.8, y: 48.8, rotation: 4, xScl: -0.74, yScl: 0.78, layerOffset: -0.00105, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 5.2, y: 51.6, rotation: -4, xScl: 0.74, yScl: 0.82, layerOffset: -0.00104, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: -5.2, y: 51.6, rotation: 4, xScl: -0.74, yScl: 0.82, layerOffset: -0.00104, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 5.6, y: 54.4, rotation: -4, xScl: 0.72, yScl: 1.04, layerOffset: -0.00103, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -5.6, y: 54.4, rotation: 4, xScl: -0.72, yScl: 1.04, layerOffset: -0.00103, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 5.9, y: 56.8, rotation: -4, xScl: 0.7, yScl: 0.76, layerOffset: -0.00102, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -5.9, y: 56.8, rotation: 4, xScl: -0.7, yScl: 0.76, layerOffset: -0.00102, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 6.1, y: 59.2, rotation: -4, xScl: 0.68, yScl: 1.0, layerOffset: -0.00101, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -6.1, y: 59.2, rotation: 4, xScl: -0.68, yScl: 1.0, layerOffset: -0.00101, heatLayerOffset: 0.011 }
 
   // =================================================================
   // SIDE SPIKES — unchanged
@@ -263,20 +254,18 @@ parts: [
   { name: beam-weapon, outline: false, x: 0, y: 4.8, rotation: 90, xScl: 1.08, yScl: 0.8, layerOffset: -0.00084, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: 0, y: -1.8, rotation: 90, xScl: 1.12, yScl: 0.8, layerOffset: -0.00084, heatLayerOffset: 0.011 }
 
-  // original wide fork glue
-  { name: beam-weapon, outline: false, x: 0, y: 24.6, rotation: 90, xScl: 1.15, yScl: 0.8, layerOffset: -0.00084, heatLayerOffset: 0.011 }
-
-  { name: beam-weapon, outline: false, x: 10.2, y: 33.2, rotation: -9, xScl: 0.8, yScl: 1.15, layerOffset: -0.00086, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -10.2, y: 33.2, rotation: 9, xScl: -0.8, yScl: 1.15, layerOffset: -0.00086, heatLayerOffset: 0.011 }
-
-  { name: beam-weapon, outline: false, x: 11.4, y: 41.8, rotation: -8, xScl: 0.78, yScl: 1.12, layerOffset: -0.00086, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -11.4, y: 41.8, rotation: 8, xScl: -0.78, yScl: 1.12, layerOffset: -0.00086, heatLayerOffset: 0.011 }
-
-  { name: beam-weapon, outline: false, x: 12.4, y: 50.0, rotation: -7, xScl: 0.75, yScl: 1.08, layerOffset: -0.00086, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -12.4, y: 50.0, rotation: 7, xScl: -0.75, yScl: 1.08, layerOffset: -0.00086, heatLayerOffset: 0.011 }
-
-  { name: beam-weapon, outline: false, x: 13.0, y: 56.6, rotation: -6, xScl: 0.72, yScl: 1.0, layerOffset: -0.00086, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -13.0, y: 56.6, rotation: 6, xScl: -0.72, yScl: 1.0, layerOffset: -0.00086, heatLayerOffset: 0.011 }
+  // minimal fork glue
+  { name: beam-weapon, outline: false, x: 0, y: 29.0, rotation: 90, xScl: 0.8, yScl: 0.76, layerOffset: -0.00084, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 2.0, y: 33.0, rotation: -2, xScl: 0.78, yScl: 1.04, layerOffset: -0.00083, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -2.0, y: 33.0, rotation: 2, xScl: -0.78, yScl: 1.04, layerOffset: -0.00083, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 2.9, y: 38.6, rotation: -3, xScl: 0.76, yScl: 1.02, layerOffset: -0.00083, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -2.9, y: 38.6, rotation: 3, xScl: -0.76, yScl: 1.02, layerOffset: -0.00083, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 3.8, y: 44.4, rotation: -4, xScl: 0.74, yScl: 1.0, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -3.8, y: 44.4, rotation: 4, xScl: -0.74, yScl: 1.0, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 4.8, y: 50.8, rotation: -4, xScl: 0.72, yScl: 0.98, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -4.8, y: 50.8, rotation: 4, xScl: -0.72, yScl: 0.98, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 5.7, y: 56.4, rotation: -4, xScl: 0.7, yScl: 0.94, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -5.7, y: 56.4, rotation: 4, xScl: -0.7, yScl: 0.94, layerOffset: -0.00082, heatLayerOffset: 0.011 }
 
   // engine deck seam
   { name: beam-weapon, outline: false, x: 10.4, y: -23.4, rotation: -50, xScl: 1.2, yScl: 1.15, layerOffset: -0.00105, heatLayerOffset: 0.011 }
@@ -332,14 +321,10 @@ parts: [
   { name: poly-weapon, outline: false, x: 6.2, y: -36.6, rotation: 180, xScl: 1.05, yScl: 1.0, layerOffset: -0.0007, heatLayerOffset: 0.011 }
   { name: poly-weapon, outline: false, x: -6.2, y: -36.6, rotation: 180, xScl: -1.05, yScl: 1.0, layerOffset: -0.0007, heatLayerOffset: 0.011 }
 
-  // original wide fork-top hardware
-  { name: plasma-laser-mount, outline: false, x: 0, y: 21.8, xScl: 0.78, yScl: 0.76, layerOffset: -0.00078, heatLayerOffset: 0.011 }
-
-  { name: point-defense-mount, outline: false, x: 8.9, y: 28.4, rotation: -12, xScl: 0.8, yScl: 0.8, layerOffset: -0.00082, heatLayerOffset: 0.011 }
-  { name: point-defense-mount, outline: false, x: -8.9, y: 28.4, rotation: 12, xScl: -0.8, yScl: 0.8, layerOffset: -0.00082, heatLayerOffset: 0.011 }
-
-  { name: retusa-weapon, outline: false, x: 12.9, y: 53.6, rotation: -7, xScl: 0.72, yScl: 1.05, layerOffset: -0.00052, heatLayerOffset: 0.011 }
-  { name: retusa-weapon, outline: false, x: -12.9, y: 53.6, rotation: 7, xScl: -0.72, yScl: 1.05, layerOffset: -0.00052, heatLayerOffset: 0.011 }
+  // lean fork-top hardware
+  { name: plasma-laser-mount, outline: false, x: 0, y: 24.2, xScl: 0.76, yScl: 0.74, layerOffset: -0.00078, heatLayerOffset: 0.011 }
+  { name: retusa-weapon, outline: false, x: 5.8, y: 54.8, rotation: -4, xScl: 0.68, yScl: 1.0, layerOffset: -0.00052, heatLayerOffset: 0.011 }
+  { name: retusa-weapon, outline: false, x: -5.8, y: 54.8, rotation: 4, xScl: -0.68, yScl: 1.0, layerOffset: -0.00052, heatLayerOffset: 0.011 }
 
   // cells
   { name: power-cell, outline: false, x: 0, y: -15.8, xScl: 1.25, yScl: 1.2, layerOffset: -0.0003, heatLayerOffset: 0.011 }
@@ -359,11 +344,9 @@ parts: [
   { name: cyerce-cell, outline: false, x: 20.5, y: -13.2, rotation: -17, xScl: 0.9, yScl: 0.95, layerOffset: -0.0022, heatLayerOffset: 0.011 }
   { name: cyerce-cell, outline: false, x: -20.5, y: -13.2, rotation: 17, xScl: -0.9, yScl: 0.95, layerOffset: -0.0022, heatLayerOffset: 0.011 }
 
-  // wide fork crest cells
-  { name: power-cell, outline: false, x: 0, y: 20.2, xScl: 0.95, yScl: 0.9, layerOffset: -0.00028, heatLayerOffset: 0.011 }
-  { name: quasar-cell, outline: false, x: 0, y: 22.0, xScl: 0.82, yScl: 0.8, layerOffset: -0.00026, heatLayerOffset: 0.011 }
-  { name: nova-cell, outline: false, x: 6.8, y: 22.4, rotation: -14, xScl: 0.88, yScl: 0.84, layerOffset: -0.00027, heatLayerOffset: 0.011 }
-  { name: nova-cell, outline: false, x: -6.8, y: 22.4, rotation: 14, xScl: -0.88, yScl: 0.84, layerOffset: -0.00027, heatLayerOffset: 0.011 }
+  // fork root cells only
+  { name: power-cell, outline: false, x: 0, y: 24.0, xScl: 0.88, yScl: 0.84, layerOffset: -0.00028, heatLayerOffset: 0.011 }
+  { name: quasar-cell, outline: false, x: 0, y: 26.0, xScl: 0.76, yScl: 0.74, layerOffset: -0.00026, heatLayerOffset: 0.011 }
 
   {
     name: power-cell
@@ -381,9 +364,9 @@ parts: [
     name: power-cell
     outline: false
     x: 0
-    y: 20.4
-    xScl: 0.92
-    yScl: 0.88
+    y: 24.2
+    xScl: 0.84
+    yScl: 0.8
     color: 98ffa966
     blending: additive
     layerOffset: -0.00014
@@ -393,14 +376,14 @@ parts: [
 
 weapons: [
   // =================================================================
-  // PRONG-TIP GLOW — original wide mirrored fork tips
+  // PRONG-TIP GLOW — narrow mirrored fork tips
   // =================================================================
   {
     name: retusa-weapon
     mirror: true
     top: true
-    x: 12.4
-    y: 49.0
+    x: 5.6
+    y: 50.2
     shootY: 8
     rotate: false
     reload: 72
@@ -415,16 +398,16 @@ weapons: [
     ejectEffect: none
     layerOffset: 0.013
     parts: [
-      { name: plasma-laser-mount, outline: false, y: 0.4, xScl: 0.68, yScl: 0.66, layerOffset: 0.00006 }
-      { name: beam-weapon, outline: true, outlineLayerOffset: -0.00012, y: 3.8, xScl: 0.76, yScl: 0.92, layerOffset: 0.00014 }
-      { name: retusa-weapon, outline: false, y: 7.0, xScl: 0.66, yScl: 1.04, layerOffset: 0.0002 }
-      { name: power-cell, outline: false, y: 0.6, xScl: 0.66, yScl: 0.64, layerOffset: 0.00016 }
+      { name: plasma-laser-mount, outline: false, y: 0.4, xScl: 0.62, yScl: 0.62, layerOffset: 0.00006 }
+      { name: beam-weapon, outline: true, outlineLayerOffset: -0.00012, y: 3.6, xScl: 0.7, yScl: 0.88, layerOffset: 0.00014 }
+      { name: retusa-weapon, outline: false, y: 6.8, xScl: 0.6, yScl: 0.98, layerOffset: 0.0002 }
+      { name: power-cell, outline: false, y: 0.6, xScl: 0.6, yScl: 0.6, layerOffset: 0.00016 }
       {
         name: retusa-weapon
         outline: false
-        y: 7.0
-        xScl: 0.66
-        yScl: 1.04
+        y: 6.8
+        xScl: 0.6
+        yScl: 0.98
         progress: heat
         color: 98ffa900
         colorTo: 98ffa9ff
@@ -803,7 +786,7 @@ weapons: [
   }
 
   // =================================================================
-  // MOORING STORM — player aimed
+  // MOORING STORM — player aimed. 55 tiles.
   // =================================================================
   {
     name: plasma-missile-mount

@@ -3,6 +3,16 @@ name: Giga
 description: "гигабайт"
 details: ""
 
+abilities: [
+  {
+    type: ShieldRegenFieldAbility
+    amount: 60
+    max: 420
+    reload: 120
+    range: 60
+  }
+]
+
 hidden: true
 
 // flight
@@ -23,7 +33,7 @@ hitSize: 39.6
 range: 170
 maxRange: 190
 aimDst: 100
-itemCapacity: 50
+itemCapacity: 120
 buildSpeed: 0.01
 // targeting & control
 canAttack: true
@@ -401,7 +411,6 @@ weapons: [
 }
 //repair
   {
-    type: RepairBeamWeapon
     name: repair-beam-weapon-center-large
     parts: [{
       name: repair-beam-weapon-center-large
@@ -411,6 +420,10 @@ weapons: [
     }]
     x: 0
     y: 0
+    controllable: false
+    shoot: {
+      firstShotDelay: 999999
+    }
     shootY: 18
     recoil: 0
     recoils: 1
