@@ -74,8 +74,8 @@ parts: [
   { name: vela, outline: false, x: 0, y: -22.2, xScl: 0.78, yScl: 0.8, layerOffset: -0.0048, heatLayerOffset: 0.011 }
   { name: mega, outline: false, x: 12.5, y: -26.7, rotation: -50, xScl: 1.12, yScl: 1.08, layerOffset: -0.0042, heatLayerOffset: 0.011 }
   { name: mega, outline: false, x: -12.5, y: -26.7, rotation: 50, xScl: -1.12, yScl: 1.08, layerOffset: -0.0042, heatLayerOffset: 0.011 }
-  { name: cyerce, outline: false, x: 20.5, y: -13.2, rotation: -17, xScl: 1.1, yScl: 1.18, layerOffset: -0.0038, heatLayerOffset: 0.011 }
-  { name: cyerce, outline: false, x: -20.5, y: -13.2, rotation: 17, xScl: -1.1, yScl: 1.18, layerOffset: -0.0038, heatLayerOffset: 0.011 }
+  { name: cyerce, outline: false, x: 21.2, y: -14.0, rotation: -45, xScl: 1.1, yScl: 1.32, layerOffset: -0.0038, heatLayerOffset: 0.011 }
+  { name: cyerce, outline: false, x: -21.2, y: -14.0, rotation: 45, xScl: -1.1, yScl: 1.32, layerOffset: -0.0038, heatLayerOffset: 0.011 }
 
   { name: oxynoe, outline: false, x: 7.2, y: -27.6, rotation: -10, xScl: 1.02, yScl: 1.06, layerOffset: -0.00255, heatLayerOffset: 0.011 }
   { name: oxynoe, outline: false, x: -7.2, y: -27.6, rotation: 10, xScl: -1.02, yScl: 1.06, layerOffset: -0.00255, heatLayerOffset: 0.011 }
@@ -83,7 +83,7 @@ parts: [
   { name: nova, outline: false, x: -7.8, y: -32.4, rotation: 8, xScl: -1.08, yScl: 1.0, layerOffset: -0.0025, heatLayerOffset: 0.011 }
 
   // =================================================================
-  // ORIGINAL SPINE (lower)
+  // ORIGINAL SPINE
   // =================================================================
   { name: retusa, outline: false, x: 0, y: -34.7, xScl: 0.88, yScl: 1.12, layerOffset: -0.00175, heatLayerOffset: 0.011 }
   { name: pulsar, outline: false, x: 0, y: -27.4, xScl: 1.22, yScl: 1.16, layerOffset: -0.00165, heatLayerOffset: 0.011 }
@@ -95,7 +95,7 @@ parts: [
   { name: retusa, outline: false, x: 0, y: -0.2, xScl: 0.95, yScl: 1.25, layerOffset: -0.0013, heatLayerOffset: 0.011 }
 
   // =================================================================
-  // BODY
+  // THIN RAM
   // =================================================================
   { name: nova, outline: false, x: 5.5, y: -8.6, rotation: -10, xScl: 0.95, yScl: 1.0, layerOffset: -0.0014, heatLayerOffset: 0.011 }
   { name: nova, outline: false, x: -5.5, y: -8.6, rotation: 10, xScl: -0.95, yScl: 1.0, layerOffset: -0.0014, heatLayerOffset: 0.011 }
@@ -126,6 +126,15 @@ parts: [
   { name: pulsar, outline: false, x: 0, y: 15.4, xScl: 0.78, yScl: 0.8, layerOffset: -0.00119, heatLayerOffset: 0.011 }
   { name: retusa, outline: false, x: 0, y: 18.0, xScl: 0.8, yScl: 1.22, layerOffset: -0.00118, heatLayerOffset: 0.011 }
   { name: nova, outline: false, x: 0, y: 21.0, xScl: 0.88, yScl: 0.94, layerOffset: -0.00116, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 0, y: 24.0, xScl: 0.78, yScl: 1.22, layerOffset: -0.00114, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 0, y: 26.6, xScl: 0.82, yScl: 0.88, layerOffset: -0.00113, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 0, y: 29.6, xScl: 0.76, yScl: 1.2, layerOffset: -0.00112, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 0, y: 32.2, xScl: 0.78, yScl: 0.84, layerOffset: -0.00111, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 0, y: 35.2, xScl: 0.75, yScl: 1.18, layerOffset: -0.0011, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 0, y: 37.8, xScl: 0.76, yScl: 0.82, layerOffset: -0.00109, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 0, y: 40.8, xScl: 0.75, yScl: 1.16, layerOffset: -0.00108, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 0, y: 43.4, xScl: 0.75, yScl: 0.8, layerOffset: -0.00107, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 0, y: 46.2, xScl: 0.75, yScl: 1.14, layerOffset: -0.00106, heatLayerOffset: 0.011 }
 
   { name: oxynoe, outline: false, x: 5.2, y: 7.2, rotation: -5, xScl: 0.9, yScl: 1.04, layerOffset: -0.00123, heatLayerOffset: 0.011 }
   { name: oxynoe, outline: false, x: -5.2, y: 7.2, rotation: 5, xScl: -0.9, yScl: 1.04, layerOffset: -0.00123, heatLayerOffset: 0.011 }
@@ -135,67 +144,92 @@ parts: [
   { name: oxynoe, outline: false, x: -4.0, y: 15.8, rotation: 4, xScl: -0.86, yScl: 0.98, layerOffset: -0.00119, heatLayerOffset: 0.011 }
   { name: nova, outline: false, x: 3.4, y: 20.2, rotation: -3, xScl: 0.86, yScl: 0.9, layerOffset: -0.00117, heatLayerOffset: 0.011 }
   { name: nova, outline: false, x: -3.4, y: 20.2, rotation: 3, xScl: -0.86, yScl: 0.9, layerOffset: -0.00117, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 2.8, y: 24.6, rotation: -3, xScl: 0.8, yScl: 0.9, layerOffset: -0.00115, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: -2.8, y: 24.6, rotation: 3, xScl: -0.8, yScl: 0.9, layerOffset: -0.00115, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 2.4, y: 29.0, rotation: -2, xScl: 0.8, yScl: 0.82, layerOffset: -0.00113, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -2.4, y: 29.0, rotation: 2, xScl: -0.8, yScl: 0.82, layerOffset: -0.00113, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 2.0, y: 33.4, rotation: -2, xScl: 0.76, yScl: 0.86, layerOffset: -0.00111, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: -2.0, y: 33.4, rotation: 2, xScl: -0.76, yScl: 0.86, layerOffset: -0.00111, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 1.7, y: 37.8, rotation: -2, xScl: 0.76, yScl: 0.78, layerOffset: -0.00109, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -1.7, y: 37.8, rotation: 2, xScl: -0.76, yScl: 0.78, layerOffset: -0.00109, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 1.5, y: 42.2, rotation: -2, xScl: 0.75, yScl: 0.82, layerOffset: -0.00107, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: -1.5, y: 42.2, rotation: 2, xScl: -0.75, yScl: 0.82, layerOffset: -0.00107, heatLayerOffset: 0.011 }
 
   { name: retusa, outline: false, x: 3.6, y: 9.6, rotation: -6, xScl: 0.75, yScl: 1.14, layerOffset: -0.00122, heatLayerOffset: 0.011 }
   { name: retusa, outline: false, x: -3.6, y: 9.6, rotation: 6, xScl: -0.75, yScl: 1.14, layerOffset: -0.00122, heatLayerOffset: 0.011 }
   { name: retusa, outline: false, x: 2.8, y: 18.2, rotation: -5, xScl: 0.75, yScl: 1.12, layerOffset: -0.00118, heatLayerOffset: 0.011 }
   { name: retusa, outline: false, x: -2.8, y: 18.2, rotation: 5, xScl: -0.75, yScl: 1.12, layerOffset: -0.00118, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 2.2, y: 26.8, rotation: -4, xScl: 0.75, yScl: 1.1, layerOffset: -0.00114, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -2.2, y: 26.8, rotation: 4, xScl: -0.75, yScl: 1.1, layerOffset: -0.00114, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 1.6, y: 35.6, rotation: -3, xScl: 0.75, yScl: 1.08, layerOffset: -0.0011, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -1.6, y: 35.6, rotation: 3, xScl: -0.75, yScl: 1.08, layerOffset: -0.0011, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 1.2, y: 43.0, rotation: -3, xScl: 0.75, yScl: 1.06, layerOffset: -0.00107, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -1.2, y: 43.0, rotation: 3, xScl: -0.75, yScl: 1.06, layerOffset: -0.00107, heatLayerOffset: 0.011 }
 
   // =================================================================
-  // FORKED NOSE — minimal, keeps original silhouette and just splits tip
+  // SECOND DECK — phallic ram tip
   // =================================================================
-  { name: retusa, outline: false, x: 0, y: 24.0, xScl: 0.78, yScl: 1.22, layerOffset: -0.00114, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: 0, y: 26.6, xScl: 0.82, yScl: 0.88, layerOffset: -0.00113, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: 0, y: 29.6, xScl: 0.76, yScl: 1.16, layerOffset: -0.00112, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 0, y: 48.0, xScl: 0.88, yScl: 0.92, layerOffset: -0.00104, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 0, y: 51.4, xScl: 0.95, yScl: 1.04, layerOffset: -0.00103, heatLayerOffset: 0.011 }
+  { name: pulsar, outline: false, x: 0, y: 54.6, xScl: 0.9, yScl: 0.88, layerOffset: -0.00102, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 0, y: 57.8, xScl: 0.98, yScl: 1.0, layerOffset: -0.00101, heatLayerOffset: 0.011 }
+  { name: quasar, outline: false, x: 0, y: 60.4, xScl: 0.86, yScl: 0.84, layerOffset: -0.001, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 0, y: 63.2, xScl: 0.9, yScl: 1.02, layerOffset: -0.001, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 0, y: 66.4, xScl: 0.88, yScl: 0.92, layerOffset: -0.00099, heatLayerOffset: 0.011 }
+  { name: pulsar, outline: false, x: 0, y: 68.8, xScl: 0.8, yScl: 0.78, layerOffset: -0.00098, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 0, y: 71.6, xScl: 0.76, yScl: 1.18, layerOffset: -0.00097, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 0, y: 73.4, xScl: 0.76, yScl: 0.8, layerOffset: -0.00096, heatLayerOffset: 0.011 }
 
-  { name: nova, outline: false, x: 1.8, y: 32.2, rotation: -2, xScl: 0.78, yScl: 0.84, layerOffset: -0.00111, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -1.8, y: 32.2, rotation: 2, xScl: -0.78, yScl: 0.84, layerOffset: -0.00111, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: 2.3, y: 35.2, rotation: -2, xScl: 0.75, yScl: 1.12, layerOffset: -0.0011, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: -2.3, y: 35.2, rotation: 2, xScl: -0.75, yScl: 1.12, layerOffset: -0.0011, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: 2.8, y: 37.8, rotation: -3, xScl: 0.76, yScl: 0.82, layerOffset: -0.00109, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -2.8, y: 37.8, rotation: 3, xScl: -0.76, yScl: 0.82, layerOffset: -0.00109, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: 3.3, y: 40.8, rotation: -3, xScl: 0.75, yScl: 1.1, layerOffset: -0.00108, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: -3.3, y: 40.8, rotation: 3, xScl: -0.75, yScl: 1.1, layerOffset: -0.00108, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: 3.8, y: 43.4, rotation: -4, xScl: 0.75, yScl: 0.8, layerOffset: -0.00107, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -3.8, y: 43.4, rotation: 4, xScl: -0.75, yScl: 0.8, layerOffset: -0.00107, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: 4.3, y: 46.2, rotation: -4, xScl: 0.75, yScl: 1.08, layerOffset: -0.00106, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: -4.3, y: 46.2, rotation: 4, xScl: -0.75, yScl: 1.08, layerOffset: -0.00106, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: 4.8, y: 48.8, rotation: -4, xScl: 0.74, yScl: 0.78, layerOffset: -0.00105, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -4.8, y: 48.8, rotation: 4, xScl: -0.74, yScl: 0.78, layerOffset: -0.00105, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: 5.2, y: 51.6, rotation: -4, xScl: 0.74, yScl: 0.82, layerOffset: -0.00104, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: -5.2, y: 51.6, rotation: 4, xScl: -0.74, yScl: 0.82, layerOffset: -0.00104, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: 5.6, y: 54.4, rotation: -4, xScl: 0.72, yScl: 1.04, layerOffset: -0.00103, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: -5.6, y: 54.4, rotation: 4, xScl: -0.72, yScl: 1.04, layerOffset: -0.00103, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: 5.9, y: 56.8, rotation: -4, xScl: 0.7, yScl: 0.76, layerOffset: -0.00102, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -5.9, y: 56.8, rotation: 4, xScl: -0.7, yScl: 0.76, layerOffset: -0.00102, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: 6.1, y: 59.2, rotation: -4, xScl: 0.68, yScl: 1.0, layerOffset: -0.00101, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: -6.1, y: 59.2, rotation: 4, xScl: -0.68, yScl: 1.0, layerOffset: -0.00101, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 3.6, y: 49.6, rotation: -10, xScl: 0.8, yScl: 0.96, layerOffset: -0.00105, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: -3.6, y: 49.6, rotation: 10, xScl: -0.8, yScl: 0.96, layerOffset: -0.00105, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 4.4, y: 53.4, rotation: -6, xScl: 0.88, yScl: 0.92, layerOffset: -0.00103, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -4.4, y: 53.4, rotation: 6, xScl: -0.88, yScl: 0.92, layerOffset: -0.00103, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 4.8, y: 57.6, rotation: -3, xScl: 0.92, yScl: 1.02, layerOffset: -0.00102, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: -4.8, y: 57.6, rotation: 3, xScl: -0.92, yScl: 0.98, layerOffset: -0.00102, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 4.6, y: 61.6, rotation: 3, xScl: 0.88, yScl: 0.9, layerOffset: -0.00101, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -4.6, y: 61.6, rotation: -3, xScl: -0.88, yScl: 0.9, layerOffset: -0.00101, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 3.8, y: 65.6, rotation: 8, xScl: 0.82, yScl: 0.96, layerOffset: -0.001, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: -3.8, y: 65.6, rotation: -8, xScl: -0.82, yScl: 0.96, layerOffset: -0.001, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 2.6, y: 69.6, rotation: 10, xScl: 0.78, yScl: 0.84, layerOffset: -0.00098, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -2.6, y: 69.6, rotation: -10, xScl: -0.78, yScl: 0.84, layerOffset: -0.00098, heatLayerOffset: 0.011 }
 
-  // =================================================================
-  // SIDE SPIKES — unchanged
-  // =================================================================
-  { name: pulsar, outline: false, x: 13.8, y: -21.0, rotation: -26, xScl: 0.84, yScl: 0.86, layerOffset: -0.0024, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: 18.2, y: -15.0, rotation: -20, xScl: 1.12, yScl: 1.14, layerOffset: -0.00185, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: 22.4, y: -8.8, rotation: -15, xScl: 1.2, yScl: 1.1, layerOffset: -0.00172, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: 26.6, y: -2.6, rotation: -11, xScl: 0.912, yScl: 1.18, layerOffset: -0.0018, heatLayerOffset: 0.011 }
-  { name: poly, outline: false, x: 20.6, y: -11.8, rotation: -17, xScl: 1.05, yScl: 1.12, layerOffset: -0.0016, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: 16.4, y: -5.4, rotation: -22, xScl: 1.08, yScl: 1.02, layerOffset: -0.00168, heatLayerOffset: 0.011 }
-  { name: mono, outline: false, x: 28.4, y: 2.0, rotation: -8, xScl: 1.18, yScl: 1.18, layerOffset: -0.00162, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: 24.8, y: 0.2, rotation: -14, xScl: 0.8, yScl: 1.15, layerOffset: -0.00166, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: 23.6, y: -18.8, rotation: -28, xScl: 0.92, yScl: 1.0, layerOffset: -0.00215, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 3.4, y: 52.4, rotation: -8, xScl: 0.75, yScl: 1.1, layerOffset: -0.00104, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -3.4, y: 52.4, rotation: 8, xScl: -0.75, yScl: 1.1, layerOffset: -0.00104, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 3.8, y: 59.4, rotation: -2, xScl: 0.75, yScl: 1.12, layerOffset: -0.00102, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -3.8, y: 59.4, rotation: 2, xScl: -0.75, yScl: 1.12, layerOffset: -0.00102, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 3.0, y: 66.4, rotation: 6, xScl: 0.75, yScl: 1.08, layerOffset: -0.00099, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -3.0, y: 66.4, rotation: -6, xScl: -0.75, yScl: 1.08, layerOffset: -0.00099, heatLayerOffset: 0.011 }
 
-  { name: pulsar, outline: false, x: -13.8, y: -21.0, rotation: 26, xScl: -0.84, yScl: 0.86, layerOffset: -0.0024, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: -18.2, y: -15.0, rotation: 20, xScl: -1.12, yScl: 1.14, layerOffset: -0.00185, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -22.4, y: -8.8, rotation: 15, xScl: -1.2, yScl: 1.1, layerOffset: -0.00172, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: -26.6, y: -2.6, rotation: 11, xScl: -0.912, yScl: 1.18, layerOffset: -0.0018, heatLayerOffset: 0.011 }
-  { name: poly, outline: false, x: -20.6, y: -11.8, rotation: 17, xScl: -1.05, yScl: 1.12, layerOffset: -0.0016, heatLayerOffset: 0.011 }
-  { name: nova, outline: false, x: -16.4, y: -5.4, rotation: 22, xScl: -1.08, yScl: 1.02, layerOffset: -0.00168, heatLayerOffset: 0.011 }
-  { name: mono, outline: false, x: -28.4, y: 2.0, rotation: 8, xScl: -1.18, yScl: 1.18, layerOffset: -0.00162, heatLayerOffset: 0.011 }
-  { name: retusa, outline: false, x: -24.8, y: 0.2, rotation: 14, xScl: -0.8, yScl: 1.15, layerOffset: -0.00166, heatLayerOffset: 0.011 }
-  { name: oxynoe, outline: false, x: -23.6, y: -18.8, rotation: 28, xScl: -0.92, yScl: 1.0, layerOffset: -0.00215, heatLayerOffset: 0.011 }
+  { name: plasma-laser-mount, outline: false, x: 0, y: 61.2, xScl: 0.78, yScl: 0.76, layerOffset: -0.00078, heatLayerOffset: 0.011 }
+  { name: point-defense-mount, outline: false, x: 3.2, y: 55.6, xScl: 0.8, yScl: 0.8, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: point-defense-mount, outline: false, x: -3.2, y: 55.6, xScl: -0.8, yScl: 0.8, layerOffset: -0.00082, heatLayerOffset: 0.011 }
 
   // =================================================================
-  // ENGINE DECK — unchanged
+  // SIDE SPIKES — complete assemblies at ±45°, extended outward
+  // Right spike: -45°. Left spike: +45°.
+  // =================================================================
+  { name: pulsar, outline: false, x: 14.5, y: -20.5, rotation: -45, xScl: 0.84, yScl: 0.96, layerOffset: -0.0024, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 19.4, y: -15.6, rotation: -45, xScl: 1.12, yScl: 1.28, layerOffset: -0.00185, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 24.3, y: -10.7, rotation: -45, xScl: 1.2, yScl: 1.23, layerOffset: -0.00172, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 29.2, y: -5.8, rotation: -45, xScl: 0.912, yScl: 1.32, layerOffset: -0.0018, heatLayerOffset: 0.011 }
+  { name: poly, outline: false, x: 21.8, y: -13.2, rotation: -45, xScl: 1.05, yScl: 1.25, layerOffset: -0.0016, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: 18.5, y: -9.9, rotation: -45, xScl: 1.08, yScl: 1.14, layerOffset: -0.00168, heatLayerOffset: 0.011 }
+  { name: mono, outline: false, x: 34.2, y: -0.8, rotation: -45, xScl: 1.18, yScl: 1.46, layerOffset: -0.00162, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: 30.8, y: -4.2, rotation: -45, xScl: 0.8, yScl: 1.29, layerOffset: -0.00166, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: 24.7, y: -20.9, rotation: -45, xScl: 0.92, yScl: 1.12, layerOffset: -0.00215, heatLayerOffset: 0.011 }
+
+  { name: pulsar, outline: false, x: -14.5, y: -20.5, rotation: 45, xScl: -0.84, yScl: 0.96, layerOffset: -0.0024, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: -19.4, y: -15.6, rotation: 45, xScl: -1.12, yScl: 1.28, layerOffset: -0.00185, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -24.3, y: -10.7, rotation: 45, xScl: -1.2, yScl: 1.23, layerOffset: -0.00172, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: -29.2, y: -5.8, rotation: 45, xScl: -0.912, yScl: 1.32, layerOffset: -0.0018, heatLayerOffset: 0.011 }
+  { name: poly, outline: false, x: -21.8, y: -13.2, rotation: 45, xScl: -1.05, yScl: 1.25, layerOffset: -0.0016, heatLayerOffset: 0.011 }
+  { name: nova, outline: false, x: -18.5, y: -9.9, rotation: 45, xScl: -1.08, yScl: 1.14, layerOffset: -0.00168, heatLayerOffset: 0.011 }
+  { name: mono, outline: false, x: -34.2, y: -0.8, rotation: 45, xScl: -1.18, yScl: 1.46, layerOffset: -0.00162, heatLayerOffset: 0.011 }
+  { name: retusa, outline: false, x: -30.8, y: -4.2, rotation: 45, xScl: -0.8, yScl: 1.29, layerOffset: -0.00166, heatLayerOffset: 0.011 }
+  { name: oxynoe, outline: false, x: -24.7, y: -20.9, rotation: 45, xScl: -0.92, yScl: 1.12, layerOffset: -0.00215, heatLayerOffset: 0.011 }
+
+  // =================================================================
+  // ENGINE DECK
   // =================================================================
   { name: poly, outline: false, x: 0, y: -39.6, xScl: 1.25, yScl: 1.2, layerOffset: -0.0017, heatLayerOffset: 0.011 }
   { name: poly, outline: false, x: 9.2, y: -38.4, rotation: -11, xScl: 1.18, yScl: 1.14, layerOffset: -0.00172, heatLayerOffset: 0.011 }
@@ -216,7 +250,7 @@ parts: [
   { name: mono, outline: false, x: -18.2, y: -37.6, rotation: 22, xScl: -0.95, yScl: 1.0, layerOffset: -0.00166, heatLayerOffset: 0.011 }
 
   // =================================================================
-  // SEAM GLUE — lower body
+  // SEAM GLUE
   // =================================================================
   { name: beam-weapon, outline: false, x: 4.8, y: -4.7, xScl: 1.05, yScl: 1.15, layerOffset: -0.0009, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: -4.8, y: -4.7, xScl: -1.05, yScl: 1.15, layerOffset: -0.0009, heatLayerOffset: 0.011 }
@@ -247,27 +281,37 @@ parts: [
   { name: beam-weapon, outline: false, x: -4.6, y: 15.6, xScl: -0.85, yScl: 1.1, layerOffset: -0.00086, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: 3.8, y: 20.8, xScl: 0.82, yScl: 1.08, layerOffset: -0.00086, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: -3.8, y: 20.8, xScl: -0.82, yScl: 1.08, layerOffset: -0.00086, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 3.0, y: 26.2, xScl: 0.8, yScl: 1.06, layerOffset: -0.00086, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -3.0, y: 26.2, xScl: -0.8, yScl: 1.06, layerOffset: -0.00086, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 2.4, y: 31.6, xScl: 0.78, yScl: 1.04, layerOffset: -0.00086, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -2.4, y: 31.6, xScl: -0.78, yScl: 1.04, layerOffset: -0.00086, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 1.9, y: 37.0, xScl: 0.76, yScl: 1.02, layerOffset: -0.00086, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -1.9, y: 37.0, xScl: -0.76, yScl: 1.02, layerOffset: -0.00086, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 1.5, y: 42.2, xScl: 0.75, yScl: 1.0, layerOffset: -0.00086, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -1.5, y: 42.2, xScl: -0.75, yScl: 1.0, layerOffset: -0.00086, heatLayerOffset: 0.011 }
 
+  { name: beam-weapon, outline: false, x: 0, y: 44.4, rotation: 90, xScl: 0.75, yScl: 0.75, layerOffset: -0.00084, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 0, y: 38.6, rotation: 90, xScl: 0.78, yScl: 0.76, layerOffset: -0.00084, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 0, y: 32.4, rotation: 90, xScl: 0.82, yScl: 0.76, layerOffset: -0.00084, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: 0, y: 25.8, rotation: 90, xScl: 0.88, yScl: 0.78, layerOffset: -0.00084, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: 0, y: 19.0, rotation: 90, xScl: 0.94, yScl: 0.78, layerOffset: -0.00084, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: 0, y: 12.0, rotation: 90, xScl: 1.0, yScl: 0.8, layerOffset: -0.00084, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: 0, y: 4.8, rotation: 90, xScl: 1.08, yScl: 0.8, layerOffset: -0.00084, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: 0, y: -1.8, rotation: 90, xScl: 1.12, yScl: 0.8, layerOffset: -0.00084, heatLayerOffset: 0.011 }
 
-  // minimal fork glue
-  { name: beam-weapon, outline: false, x: 0, y: 29.0, rotation: 90, xScl: 0.8, yScl: 0.76, layerOffset: -0.00084, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 2.0, y: 33.0, rotation: -2, xScl: 0.78, yScl: 1.04, layerOffset: -0.00083, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -2.0, y: 33.0, rotation: 2, xScl: -0.78, yScl: 1.04, layerOffset: -0.00083, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 2.9, y: 38.6, rotation: -3, xScl: 0.76, yScl: 1.02, layerOffset: -0.00083, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -2.9, y: 38.6, rotation: 3, xScl: -0.76, yScl: 1.02, layerOffset: -0.00083, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 3.8, y: 44.4, rotation: -4, xScl: 0.74, yScl: 1.0, layerOffset: -0.00082, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -3.8, y: 44.4, rotation: 4, xScl: -0.74, yScl: 1.0, layerOffset: -0.00082, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 4.8, y: 50.8, rotation: -4, xScl: 0.72, yScl: 0.98, layerOffset: -0.00082, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -4.8, y: 50.8, rotation: 4, xScl: -0.72, yScl: 0.98, layerOffset: -0.00082, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 5.7, y: 56.4, rotation: -4, xScl: 0.7, yScl: 0.94, layerOffset: -0.00082, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -5.7, y: 56.4, rotation: 4, xScl: -0.7, yScl: 0.94, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 4.6, y: 50.8, rotation: -8, xScl: 0.82, yScl: 1.08, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -4.6, y: 50.8, rotation: 8, xScl: -0.82, yScl: 1.08, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 5.2, y: 57.2, xScl: 0.85, yScl: 1.1, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -5.2, y: 57.2, xScl: -0.85, yScl: 1.1, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 4.8, y: 63.6, rotation: 6, xScl: 0.82, yScl: 1.08, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -4.8, y: 63.6, rotation: -6, xScl: -0.82, yScl: 1.08, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 3.4, y: 69.2, rotation: 10, xScl: 0.78, yScl: 1.04, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -3.4, y: 69.2, rotation: -10, xScl: -0.78, yScl: 1.04, layerOffset: -0.00082, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 0, y: 51.6, rotation: 90, xScl: 0.88, yScl: 0.76, layerOffset: -0.0008, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 0, y: 58.8, rotation: 90, xScl: 0.95, yScl: 0.78, layerOffset: -0.0008, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 0, y: 66.0, rotation: 90, xScl: 0.85, yScl: 0.76, layerOffset: -0.0008, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 0, y: 72.4, rotation: 90, xScl: 0.75, yScl: 0.75, layerOffset: -0.0008, heatLayerOffset: 0.011 }
 
-  // engine deck seam
   { name: beam-weapon, outline: false, x: 10.4, y: -23.4, rotation: -50, xScl: 1.2, yScl: 1.15, layerOffset: -0.00105, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: -10.4, y: -23.4, rotation: 50, xScl: -1.2, yScl: 1.15, layerOffset: -0.00105, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: 14.8, y: -28.8, rotation: -50, xScl: 1.15, yScl: 1.1, layerOffset: -0.00105, heatLayerOffset: 0.011 }
@@ -280,21 +324,25 @@ parts: [
   { name: beam-weapon, outline: false, x: 15.6, y: -22.6, rotation: -44, xScl: 1.08, yScl: 1.05, layerOffset: -0.00084, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: -15.6, y: -22.6, rotation: 44, xScl: -1.08, yScl: 1.05, layerOffset: -0.00084, heatLayerOffset: 0.011 }
 
-  // arm rails
-  { name: beam-weapon, outline: false, x: 17.2, y: -15.8, rotation: -20, xScl: 1.15, yScl: 1.2, layerOffset: -0.00095, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 21.4, y: -10.0, rotation: -16, xScl: 1.12, yScl: 1.18, layerOffset: -0.00092, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 25.4, y: -3.8, rotation: -12, xScl: 1.08, yScl: 1.15, layerOffset: -0.00092, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 19.0, y: -7.6, rotation: -28, xScl: 0.95, yScl: 1.05, layerOffset: -0.00098, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 23.8, y: -13.0, rotation: -8, xScl: 0.9, yScl: 1.0, layerOffset: -0.001, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 28.2, y: 1.4, rotation: -8, xScl: 1.1, yScl: 1.16, layerOffset: -0.0009, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: 24.2, y: -17.6, rotation: -26, xScl: 1.08, yScl: 1.14, layerOffset: -0.00096, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -17.2, y: -15.8, rotation: 20, xScl: -1.15, yScl: 1.2, layerOffset: -0.00095, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -21.4, y: -10.0, rotation: 16, xScl: -1.12, yScl: 1.18, layerOffset: -0.00092, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -25.4, y: -3.8, rotation: 12, xScl: -1.08, yScl: 1.15, layerOffset: -0.00092, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -19.0, y: -7.6, rotation: 28, xScl: -0.95, yScl: 1.05, layerOffset: -0.00098, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -23.8, y: -13.0, rotation: 8, xScl: -0.9, yScl: 1.0, layerOffset: -0.001, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -28.2, y: 1.4, rotation: 8, xScl: -1.1, yScl: 1.16, layerOffset: -0.0009, heatLayerOffset: 0.011 }
-  { name: beam-weapon, outline: false, x: -24.2, y: -17.6, rotation: 26, xScl: -1.08, yScl: 1.14, layerOffset: -0.00096, heatLayerOffset: 0.011 }
+  // =================================================================
+  // SIDE-SPIKE ARM RAILS — uniformly aligned to ±45°
+  // Tip rails follow the extended spike endpoints.
+  // =================================================================
+  { name: beam-weapon, outline: false, x: 17.0, y: -18.0, rotation: -45, xScl: 1.15, yScl: 1.34, layerOffset: -0.00095, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 21.9, y: -13.1, rotation: -45, xScl: 1.12, yScl: 1.32, layerOffset: -0.00092, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 26.8, y: -8.2, rotation: -45, xScl: 1.08, yScl: 1.29, layerOffset: -0.00092, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 20.0, y: -10.4, rotation: -45, xScl: 0.95, yScl: 1.18, layerOffset: -0.00098, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 24.8, y: -15.2, rotation: -45, xScl: 0.9, yScl: 1.12, layerOffset: -0.001, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 34.0, y: -1.0, rotation: -45, xScl: 1.1, yScl: 1.43, layerOffset: -0.0009, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: 25.3, y: -20.3, rotation: -45, xScl: 1.08, yScl: 1.28, layerOffset: -0.00096, heatLayerOffset: 0.011 }
+
+  { name: beam-weapon, outline: false, x: -17.0, y: -18.0, rotation: 45, xScl: -1.15, yScl: 1.34, layerOffset: -0.00095, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -21.9, y: -13.1, rotation: 45, xScl: -1.12, yScl: 1.32, layerOffset: -0.00092, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -26.8, y: -8.2, rotation: 45, xScl: -1.08, yScl: 1.29, layerOffset: -0.00092, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -20.0, y: -10.4, rotation: 45, xScl: -0.95, yScl: 1.18, layerOffset: -0.00098, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -24.8, y: -15.2, rotation: 45, xScl: -0.9, yScl: 1.12, layerOffset: -0.001, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -34.0, y: -1.0, rotation: 45, xScl: -1.1, yScl: 1.43, layerOffset: -0.0009, heatLayerOffset: 0.011 }
+  { name: beam-weapon, outline: false, x: -25.3, y: -20.3, rotation: 45, xScl: -1.08, yScl: 1.28, layerOffset: -0.00096, heatLayerOffset: 0.011 }
 
   { name: beam-weapon, outline: false, x: 0, y: -41.4, rotation: 180, xScl: 1.2, yScl: 1.15, layerOffset: -0.00088, heatLayerOffset: 0.011 }
   { name: beam-weapon, outline: false, x: 9.2, y: -40.2, rotation: 170, xScl: 1.1, yScl: 1.1, layerOffset: -0.0009, heatLayerOffset: 0.011 }
@@ -305,8 +353,8 @@ parts: [
   // =================================================================
   // SURFACE / CELLS
   // =================================================================
-  { name: heal-weapon-mount, outline: false, x: 20.2, y: -11.0, rotation: -17, xScl: 1.05, yScl: 0.95, layerOffset: -0.00058, heatLayerOffset: 0.011 }
-  { name: heal-weapon-mount, outline: false, x: -20.2, y: -11.0, rotation: 17, xScl: -1.05, yScl: 0.95, layerOffset: -0.00058, heatLayerOffset: 0.011 }
+  { name: heal-weapon-mount, outline: false, x: 21.8, y: -13.2, rotation: -45, xScl: 1.05, yScl: 1.06, layerOffset: -0.00058, heatLayerOffset: 0.011 }
+  { name: heal-weapon-mount, outline: false, x: -21.8, y: -13.2, rotation: 45, xScl: -1.05, yScl: 1.06, layerOffset: -0.00058, heatLayerOffset: 0.011 }
 
   { name: plasma-laser-mount, outline: false, x: 0, y: -14.6, xScl: 0.82, yScl: 0.78, layerOffset: -0.0005, heatLayerOffset: 0.011 }
   { name: plasma-laser-mount, outline: false, x: 11.4, y: -32.4, rotation: -18, xScl: 0.8, yScl: 0.8, layerOffset: -0.00068, heatLayerOffset: 0.011 }
@@ -315,38 +363,34 @@ parts: [
   { name: heal-shotgun-weapon, outline: false, x: 7.4, y: -13.4, rotation: -8, xScl: 0.85, yScl: 0.9, layerOffset: -0.00062, heatLayerOffset: 0.011 }
   { name: heal-shotgun-weapon, outline: false, x: -7.4, y: -13.4, rotation: 8, xScl: -0.85, yScl: 0.9, layerOffset: -0.00062, heatLayerOffset: 0.011 }
 
-  { name: point-defense-mount, outline: false, x: 25.2, y: -16.8, xScl: 0.95, yScl: 0.95, layerOffset: -0.00064, heatLayerOffset: 0.011 }
-  { name: point-defense-mount, outline: false, x: -25.2, y: -16.8, xScl: -0.95, yScl: 0.95, layerOffset: -0.00064, heatLayerOffset: 0.011 }
+  { name: retusa-weapon, outline: false, x: 1.6, y: 70.4, rotation: -3, xScl: 0.8, yScl: 1.1, layerOffset: -0.00052, heatLayerOffset: 0.011 }
+  { name: retusa-weapon, outline: false, x: -1.6, y: 70.4, rotation: 3, xScl: -0.8, yScl: 1.1, layerOffset: -0.00052, heatLayerOffset: 0.011 }
+
+  { name: point-defense-mount, outline: false, x: 27.0, y: -19.2, rotation: -45, xScl: 0.95, yScl: 1.06, layerOffset: -0.00064, heatLayerOffset: 0.011 }
+  { name: point-defense-mount, outline: false, x: -27.0, y: -19.2, rotation: 45, xScl: -0.95, yScl: 1.06, layerOffset: -0.00064, heatLayerOffset: 0.011 }
 
   { name: poly-weapon, outline: false, x: 6.2, y: -36.6, rotation: 180, xScl: 1.05, yScl: 1.0, layerOffset: -0.0007, heatLayerOffset: 0.011 }
   { name: poly-weapon, outline: false, x: -6.2, y: -36.6, rotation: 180, xScl: -1.05, yScl: 1.0, layerOffset: -0.0007, heatLayerOffset: 0.011 }
 
-  // lean fork-top hardware
-  { name: plasma-laser-mount, outline: false, x: 0, y: 24.2, xScl: 0.76, yScl: 0.74, layerOffset: -0.00078, heatLayerOffset: 0.011 }
-  { name: retusa-weapon, outline: false, x: 5.8, y: 54.8, rotation: -4, xScl: 0.68, yScl: 1.0, layerOffset: -0.00052, heatLayerOffset: 0.011 }
-  { name: retusa-weapon, outline: false, x: -5.8, y: 54.8, rotation: 4, xScl: -0.68, yScl: 1.0, layerOffset: -0.00052, heatLayerOffset: 0.011 }
-
-  // cells
   { name: power-cell, outline: false, x: 0, y: -15.8, xScl: 1.25, yScl: 1.2, layerOffset: -0.0003, heatLayerOffset: 0.011 }
   { name: power-cell, outline: false, x: 0, y: -27.2, xScl: 1.15, yScl: 1.1, layerOffset: -0.00035, heatLayerOffset: 0.011 }
   { name: power-cell, outline: false, x: 0, y: 1.6, xScl: 1.05, yScl: 1.0, layerOffset: -0.00032, heatLayerOffset: 0.011 }
+  { name: power-cell, outline: false, x: 0, y: 58.4, xScl: 0.95, yScl: 0.9, layerOffset: -0.00028, heatLayerOffset: 0.011 }
   { name: quasar-cell, outline: false, x: 0, y: -16.0, xScl: 1.1, yScl: 1.0, layerOffset: -0.00028, heatLayerOffset: 0.011 }
   { name: quasar-cell, outline: false, x: 0, y: -2.8, xScl: 0.9, yScl: 0.86, layerOffset: -0.0003, heatLayerOffset: 0.011 }
+  { name: quasar-cell, outline: false, x: 0, y: 60.4, xScl: 0.82, yScl: 0.8, layerOffset: -0.00026, heatLayerOffset: 0.011 }
   { name: nova-cell, outline: false, x: 0, y: -6.7, xScl: 1.2, yScl: 1.1, layerOffset: -0.0004, heatLayerOffset: 0.011 }
   { name: nova-cell, outline: false, x: 0, y: 10.8, xScl: 0.88, yScl: 0.84, layerOffset: -0.00026, heatLayerOffset: 0.011 }
+  { name: nova-cell, outline: false, x: 0, y: 57.8, xScl: 0.92, yScl: 0.88, layerOffset: -0.00027, heatLayerOffset: 0.011 }
   { name: nova-cell, outline: false, x: 6.2, y: -1.6, rotation: -6, xScl: 0.92, yScl: 0.88, layerOffset: -0.00034, heatLayerOffset: 0.011 }
   { name: nova-cell, outline: false, x: -6.2, y: -1.6, rotation: 6, xScl: -0.92, yScl: 0.88, layerOffset: -0.00034, heatLayerOffset: 0.011 }
   { name: mega-cell, outline: false, x: 12.5, y: -26.7, rotation: -50, xScl: 1.0, yScl: 0.95, layerOffset: -0.0013, heatLayerOffset: 0.011 }
   { name: mega-cell, outline: false, x: -12.5, y: -26.7, rotation: 50, xScl: -1.0, yScl: 0.95, layerOffset: -0.0013, heatLayerOffset: 0.011 }
   { name: poly-cell, outline: false, x: 0, y: -39.6, xScl: 1.2, yScl: 1.15, layerOffset: -0.00045, heatLayerOffset: 0.011 }
-  { name: poly-cell, outline: false, x: 20.6, y: -11.8, rotation: -17, xScl: 1.0, yScl: 1.05, layerOffset: -0.00042, heatLayerOffset: 0.011 }
-  { name: poly-cell, outline: false, x: -20.6, y: -11.8, rotation: 17, xScl: -1.0, yScl: 1.05, layerOffset: -0.00042, heatLayerOffset: 0.011 }
-  { name: cyerce-cell, outline: false, x: 20.5, y: -13.2, rotation: -17, xScl: 0.9, yScl: 0.95, layerOffset: -0.0022, heatLayerOffset: 0.011 }
-  { name: cyerce-cell, outline: false, x: -20.5, y: -13.2, rotation: 17, xScl: -0.9, yScl: 0.95, layerOffset: -0.0022, heatLayerOffset: 0.011 }
-
-  // fork root cells only
-  { name: power-cell, outline: false, x: 0, y: 24.0, xScl: 0.88, yScl: 0.84, layerOffset: -0.00028, heatLayerOffset: 0.011 }
-  { name: quasar-cell, outline: false, x: 0, y: 26.0, xScl: 0.76, yScl: 0.74, layerOffset: -0.00026, heatLayerOffset: 0.011 }
+  { name: poly-cell, outline: false, x: 21.8, y: -13.2, rotation: -45, xScl: 1.0, yScl: 1.18, layerOffset: -0.00042, heatLayerOffset: 0.011 }
+  { name: poly-cell, outline: false, x: -21.8, y: -13.2, rotation: 45, xScl: -1.0, yScl: 1.18, layerOffset: -0.00042, heatLayerOffset: 0.011 }
+  { name: cyerce-cell, outline: false, x: 21.2, y: -14.0, rotation: -45, xScl: 0.9, yScl: 1.06, layerOffset: -0.0022, heatLayerOffset: 0.011 }
+  { name: cyerce-cell, outline: false, x: -21.2, y: -14.0, rotation: 45, xScl: -0.9, yScl: 1.06, layerOffset: -0.0022, heatLayerOffset: 0.011 }
 
   {
     name: power-cell
@@ -364,9 +408,9 @@ parts: [
     name: power-cell
     outline: false
     x: 0
-    y: 24.2
-    xScl: 0.84
-    yScl: 0.8
+    y: 58.6
+    xScl: 0.92
+    yScl: 0.88
     color: 98ffa966
     blending: additive
     layerOffset: -0.00014
@@ -376,14 +420,14 @@ parts: [
 
 weapons: [
   // =================================================================
-  // PRONG-TIP GLOW — narrow mirrored fork tips
+  // NEEDLE GLOW — phallic tip dummy.
   // =================================================================
   {
     name: retusa-weapon
-    mirror: true
+    mirror: false
     top: true
-    x: 5.6
-    y: 50.2
+    x: 0
+    y: 63.2
     shootY: 8
     rotate: false
     reload: 72
@@ -398,16 +442,38 @@ weapons: [
     ejectEffect: none
     layerOffset: 0.013
     parts: [
-      { name: plasma-laser-mount, outline: false, y: 0.4, xScl: 0.62, yScl: 0.62, layerOffset: 0.00006 }
-      { name: beam-weapon, outline: true, outlineLayerOffset: -0.00012, y: 3.6, xScl: 0.7, yScl: 0.88, layerOffset: 0.00014 }
-      { name: retusa-weapon, outline: false, y: 6.8, xScl: 0.6, yScl: 0.98, layerOffset: 0.0002 }
-      { name: power-cell, outline: false, y: 0.6, xScl: 0.6, yScl: 0.6, layerOffset: 0.00016 }
+      { name: plasma-laser-mount, outline: false, y: 0.4, xScl: 0.78, yScl: 0.76, layerOffset: 0.00006 }
+      { name: beam-weapon, outline: true, outlineLayerOffset: -0.00012, y: 4.6, xScl: 0.88, yScl: 1.02, layerOffset: 0.00014 }
+      { name: beam-weapon, outline: true, outlineLayerOffset: -0.00012, x: 1.8, y: 3.8, rotation: -10, xScl: 0.76, yScl: 0.9, layerOffset: 0.00012 }
+      { name: beam-weapon, outline: true, outlineLayerOffset: -0.00012, x: -1.8, y: 3.8, rotation: 10, xScl: -0.76, yScl: 0.9, layerOffset: 0.00012 }
+
+      { name: retusa-weapon, outline: false, x: 1.2, y: 8.2, rotation: -4, xScl: 0.68, yScl: 1.08, layerOffset: 0.0002 }
+      { name: retusa-weapon, outline: false, x: -1.2, y: 8.2, rotation: 4, xScl: -0.68, yScl: 1.08, layerOffset: 0.0002 }
+
+      { name: power-cell, outline: false, y: 0.6, xScl: 0.78, yScl: 0.76, layerOffset: 0.00016 }
+
       {
         name: retusa-weapon
         outline: false
-        y: 6.8
-        xScl: 0.6
-        yScl: 0.98
+        x: 1.2
+        y: 8.2
+        rotation: -4
+        xScl: 0.68
+        yScl: 1.08
+        progress: heat
+        color: 98ffa900
+        colorTo: 98ffa9ff
+        blending: additive
+        layerOffset: 0.00026
+      }
+      {
+        name: retusa-weapon
+        outline: false
+        x: -1.2
+        y: 8.2
+        rotation: 4
+        xScl: -0.68
+        yScl: 1.08
         progress: heat
         color: 98ffa900
         colorTo: 98ffa9ff
@@ -433,7 +499,7 @@ weapons: [
   }
 
   // =================================================================
-  // CROSSTIE — collar. layer 0.014
+  // CROSSTIE — collar
   // =================================================================
   {
     name: heal-weapon-mount
@@ -587,7 +653,7 @@ weapons: [
       intervalBullet: {
         type: LaserBulletType
         damage: 30
-        length: 30
+        length: 7.5
         width: 6
         lifetime: 9
         largeHit: false
@@ -597,7 +663,7 @@ weapons: [
         collidesGround: true
         sideAngle: 10
         sideWidth: 0.4
-        sideLength: 6
+        sideLength: 1.5
         colors: ["98ffa955", "98ffa9aa", "98ffa9", "ffffff"]
         hitColor: 98ffa9
         lightColor: 98ffa9
@@ -607,7 +673,7 @@ weapons: [
         despawnEffect: none
       }
       fragBullets: 3
-      fragSpread: 24
+      fragSpread: 120
       fragAngle: 0
       fragVelocityMin: 0.01
       fragVelocityMax: 0.01
@@ -750,6 +816,32 @@ weapons: [
       hitSound: explosionPlasmaSmall
       hitSoundVolume: 0.32
       lightRadius: 16
+      bulletInterval: 5
+      intervalBullets: 2
+      intervalSpread: 180
+      intervalRandomSpread: 0
+      intervalBullet: {
+        type: LaserBulletType
+        damage: 30
+        length: 7.5
+        width: 6
+        lifetime: 9
+        largeHit: false
+        healAmount: 150
+        collidesTeam: true
+        collidesAir: true
+        collidesGround: true
+        sideAngle: 10
+        sideWidth: 0.4
+        sideLength: 1.5
+        colors: ["98ffa955", "98ffa9aa", "98ffa9", "ffffff"]
+        hitColor: 98ffa9
+        lightColor: 98ffa9
+        shootEffect: none
+        smokeEffect: none
+        hitEffect: hitMeltHeal
+        despawnEffect: none
+      }
       fragBullets: 4
       fragSpread: 90
       fragAngle: 0
@@ -786,7 +878,7 @@ weapons: [
   }
 
   // =================================================================
-  // MOORING STORM — player aimed. 55 tiles.
+  // MOORING STORM — player aimed.
   // =================================================================
   {
     name: plasma-missile-mount
