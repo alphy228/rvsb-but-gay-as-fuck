@@ -47,12 +47,14 @@ public class Evolutions {
         "toxopid", Evolution.TOXOPID,
         "bryde", Evolution.BRYDE,
         "quad", Evolution.QUAD,
+        "dp-giga-unit", Evolution.GIGA,
 
         "vanquish", Evolution.VANQUISH,
         "collaris", Evolution.COLLARIS,
         "antumbra", Evolution.ANTUMBRA,
         "obviate", Evolution.OBVIATE,
         "oct", Evolution.OCT,
+        "dp-omni-unit", Evolution.OMNI,
 
         "reign", Evolution.REIGN,
         "sei", Evolution.SEI,

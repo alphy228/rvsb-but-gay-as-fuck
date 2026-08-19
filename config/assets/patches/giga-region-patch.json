@@ -1,8 +1,8 @@
 unit.dp-giga-unit: {
 localizedName: Giga
 region: cyerce
-shadowRegion: cyerce
+shadowRegion: dp-giga-unit-shadow
 cellRegion: cyerce-cell
-uiIcon: unit-mega-ui
-fullIcon: unit-mega-full
+uiIcon: dp-giga-unit-ui
+fullIcon: dp-giga-unit-full
 }

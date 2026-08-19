@@ -1,24 +1,26 @@
 type: payload
 name: Giga
-description: "гигабайт"
+description: "Fires missiles and piercing lasers that damage enemy targets and repair allied structures. Capable of carrying medium-sized ground units and blocks."
 details: ""
 
 abilities: [
   {
     type: ShieldRegenFieldAbility
-    amount: 60
-    max: 420
+    amount: 40
+    max: 400
     reload: 120
     range: 60
   }
 ]
+//mining
+mineTier: 4
+mineSpeed: 6
 
-hidden: true
 
 // flight
 flying: true
 lowAltitude: false
-flyingLayer: 90
+flyingLayer: 90.9
 engineLayer: 89.97
 omniMovement: true
 faceTarget: true
@@ -299,7 +301,7 @@ weapons: [
     backSprite: missile-back
     speed: 3.5
     lifetime: 55
-    damage: 16
+    damage: 28
     width: 8
     height: 10
     hitSize: 5
@@ -380,7 +382,7 @@ weapons: [
     backSprite: missile-back
     speed: 3.5
     lifetime: 55
-    damage: 16
+    damage: 28
     width: 8
     height: 10
     hitSize: 5

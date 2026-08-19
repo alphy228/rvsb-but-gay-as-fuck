@@ -1,14 +1,12 @@
 type: payload
 name: Omni
-description: "hidden until custom sprite and balancing"
+description: "Fires plasma bullets that split into piercing lasers that damage enemy targets and repair allied structures. Occasionally fires a devastating missile barrage. Capable of carrying large ground units and blocks."
 details: ""
-
-hidden: true
 
 // flight
 flying: true
 lowAltitude: true
-flyingLayer: 90
+flyingLayer: 91.9
 engineLayer: 89.97
 omniMovement: true
 faceTarget: true
@@ -17,7 +15,7 @@ speed: 1
 rotateSpeed: 0.85
 strafePenalty: 0.2
 // stats
-health: 22000
+health: 16000
 armor: 14
 hitSize: 38
 range: 290
@@ -55,7 +53,7 @@ abilities: [
   {
     type: ShieldRegenFieldAbility
     amount: 100
-    max: 1000
+    max: 1100
     reload: 90
     range: 60
   }
