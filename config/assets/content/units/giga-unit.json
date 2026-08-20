@@ -15,13 +15,14 @@ abilities: [
 //mining
 mineTier: 4
 mineSpeed: 6
+mineBeamOffset: 14
 
 
 // flight
 flying: true
 lowAltitude: false
 flyingLayer: 90.9
-engineLayer: 89.97
+engineLayer: 90.7
 omniMovement: true
 faceTarget: true
 circleTarget: false
@@ -31,7 +32,7 @@ strafePenalty: 0.35
 // stats
 health: 5200
 armor: 7
-hitSize: 39.6
+hitSize: 25
 range: 170
 maxRange: 190
 aimDst: 100
@@ -84,7 +85,7 @@ weapons: [
   shootSound: shootLancer
   shootSoundVolume: 0.4
   ejectEffect: none
-  layerOffset: 0.01
+  layerOffset: -0.0003
   cooldownTime: 100
   parts: [
     // normal mount
@@ -94,7 +95,7 @@ weapons: [
       xScl: 1.3
       yScl: 1.3
       y: 5.3
-      layerOffset: 0.0001
+      layerOffset: 0.00005
     }
 
     // charge glow: invisible -> pure white
@@ -110,7 +111,7 @@ weapons: [
       mixColor: ffffffff
       mixColorTo: ffffffff
       blending: additive
-      layerOffset: 0.0002
+      layerOffset: 0.0001
     }
 
     // heat glow: snaps to opaque vanilla heat color on fire, slow cooldown
@@ -124,7 +125,7 @@ weapons: [
       color: ab340000
       colorTo: ab3400ff
       blending: additive
-      layerOffset: 0.0003
+      layerOffset: 0.00015
     }
   ]
   bullet: {
@@ -177,7 +178,7 @@ weapons: [
   shootSound: shootLancer
   shootSoundVolume: 0.4
   ejectEffect: none
-  layerOffset: 0.01
+  layerOffset: -0.0003
   cooldownTime: 100
   parts: [
     // normal mount
@@ -187,7 +188,7 @@ weapons: [
       xScl: 1.3
       yScl: 1.3
       y: 5.3
-      layerOffset: 0.0001
+      layerOffset: 0.00005
     }
 
     // charge glow: invisible -> pure white
@@ -203,7 +204,7 @@ weapons: [
       mixColor: ffffffff
       mixColorTo: ffffffff
       blending: additive
-      layerOffset: 0.0002
+      layerOffset: 0.0001
     }
 
     // heat glow: snaps to opaque vanilla heat color on fire, slow cooldown
@@ -217,7 +218,7 @@ weapons: [
       color: ab340000
       colorTo: ab3400ff
       blending: additive
-      layerOffset: 0.0003
+      layerOffset: 0.00015
     }
   ]
   bullet: {
@@ -272,7 +273,7 @@ weapons: [
   shootSound: shootMissilePlasma
   shootSoundVolume: 0.35
   ejectEffect: none
-  layerOffset: 0.01
+  layerOffset: -0.0003
   shoot: { shots: 4, shotDelay: 4 }
   parts: [
     {
@@ -284,7 +285,7 @@ weapons: [
       y: -1.3
       progress: recoil
       moveY: -1.3
-      layerOffset: -0.0003
+      layerOffset: -0.0001
     }
     {
       name: plasma-laser-mount
@@ -292,7 +293,7 @@ weapons: [
       xScl: 0.77
       yScl: 0.83
       y: 4
-      layerOffset: 0.0001
+      layerOffset: 0.00005
     }
   ]
   bullet: {
@@ -353,7 +354,7 @@ weapons: [
   shootSound: shootMissilePlasma
   shootSoundVolume: 0.35
   ejectEffect: none
-  layerOffset: 0.01
+  layerOffset: -0.0003
   shoot: { shots: 4, shotDelay: 4, firstShotDelay: 10 }
   parts: [
     {
@@ -365,7 +366,7 @@ weapons: [
       y: -1.3
       progress: recoil
       moveY: -1.3
-      layerOffset: -0.0003
+      layerOffset: -0.0001
     }
     {
       name: plasma-laser-mount
@@ -373,7 +374,7 @@ weapons: [
       xScl: 0.77
       yScl: 0.83
       y: 4
-      layerOffset: 0.0001
+      layerOffset: 0.00005
     }
   ]
   bullet: {
@@ -434,7 +435,7 @@ weapons: [
     repairSpeed: 0.85
     rotate: false
     mirror: false
-    layerOffset: 0.0002
+    layerOffset: -0.0006
 
     bullet: {
       maxRange: 1
@@ -455,7 +456,7 @@ weapons: [
   y: -11
   reload: 999999
   recoil: 0
-  layerOffset: -0.001
+  layerOffset: -0.002
   ejectEffect: none
   shootSound: none
   parts: [
@@ -603,7 +604,7 @@ weapons: [
       y: 5.1
       xScl: 1.3
       yScl: 1.3
-      layerOffset: 0.0106
+      layerOffset: 0.0016
     }
     {
       name: beam-weapon
@@ -613,7 +614,7 @@ weapons: [
       y: 5.1
       xScl: -1.3
       yScl: 1.3
-      layerOffset: 0.0106
+      layerOffset: 0.0016
     }
 
     {
