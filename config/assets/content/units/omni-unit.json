@@ -1,6 +1,6 @@
 type: payload
 name: Omni
-description: "Fires plasma bullets that split into piercing lasers that damage enemy targets and repair allied structures. Occasionally fires a devastating missile barrage. Capable of carrying large ground units and blocks."
+description: "Fires plasma bullets that split into piercing lasers and damage enemy targets and repair allied structures. Occasionally fires a devastating missile barrage. Capable of carrying large ground units and blocks."
 details: ""
 
 // flight
@@ -165,7 +165,7 @@ parts: [
   { name: retusa, outline: false, x: -1.2, y: 43.0, rotation: 3, xScl: -0.75, yScl: 1.06, layerOffset: -0.00107, heatLayerOffset: 0.011 }
 
   // =================================================================
-  // SECOND DECK — phallic ram tip
+  // SECOND DECK
   // =================================================================
   { name: nova, outline: false, x: 0, y: 48.0, xScl: 0.88, yScl: 0.92, layerOffset: -0.00104, heatLayerOffset: 0.011 }
   { name: oxynoe, outline: false, x: 0, y: 51.4, xScl: 0.95, yScl: 1.04, layerOffset: -0.00103, heatLayerOffset: 0.011 }
