@@ -60,10 +60,10 @@
       rotateSpeed: 1
       recoil: 4
       recoilTime: 45
-      reload: 350
+      reload: 525
       shake: 1
       shadow: 28
-      cooldownTime: 350
+      cooldownTime: 525
       heatColor: "f9350f"
       layerOffset: 0.0004
       inaccuracy: 1
@@ -79,7 +79,7 @@
       shoot: {
         type: ShootAlternate
         shotDelay: 4
-        shots: 12
+        shots: 18
         barrels: 6
         spread: 4
         firstShotDelay: 30
@@ -135,9 +135,9 @@
         accel: 0
         ammoMultiplier: 1
         angleOffset: 0
-        armorMultiplier: 4
+        armorMultiplier: 2
         blockArmorMultiplier: 1
-        buildingDamageMultiplier: 0.3
+        buildingDamageMultiplier: 0.4
         bulletInterval: 20
         cachedDps: -1
         chargeEffect: none
@@ -148,7 +148,7 @@
         collideFloor: false
         collideTerrain: false
         collides: false
-        collidesAir: false
+        collidesAir: true
         collidesGround: true
         collidesTeam: false
         collidesTiles: false
@@ -199,8 +199,8 @@
         hitUnder: false
         hittable: true
         homingDelay: -1
-        homingPower: 0
-        homingRange: 1
+        homingPower: 0.03
+        homingRange: 50
         ignoreSpawnAngle: false
         impact: false
         inaccuracy: 0
@@ -272,7 +272,7 @@
         speed: 7
         splashDamage: 300
         splashDamagePierce: false
-        splashDamageRadius: 18
+        splashDamageRadius: 36
         statLiquidConsumed: 0
         status: blasted
         statusDuration: 480

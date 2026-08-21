@@ -154,7 +154,7 @@
         angleOffset: 0
         armorMultiplier: 3.5
         blockArmorMultiplier: 1
-        buildingDamageMultiplier: 0.3
+        buildingDamageMultiplier: 0.4
         bulletInterval: 20
         cachedDps: -1
         chargeEffect: none
@@ -165,7 +165,7 @@
         collideFloor: false
         collideTerrain: false
         collides: false
-        collidesAir: false
+        collidesAir: true
         collidesGround: true
         collidesTeam: false
         collidesTiles: false
@@ -217,8 +217,8 @@
         hitUnder: false
         hittable: true
         homingDelay: -1
-        homingPower: 0
-        homingRange: 1
+        homingPower: 0.03
+        homingRange: 50
         ignoreSpawnAngle: false
         impact: false
         inaccuracy: 0
@@ -290,7 +290,7 @@
         speed: 7
         splashDamage: 350
         splashDamagePierce: false
-        splashDamageRadius: 18
+        splashDamageRadius: 36
         statLiquidConsumed: 0
         status: blasted
         statusDuration: 480
@@ -527,6 +527,6 @@
   circleTargetRadius: 1000
   shownPlanets: [erekir]
   credit: bumm
-  localizedName: "уничтожитель "
+  localizedName: "Уничтожитель "
   buildSpeed: 0.01
 }
