@@ -1,0 +1,101 @@
+unit.dp-devastator-unit: {
+	localizedName: devastator
+
+	region: conquer
+	previewRegion: conquer
+	outlineRegion: conquer-outline
+	cellRegion: conquer-cell
+
+	fullIcon: dp-devastator-full
+	uiIcon: dp-devastator-ui
+	shadowRegion: dp-devastator-shadow
+
+	treadRegion: conquer-treads
+
+	treadRects: [
+		[-88.5, 36.5, 56, 73]
+		[-88.5, -150, 56, 73]
+	]
+
+	treadRegions: [
+		[
+			conquer-treads0-0
+			conquer-treads0-1
+			conquer-treads0-2
+			conquer-treads0-3
+			conquer-treads0-4
+			conquer-treads0-5
+			conquer-treads0-6
+			conquer-treads0-7
+			conquer-treads0-8
+			conquer-treads0-9
+			conquer-treads0-10
+			conquer-treads0-11
+			conquer-treads0-12
+			conquer-treads0-13
+			conquer-treads0-14
+			conquer-treads0-15
+			conquer-treads0-16
+			conquer-treads0-17
+		]
+		[
+			conquer-treads0-0
+			conquer-treads0-1
+			conquer-treads0-2
+			conquer-treads0-3
+			conquer-treads0-4
+			conquer-treads0-5
+			conquer-treads0-6
+			conquer-treads0-7
+			conquer-treads0-8
+			conquer-treads0-9
+			conquer-treads0-10
+			conquer-treads0-11
+			conquer-treads0-12
+			conquer-treads0-13
+			conquer-treads0-14
+			conquer-treads0-15
+			conquer-treads0-16
+			conquer-treads0-17
+		]
+	]
+
+	wreckRegions: [
+		conquer-wreck0
+		conquer-wreck1
+		conquer-wreck2
+	]
+
+	parts.0.regions: [titan-outline]
+	parts.1.regions: [titan]
+	parts.2.regions: [titan-barrel-outline]
+	parts.3.regions: [titan-barrel]
+	parts.4.regions: [diffuse-outline]
+	parts.5.regions: [diffuse]
+	parts.6.regions: [titan-barrel-outline]
+	parts.7.regions: [titan-barrel]
+	parts.8.regions: [scathe-mid-outline]
+	parts.9.regions: [scathe-mid]
+	parts.10.regions: [scathe-blade-r-outline]
+	parts.11.regions: [scathe-blade-r]
+
+	weapons.0.region: vanquish-weapon
+	weapons.0.parts.0.regions: [vanquish-weapon]
+	weapons.0.parts.1.regions: [vanquish-weapon]
+	weapons.0.parts.2.regions: [vanquish-weapon]
+	weapons.0.parts.3.regions: [vanquish-weapon]
+	weapons.0.parts.4.regions: [vanquish-weapon]
+	weapons.0.parts.5.regions: [scathe-blade-r]
+	weapons.0.parts.6.regions: [scathe-blade-r]
+	weapons.0.parts.7.regions: [scathe-blade-r]
+	weapons.0.parts.8.regions: [scathe-blade-r]
+	weapons.0.parts.9.regions: [titan-side-l]
+	weapons.0.parts.10.regions: [titan-barrel]
+	weapons.0.parts.11.regions: [titan-side-l-outline]
+	weapons.0.parts.12.regions: [scathe-blade-r-outline]
+
+	weapons.1.region: vanquish-point-weapon
+	weapons.2.region: vanquish-point-weapon
+	weapons.3.region: vanquish-point-weapon
+	weapons.4.region: vanquish-point-weapon
+}

@@ -1,0 +1,56 @@
+unit.dp-stryker-unit: {
+    localizedName: Stryker
+
+    region: vanquish
+    previewRegion: vanquish
+    outlineRegion: vanquish-outline
+    cellRegion: vanquish-cell
+
+    fullIcon: dp-stryker-full
+    uiIcon: dp-stryker-ui
+    shadowRegion: dp-stryker-shadow
+
+    treadRegion: vanquish-treads
+
+    treadRects: [
+        [-55, -61, 28, 130]
+    ]
+
+    treadRegions: [
+        [
+            vanquish-treads0-0
+            vanquish-treads0-1
+            vanquish-treads0-2
+            vanquish-treads0-3
+            vanquish-treads0-4
+            vanquish-treads0-5
+            vanquish-treads0-6
+            vanquish-treads0-7
+            vanquish-treads0-8
+            vanquish-treads0-9
+            vanquish-treads0-10
+            vanquish-treads0-11
+            vanquish-treads0-12
+            vanquish-treads0-13
+            vanquish-treads0-14
+            vanquish-treads0-15
+            vanquish-treads0-16
+            vanquish-treads0-17
+        ]
+    ]
+
+    wreckRegions: [
+        vanquish-wreck0
+        vanquish-wreck1
+        vanquish-wreck2
+    ]
+
+    parts.0.regions: [titan-outline]
+    parts.1.regions: [titan]
+
+    weapons.0.region: none
+    weapons.0.parts.0.regions: [titan-barrel-outline]
+    weapons.0.parts.1.regions: [titan-barrel-outline]
+    weapons.0.parts.2.regions: [titan]
+    weapons.0.parts.3.regions: [titan-barrel]
+}

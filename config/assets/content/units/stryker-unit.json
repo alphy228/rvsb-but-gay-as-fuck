@@ -1,0 +1,328 @@
+{
+  type: tank
+  name: stryker
+  health: 10000
+  armor: 14
+  hitSize: 28
+  speed: 0.59
+  rotateSpeed: 1.5
+  floorMultiplier: 0.5
+  squareShape: true
+  omniMovement: false
+  rotateMoveFirst: true
+  envDisabled: 0
+  outlineColor: "2d2f39"
+  researchCostMultiplier: 0
+  itemCapacity: 0
+
+  region: vanquish
+  cellRegion: vanquish-cell
+  fullIcon: dp-stryker-full
+  uiIcon: dp-stryker-ui
+  shadowRegion: dp-stryker-shadow
+
+  treadPullOffset: 4
+  crushDamage: 1.5
+  crushFragile: true
+  tankMoveVolume: 0.625
+  tankMoveSound: tankMoveHeavy
+  immunities: [burning, melting]
+
+  parts: [
+    {
+      type: RegionPart
+      mirror: true
+      outline: false
+      outlines: []
+      regions: [locus]
+      x: 12
+      y: 2
+      layerOffset: -0.0001
+    }
+    {
+      type: RegionPart
+      mirror: true
+      outline: false
+      outlines: []
+      regions: [locus]
+      x: 12
+      y: 2
+      layerOffset: 0.0001
+    }
+  ]
+
+  weapons: [
+    {
+      type: Weapon
+      name: stryker-weapon
+      mirror: false
+      rotate: true
+      rotateSpeed: 1
+      recoil: 4
+      recoilTime: 45
+      reload: 350
+      shake: 1
+      shadow: 28
+      cooldownTime: 350
+      heatColor: "f9350f"
+      layerOffset: 0.0004
+      inaccuracy: 1
+      velocityRnd: 0.1
+      shootY: 12
+      x: 0
+      y: 0
+      shootSound: shootMissileLarge
+      shootSoundVolume: 0.7
+      shootStatus: unmoving
+      showStatSprite: false
+
+      shoot: {
+        type: ShootAlternate
+        shotDelay: 4
+        shots: 12
+        barrels: 6
+        spread: 4
+        firstShotDelay: 30
+      }
+
+      parts: [
+        {
+          type: RegionPart
+          mirror: true
+          outline: false
+          outlines: []
+          regions: [vanquish-weapon]
+          x: 8
+          y: 0
+          xScl: 0.8
+          yScl: 0.8
+        }
+        {
+          type: RegionPart
+          mirror: true
+          outline: false
+          outlines: []
+          regions: [vanquish-weapon]
+          xScl: 0.8
+          yScl: 0.8
+        }
+        {
+          type: RegionPart
+          mirror: true
+          outline: false
+          outlines: []
+          regions: [vanquish-weapon]
+          x: 3.84
+          y: 4.16
+          outlineLayerOffset: 0.002
+          xScl: 0.8
+          yScl: 0.8
+        }
+        {
+          type: RegionPart
+          outline: false
+          outlines: []
+          x: 0
+          y: 0
+          xScl: 0.8
+          yScl: 0.8
+        }
+      ]
+
+      bullet: {
+        type: ArtilleryBulletType
+        absorbable: true
+        accel: 0
+        ammoMultiplier: 1
+        angleOffset: 0
+        armorMultiplier: 4
+        blockArmorMultiplier: 1
+        buildingDamageMultiplier: 0.3
+        bulletInterval: 20
+        cachedDps: -1
+        chargeEffect: none
+        circleShooter: false
+        circleShooterRadius: 13
+        circleShooterRadiusSmooth: 10
+        circleShooterRotateSpeed: 0.3
+        collideFloor: false
+        collideTerrain: false
+        collides: false
+        collidesAir: false
+        collidesGround: true
+        collidesTeam: false
+        collidesTiles: false
+        createChance: 1
+        damage: 130
+        delayFrags: false
+        despawnEffect: none
+        despawnHit: true
+        despawnShake: 7
+        despawnSound: none
+        despawnUnitChance: 1
+        despawnUnitCount: 1
+        despawnUnitRadius: 0.1
+        displayAmmoMultiplier: true
+        drag: 0
+        drawSize: 160
+        extraRangeMargin: 0
+        faceOutwards: false
+        followAimSpeed: 0
+        fragAngle: 0
+        fragLifeMin: 1
+        fragOffsetMax: 7
+        fragOffsetMin: 1
+        fragOnAbsorb: true
+        fragOnDespawn: true
+        fragOnHit: true
+        fragRandomSpread: 360
+        fragSpread: 0
+        fragVelocityMax: 1
+        fragVelocityMin: 0.2
+        healAmount: 0
+        healColor: "#98ffa9ff"
+        healEffect: healBlockFull
+        healPercent: 0
+        healSound: blockHeal
+        healSoundVolume: 0.9
+        hitColor: "#f49d7cff"
+        hitEffect: {
+          type: MultiEffect
+          effects: [blastsmoke, smokePuff, massiveExplosion]
+        }
+        hitShake: 5
+        hitSize: 4
+        hitSound: explosionCrawler
+        hitSoundPitch: 1
+        hitSoundPitchRange: 0.1
+        hitSoundVolume: 1
+        hitUnder: false
+        hittable: true
+        homingDelay: -1
+        homingPower: 0
+        homingRange: 1
+        ignoreSpawnAngle: false
+        impact: false
+        inaccuracy: 0
+        incendAmount: 0
+        incendChance: 1
+        incendSpread: 8
+        instantDisappear: false
+        intervalAngle: 0
+        intervalBullets: 1
+        intervalDelay: -1
+        intervalRandomSpread: 360
+        intervalSpread: 0
+        keepVelocity: true
+        killShooter: false
+        knockback: 2
+        laserAbsorb: true
+        layer: 100
+        lifeScaleRandMax: 1
+        lifeScaleRandMin: 1
+        lifesteal: 0
+        lifetime: 75
+        lightColor: "#fbd367ff"
+        lightOpacity: 0.3
+        lightRadius: 20
+        lightning: 0
+        lightningAngle: 0
+        lightningColor: "#f3e979ff"
+        lightningCone: 360
+        lightningDamage: -1
+        lightningLength: 5
+        lightningLengthRand: 0
+        lightningType: damageLightningGround
+        makeFire: true
+        maxDamageFraction: -1
+        maxRange: -1
+        minRangeChange: 0
+        optimalLifeFract: 0
+        parts: []
+        pierce: false
+        pierceArmor: false
+        pierceBuilding: false
+        pierceCap: -1
+        pierceDamageFactor: 0
+        pierceFragCap: -1
+        puddleAmount: 5
+        puddleLiquid: water
+        puddleRange: 0
+        puddles: 0
+        randomAngleOffset: 0
+        range: 350
+        rangeChange: 0
+        rangeOverride: -1
+        recoil: 0
+        reflectable: true
+        reloadMultiplier: 1
+        removeAfterPierce: true
+        rotateSpeed: 0
+        scaleKeepVelocity: false
+        scaleLife: true
+        scaledSplashDamage: true
+        setDefaults: true
+        shieldDamageMultiplier: 1
+        shootEffect: steamCoolSmoke
+        shootSound: none
+        showStats: false
+        smokeEffect: shootSmokeTitan
+        spawnBulletRandomSpread: 0
+        spawnBullets: []
+        speed: 7
+        splashDamage: 300
+        splashDamagePierce: false
+        splashDamageRadius: 18
+        statLiquidConsumed: 0
+        status: blasted
+        statusDuration: 480
+        sticky: false
+        stickyExtraLifetime: 0
+        suppressColor: "#bf92f9ff"
+        suppressionDuration: 480
+        suppressionEffectChance: 50
+        suppressionRange: -1
+        targetBlocks: true
+        targetMissiles: false
+        trailChance: -0.0001
+        trailColor: "f49267ff"
+        trailEffect: fireHit
+        trailInterval: 1
+        trailLength: 21
+        trailMinVelocity: 0
+        trailParam: 2
+        trailRotation: false
+        trailSinMag: 0.5
+        trailSinScl: 3
+        trailSpread: 5
+        trailWidth: 0.9
+        underwater: false
+        velocityScaleRandMax: 1
+        velocityScaleRandMin: 1
+        weaveMag: 0
+        weaveRandom: true
+        weaveScale: 1
+        backColor: "cb6c6cff"
+        frontColor: "d74d4dff"
+        height: 21
+        mixColorFrom: "#ffffff00"
+        mixColorTo: "#ffffff00"
+        rotationOffset: 0
+        shrinkInterp: slope
+        shrinkX: 0.2
+        shrinkY: 0.1
+        spin: 0
+        sprite: bullet-back
+        width: 7
+        trailMult: 1
+        trailSize: 4
+        fragBullets: 0
+      }
+    }
+  ]
+
+  buildSpeed: 0.01
+  targetAir: false
+  localizedName: "Страйкер "
+  shownPlanets: [erekir]
+}

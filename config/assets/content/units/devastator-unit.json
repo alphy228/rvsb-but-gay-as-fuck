@@ -1,0 +1,532 @@
+{
+  type: tank
+  name: devastator
+  health: 18000
+  armor: 16
+  hitSize: 46
+  speed: 0.56
+  rotateSpeed: 0.9
+  floorMultiplier: 0.3
+  squareShape: true
+  omniMovement: false
+  rotateMoveFirst: true
+  envDisabled: 0
+  outlineColor: "2d2f39"
+  researchCostMultiplier: 10
+
+  fullIcon: dp-devastator-full
+  uiIcon: dp-devastator-ui
+  shadowRegion: dp-devastator-shadow
+
+  treadPullOffset: 1
+  crushDamage: 5.8
+  crushFragile: true
+  tankMoveVolume: 0.75
+  tankMoveSound: tankMoveHeavy
+  immunities: [burning, melting]
+
+  weapons: [
+    {
+      type: Weapon
+      name: devastator-weapon
+      mirror: false
+      rotate: true
+      rotateSpeed: 1
+      recoil: 2
+      recoilTime: 45
+      reload: 1000
+      shake: 1
+      shadow: 28
+      cooldownTime: 1000
+      heatColor: "f9350f"
+      layerOffset: 0.0002
+      inaccuracy: 1
+      velocityRnd: 0.1
+      shootY: 17.75
+      x: 0
+      y: 0
+      shootSound: shootMissileLarge
+      shootStatus: unmoving
+
+      shoot: {
+        type: ShootAlternate
+        shotDelay: 4
+        shots: 36
+        barrels: 9
+        spread: 5
+        firstShotDelay: 100
+      }
+
+      parts: [
+        {
+          type: RegionPart
+          mirror: false
+          outline: false
+          outlines: []
+          regions: [vanquish-weapon]
+          x: 0
+          y: 0
+        }
+        {
+          type: RegionPart
+          outline: false
+          mirror: true
+          x: 5
+        }
+        {
+          type: RegionPart
+          mirror: true
+          outline: false
+          x: 10
+        }
+        {
+          type: RegionPart
+          mirror: true
+          outline: false
+          x: 15
+        }
+        {
+          type: RegionPart
+          outline: false
+          mirror: true
+          x: 20
+        }
+        {
+          type: RegionPart
+          outline: false
+          mirror: true
+          x: -3.6
+        }
+        {
+          type: RegionPart
+          outline: false
+          mirror: true
+          x: 1.4
+        }
+        {
+          type: RegionPart
+          mirror: true
+          outline: false
+          x: 6.4
+        }
+        {
+          type: RegionPart
+          outline: false
+          mirror: true
+          x: 11.4
+        }
+        {
+          type: RegionPart
+          x: -11
+          outline: false
+          mirror: true
+          y: -24
+          rotation: 90
+        }
+        {
+          type: RegionPart
+          outline: false
+          y: 0
+        }
+        {
+          type: RegionPart
+          mirror: true
+          outline: false
+          x: -11
+          y: -24
+          rotation: 90
+          layerOffset: -0.0001
+        }
+        {
+          type: RegionPart
+          mirror: true
+          outline: false
+          x: 11.4
+          layerOffset: -0.0001
+        }
+      ]
+
+      bullet: {
+        type: ArtilleryBulletType
+        absorbable: true
+        accel: 0
+        ammoMultiplier: 1
+        angleOffset: 0
+        armorMultiplier: 3.5
+        blockArmorMultiplier: 1
+        buildingDamageMultiplier: 0.3
+        bulletInterval: 20
+        cachedDps: -1
+        chargeEffect: none
+        circleShooter: false
+        circleShooterRadius: 13
+        circleShooterRadiusSmooth: 10
+        circleShooterRotateSpeed: 0.3
+        collideFloor: false
+        collideTerrain: false
+        collides: false
+        collidesAir: false
+        collidesGround: true
+        collidesTeam: false
+        collidesTiles: false
+        createChance: 1
+        damage: 150
+        delayFrags: false
+        despawnEffect: none
+        despawnHit: true
+        despawnShake: 7
+        despawnSound: none
+        despawnUnitChance: 1
+        despawnUnitCount: 1
+        despawnUnitRadius: 0.1
+        displayAmmoMultiplier: true
+        drag: 0
+        drawSize: 294
+        extraRangeMargin: 0
+        faceOutwards: false
+        followAimSpeed: 0
+        fragAngle: 0
+        fragLifeMax: 1
+        fragLifeMin: 1
+        fragOffsetMax: 7
+        fragOffsetMin: 1
+        fragOnAbsorb: true
+        fragOnDespawn: true
+        fragOnHit: true
+        fragRandomSpread: 360
+        fragSpread: 0
+        fragVelocityMax: 1
+        fragVelocityMin: 0.2
+        healAmount: 0
+        healColor: "#98ffa9ff"
+        healEffect: healBlockFull
+        healPercent: 0
+        healSound: blockHeal
+        healSoundVolume: 0.9
+        hitColor: "#f49d7cff"
+        hitEffect: {
+          type: MultiEffect
+          effects: [blastsmoke, smokePuff, massiveExplosion]
+        }
+        hitShake: 9
+        hitSize: 4
+        hitSound: explosionCrawler
+        hitSoundPitch: 1
+        hitSoundPitchRange: 0.1
+        hitSoundVolume: 1
+        hitUnder: false
+        hittable: true
+        homingDelay: -1
+        homingPower: 0
+        homingRange: 1
+        ignoreSpawnAngle: false
+        impact: false
+        inaccuracy: 0
+        incendAmount: 0
+        incendChance: 1
+        incendSpread: 8
+        instantDisappear: false
+        intervalAngle: 0
+        intervalBullets: 1
+        intervalDelay: -1
+        intervalRandomSpread: 360
+        intervalSpread: 0
+        keepVelocity: true
+        killShooter: false
+        knockback: 2
+        laserAbsorb: true
+        layer: 100
+        lifeScaleRandMax: 1
+        lifeScaleRandMin: 1
+        lifesteal: 0
+        lifetime: 75
+        lightColor: "#fbd367ff"
+        lightOpacity: 0.3
+        lightRadius: 20
+        lightning: 0
+        lightningAngle: 0
+        lightningColor: "#f3e979ff"
+        lightningCone: 360
+        lightningDamage: -1
+        lightningLength: 5
+        lightningLengthRand: 0
+        lightningType: damageLightningGround
+        makeFire: true
+        maxDamageFraction: -1
+        maxRange: -1
+        minRangeChange: 0
+        optimalLifeFract: 0
+        parts: []
+        pierce: false
+        pierceArmor: false
+        pierceBuilding: false
+        pierceCap: -1
+        pierceDamageFactor: 0
+        pierceFragCap: -1
+        puddleAmount: 5
+        puddleLiquid: water
+        puddleRange: 0
+        puddles: 0
+        randomAngleOffset: 0
+        range: 525
+        rangeChange: 0
+        rangeOverride: -1
+        recoil: 0
+        reflectable: false
+        reloadMultiplier: 1
+        removeAfterPierce: true
+        rotateSpeed: 0
+        scaleKeepVelocity: false
+        scaleLife: true
+        scaledSplashDamage: true
+        setDefaults: true
+        shieldDamageMultiplier: 2
+        shootEffect: steamCoolSmoke
+        shootSound: none
+        showStats: false
+        smokeEffect: shootSmokeTitan
+        spawnBulletRandomSpread: 0
+        spawnBullets: []
+        speed: 7
+        splashDamage: 350
+        splashDamagePierce: false
+        splashDamageRadius: 18
+        statLiquidConsumed: 0
+        status: blasted
+        statusDuration: 480
+        sticky: false
+        stickyExtraLifetime: 0
+        suppressColor: "#bf92f9ff"
+        suppressionDuration: 480
+        suppressionEffectChance: 50
+        suppressionRange: -1
+        targetBlocks: true
+        targetMissiles: false
+        trailChance: -0.0001
+        trailColor: "#f49267ff"
+        trailEffect: fireHit
+        trailInterval: 1
+        trailLength: 21
+        trailMinVelocity: 0
+        trailParam: 2
+        trailRotation: false
+        trailSinMag: 0.5
+        trailSinScl: 3
+        trailSpread: 5
+        trailWidth: 0.9
+        underwater: false
+        velocityScaleRandMax: 1
+        velocityScaleRandMin: 1
+        weaveMag: 0
+        weaveRandom: true
+        weaveScale: 1
+        backColor: "#cb6c6cff"
+        frontColor: "#d74d4dff"
+        height: 28
+        mixColorFrom: "#ffffff00"
+        mixColorTo: "#ffffff00"
+        rotationOffset: 0
+        shrinkInterp: slope
+        shrinkX: 0.2
+        shrinkY: 0.1
+        spin: 0
+        sprite: bullet-back
+        width: 7
+        trailMult: 1
+        trailSize: 4
+        fragBullets: 0
+      }
+
+      shootStatusDuration: 380
+    }
+    {
+      type: Weapon
+      name: vanquish-point-weapon
+      otherSide: 2
+      recoil: 2
+      recoilTime: 44
+      reload: 44
+      rotate: true
+      controllable: false
+      autoTarget: true
+      rotateSpeed: 2
+      shoot: {
+        type: ShootPattern
+        shots: 2
+        shotDelay: 10
+      }
+      shootSound: shootStell
+      shootY: 5.5
+      x: 6.5
+      y: -24
+      layerOffset: 0.00001
+
+      bullet: {
+        type: BasicBulletType
+        damage: 37.5
+        despawnEffect: hitBulletColor
+        drawSize: 120
+        hitColor: "#feb380ff"
+        hitEffect: blastExplosion
+        lifetime: 15
+        lightRadius: 20
+        lightningType: damageLightning
+        range: 180
+        shootEffect: sparkShoot
+        smokeEffect: shootBigSmoke
+        speed: 12
+        trailColor: "#feb380ff"
+        trailLength: 5
+        trailWidth: 2.5
+        backColor: "#feb380ff"
+        frontColor: "#ffffffff"
+        height: 11
+        shrinkX: 0.2
+        shrinkY: 0
+        sprite: missile-large
+        width: 6.5
+      }
+    }
+    {
+      type: Weapon
+      name: vanquish-point-weapon
+      otherSide: 1
+      recoil: 2
+      recoilTime: 44
+      reload: 44
+      rotate: true
+      controllable: false
+      autoTarget: true
+      rotateSpeed: 2
+      shoot: {
+        type: ShootPattern
+        shots: 2
+        shotDelay: 10
+      }
+      shootSound: shootStell
+      shootY: 5.5
+      x: -6.5
+      y: 28
+      baseRotation: 0
+      flipSprite: true
+      shootX: 0
+      layerOffset: 0.00001
+
+      bullet: {
+        type: BasicBulletType
+        damage: 37.5
+        despawnEffect: hitBulletColor
+        drawSize: 120
+        hitColor: "#feb380ff"
+        hitEffect: blastExplosion
+        lifetime: 15
+        lightRadius: 20
+        lightningType: damageLightning
+        range: 180
+        shootEffect: sparkShoot
+        smokeEffect: shootBigSmoke
+        speed: 12
+        trailColor: "#feb380ff"
+        trailLength: 5
+        trailWidth: 2.5
+        backColor: "#feb380ff"
+        frontColor: "#ffffffff"
+        height: 11
+        shrinkX: 0.2
+        shrinkY: 0
+        sprite: missile-large
+        width: 6.5
+      }
+    }
+  ]
+
+  parts: [
+    {
+      type: RegionPart
+      outline: false
+      mirror: true
+      x: 20.5
+      layerOffset: -0.0001
+    }
+    {
+      type: RegionPart
+      mirror: true
+      outline: false
+      x: 20.5
+    }
+    {
+      type: RegionPart
+      y: 22.5
+      outline: false
+      layerOffset: -0.0001
+      mirror: true
+      x: 6
+    }
+    {
+      type: RegionPart
+      y: 22.5
+      outline: false
+      mirror: true
+      x: 6
+    }
+    {
+      type: RegionPart
+      outline: false
+      y: -17
+      layerOffset: -0.0001
+    }
+    {
+      type: RegionPart
+      outline: false
+      y: -17
+    }
+    {
+      type: RegionPart
+      outline: false
+      mirror: true
+      y: 0
+      x: 20.5
+      layerOffset: -0.0001
+    }
+    {
+      type: RegionPart
+      y: 0
+      x: 20.5
+      outline: false
+      mirror: true
+    }
+    {
+      type: RegionPart
+      outline: false
+      y: 2000
+      layerOffset: -0.0001
+    }
+    {
+      type: RegionPart
+      outline: false
+      y: 2000
+    }
+    {
+      type: RegionPart
+      outline: false
+      mirror: true
+      y: 23
+      x: 15
+      layerOffset: -0.0001
+    }
+    {
+      type: RegionPart
+      outline: false
+      mirror: true
+      y: 23
+      x: -15
+    }
+  ]
+
+  circleTarget: true
+  circleTargetRadius: 1000
+  shownPlanets: [erekir]
+  credit: bumm
+  localizedName: "уничтожитель "
+  buildSpeed: 0.01
+}
