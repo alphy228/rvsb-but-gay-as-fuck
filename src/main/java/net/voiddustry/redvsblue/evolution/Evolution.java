@@ -35,14 +35,14 @@ public enum Evolution {
     CORVUS(UnitTypes.corvus, 5, 300*multp, new String[] { "aegires" }, 7),
     MEGA(UnitTypes.mega, 5, 100*multp, new String[] { "cyerce" }, 4),
 
-    PRECEPT(UnitTypes.precept, 6, 60*multp, new String[] { "scepter" }, 5),
+    PRECEPT(UnitTypes.precept, 6, 60*multp, new String[] { "scepter", "dp-stryker-unit" }, 5),
     AEGIRES(UnitTypes.aegires, 6, 450*multp, new String[] { "navanax" }, 8),
     AVERT(UnitTypes.avert, 6, 27*multp, new String[] { "bryde" , "obviate" }, 4),
     CYERCE(UnitTypes.cyerce, 6, 150*multp, new String[] { "quad", "dp-giga-unit" }, 5),
     TECTA(UnitTypes.tecta, 6, 520*multp, new String[] { "collaris" }, 7),
     ARACTID(Vars.content.unit("dp-aractid-unit"), 6, 185*multp, new String[] { "toxopid" }, 5),
 
-    SCEPTER(UnitTypes.scepter, 7, 105*multp, new String[] { "vanquish" }, 6),
+    SCEPTER(UnitTypes.scepter, 7, 105*multp, new String[] { "vanquish"}, 6),
     NAVANAX(UnitTypes.navanax, 7, 450*multp, new String[] { "flare", "merui", "dagger" }, 9),
     TOXOPID(UnitTypes.toxopid, 7, 415*multp, new String[] { "nova", "flare", "dagger", "mono" }, 7),
     BRYDE(UnitTypes.bryde, 7, 180*multp, new String[] { "antumbra" }, 5),
@@ -50,7 +50,8 @@ public enum Evolution {
     QUAD(UnitTypes.quad, 7, 450*multp, new String[] { "oct" }, 7),
     GIGA(Vars.content.unit("dp-giga-unit"), 7, 360*multp, new String[] { "dp-omni-unit" }, 7),
 
-    VANQUISH(UnitTypes.vanquish, 8, 250*multp, new String[] { "reign" }, 6),
+    VANQUISH(UnitTypes.vanquish, 8, 200*multp, new String[] { "reign" }, 6),
+    STRYKER(Vars.content.unit("dp-stryker-unit"), 8, 320*multp, new String[] { "dp-devastator-unit" }, 6),
     COLLARIS(UnitTypes.collaris, 8, 1170*multp, new String[] { "nova", "flare", "dagger", "mono" }, 7),
     ANTUMBRA(UnitTypes.antumbra, 8, 180*multp, new String[] { "eclipse" , "sei"}, 6),
     OCT(UnitTypes.oct, 8, 1300*multp, new String[] { "merui", "nova", "flare", "dagger" }, 8),
@@ -58,6 +59,7 @@ public enum Evolution {
     QUELL(UnitTypes.quell, 8, 180*multp, new String[] { "disrupt" }, 6),
 
     REIGN(UnitTypes.reign, 9, 450*multp, new String[] { "conquer" }, 7),
+    DEVASTATOR(Vars.content.unit("dp-devastator-unit"), 9, 580*multp, new String[] { "nova", "merui", "flare"}, 8),
     ECLIPSE(UnitTypes.eclipse, 9, 270*multp, new String[] { "dp-daybreak-unit" }, 6),
     DISRUPT(UnitTypes.disrupt, 9, 800*multp, new String[] { "nova", "flare", "dagger"}, 8),
 
