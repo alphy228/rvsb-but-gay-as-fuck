@@ -1,0 +1,1740 @@
+// VECTA — Omni-equivalent payload unit with custom Vecta airframe
+// Vela and Aegires body parts removed.
+// Gameplay stats, abilities, and weapon projectiles match Omni.
+// Decorative bulletless weapon removed.
+// Weapon positions and visual construction adjusted.
+
+type: payload
+name: vecta
+description: "Fires plasma bullets that split into piercing lasers and damage enemy targets and repair allied structures. Occasionally fires a devastating missile barrage. Capable of carrying large ground units and blocks."
+details: ""
+
+// flight
+flying: true
+lowAltitude: true
+flyingLayer: 91.9
+engineLayer: 89.97
+omniMovement: true
+faceTarget: true
+circleTarget: false
+speed: 1
+rotateSpeed: 0.85
+strafePenalty: 0.2
+
+// stats
+health: 16000
+armor: 14
+hitSize: 38
+range: 290
+maxRange: 310
+aimDst: 120
+itemCapacity: 280
+buildSpeed: 0.01
+buildBeamOffset: 36
+mineTier: 4
+mineSpeed: 9.5
+payloadCapacity: 1024
+
+// targeting & control
+canAttack: true
+targetAir: true
+targetGround: true
+targetable: true
+hittable: true
+autoFindTarget: true
+playerControllable: true
+logicControllable: true
+useUnitCap: true
+coreUnitDock: false
+
+// visuals
+drawBody: false
+drawShields: false
+engineSize: 0
+softShadowRegion: particle
+loopSound: loopHover
+loopSoundVolume: 0.58
+trailLength: 16
+trailScl: 3.6
+lightRadius: 110
+
+research: quad
+
+abilities: [
+{
+type: ShieldRegenFieldAbility
+amount: 100
+max: 1100
+reload: 90
+range: 60
+}
+]
+
+// Exactly two engines at the original primary-engine position.
+engines: [
+{ radius: 6.2, x: 9.35, y: -48.85, rotation: 270 }
+{ radius: 6.2, x: -9.35, y: -48.85, rotation: 270 }
+]
+
+// =================================================================
+// CUSTOM VECTA AIRFRAME — MONOLITH ARROW
+// All airframe components use negative layer offsets.
+// No Mono, Poly, Mega, Cyerce, Oxynoe, or T4 unit sprites.
+// =================================================================
+parts: [
+	// ----- EXPOSED ENGINE UNDERFRAME -----
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00015
+	x: 9.35
+	y: -40.4
+	rotation: 180
+	xScl: 0.9
+	yScl: 1.55
+	layerOffset: -0.006
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00015
+	x: -9.35
+	y: -40.4
+	rotation: 180
+	xScl: -0.9
+	yScl: 1.55
+	layerOffset: -0.006
+	}
+	{
+	type: RegionPart
+	name: point-defense-mount
+	outline: false
+	x: 9.35
+	y: -44.2
+	rotation: 180
+	xScl: 0.94
+	yScl: 1.08
+	layerOffset: -0.0059
+	}
+	{
+	type: RegionPart
+	name: point-defense-mount
+	outline: false
+	x: -9.35
+	y: -44.2
+	rotation: 180
+	xScl: -0.94
+	yScl: 1.08
+	layerOffset: -0.0059
+	}
+	{
+	type: RegionPart
+	name: power-cell
+	outline: false
+	x: 9.35
+	y: -42.4
+	xScl: 0.82
+	yScl: 0.9
+	layerOffset: -0.0058
+	}
+	{
+	type: RegionPart
+	name: power-cell
+	outline: false
+	x: -9.35
+	y: -42.4
+	xScl: -0.82
+	yScl: 0.9
+	layerOffset: -0.0058
+	}
+	{
+	type: RegionPart
+	name: heal-shotgun-weapon
+	outline: false
+	x: 5.8
+	y: -37.4
+	rotation: 170
+	xScl: 0.86
+	yScl: 0.94
+	layerOffset: -0.0057
+	}
+	{
+	type: RegionPart
+	name: heal-shotgun-weapon
+	outline: false
+	x: -5.8
+	y: -37.4
+	rotation: 190
+	xScl: -0.86
+	yScl: 0.94
+	layerOffset: -0.0057
+	}
+	{
+	type: RegionPart
+	name: plasma-missile-mount
+	outline: false
+	y: -35.2
+	rotation: 180
+	xScl: 1.28
+	yScl: 1.16
+	layerOffset: -0.0056
+	}
+	{
+	type: RegionPart
+	name: emp-cannon-mount
+	outline: false
+	y: -29.2
+	rotation: 180
+	xScl: 1.04
+	yScl: 0.94
+	layerOffset: -0.0055
+	}
+
+	// ----- LONG CENTRAL MONOLITH -----
+	{
+	type: RegionPart
+	name: heal-weapon-mount
+	outline: false
+	y: -38.2
+	rotation: 180
+	xScl: 1.42
+	yScl: 1.12
+	layerOffset: -0.0047
+	}
+	{
+	type: RegionPart
+	name: plasma-laser-mount
+	outline: false
+	y: -29.6
+	rotation: 180
+	xScl: 1.46
+	yScl: 1.18
+	layerOffset: -0.0046
+	}
+	{
+	type: RegionPart
+	name: heal-weapon-mount
+	outline: false
+	y: -19
+	xScl: 1.5
+	yScl: 1.18
+	layerOffset: -0.0045
+	}
+	{
+	type: RegionPart
+	name: plasma-missile-mount
+	outline: false
+	y: -8
+	xScl: 1.3
+	yScl: 1.12
+	layerOffset: -0.0044
+	}
+	{
+	type: RegionPart
+	name: quasar
+	outline: false
+	y: 3.4
+	xScl: 1.16
+	yScl: 1.22
+	layerOffset: -0.0043
+	}
+	{
+	type: RegionPart
+	name: heal-weapon-mount
+	outline: false
+	y: 12.2
+	xScl: 1.14
+	yScl: 1.08
+	layerOffset: -0.0042
+	}
+	{
+	type: RegionPart
+	name: retusa
+	outline: false
+	y: 18.8
+	rotation: 180
+	xScl: 1.02
+	yScl: 0.92
+	layerOffset: -0.0041
+	}
+
+	// ----- RIGHT ARROW EDGE -----
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: 4
+	y: 24.8
+	rotation: -28
+	xScl: 0.86
+	yScl: 1.24
+	layerOffset: -0.0034
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: 6.8
+	y: 18.5
+	rotation: -23
+	xScl: 0.94
+	yScl: 1.26
+	layerOffset: -0.0033
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: 10.2
+	y: 11.5
+	rotation: -20
+	xScl: 1
+	yScl: 1.3
+	layerOffset: -0.0032
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: 13.6
+	y: 3.8
+	rotation: -18
+	xScl: 1.05
+	yScl: 1.3
+	layerOffset: -0.0031
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: 16.5
+	y: -5.8
+	rotation: -15
+	xScl: 1.08
+	yScl: 1.32
+	layerOffset: -0.003
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: 18.5
+	y: -16
+	rotation: -11
+	xScl: 1.08
+	yScl: 1.3
+	layerOffset: -0.0029
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: 18.2
+	y: -26.6
+	rotation: -4
+	xScl: 1
+	yScl: 1.24
+	layerOffset: -0.0028
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: 15.3
+	y: -35.2
+	rotation: 8
+	xScl: 0.94
+	yScl: 1.2
+	layerOffset: -0.0027
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: 10.8
+	y: -41.4
+	rotation: 4
+	xScl: 0.88
+	yScl: 1.16
+	layerOffset: -0.0026
+	}
+
+	// ----- LEFT ARROW EDGE -----
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: -4
+	y: 24.8
+	rotation: 28
+	xScl: -0.86
+	yScl: 1.24
+	layerOffset: -0.0034
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: -6.8
+	y: 18.5
+	rotation: 23
+	xScl: -0.94
+	yScl: 1.26
+	layerOffset: -0.0033
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: -10.2
+	y: 11.5
+	rotation: 20
+	xScl: -1
+	yScl: 1.3
+	layerOffset: -0.0032
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: -13.6
+	y: 3.8
+	rotation: 18
+	xScl: -1.05
+	yScl: 1.3
+	layerOffset: -0.0031
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: -16.5
+	y: -5.8
+	rotation: 15
+	xScl: -1.08
+	yScl: 1.32
+	layerOffset: -0.003
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: -18.5
+	y: -16
+	rotation: 11
+	xScl: -1.08
+	yScl: 1.3
+	layerOffset: -0.0029
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: -18.2
+	y: -26.6
+	rotation: 4
+	xScl: -1
+	yScl: 1.24
+	layerOffset: -0.0028
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: -15.3
+	y: -35.2
+	rotation: -8
+	xScl: -0.94
+	yScl: 1.2
+	layerOffset: -0.0027
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00012
+	x: -10.8
+	y: -41.4
+	rotation: -4
+	xScl: -0.88
+	yScl: 1.16
+	layerOffset: -0.0026
+	}
+
+	// ----- OVERLAPPING EDGE ARMOR -----
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: 5.2
+	y: 22
+	rotation: -24
+	xScl: 0.8
+	yScl: 1.14
+	layerOffset: -0.0019
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: -5.2
+	y: 22
+	rotation: 24
+	xScl: -0.8
+	yScl: 1.14
+	layerOffset: -0.0019
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: 11.8
+	y: 7.2
+	rotation: -18
+	xScl: 0.84
+	yScl: 1.16
+	layerOffset: -0.0018
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: -11.8
+	y: 7.2
+	rotation: 18
+	xScl: -0.84
+	yScl: 1.16
+	layerOffset: -0.0018
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: 17
+	y: -10
+	rotation: -12
+	xScl: 0.86
+	yScl: 1.14
+	layerOffset: -0.0017
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: -17
+	y: -10
+	rotation: 12
+	xScl: -0.86
+	yScl: 1.14
+	layerOffset: -0.0017
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: 17.5
+	y: -23.5
+	rotation: -4
+	xScl: 0.84
+	yScl: 1.1
+	layerOffset: -0.0016
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: -17.5
+	y: -23.5
+	rotation: 4
+	xScl: -0.84
+	yScl: 1.1
+	layerOffset: -0.0016
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: 13.8
+	y: -34
+	rotation: 8
+	xScl: 0.8
+	yScl: 1.06
+	layerOffset: -0.0015
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: -13.8
+	y: -34
+	rotation: -8
+	xScl: -0.8
+	yScl: 1.06
+	layerOffset: -0.0015
+	}
+
+	// ----- RECESSED MOUTH -----
+	{
+	type: RegionPart
+	name: plasma-laser-mount
+	suffix: "-outline"
+	outline: false
+	y: 23.5
+	xScl: 1.16
+	yScl: 0.96
+	color: "121a17"
+	layerOffset: -0.00125
+	}
+	{
+	type: RegionPart
+	name: point-defense-mount
+	outline: false
+	y: 22.8
+	rotation: 180
+	xScl: 1.08
+	yScl: 0.9
+	color: "18231e"
+	layerOffset: -0.00115
+	}
+	{
+	type: RegionPart
+	name: power-cell
+	outline: false
+	y: 18.8
+	xScl: 0.86
+	yScl: 0.8
+	layerOffset: -0.00105
+	}
+	{
+	type: RegionPart
+	name: heal-weapon
+	outline: false
+	x: 4.8
+	y: 22.5
+	rotation: -23
+	xScl: 0.78
+	yScl: 0.94
+	layerOffset: -0.00098
+	}
+	{
+	type: RegionPart
+	name: heal-weapon
+	outline: false
+	x: -4.8
+	y: 22.5
+	rotation: 23
+	xScl: -0.78
+	yScl: 0.94
+	layerOffset: -0.00098
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00008
+	x: 2.9
+	y: 27
+	rotation: -30
+	xScl: 0.78
+	yScl: 1.2
+	layerOffset: -0.0009
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: true
+	outlineLayerOffset: -0.00008
+	x: -2.9
+	y: 27
+	rotation: 30
+	xScl: -0.78
+	yScl: 1.2
+	layerOffset: -0.0009
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: 2
+	y: 28
+	rotation: -27
+	xScl: 0.7
+	yScl: 1.12
+	layerOffset: -0.00082
+	}
+	{
+	type: RegionPart
+	name: retusa-weapon
+	outline: false
+	x: -2
+	y: 28
+	rotation: 27
+	xScl: -0.7
+	yScl: 1.12
+	layerOffset: -0.00082
+	}
+
+	// ----- CENTRAL SEAMS AND EXPOSED TECH -----
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: false
+	y: 9.4
+	xScl: 0.9
+	yScl: 1.08
+	layerOffset: -0.00062
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: false
+	y: -4.8
+	xScl: 0.94
+	yScl: 1.06
+	layerOffset: -0.0006
+	}
+	{
+	type: RegionPart
+	name: beam-weapon
+	outline: false
+	y: -18.5
+	xScl: 0.98
+	yScl: 1.02
+	layerOffset: -0.00058
+	}
+	{
+	type: RegionPart
+	name: plasma-laser-mount
+	outline: false
+	y: -31.5
+	rotation: 180
+	xScl: 0.92
+	yScl: 0.9
+	layerOffset: -0.00056
+	}
+	{
+	type: RegionPart
+	name: power-cell
+	outline: false
+	y: 6.2
+	xScl: 1.02
+	yScl: 1.06
+	layerOffset: -0.00048
+	}
+	{
+	type: RegionPart
+	name: power-cell
+	outline: false
+	y: -6.8
+	xScl: 0.94
+	yScl: 0.98
+	layerOffset: -0.00044
+	}
+	{
+	type: RegionPart
+	name: power-cell
+	outline: false
+	y: -20.2
+	xScl: 0.88
+	yScl: 0.92
+	layerOffset: -0.0004
+	}
+	{
+	type: RegionPart
+	name: power-cell
+	outline: false
+	y: -33.5
+	xScl: 0.8
+	yScl: 0.84
+	layerOffset: -0.00036
+	}
+	{
+	type: RegionPart
+	name: power-cell
+	outline: false
+	x: 5
+	y: -12.4
+	xScl: 0.72
+	yScl: 0.76
+	layerOffset: -0.0003
+	}
+	{
+	type: RegionPart
+	name: power-cell
+	outline: false
+	x: -5
+	y: -12.4
+	xScl: -0.72
+	yScl: 0.76
+	layerOffset: -0.0003
+	}
+]
+
+// =================================================================
+// OMNI WEAPONS
+// Gameplay values preserved.
+// All weapon assemblies use low positive layers.
+// =================================================================
+weapons: [
+	// ----- CROSSTIE -----
+	{
+	name: heal-weapon-mount
+	mirror: false
+	top: true
+	x: 0
+	y: -5.2
+	shootY: 15
+	rotate: true
+	rotateSpeed: 1.15
+	rotationLimit: 16
+	reload: 70
+	recoil: 2.6
+	recoils: 1
+	recoilTime: 48
+	shake: 1.4
+	shadow: 8
+	shootSound: shootLancer
+	shootSoundVolume: 0.42
+	ejectEffect: none
+	layerOffset: 0.001
+	cooldownTime: 24
+	parts: [
+		{
+		name: plasma-laser-mount
+		outline: false
+		y: 1.2
+		xScl: 0.82
+		yScl: 0.8
+		layerOffset: 0.00008
+		}
+		{
+		name: heal-shotgun-weapon
+		outline: false
+		y: -0.6
+		xScl: 0.8
+		yScl: 0.85
+		layerOffset: 0.00006
+		}
+		{
+		name: beam-weapon
+		outline: true
+		outlineLayerOffset: -0.00004
+		y: 6.2
+		xScl: 1
+		yScl: 1.08
+		layerOffset: 0.00016
+		}
+		{
+		name: beam-weapon
+		outline: true
+		outlineLayerOffset: -0.00004
+		x: 2.2
+		y: 5.2
+		rotation: -18
+		xScl: 0.8
+		yScl: 0.95
+		layerOffset: 0.00014
+		}
+		{
+		name: beam-weapon
+		outline: true
+		outlineLayerOffset: -0.00004
+		x: -2.2
+		y: 5.2
+		rotation: 18
+		xScl: -0.8
+		yScl: 0.95
+		layerOffset: 0.00014
+		}
+		{
+		name: power-cell
+		outline: false
+		y: 0.8
+		xScl: 0.8
+		yScl: 0.78
+		layerOffset: 0.00018
+		}
+		{
+		name: beam-weapon
+		outline: false
+		y: 6.2
+		xScl: 1
+		yScl: 1.08
+		progress: heat
+		color: ff9c5900
+		colorTo: ff9c59ee
+		blending: additive
+		layerOffset: 0.00028
+		}
+		{
+		name: beam-weapon
+		outline: false
+		x: 2.2
+		y: 5.2
+		rotation: -18
+		xScl: 0.8
+		yScl: 0.95
+		progress: heat
+		color: ff9c5900
+		colorTo: ff9c59cc
+		blending: additive
+		layerOffset: 0.00028
+		}
+		{
+		name: beam-weapon
+		outline: false
+		x: -2.2
+		y: 5.2
+		rotation: 18
+		xScl: -0.8
+		yScl: 0.95
+		progress: heat
+		color: ff9c5900
+		colorTo: ff9c59cc
+		blending: additive
+		layerOffset: 0.00028
+		}
+		{
+		name: beam-weapon
+		outline: false
+		y: 6.2
+		xScl: 0.88
+		yScl: 0.98
+		progress: heat
+		color: ffffff00
+		colorTo: ffffffff
+		blending: additive
+		layerOffset: 0.00034
+		}
+		{
+		name: beam-weapon
+		outline: false
+		x: 2.2
+		y: 5.2
+		rotation: -18
+		xScl: 0.7
+		yScl: 0.85
+		progress: heat
+		color: ffffff00
+		colorTo: ffffffdd
+		blending: additive
+		layerOffset: 0.00034
+		}
+		{
+		name: beam-weapon
+		outline: false
+		x: -2.2
+		y: 5.2
+		rotation: 18
+		xScl: -0.7
+		yScl: 0.85
+		progress: heat
+		color: ffffff00
+		colorTo: ffffffdd
+		blending: additive
+		layerOffset: 0.00034
+		}
+	]
+	bullet: {
+		type: BasicBulletType
+		sprite: missile-large
+		speed: 5.6
+		lifetime: 45
+		damage: 90
+		width: 7
+		height: 18
+		shrinkY: 0
+		pierce: true
+		pierceCap: 3
+		pierceBuilding: true
+		healAmount: 350
+		collidesTeam: true
+		collidesAir: true
+		collidesGround: true
+		backColor: 98ffa9
+		frontColor: ffffff
+		trailColor: 98ffa9
+		hitColor: 98ffa9
+		trailLength: 10
+		trailWidth: 2.2
+		trailRotation: true
+		trailEffect: none
+		trailChance: -1
+		trailInterval: 0
+		status: shocked
+		statusDuration: 35
+		shootEffect: shootHeal
+		smokeEffect: none
+		hitEffect: hitMeltHeal
+		despawnEffect: none
+		hitSound: explosionPlasmaSmall
+		hitSoundVolume: 0.24
+		lightRadius: 12
+		bulletInterval: 5
+		intervalBullets: 2
+		intervalSpread: 180
+		intervalRandomSpread: 0
+		intervalBullet: {
+			type: LaserBulletType
+			damage: 30
+			length: 7.5
+			width: 6
+			lifetime: 9
+			largeHit: false
+			healAmount: 150
+			collidesTeam: true
+			collidesAir: true
+			collidesGround: true
+			sideAngle: 10
+			sideWidth: 0.4
+			sideLength: 1.5
+			colors: ["98ffa955", "98ffa9aa", "98ffa9", "ffffff"]
+			hitColor: 98ffa9
+			lightColor: 98ffa9
+			shootEffect: none
+			smokeEffect: none
+			hitEffect: hitMeltHeal
+			despawnEffect: none
+		}
+		fragBullets: 3
+		fragSpread: 120
+		fragAngle: 0
+		fragVelocityMin: 0.01
+		fragVelocityMax: 0.01
+		fragRandomSpread: 0
+		fragBullet: {
+			type: LaserBulletType
+			damage: 80
+			length: 180
+			width: 11
+			lifetime: 14
+			largeHit: false
+			healAmount: 150
+			collidesTeam: true
+			collidesAir: true
+			collidesGround: true
+			sideAngle: 14
+			sideWidth: 0.6
+			sideLength: 10
+			colors: ["98ffa955", "98ffa9aa", "98ffa9", "ffffff"]
+			hitColor: 98ffa9
+			lightColor: 98ffa9
+			shootEffect: none
+			smokeEffect: none
+			hitEffect: hitMeltHeal
+			despawnEffect: none
+		}
+	}
+	}
+
+	// ----- FLUX SHEARS -----
+	{
+	name: plasma-laser-mount
+	mirror: true
+	alternate: true
+	top: true
+	x: 16.2
+	y: -14.8
+	shootY: 14
+	rotate: true
+	rotateSpeed: 2.4
+	rotationLimit: 155
+	reload: 78
+	recoil: 3
+	recoils: 1
+	recoilTime: 46
+	shake: 1.8
+	shadow: 14
+	shootSound: shootNavanax
+	shootSoundVolume: 0.4
+	ejectEffect: none
+	layerOffset: 0.0012
+	cooldownTime: 70
+	parts: [
+		{
+		name: point-defense-mount
+		outline: false
+		y: -5.2
+		rotation: 180
+		xScl: 0.94
+		yScl: 0.92
+		layerOffset: 0.00004
+		}
+		{
+		name: heal-weapon-mount
+		outline: false
+		y: -3.4
+		xScl: 1.2
+		yScl: 1.02
+		layerOffset: 0.00006
+		}
+		{
+		name: heal-shotgun-weapon
+		outline: false
+		y: -7
+		rotation: 180
+		xScl: 0.84
+		yScl: 0.86
+		layerOffset: 0.00008
+		}
+		{
+		name: plasma-laser-mount
+		outline: false
+		xScl: 1.16
+		yScl: 1.04
+		layerOffset: 0.0001
+		}
+		{
+		name: emp-cannon-mount
+		outline: false
+		y: 1.2
+		xScl: 0.95
+		yScl: 0.88
+		layerOffset: 0.00012
+		}
+		{
+		name: beam-weapon
+		outline: true
+		outlineLayerOffset: -0.00004
+		x: 3.4
+		y: 8.6
+		rotation: -22
+		xScl: 1.05
+		yScl: 1.18
+		layerOffset: 0.0002
+		}
+		{
+		name: beam-weapon
+		outline: true
+		outlineLayerOffset: -0.00004
+		x: -3
+		y: 8.6
+		rotation: 22
+		xScl: -1.05
+		yScl: 1.18
+		layerOffset: 0.0002
+		}
+		{
+		name: beam-weapon
+		outline: true
+		outlineLayerOffset: -0.00004
+		y: 11.4
+		xScl: 1.08
+		yScl: 1.15
+		layerOffset: 0.00022
+		}
+		{
+		name: retusa-weapon
+		outline: false
+		y: 13.6
+		xScl: 0.82
+		yScl: 1.12
+		layerOffset: 0.00024
+		}
+		{
+		name: power-cell
+		outline: false
+		y: 2
+		xScl: 0.9
+		yScl: 0.86
+		layerOffset: 0.00026
+		}
+		{
+		name: beam-weapon
+		outline: false
+		x: 3.4
+		y: 8.6
+		rotation: -22
+		xScl: 1.05
+		yScl: 1.18
+		progress: heat
+		color: 98ffa900
+		colorTo: 98ffa9cc
+		blending: additive
+		layerOffset: 0.0003
+		}
+		{
+		name: beam-weapon
+		outline: false
+		x: -3
+		y: 8.6
+		rotation: 22
+		xScl: -1.05
+		yScl: 1.18
+		progress: heat
+		color: 98ffa900
+		colorTo: 98ffa9cc
+		blending: additive
+		layerOffset: 0.0003
+		}
+		{
+		name: retusa-weapon
+		outline: false
+		y: 13.6
+		xScl: 0.82
+		yScl: 1.12
+		progress: heat
+		color: 98ffa900
+		colorTo: 98ffa9ff
+		blending: additive
+		layerOffset: 0.00032
+		}
+	]
+	bullet: {
+		type: BasicBulletType
+		sprite: circle-bullet
+		speed: 3.9
+		lifetime: 67
+		damage: 55
+		width: 14
+		height: 14
+		shrinkY: 0.2
+		shrinkX: 0.2
+		spin: 4
+		splashDamage: 90
+		splashDamageRadius: 28
+		healAmount: 350
+		collidesTeam: true
+		collidesAir: true
+		collidesGround: true
+		backColor: 98ffa9
+		frontColor: ffffff
+		trailColor: 98ffa9
+		hitColor: 98ffa9
+		trailLength: 11
+		trailWidth: 3.2
+		trailRotation: true
+		trailEffect: none
+		trailChance: -1
+		trailInterval: 0
+		status: shocked
+		statusDuration: 50
+		shootEffect: shootHeal
+		smokeEffect: none
+		hitEffect: hitMeltHeal
+		despawnEffect: hitMeltHeal
+		hitSound: explosionPlasmaSmall
+		hitSoundVolume: 0.32
+		lightRadius: 16
+		bulletInterval: 5
+		intervalBullets: 2
+		intervalSpread: 180
+		intervalRandomSpread: 0
+		intervalBullet: {
+			type: LaserBulletType
+			damage: 30
+			length: 7.5
+			width: 6
+			lifetime: 9
+			largeHit: false
+			healAmount: 150
+			collidesTeam: true
+			collidesAir: true
+			collidesGround: true
+			sideAngle: 10
+			sideWidth: 0.4
+			sideLength: 1.5
+			colors: ["98ffa955", "98ffa9aa", "98ffa9", "ffffff"]
+			hitColor: 98ffa9
+			lightColor: 98ffa9
+			shootEffect: none
+			smokeEffect: none
+			hitEffect: hitMeltHeal
+			despawnEffect: none
+		}
+		fragBullets: 4
+		fragSpread: 90
+		fragAngle: 0
+		fragRandomSpread: 0
+		fragVelocityMin: 0.01
+		fragVelocityMax: 0.01
+		fragBullet: {
+			type: LaserBulletType
+			damage: 85
+			length: 166
+			width: 13
+			lifetime: 16
+			largeHit: false
+			healAmount: 150
+			collidesTeam: true
+			collidesAir: true
+			collidesGround: true
+			sideAngle: 18
+			sideWidth: 0.8
+			sideLength: 16
+			colors: ["98ffa955", "98ffa9aa", "98ffa9", "ffffff"]
+			hitColor: 98ffa9
+			lightColor: 98ffa9
+			lightning: 1
+			lightningLength: 6
+			lightningDamage: 20
+			lightningColor: 98ffa9
+			shootEffect: none
+			smokeEffect: none
+			hitEffect: hitMeltHeal
+			despawnEffect: none
+		}
+	}
+	}
+
+	// ----- MOORING STORM -----
+	{
+	name: plasma-missile-mount
+	mirror: false
+	top: true
+	x: 0
+	y: -31.8
+	shootY: 18
+	rotate: true
+	rotateSpeed: 1.35
+	rotationLimit: 170
+	shootCone: 18
+	useAttackRange: true
+	autoTarget: false
+	alwaysShooting: false
+	controllable: true
+	reload: 980
+	recoil: 4.2
+	recoils: 1
+	recoilTime: 80
+	shake: 4
+	shadow: 16
+	inaccuracy: 16
+	velocityRnd: 0.22
+	chargeSound: chargeVela
+	shootSound: shootMissilePlasma
+	shootSoundVolume: 0.55
+	ejectEffect: none
+	layerOffset: 0.0014
+	cooldownTime: 980
+	parentizeEffects: true
+	shoot: {
+		shots: 22
+		shotDelay: 2
+		firstShotDelay: 48
+	}
+	parts: [
+		{
+		name: heal-weapon-mount
+		outline: false
+		x: 5.4
+		y: -3.4
+		xScl: 1
+		yScl: 0.9
+		layerOffset: 0.00004
+		}
+		{
+		name: heal-weapon-mount
+		outline: false
+		x: -5.4
+		y: -3.4
+		xScl: -1
+		yScl: 0.9
+		layerOffset: 0.00004
+		}
+		{
+		name: plasma-laser-mount
+		outline: false
+		y: -1
+		xScl: 0.95
+		yScl: 0.85
+		layerOffset: 0.00006
+		}
+		{
+		name: point-defense-mount
+		outline: false
+		y: -2.2
+		xScl: 0.88
+		yScl: 0.82
+		layerOffset: 0.00008
+		}
+		{
+		name: plasma-missile-mount
+		outline: false
+		y: 1.4
+		xScl: 1.1
+		yScl: 1
+		layerOffset: 0.0001
+		}
+		{
+		name: plasma-missile-mount
+		outline: false
+		x: 5.2
+		y: 0.6
+		xScl: 1.05
+		yScl: 0.95
+		progress: charge
+		moveX: 5.5
+		moveY: 3.2
+		moveRot: -12
+		layerOffset: 0.00012
+		}
+		{
+		name: plasma-missile-mount
+		outline: false
+		x: -5.2
+		y: 0.6
+		xScl: -1.05
+		yScl: 0.95
+		progress: charge
+		moveX: -5.5
+		moveY: 3.2
+		moveRot: 12
+		layerOffset: 0.00012
+		}
+		{
+		name: retusa-weapon
+		outline: false
+		x: 6.4
+		y: 2.4
+		rotation: -8
+		xScl: 0.95
+		yScl: 1
+		progress: charge
+		moveX: 4.2
+		moveY: 5
+		moveRot: -16
+		layerOffset: 0.00014
+		}
+		{
+		name: retusa-weapon
+		outline: false
+		x: -6.4
+		y: 2.4
+		rotation: 8
+		xScl: -0.95
+		yScl: 1
+		progress: charge
+		moveX: -4.2
+		moveY: 5
+		moveRot: 16
+		layerOffset: 0.00014
+		}
+		{
+		name: beam-weapon
+		outline: true
+		outlineLayerOffset: -0.00004
+		y: 5.6
+		xScl: 1.05
+		yScl: 1.1
+		progress: charge
+		moveY: 7.5
+		layerOffset: 0.00018
+		}
+		{
+		name: beam-weapon
+		outline: true
+		outlineLayerOffset: -0.00004
+		x: 2.6
+		y: 4.8
+		rotation: -10
+		xScl: 0.88
+		yScl: 1
+		progress: charge
+		moveY: 6.4
+		moveRot: -14
+		layerOffset: 0.00016
+		}
+		{
+		name: beam-weapon
+		outline: true
+		outlineLayerOffset: -0.00004
+		x: -2.6
+		y: 4.8
+		rotation: 10
+		xScl: -0.88
+		yScl: 1
+		progress: charge
+		moveY: 6.4
+		moveRot: 14
+		layerOffset: 0.00016
+		}
+		{
+		name: retusa-weapon
+		outline: false
+		x: 3.4
+		y: 7.6
+		rotation: -8
+		xScl: 0.8
+		yScl: 1.05
+		progress: charge
+		moveX: 2.4
+		moveY: 7
+		moveRot: -10
+		layerOffset: 0.0002
+		}
+		{
+		name: retusa-weapon
+		outline: false
+		x: -3.4
+		y: 7.6
+		rotation: 8
+		xScl: -0.8
+		yScl: 1.05
+		progress: charge
+		moveX: -2.4
+		moveY: 7
+		moveRot: 10
+		layerOffset: 0.0002
+		}
+		{
+		name: power-cell
+		outline: false
+		y: 0.4
+		xScl: 0.95
+		yScl: 0.88
+		layerOffset: 0.00024
+		}
+		{
+		name: plasma-missile-mount
+		outline: false
+		y: 1.4
+		xScl: 1.1
+		yScl: 1
+		progress: charge
+		color: 98ffa900
+		colorTo: 98ffa9ff
+		mixColor: 98ffa9ff
+		mixColorTo: 98ffa9ff
+		blending: additive
+		layerOffset: 0.00026
+		}
+		{
+		name: plasma-missile-mount
+		outline: false
+		x: 5.2
+		y: 0.6
+		xScl: 1.05
+		yScl: 0.95
+		progress: charge
+		moveX: 5.5
+		moveY: 3.2
+		moveRot: -12
+		color: 98ffa900
+		colorTo: 98ffa9ee
+		mixColor: 98ffa9ff
+		mixColorTo: 98ffa9ff
+		blending: additive
+		layerOffset: 0.00027
+		}
+		{
+		name: plasma-missile-mount
+		outline: false
+		x: -5.2
+		y: 0.6
+		xScl: -1.05
+		yScl: 0.95
+		progress: charge
+		moveX: -5.5
+		moveY: 3.2
+		moveRot: 12
+		color: 98ffa900
+		colorTo: 98ffa9ee
+		mixColor: 98ffa9ff
+		mixColorTo: 98ffa9ff
+		blending: additive
+		layerOffset: 0.00027
+		}
+		{
+		name: beam-weapon
+		outline: false
+		y: 5.6
+		xScl: 1.05
+		yScl: 1.1
+		progress: charge
+		moveY: 7.5
+		color: 98ffa900
+		colorTo: 98ffa9ff
+		mixColor: 98ffa9ff
+		mixColorTo: 98ffa9ff
+		blending: additive
+		layerOffset: 0.00028
+		}
+		{
+		name: retusa-weapon
+		outline: false
+		x: 3.4
+		y: 7.6
+		rotation: -8
+		xScl: 0.8
+		yScl: 1.05
+		progress: charge
+		moveX: 2.4
+		moveY: 7
+		moveRot: -10
+		color: 98ffa900
+		colorTo: 98ffa9ee
+		mixColor: 98ffa9ff
+		mixColorTo: 98ffa9ff
+		blending: additive
+		layerOffset: 0.00029
+		}
+		{
+		name: retusa-weapon
+		outline: false
+		x: -3.4
+		y: 7.6
+		rotation: 8
+		xScl: -0.8
+		yScl: 1.05
+		progress: charge
+		moveX: -2.4
+		moveY: 7
+		moveRot: 10
+		color: 98ffa900
+		colorTo: 98ffa9ee
+		mixColor: 98ffa9ff
+		mixColorTo: 98ffa9ff
+		blending: additive
+		layerOffset: 0.00029
+		}
+	]
+	bullet: {
+		type: BasicBulletType
+		sprite: missile-large
+		backSprite: missile-back
+		speed: 4.5
+		lifetime: 98
+		damage: 165
+		width: 12
+		height: 14
+		hitSize: 7
+		shrinkY: 0
+		splashDamage: 210
+		splashDamageRadius: 18
+		healAmount: 350
+		collidesTeam: true
+		collidesAir: true
+		collidesGround: true
+		homingPower: 0.028
+		homingRange: 160
+		homingDelay: 8
+		weaveMag: 12
+		weaveScale: 3.4
+		keepVelocity: false
+		backColor: 98ffa9
+		frontColor: ffffff
+		trailColor: 98ffa9
+		hitColor: 98ffa9
+		trailLength: 10
+		trailWidth: 2.6
+		trailRotation: true
+		trailEffect: none
+		trailChance: -1
+		trailInterval: 0
+		status: electrified
+		statusDuration: 150
+		shootEffect: none
+		smokeEffect: none
+		hitEffect: {
+			type: MultiEffect
+			effects: [
+				{
+				type: WaveEffect
+				lifetime: 20
+				sizeFrom: 0
+				sizeTo: 30
+				strokeFrom: 3.5
+				strokeTo: 0
+				colorFrom: ffffff
+				colorTo: 98ffa9
+				}
+				{
+				type: RadialEffect
+				amount: 4
+				rotationSpacing: 90
+				lengthOffset: 3
+				effect: {
+					type: ParticleEffect
+					particles: 1
+					line: true
+					length: 20
+					baseLength: 2
+					lifetime: 16
+					cone: 0
+					strokeFrom: 2.6
+					strokeTo: 0
+					lenFrom: 9
+					lenTo: 0
+					colorFrom: ffffff
+					colorTo: 98ffa9
+					interp: pow2Out
+				}
+				}
+				{
+				type: ParticleEffect
+				particles: 6
+				length: 22
+				baseLength: 3
+				lifetime: 24
+				sizeFrom: 3.4
+				sizeTo: 0
+				colorFrom: 98ffa9
+				colorTo: 98ffa955
+				interp: pow5Out
+				}
+			]
+		}
+		despawnEffect: {
+			type: MultiEffect
+			effects: [
+				{
+				type: WaveEffect
+				lifetime: 16
+				sizeFrom: 0
+				sizeTo: 20
+				strokeFrom: 2.5
+				strokeTo: 0
+				colorFrom: ffffff
+				colorTo: 98ffa9
+				}
+				{
+				type: RadialEffect
+				amount: 4
+				rotationSpacing: 90
+				rotationOffset: 45
+				lengthOffset: 2
+				effect: {
+					type: ParticleEffect
+					particles: 1
+					line: true
+					length: 14
+					lifetime: 13
+					cone: 0
+					strokeFrom: 2
+					strokeTo: 0
+					lenFrom: 7
+					lenTo: 0
+					colorFrom: ffffff
+					colorTo: 98ffa9
+					interp: pow2Out
+				}
+				}
+			]
+		}
+		hitSound: explosionMissile
+		hitSoundVolume: 0.22
+		lightRadius: 8
+		lightOpacity: 0.25
+	}
+	}
+]

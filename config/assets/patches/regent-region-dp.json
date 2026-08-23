@@ -1,0 +1,12 @@
+unit.dp-regent-unit: {
+    region: "scepter"
+    cellRegion: "scepter-cell"
+
+    uiIcon: "scepter"
+    fullIcon: "scepter"
+    shadowRegion: "scepter"
+
+    previewRegion: "scepter"
+
+    legRegion: "scepter-leg"
+}

@@ -1,0 +1,264 @@
+type: mech
+name: "Regent"
+description: "Держит строй между Scepter и Reign. Пробивная пушка reign-типа и конусный огнемёт."
+details: "Прототип на стыке поколений — ещё не Reign, но уже не Scepter."
+
+health: 15500
+armor: 14
+speed: 0.37
+rotateSpeed: 1.85
+hitSize: 26
+itemCapacity: 90
+buildSpeed: 0.01
+
+mechFrontSway: 1.5
+mechSideSway: 0.5
+mechStepParticles: true
+stepShake: 0.6
+stepSound: mechStepHeavy
+stepSoundPitch: 1.0
+stepSoundVolume: 0.5
+drownTimeMultiplier: 1.55
+
+targetAir: false
+targetGround: true
+targetable: true
+hittable: true
+canAttack: true
+autoFindTarget: true
+playerControllable: true
+logicControllable: true
+useUnitCap: true
+
+outlines: true
+outlineColor: "2d2f39"
+
+abilities: [
+  {
+    type: ShieldArcAbility
+    radius: 36
+    angle: 68
+    angleOffset: 90
+    x: 0
+    y: 0
+    regen: 1.6667
+    max: 2000
+    cooldown: 480
+    width: 2.5
+    whenShooting: false
+    chanceDeflect: 0.5
+    pushUnits: false
+    drawArc: true
+  }
+  {
+    type: ShieldArcAbility
+    radius: 36
+    angle: 68
+    angleOffset: -90
+    x: 0
+    y: 0
+    regen: 1.6667
+    max: 2000
+    cooldown: 480
+    width: 2.5
+    whenShooting: false
+    chanceDeflect: 0.5
+    pushUnits: false
+    drawArc: true
+  }
+]
+
+parts: [
+  {
+    type: RegionPart
+    name: "scepter"
+    outline: false
+    layerOffset: 0
+  }
+  {
+    type: RegionPart
+    name: "reign"
+    x: 0
+    y: -4
+    xScl: 0.68
+    yScl: 0.50
+    outline: false
+    layerOffset: -0.001
+  }
+]
+
+weapons: [
+  {
+    name: "reign-weapon"
+    mirror: false
+    x: 18
+    y: 0
+    shootY: 11
+    top: true
+    rotate: true
+    rotateSpeed: 3
+    reload: 13
+    recoil: 4.5
+    recoilTime: 24
+    shake: 2
+    shadow: 14
+    ejectEffect: casing4
+    shootSound: shootReign
+
+    parts: [
+      {
+        type: RegionPart
+        name: "reign-weapon"
+        xScl: 0.82
+        yScl: 0.82
+        outline: false
+        layerOffset: 0.0002
+      }
+    ]
+
+    bullet: {
+      type: BasicBulletType
+      speed: 11.5
+      damage: 120
+      lifetime: 26
+      width: 12
+      height: 27
+      shrinkX: 0.4
+      shrinkY: 0
+
+      pierce: true
+      pierceCap: 6
+      pierceBuilding: false
+      armorMultiplier: 1.3
+
+      backColor: "ff9a55ff"
+      frontColor: "ffffffff"
+      trailColor: "ffad68ff"
+      trailLength: 11
+      trailWidth: 2.2
+
+      trailEffect: {
+        type: ParticleEffect
+        particles: 2
+        length: 13
+        lifetime: 11
+        line: true
+        lenFrom: 8
+        lenTo: 0
+        strokeFrom: 2
+        strokeTo: 0
+        colorFrom: "ffffffff"
+        colorTo: "ff9a55ff"
+      }
+
+      trailInterval: 2
+      trailRotation: true
+
+      lightningColor: "ffe08f"
+      lightning: 3
+      lightningLength: 6
+      lightningLengthRand: 4
+      lightningDamage: 15
+      lightningCone: 40
+
+      hitEffect: massiveExplosion
+      despawnEffect: hitBulletColor
+      shootEffect: shootBig
+      smokeEffect: shootSmokeTitan
+      hitSound: shootReign
+      status: shocked
+      statusDuration: 60
+    }
+  }
+
+  {
+    name: "flamethrower"
+    mirror: false
+    x: -18
+    y: 0
+    shootY: 10
+    top: true
+    rotate: true
+    rotateSpeed: 2.4
+    reload: 4
+    recoil: 1.5
+    recoilTime: 8
+    shootCone: 26
+    shootSound: loopMalign
+    inaccuracy: 12
+    velocityRnd: 0.6
+
+    shoot: {
+      shots: 3
+      spread: 6
+    }
+
+    parts: [
+      {
+        type: RegionPart
+        name: "reign-weapon"
+        xScl: 0.82
+        yScl: 0.66
+        x: 0
+        y: -2
+        outline: false
+        layerOffset: 0
+      }
+      {
+        type: RegionPart
+        name: "scepter-weapon"
+        xScl: 0.62
+        yScl: 0.62
+        x: 0
+        y: 3
+        outline: false
+        layerOffset: 0.0002
+      }
+      {
+        type: RegionPart
+        name: "flamethrower"
+        xScl: 0.78
+        yScl: 1.0
+        x: 0
+        y: 7
+        outline: true
+        layerOffset: 0.0004
+      }
+    ]
+
+    bullet: {
+      type: BasicBulletType
+      sprite: circle-bullet
+      speed: 4.8
+      lifetime: 70
+      drag: 0.012
+      damage: 24
+
+      width: 7
+      height: 7
+      shrinkX: 1
+      shrinkY: 1
+
+      splashDamage: 12
+      splashDamageRadius: 16
+      collidesTeam: false
+
+      trailEffect: hitFlameSmall
+      trailInterval: 2
+
+      status: burning
+      statusDuration: 180
+      incendChance: 0.8
+      incendSpread: 18
+      incendAmount: 4
+
+      backColor: "ff7a3a"
+      frontColor: "ffe6a3"
+
+      shootEffect: shootSmallFlame
+      hitEffect: hitFlameSmall
+      despawnEffect: none
+      smokeEffect: none
+    }
+  }
+]
