@@ -1,6 +1,5 @@
 package net.voiddustry.redvsblue.game.crux;
 
-import arc.Core;
 import arc.files.Fi;
 import arc.struct.ObjectMap;
 import arc.struct.Seq;
@@ -11,8 +10,7 @@ import mindustry.type.UnitType;
 
 /** Loads the selectable Crux units and boss candidates from config/rvsbUnits/stages.json. */
 public final class StageUnits {
-    private static final String configPath = "config/rvsbUnits/stages.json";
-    private static final String bundledConfigPath = "rvsbUnits/stages.json";
+    private static final String configPath = "rvsbUnits/stages.json";
 
     private static final ObjectMap<Integer, StageDefinition> stages = new ObjectMap<>();
     public static final ObjectMap<Integer, UnitType> bosses = new ObjectMap<>();
@@ -22,11 +20,11 @@ public final class StageUnits {
 
     public static void load() {
         stages.clear();
-        Fi file = Vars.modDirectory.child(configPath);
+        // Vars.dataDirectory is the server's config directory. This resolves to config/rvsbUnits/stages.json.
+        Fi file = Vars.dataDirectory.child(configPath);
         if (!file.exists()) {
-            Fi bundled = Core.files.internal(bundledConfigPath);
-            bundled.copyTo(file);
-            Log.warn("Stage configuration not found at @; created it from bundled defaults.", configPath);
+            Log.err("Crux stage configuration is missing: @", file.absolutePath());
+            return;
         }
 
         try {
