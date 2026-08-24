@@ -26,8 +26,10 @@ public final class StationButtons {
             }
 
             Player player = event.player;
+            // Preserve the original station interaction ranges: 48 for labs, 64 for workbenches.
+            float stationRange = event.tile.block == Vars.content.block("dp-laboratory-station") ? 48f : 64f;
             // Reject remote presses immediately without opening a menu or starting a cooldown.
-            if (player.unit() == null || player.dst(event.tile) > Vars.buildingRange) {
+            if (player.unit() == null || player.unit().dst(event.tile) > stationRange) {
                 event.tile.configure(true);
                 return;
             }
