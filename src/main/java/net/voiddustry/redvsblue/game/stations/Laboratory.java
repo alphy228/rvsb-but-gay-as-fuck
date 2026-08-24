@@ -177,7 +177,7 @@ public class Laboratory {
                     if ((!player.dead() && player.team() == Team.blue && tile.block().isAir()) && tile.floor() != Blocks.empty) {
                         StationData laboratoryData = new StationData(player, tile);
                         labsMap.put(player.uuid(), laboratoryData);
-                        Call.constructFinish(tile, Vars.content.block("laboratory-station"), null, (byte) 0, Team.blue, null);
+                        Call.constructFinish(tile, Vars.content.block("dp-laboratory-station"), null, (byte) 0, Team.blue, null);
                         Call.effect(Fx.regenParticle, tile.x*8, tile.y*8, 0, Color.red);
                         players.get(player.uuid()).subtractScore(7);
                     }
@@ -189,9 +189,9 @@ public class Laboratory {
     public static void renderLabs() {
         labsMap.forEach((owner, lab) -> {
             if (lab != null) {
-                if (lab.tileOn().block() != Vars.content.block("laboratory-station") || lab.owner().team() != Team.blue) {
+                if (lab.tileOn().block() != Vars.content.block("dp-laboratory-station") || lab.owner().team() != Team.blue) {
                     labsMap.remove(owner);
-                    if (lab.tileOn().block() == Vars.content.block("laboratory-station")) {
+                    if (lab.tileOn().block() == Vars.content.block("dp-laboratory-station")) {
                         lab.tileOn().build.kill();
                     }
                 }

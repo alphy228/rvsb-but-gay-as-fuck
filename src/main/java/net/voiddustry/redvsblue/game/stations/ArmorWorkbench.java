@@ -69,7 +69,7 @@ public class ArmorWorkbench {
                     if ((!player.dead() && player.team() == Team.blue && tile.block().isAir()) && tile.floor() != Blocks.empty) {
                         StationData workbenchData = new StationData(player, tile);
                         workbenches.put(player.uuid(), workbenchData);
-                        Call.constructFinish(tile, Vars.content.block("workbench-station"), null, (byte) 0, Team.blue, null);
+                        Call.constructFinish(tile, Vars.content.block("dp-workbench-station"), null, (byte) 0, Team.blue, null);
                         Call.effect(Fx.regenParticle, tile.x * 8, tile.y * 8, 0, Color.red);
                         players.get(player.uuid()).subtractScore(8);
                     }
@@ -81,9 +81,9 @@ public class ArmorWorkbench {
     public static void renderWorkbenches() {
         workbenches.forEach((owner, workbench) -> {
             if (workbench != null) {
-                if (workbench.tileOn().block() != Vars.content.block("workbench-station") || workbench.owner().team() != Team.blue) {
+                if (workbench.tileOn().block() != Vars.content.block("dp-workbench-station") || workbench.owner().team() != Team.blue) {
                     workbenches.remove(owner);
-                    if (workbench.tileOn().block() == Vars.content.block("workbench-station")) {
+                    if (workbench.tileOn().block() == Vars.content.block("dp-workbench-station")) {
                         workbench.tileOn().build.kill();
                     }
                 }

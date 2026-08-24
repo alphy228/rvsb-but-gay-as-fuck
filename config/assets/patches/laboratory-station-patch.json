@@ -4,6 +4,6 @@ block.dp-laboratory-station: {
     localizedName: "Laboratory"
     region: block-1
     onRegion: switch
-    uiIcon: block-1
-    fullIcon: block-1
+    uiIcon: carbide-wall
+    fullIcon: carbide-wall
 }

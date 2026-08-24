@@ -39,15 +39,15 @@ public final class StationButtons {
             if (lastOpen != null && now - lastOpen < menuCooldownMillis) return;
             menuCooldowns.put(player.uuid(), now);
 
-            if (event.tile.block == Vars.content.block("laboratory-station")) {
+            if (event.tile.block == Vars.content.block("dp-laboratory-station")) {
                 Laboratory.openStationMenu(player);
-            } else if (event.tile.block == Vars.content.block("workbench-station")) {
+            } else if (event.tile.block == Vars.content.block("dp-workbench-station")) {
                 ArmorWorkbench.openStationMenu(player);
             }
         });
     }
 
     private static boolean isStationButton(Building building) {
-        return building.block == Vars.content.block("laboratory-station") || building.block == Vars.content.block("workbench-station");
+        return building.block == Vars.content.block("dp-laboratory-station") || building.block == Vars.content.block("dp-workbench-station");
     }
 }

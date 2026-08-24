@@ -68,9 +68,9 @@ public class UpdateConstructBlocks implements Runnable {
                         RepairPoint.buyRepairPoint(player, tile);
                       } else if (bp.block == Blocks.phaseWall) {
                         SuppressorTower.buyTower(player, tile);
-                      } else if (bp.block == Vars.content.block("workbench-station")) {
+                      } else if (bp.block == Vars.content.block("dp-workbench-station")) {
                         ArmorWorkbench.buyWorkbench(player, tile);
-                      } else if (bp.block == Vars.content.block("laboratory-station")) {
+                      } else if (bp.block == Vars.content.block("dp-laboratory-station")) {
                         Laboratory.buyLab(player, tile);
                       } else if (bp.block == Blocks.beamNode) {
                         Booster.buyBooster(player, tile);
