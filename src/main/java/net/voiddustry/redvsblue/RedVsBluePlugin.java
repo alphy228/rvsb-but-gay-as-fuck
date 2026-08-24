@@ -88,16 +88,51 @@ public class RedVsBluePlugin extends Plugin {
     static Timer.Task task = new Timer.Task() {
         @Override
         public void run() {
+            if (stage != 10) {
+                stage++;
+                stageTimer = 300;
+                spawnBoss();
+                announceBundled("game.new-stage", 15, stage);
+                ClassChooseMenu.updateUnitsMap();
+            } else {
+                 //calculate blue unit value for stage 11
+                int blueUnitValue = 0;
+                float typeModifier = 1;
+                for (Unit u : Groups.unit) {
+                    if (u.team==Team.blue) {
+                        typeModifier = 1;
+                        if (u.type == UnitTypes.quad) {
+                            typeModifier = 2;
+                        } else if (u.type == UnitTypes.sei) {
+                            typeModifier = 2;
+                        } else if (u.type == UnitTypes.aegires) {
+                            typeModifier = 3;
+                        } else if (u.type == UnitTypes.omura) {
+                            typeModifier = 2;
+                        } else if (u.type == UnitTypes.navanax) {
+                            typeModifier = 1.5f;
+                        }
+                        blueUnitValue = blueUnitValue + ((int)(u.type.health*typeModifier));
+                    }
+                }
+                Log.info("Blue unit value for stage 11: " + blueUnitValue);
+                if (blueUnitValue < 100000) {
+                gameOver(Team.blue);
+                } else {
+                    announceBundled("game.stage11", 5);
+                    Timer timer = new Timer();
+                    timer.schedule(() -> {
+                        stage++;
+                        stageTimer = 300;
+                        spawnBoss();
+                        announceBundled("game.new-stage", 15, 11);
+                        ClassChooseMenu.updateUnitsMap();
+                    }, 6);
+                }
+            }
             if (stage >= 12) {
                 gameOver(Team.blue);
-                return;
             }
-
-            stage++;
-            stageTimer = 300;
-            spawnBoss();
-            announceBundled("game.new-stage", 15, stage);
-            ClassChooseMenu.updateUnitsMap();
         }
     };
 
