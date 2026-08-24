@@ -6,6 +6,4 @@ itemCapacity: 100
 solid: true
 health: 480
 category: logic
-consumes: {
-  items: [coal/100]
-}
+
