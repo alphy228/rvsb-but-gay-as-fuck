@@ -25,15 +25,19 @@ public final class StationButtons {
                 return;
             }
 
-            // Restore the switch's normal on state after one second, even for an invalid/out-of-range press.
+            Player player = event.player;
+            // Reject remote presses immediately without opening a menu or starting a cooldown.
+            if (player.unit() == null || player.dst(event.tile) > Vars.buildingRange) {
+                event.tile.configure(true);
+                return;
+            }
+
+            // Valid presses, including cooldown-limited presses, restore after one second.
             Timer.schedule(() -> {
                 if (event.tile.isValid() && isStationButton(event.tile)) {
                     event.tile.configure(true);
                 }
             }, 1f);
-
-            Player player = event.player;
-            if (player.unit() == null || player.dst(event.tile) > Vars.buildingRange) return;
 
             long now = System.currentTimeMillis();
             Long lastOpen = menuCooldowns.get(player.uuid());
