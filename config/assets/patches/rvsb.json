@@ -1050,14 +1050,6 @@ block.phase-wall.requirements: [dormant-cyst/20]
 block.phase-wall.category: logic
 block.phase-wall.localizedName: "Suppressor tower"
 
-block.radar.requirements: [dormant-cyst/8]
-block.radar.category: logic
-block.radar.localizedName: "Workbench"
-
-block.carbide-wall.requirements: [dormant-cyst/7]
-block.carbide-wall.category: logic
-block.carbide-wall.localizedName: "Laboratory"
-
 block.beam-node.requirements: [dormant-cyst/18]
 block.beam-node.category: logic
 block.beam-node.localizedName: "Booster"
