@@ -4,8 +4,7 @@ size: 1
 hasItems: true
 itemCapacity: 100
 solid: true
-privileged: true
-targetable: false
+health: 480
 category: logic
 consumes: {
   items: [coal/100]
