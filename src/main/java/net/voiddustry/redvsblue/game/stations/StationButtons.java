@@ -20,14 +20,15 @@ public final class StationButtons {
 
     public static void init() {
         Events.on(EventType.ConfigEvent.class, event -> {
-            if (!(event.value instanceof Boolean enabled) || !enabled || event.player == null || !isStationButton(event.tile)) {
+            // SwitchBuild starts enabled. A player click toggles it off; that off transition is the button press.
+            if (!(event.value instanceof Boolean enabled) || enabled || event.player == null || !isStationButton(event.tile)) {
                 return;
             }
 
-            // The switch must always return to its off state, even for an invalid/out-of-range press.
+            // Restore the switch's normal on state after one second, even for an invalid/out-of-range press.
             Timer.schedule(() -> {
                 if (event.tile.isValid() && isStationButton(event.tile)) {
-                    event.tile.configure(false);
+                    event.tile.configure(true);
                 }
             }, 1f);
 
