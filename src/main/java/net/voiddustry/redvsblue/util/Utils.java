@@ -6,6 +6,7 @@ import arc.*;
 import arc.struct.Seq;
 import arc.util.Time;
 import arc.util.Timer;
+import arc.util.Log;
 import arc.util.serialization.*;
 import mindustry.Vars;
 import mindustry.content.*;
@@ -196,7 +197,13 @@ public class Utils {
     }
 
     public static void spawnBoss() {
-        Unit boss = StageUnits.bosses.get(stage).spawn(Team.crux, redSpawns.random());
+        UnitType bossType = StageUnits.bossForStage(stage);
+        if (bossType == null || redSpawns.isEmpty()) {
+            Log.warn("No configured boss or spawn point for stage @.", stage);
+            return;
+        }
+
+        Unit boss = bossType.spawn(Team.crux, redSpawns.random());
         boss.health = boss.type.health + boss.type.health/3;
 
         if (!boss.dead()) {

@@ -138,6 +138,31 @@ public class Laboratory {
         }, 0, 0.5F);
     }
 
+    /** Opens the evolution UI for a nearby laboratory station button press. */
+    public static void openStationMenu(Player player) {
+        if (player.unit() == null || players.get(player.uuid()) == null) return;
+
+        Locale locale = Bundle.findLocale(player.locale());
+        Evolution evolution = Evolutions.evolutions.get(player.unit().type().name);
+        if (evolution == null) return;
+
+        String[][] buttons = new String[evolution.evolutions.length][1];
+        for (int i = 0; i < evolution.evolutions.length; i++) {
+            Evolution option = Evolutions.evolutions.get(evolution.evolutions[i]);
+            if (option == null) continue;
+            float multiplier = getMultiplier(option, player);
+            int cost = (int)(option.cost * multiplier);
+            String color = multiplier > 1 && multiplier <= 1.99f ? "[orange]"
+                : cost > option.cost ? "[red]" : cost < option.cost ? "[green]" : "[yellow]";
+            buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i],
+                color + cost + " - " + (multiplier * 100) + "%");
+        }
+
+        Call.menu(player.con, evolutionMenu, Bundle.get("menu.evolution.title", locale),
+            Bundle.format("menu.evolution.message", locale, players.get(player.uuid()).getEvolutionStage(),
+                Bundle.get("evolution.branch.initial", locale)), buttons);
+    }
+
     public static float getMultiplier(Evolution evo, Player player) {
         if (RedVsBluePlugin.players.get(player.uuid()) == null) {
             return 4;

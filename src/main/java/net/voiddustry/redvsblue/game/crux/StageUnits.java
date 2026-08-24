@@ -1,86 +1,98 @@
 package net.voiddustry.redvsblue.game.crux;
 
+import arc.Core;
+import arc.files.Fi;
 import arc.struct.ObjectMap;
-import mindustry.content.UnitTypes;
-import mindustry.type.UnitType;
+import arc.struct.Seq;
+import arc.util.Log;
+import arc.util.serialization.Jval;
 import mindustry.Vars;
+import mindustry.type.UnitType;
 
-import net.voiddustry.redvsblue.RedVsBluePlugin;
+/** Loads the selectable Crux units and boss candidates from config/rvsbUnits/stages.json. */
+public final class StageUnits {
+    private static final String configPath = "config/rvsbUnits/stages.json";
+    private static final String bundledConfigPath = "rvsbUnits/stages.json";
 
-public class StageUnits {
-    //String - Key
-    public final static ObjectMap<UnitType, String> firstStage = ObjectMap.of(
-            UnitTypes.crawler, "units.crux.menu.crawler",
-            UnitTypes.dagger, "units.crux.menu.dagger"
-    );
+    private static final ObjectMap<Integer, StageDefinition> stages = new ObjectMap<>();
+    public static final ObjectMap<Integer, UnitType> bosses = new ObjectMap<>();
 
-    public final static ObjectMap<UnitType, String> secondStage = ObjectMap.of(
-            UnitTypes.crawler, "units.crux.menu.crawler",
-            UnitTypes.dagger, "units.crux.menu.dagger",
-            UnitTypes.mace, "units.crux.menu.mace"
-    );
+    private StageUnits() {
+    }
 
-    public final static ObjectMap<UnitType, String> thirdStage = ObjectMap.of(
-            UnitTypes.crawler, "units.crux.menu.crawler",
-            UnitTypes.dagger, "units.crux.menu.dagger",
-            UnitTypes.mace, "units.crux.menu.mace"
-    );
+    public static void load() {
+        stages.clear();
+        Fi file = Vars.modDirectory.child(configPath);
+        if (!file.exists()) {
+            Fi bundled = Core.files.internal(bundledConfigPath);
+            bundled.copyTo(file);
+            Log.warn("Stage configuration not found at @; created it from bundled defaults.", configPath);
+        }
 
-    public final static ObjectMap<UnitType, String> fourthAndFifrhStage = ObjectMap.of(
-            UnitTypes.crawler, "units.crux.menu.crawler",
-            UnitTypes.merui, "units.crux.menu.merui",
-            UnitTypes.dagger, "units.crux.menu.dagger",
-            UnitTypes.mace, "units.crux.menu.mace",
-            UnitTypes.stell, "units.crux.menu.stell"
-    );
+        try {
+            Jval root = Jval.read(file.readString());
+            for (Jval stageValue : root.get("stages").asArray()) {
+                int number = stageValue.getInt("stage", -1);
+                if (number < 1) continue;
 
-    public final static ObjectMap<UnitType, String> sixthStage = ObjectMap.of(
-            UnitTypes.crawler, "units.crux.menu.crawler",
-            UnitTypes.elude, "units.crux.menu.elude",
-            UnitTypes.merui, "units.crux.menu.merui",
-            UnitTypes.dagger, "units.crux.menu.dagger",
-            UnitTypes.nova, "units.crux.menu.nova",
-            UnitTypes.cleroi, "units.crux.menu.cleroi"
-    );
+                StageDefinition definition = new StageDefinition();
+                addSelectableUnits(stageValue.get("units"), definition.units);
+                addUnits(stageValue.get("bosses"), definition.bossCandidates);
+                stages.put(number, definition);
+            }
+            rollBosses();
+            Log.info("Loaded @ configured Crux stages from @.", stages.size, file.path());
+        } catch (Exception exception) {
+            Log.err("Unable to load Crux stage configuration from @.", file.path());
+            Log.err(exception);
+        }
+    }
 
-    public final static ObjectMap<UnitType, String> sevenStage = ObjectMap.of(
-            UnitTypes.cleroi, "units.crux.menu.cleroi",
-            UnitTypes.flare, "units.crux.menu.flare",
-            UnitTypes.horizon, "units.crux.menu.horizon",
-            UnitTypes.elude, "units.crux.menu.elude"
-    );
+    /** Selects one configured boss for every stage. Called once per game/map cycle. */
+    public static void rollBosses() {
+        bosses.clear();
+        stages.each((number, definition) -> {
+            if (!definition.bossCandidates.isEmpty()) {
+                bosses.put(number, definition.bossCandidates.random());
+            }
+        });
+    }
 
-    public final static ObjectMap<UnitType, String> eighthAndNinthStage = ObjectMap.of(
-            UnitTypes.fortress, "units.crux.menu.fortress",
-            UnitTypes.cleroi, "units.crux.menu.cleroi",
-            UnitTypes.locus, "units.crux.menu.locus"
-    );
+    public static ObjectMap<UnitType, String> unitsForStage(int stage) {
+        StageDefinition definition = stages.get(stage);
+        return definition == null ? new ObjectMap<>() : definition.units;
+    }
 
-    public final static ObjectMap<UnitType, String> tenthStage = ObjectMap.of(
-            UnitTypes.obviate, "units.crux.menu.obviate",
-            UnitTypes.precept, "units.crux.menu.precept"
-    );
+    public static UnitType bossForStage(int stage) {
+        return bosses.get(stage);
+    }
 
-    public final static ObjectMap<UnitType, String> eleventhStage = ObjectMap.of(
-            UnitTypes.corvus, "units.crux.menu.corvus",
-            UnitTypes.vanquish, "units.crux.menu.vanquish"
-    );
+    private static void addSelectableUnits(Jval values, ObjectMap<UnitType, String> target) {
+        if (values == null || !values.isArray()) return;
+        for (Jval value : values.asArray()) {
+            UnitType unit = Vars.content.unit(value.asString());
+            if (unit == null) {
+                Log.warn("Unknown unit '@' in @.", value.asString(), configPath);
+            } else {
+                target.put(unit, "units.crux.menu." + unit.name);
+            }
+        }
+    }
 
-    public static ObjectMap<Integer, UnitType> bosses;
+    private static void addUnits(Jval values, Seq<UnitType> target) {
+        if (values == null || !values.isArray()) return;
+        for (Jval value : values.asArray()) {
+            UnitType unit = Vars.content.unit(value.asString());
+            if (unit == null) {
+                Log.warn("Unknown unit '@' in @.", value.asString(), configPath);
+            } else {
+                target.add(unit);
+            }
+        }
+    }
 
-    public static void updateBosses() {
-        bosses = ObjectMap.of(
-            2, UnitTypes.horizon,
-            3, UnitTypes.locus,
-            4, UnitTypes.quasar,
-            5, UnitTypes.avert,
-            6, Vars.content.unit("dp-aractid-unit"),
-            7, UnitTypes.precept,
-            8, UnitTypes.tecta,
-            9, UnitTypes.vanquish,
-            10, UnitTypes.eclipse,
-            11, RedVsBluePlugin.stage11Boss,
-            12, UnitTypes.navanax
-        );
+    private static class StageDefinition {
+        final ObjectMap<UnitType, String> units = new ObjectMap<>();
+        final Seq<UnitType> bossCandidates = new Seq<>();
     }
 }

@@ -82,79 +82,24 @@ public class RedVsBluePlugin extends Plugin {
     public static float stageTimer = 0;
     public static boolean playing = false;
 
-    public static boolean stage11 = false;
-
-    public static UnitType stage11Boss;
-
     public int restartCounter = 0;
     public int gamesUntilRestart = 2000000;
 
     static Timer.Task task = new Timer.Task() {
         @Override
         public void run() {
-            if (stage != 10) {
-                stage++;
-                stageTimer = 300;
-                spawnBoss();
-                announceBundled("game.new-stage", 15, stage);
-                ClassChooseMenu.updateUnitsMap();
-            } else {
-                 //calculate blue unit value for stage 11
-                int blueUnitValue = 0;
-                float typeModifier = 1;
-                for (Unit u : Groups.unit) {
-                    if (u.team==Team.blue) {
-                        typeModifier = 1;
-                        if (u.type == UnitTypes.quad) {
-                            typeModifier = 2;
-                        } else if (u.type == UnitTypes.sei) {
-                            typeModifier = 2;
-                        } else if (u.type == UnitTypes.aegires) {
-                            typeModifier = 3;
-                        } else if (u.type == UnitTypes.omura) {
-                            typeModifier = 2;
-                        } else if (u.type == UnitTypes.navanax) {
-                            typeModifier = 1.5f;
-                        }
-                        blueUnitValue = blueUnitValue + ((int)(u.type.health*typeModifier));
-                    }
-                }
-                Log.info("Blue unit value for stage 11: " + blueUnitValue);
-                if (blueUnitValue < 100000) {
-                gameOver(Team.blue);
-                } else {
-                    stage11 = true;
-                    announceBundled("game.stage11", 5);
-                    Timer timer = new Timer();
-                    timer.schedule(() -> {
-                        stage++;
-                        stageTimer = 300;
-                        spawnBoss();
-                        announceBundled("game.new-stage", 15, 11);
-                        ClassChooseMenu.updateUnitsMap();
-                    }, 6);
-                }
-            }
             if (stage >= 12) {
                 gameOver(Team.blue);
+                return;
             }
+
+            stage++;
+            stageTimer = 300;
+            spawnBoss();
+            announceBundled("game.new-stage", 15, stage);
+            ClassChooseMenu.updateUnitsMap();
         }
     };
-
-    //random boss
-    static void randomiseCruxUnits() {
-        Seq<UnitType> pool = Vars.content.units().select(u -> u.name.endsWith("-crux-t6"));
-
-        if (pool.isEmpty()) {
-            Log.info("No boss units found.");
-            stage11Boss = null;
-            return;
-        }
-
-        stage11Boss = pool.random();
-        StageUnits.updateBosses();
-        Log.info("Selected stage 11 boss: @", stage11Boss.name);
-    }
 
     @Override
     public void init() {
@@ -170,6 +115,7 @@ public class RedVsBluePlugin extends Plugin {
         Boss.forEachBoss();
         Premium.init();
         CruxUnit.addEvent();
+        StationButtons.init();
         
 
         Events.on(EventType.WorldLoadEvent.class, event -> {
@@ -370,7 +316,7 @@ public class RedVsBluePlugin extends Plugin {
 
             initRules();
 
-            randomiseCruxUnits();
+            StageUnits.load();
 
             StartingMenu.canOpenMenu = true;
 
@@ -416,7 +362,6 @@ public class RedVsBluePlugin extends Plugin {
             blueSpawnX = core.x();
             blueSpawnY = core.y();
 
-            stage11 = false;
 
             Vars.state.teams.cores(Team.blue).each(Building::kill);
 
@@ -814,6 +759,7 @@ public class RedVsBluePlugin extends Plugin {
     }
 
     public static void gameOver(Team winner) {
+        StageUnits.rollBosses();
         Events.fire("rvsb_game_over:" + winner.name);
         
         Groups.player.each(p -> {

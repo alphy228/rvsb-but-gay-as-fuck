@@ -1,0 +1,12 @@
+type: SwitchBlock
+name: laboratory-station
+size: 1
+hasItems: true
+itemCapacity: 100
+solid: true
+privileged: true
+targetable: false
+category: logic
+consumes: {
+  items: [coal/100]
+}

@@ -44,16 +44,6 @@ public class ClassChooseMenu {
 
     public static void updateUnitsMap() {
         units.clear();
-        switch (RedVsBluePlugin.stage) {
-            case 1 -> units.putAll(StageUnits.firstStage);
-            case 2 -> units.putAll(StageUnits.secondStage);
-            case 3 -> units.putAll(StageUnits.thirdStage);
-            case 4,5 -> units.putAll(StageUnits.fourthAndFifrhStage);
-            case 6 -> units.putAll(StageUnits.sixthStage);
-            case 7 -> units.putAll(StageUnits.sevenStage);
-            case 8,9 -> units.putAll(StageUnits.eighthAndNinthStage);
-            case 10 -> units.putAll(StageUnits.tenthStage);
-            case 11,12 -> units.putAll(StageUnits.eleventhStage);
-        }
+        units.putAll(StageUnits.unitsForStage(RedVsBluePlugin.stage));
     }
 }

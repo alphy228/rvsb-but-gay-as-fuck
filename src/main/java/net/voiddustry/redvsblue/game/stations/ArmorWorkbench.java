@@ -129,6 +129,36 @@ public class ArmorWorkbench {
         });
     }
 
+    /** Opens the workbench UI for a nearby station button press. */
+    public static void openStationMenu(Player player) {
+        if (player.unit() == null) return;
+
+        float maxShield = player.unit().type.health;
+        if (player.unit().type.health >= 17000) {
+            maxShield = player.unit().type.health / 3;
+        } else if (player.unit().type.health <= 290) {
+            maxShield = player.unit().type.health * 4;
+        } else if (player.unit().type == UnitTypes.aegires) {
+            maxShield = player.unit().type.health / 2;
+        }
+
+        int shieldPerPoint = (int)maxShield / 20;
+        float finalMaxShield = maxShield;
+        int menu = Menus.registerMenu((p, option) -> {
+            if (option == 0 && players.get(p.uuid()) != null && p.unit() != null
+                && players.get(p.uuid()).getScore() >= 1 && p.unit().shield <= (int)finalMaxShield) {
+                p.unit().shield += shieldPerPoint;
+                players.get(p.uuid()).subtractScore(1);
+                Call.label("[royal]+" + shieldPerPoint, 3, p.x, p.y);
+            }
+        });
+
+        openMenu(player, menu, new String[][]{
+            {Bundle.format("stations.workbench.buy-armor", Bundle.findLocale(player.locale), shieldPerPoint)},
+            {Bundle.get("stations.buttons.close", player.locale)}
+        });
+    }
+
     private static void openMenu(Player p, int menu, String[][] buttons) {
         Call.menu(p.con, menu, "[royal]" + Bundle.get("stations.buttons.workbench"), Bundle.format("stations.workbench.unit-armor", Bundle.findLocale(p.locale), p.unit().shield), buttons);
     }

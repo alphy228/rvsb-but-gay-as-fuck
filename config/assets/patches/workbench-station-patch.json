@@ -1,0 +1,6 @@
+block.dp-workbench-station: {
+    region: block-1
+    onRegion: switch
+    uiIcon: block-1
+    fullIcon: block-1
+}
