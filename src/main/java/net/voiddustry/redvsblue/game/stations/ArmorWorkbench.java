@@ -46,45 +46,7 @@ public class ArmorWorkbench {
                                 Call.label("[blue]+10", 1, p.x, p.y);
                             }
     
-                            if(Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) != null && Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)).block() == Blocks.radar && p.shooting){
-    
-                                //int maxShield = (int) p.unit().type.health; // /50;
-                                float maxShield = p.unit().type.health;
-                                if (p.unit().type.health >= 17000) {
-                                    maxShield = p.unit().type.health/3;
-                                } else if (p.unit().type.health <= 290) {
-                                    maxShield = p.unit().type.health*4;
-                                } else if (p.unit().type == UnitTypes.aegires) {
-                                    maxShield = p.unit().type.health/2;
-                                }
-    
-                                int shieldPerPoint = (int) maxShield/20;
-    
-                                float finalMaxShield = maxShield;
-                                int menu = Menus.registerMenu((player, option) -> {
-                                    if (option < 0) {
-                                        return;
-                                    }
 
-                                    if (option == 0 && players.get(p.uuid()).getScore() >= 1 && p.unit().shield <= (int) finalMaxShield) {
-                                        p.unit().shield = p.unit().shield + shieldPerPoint;
-                                        players.get(p.uuid()).subtractScore(1);
-    
-                                        Call.label("[royal]+" + shieldPerPoint, 3, p.x, p.y);
-                                    }
-                                });
-    
-                                String[][] buttons = new String[][]{
-                                        {
-                                            Bundle.format("stations.workbench.buy-armor", Bundle.findLocale(p.locale), shieldPerPoint),
-                                        },
-                                        {
-                                            Bundle.get("stations.buttons.close", p.locale)
-                                        }
-                                };
-    
-                                openMenu(p, menu, buttons);
-                            }
                         }
                     }
                 }
@@ -107,7 +69,7 @@ public class ArmorWorkbench {
                     if ((!player.dead() && player.team() == Team.blue && tile.block().isAir()) && tile.floor() != Blocks.empty) {
                         StationData workbenchData = new StationData(player, tile);
                         workbenches.put(player.uuid(), workbenchData);
-                        Call.constructFinish(tile, Blocks.radar, null, (byte) 0, Team.blue, null);
+                        Call.constructFinish(tile, Vars.content.block("workbench-station"), null, (byte) 0, Team.blue, null);
                         Call.effect(Fx.regenParticle, tile.x * 8, tile.y * 8, 0, Color.red);
                         players.get(player.uuid()).subtractScore(8);
                     }
@@ -119,9 +81,9 @@ public class ArmorWorkbench {
     public static void renderWorkbenches() {
         workbenches.forEach((owner, workbench) -> {
             if (workbench != null) {
-                if (workbench.tileOn().block() != Blocks.radar || workbench.owner().team() != Team.blue) {
+                if (workbench.tileOn().block() != Vars.content.block("workbench-station") || workbench.owner().team() != Team.blue) {
                     workbenches.remove(owner);
-                    if (workbench.tileOn().block() == Blocks.radar) {
+                    if (workbench.tileOn().block() == Vars.content.block("workbench-station")) {
                         workbench.tileOn().build.kill();
                     }
                 }

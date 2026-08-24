@@ -86,36 +86,7 @@ public class Laboratory {
 
                     if (p.team() == Team.blue && !(p.unit() == null)) {
                         if (p.dst(centerX, centerY) <= 48) {
-                            if(Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)) != null && Vars.world.tile(Math.round(p.mouseX / 8), Math.round(p.mouseY / 8)).block() == Blocks.carbideWall && p.shooting) {
-                                Locale locale = Bundle.findLocale(p.locale());
 
-                                Evolution evolution = Evolutions.evolutions.get(p.unit().type().name);
-
-                                if (!(evolution == null)) {
-    
-                                    String[][] buttons = new String[evolution.evolutions.length][1];
-    
-                                    for (int i = 0; i < evolution.evolutions.length; i++) {
-                                        float multiplier = getMultiplier(evolution.evolutions[i], p);
-                                        int cost = (int)(Evolutions.evolutions.get(evolution.evolutions[i]).cost*multiplier);
-
-                                        String textColor = "";
-
-                                       if (multiplier > 1 && multiplier <= 1.99) {
-                                            textColor = "[orange]";
-                                        } else if (cost>Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
-                                            textColor = "[red]";
-                                        } else if (cost<Evolutions.evolutions.get(evolution.evolutions[i]).cost) {
-                                            textColor = "[green]";
-                                        } else {
-                                            textColor = "[yellow]";
-                                        }
-                                        buttons[i][0] = Bundle.format("menu.evolution.evolve", locale, evolution.evolutions[i],(textColor+cost+" - "+(multiplier*100)+"%"));
-                                    }
-    
-                                    Call.menu(p.con, evolutionMenu, Bundle.get("menu.evolution.title", locale), Bundle.format("menu.evolution.message", locale, players.get(p.uuid()).getEvolutionStage(), Bundle.get("evolution.branch.initial", locale)), buttons);
-                                }
-                            }
                             if (!(players.get(p.uuid()) == null)) {
                             players.get(p.uuid()).setCanEvolve(true);
                             }
@@ -206,7 +177,7 @@ public class Laboratory {
                     if ((!player.dead() && player.team() == Team.blue && tile.block().isAir()) && tile.floor() != Blocks.empty) {
                         StationData laboratoryData = new StationData(player, tile);
                         labsMap.put(player.uuid(), laboratoryData);
-                        Call.constructFinish(tile, Blocks.carbideWall, null, (byte) 0, Team.blue, null);
+                        Call.constructFinish(tile, Vars.content.block("laboratory-station"), null, (byte) 0, Team.blue, null);
                         Call.effect(Fx.regenParticle, tile.x*8, tile.y*8, 0, Color.red);
                         players.get(player.uuid()).subtractScore(7);
                     }
@@ -218,9 +189,9 @@ public class Laboratory {
     public static void renderLabs() {
         labsMap.forEach((owner, lab) -> {
             if (lab != null) {
-                if (lab.tileOn().block() != Blocks.carbideWall || lab.owner().team() != Team.blue) {
+                if (lab.tileOn().block() != Vars.content.block("laboratory-station") || lab.owner().team() != Team.blue) {
                     labsMap.remove(owner);
-                    if (lab.tileOn().block() == Blocks.carbideWall) {
+                    if (lab.tileOn().block() == Vars.content.block("laboratory-station")) {
                         lab.tileOn().build.kill();
                     }
                 }
