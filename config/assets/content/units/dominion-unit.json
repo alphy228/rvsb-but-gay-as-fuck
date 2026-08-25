@@ -1,0 +1,548 @@
+type: mech
+name: "Dominion"
+description: "Тяжёлая осадная машина. Вооружена пробивной пушкой, шлакомётом и самонаводящимися ракетами."
+details: "Тяжёлая машина огневой поддержки, сочетающая кинетическое и термическое вооружение."
+
+health: 28000
+armor: 19
+speed: 0.34
+rotateSpeed: 1.45
+hitSize: 34
+itemCapacity: 120
+buildSpeed: 0.01
+
+mechFrontSway: 2.0
+mechSideSway: 0.7
+mechStepParticles: true
+stepShake: 0.9
+stepSound: mechStepHeavy
+stepSoundPitch: 0.85
+stepSoundVolume: 0.55
+drownTimeMultiplier: 1.7
+
+targetAir: true
+targetGround: true
+targetable: true
+hittable: true
+canAttack: true
+autoFindTarget: true
+playerControllable: true
+logicControllable: true
+useUnitCap: true
+
+outlines: true
+outlineColor: "2d2f39"
+
+abilities: [
+  {
+    type: ShieldArcAbility
+    radius: 31
+    angle: 100
+    angleOffset: 0
+    x: 0
+    y: 0
+    regen: 3.3333
+    max: 5000
+    cooldown: 480
+    width: 1.8
+    whenShooting: false
+    chanceDeflect: 0.5
+    pushUnits: false
+    drawArc: true
+  }
+]
+
+parts: [
+  {
+    type: RegionPart
+    name: "reign"
+    x: 0
+    y: -4
+    xScl: 1.0
+    yScl: 1.0
+    outline: false
+    layerOffset: -0.006
+  }
+
+  {
+    type: RegionPart
+    name: "scepter"
+    x: 0
+    y: -9
+    xScl: 0.9
+    yScl: 0.65
+    outline: false
+    layerOffset: -0.005
+  }
+
+  {
+    type: RegionPart
+    name: "reign-weapon"
+    x: -11
+    y: -2
+    xScl: -0.45
+    yScl: 0.45
+    rotation: 15
+    outline: false
+    layerOffset: -0.004
+  }
+
+  {
+    type: RegionPart
+    name: "reign-weapon"
+    x: 11
+    y: -2
+    xScl: 0.45
+    yScl: 0.45
+    rotation: -15
+    outline: false
+    layerOffset: -0.004
+  }
+
+  {
+    type: RegionPart
+    name: "scepter"
+    x: 0
+    y: 6
+    xScl: 0.85
+    yScl: 0.75
+    rotation: 180
+    outline: true
+    layerOffset: -0.002
+  }
+
+  {
+    type: RegionPart
+    name: "scepter-weapon"
+    x: -12
+    y: 7
+    xScl: -0.65
+    yScl: 0.65
+    rotation: 20
+    outline: true
+    layerOffset: -0.001
+  }
+
+  {
+    type: RegionPart
+    name: "scepter-weapon"
+    x: 12
+    y: 7
+    xScl: 0.65
+    yScl: 0.65
+    rotation: -20
+    outline: true
+    layerOffset: -0.001
+  }
+]
+
+weapons: [
+  {
+    name: "dominion-cannon"
+    mirror: false
+    x: 22
+    y: 1
+    shootY: 13
+    top: true
+    rotate: true
+    rotateSpeed: 2.2
+    reload: 72
+    recoil: 6
+    recoilTime: 28
+    shake: 3.5
+    shadow: 18
+    ejectEffect: casing4
+    shootSound: shootReign
+
+    shoot: {
+      shots: 3
+      shotDelay: 5
+    }
+
+    parts: [
+      {
+        type: RegionPart
+        name: "reign-weapon"
+        xScl: 1.10
+        yScl: 1.06
+        x: 0
+        y: -1
+        outline: false
+        layerOffset: 0.0002
+      }
+
+      {
+        type: RegionPart
+        name: "scepter-weapon"
+        xScl: 0.76
+        yScl: 0.76
+        x: 0
+        y: 8
+        outline: false
+        layerOffset: 0.0004
+      }
+    ]
+
+    bullet: {
+      type: BasicBulletType
+      speed: 13
+      damage: 187.5
+      lifetime: 27
+      width: 13
+      height: 29
+      shrinkX: 0.4
+      shrinkY: 0
+      pierce: true
+      pierceCap: 3
+      pierceBuilding: true
+      pierceDamageFactor: 0.22
+      armorMultiplier: 1.25
+      backColor: "ff9a55ff"
+      frontColor: "ffffffff"
+      trailColor: "ffc276ff"
+      trailLength: 14
+      trailWidth: 2.7
+
+      trailEffect: {
+        type: ParticleEffect
+        particles: 3
+        length: 15
+        lifetime: 12
+        line: true
+        lenFrom: 10
+        lenTo: 0
+        strokeFrom: 2.5
+        strokeTo: 0
+        colorFrom: "ffffffff"
+        colorTo: "ff9a55ff"
+      }
+
+      trailInterval: 2
+      trailRotation: true
+      lightningColor: "ffe08f"
+      lightning: 4
+      lightningLength: 10
+      lightningLengthRand: 5
+      lightningDamage: 15
+      lightningCone: 45
+      fragBullets: 5
+      fragRandomSpread: 32
+      fragVelocityMin: 0.7
+      fragVelocityMax: 1.0
+      fragLifeMin: 0.5
+      fragLifeMax: 0.9
+
+      fragBullet: {
+        type: BasicBulletType
+        speed: 10
+        damage: 8
+        lifetime: 14
+        width: 4
+        height: 13
+        shrinkX: 0.35
+        shrinkY: 0
+        pierce: true
+        pierceCap: 1
+        pierceBuilding: false
+        backColor: "ffb06aff"
+        frontColor: "fff2c0ff"
+        trailEffect: hitBulletColor
+        trailInterval: 2
+        hitEffect: flakExplosion
+        despawnEffect: none
+      }
+
+      hitEffect: blastExplosion
+      despawnEffect: hitBulletColor
+      shootEffect: shootBig
+      smokeEffect: shootSmokeTitan
+      hitSound: shootReign
+      despawnSound: shockBullet
+      hitShake: 4
+      despawnShake: 3
+      status: shocked
+      statusDuration: 75
+    }
+  }
+
+  {
+    name: "dominion-slagthrower"
+    mirror: false
+    x: -25
+    y: 0
+    shootY: 12
+    top: true
+    rotate: true
+    rotateSpeed: 2.2
+    reload: 12
+    recoil: 1.5
+    recoilTime: 8
+    shootCone: 32
+    shootSound: loopMalign
+    inaccuracy: 9
+    velocityRnd: 0.35
+
+    shoot: {
+      shots: 4
+      shotDelay: 0
+    }
+
+    parts: [
+      {
+        type: RegionPart
+        name: "reign-weapon"
+        xScl: 1.20
+        yScl: 0.96
+        x: 2
+        y: -2
+        outline: false
+        layerOffset: 0
+      }
+
+      {
+        type: RegionPart
+        name: "artillery"
+        xScl: 0.88
+        yScl: 0.82
+        x: 1
+        y: 3
+        outline: false
+        layerOffset: 0.0002
+      }
+
+      {
+        type: RegionPart
+        name: "flamethrower"
+        xScl: 1.30
+        yScl: 1.50
+        x: 2
+        y: 8
+        outline: true
+        layerOffset: 0.0004
+      }
+    ]
+
+    bullet: {
+      type: BasicBulletType
+      sprite: circle-bullet
+      speed: 5.0
+      lifetime: 68
+      drag: 0.012
+      damage: 150
+      width: 7
+      height: 7
+      shrinkX: 1
+      shrinkY: 1
+      splashDamage: 12
+      splashDamageRadius: 16
+      collidesTeam: false
+      status: burning
+      statusDuration: 210
+      incendChance: 0.9
+      incendSpread: 22
+      incendAmount: 6
+      puddleLiquid: slag
+      puddles: 1
+      puddleAmount: 8
+      puddleRange: 0
+      despawnHit: true
+
+      trailEffect: {
+        type: ParticleEffect
+        particles: 2
+        length: 9
+        lifetime: 9
+        line: true
+        lenFrom: 6
+        lenTo: 0
+        strokeFrom: 2.2
+        strokeTo: 0
+        colorFrom: "fffff0ff"
+        colorTo: "ff8a45ff"
+      }
+
+      trailInterval: 2
+      backColor: "ff6a32"
+      frontColor: "fffff0"
+      lightColor: "fff4c4"
+      lightOpacity: 0.85
+      lightRadius: 9
+      shootEffect: shootSmallFlame
+      hitEffect: hitFlameSmall
+      despawnEffect: hitFlameSmall
+      smokeEffect: none
+    }
+  }
+
+  {
+    name: "dominion-missile-rack"
+    mirror: false
+    x: 11
+    y: -9
+    shootY: 10
+    top: true
+    rotate: true
+    rotateSpeed: 1.7
+    reload: 240
+    recoil: 2.5
+    recoilTime: 18
+    shake: 2
+    autoTarget: true
+    controllable: false
+    shootSound: shootReign
+
+    shoot: {
+      shots: 4
+      shotDelay: 7
+    }
+
+    parts: [
+      {
+        type: RegionPart
+        name: "reign-weapon"
+        xScl: 0.48
+        yScl: 0.54
+        x: 0
+        y: -1
+        outline: true
+        layerOffset: 0.0001
+      }
+
+      {
+        type: RegionPart
+        name: "artillery"
+        xScl: 0.54
+        yScl: 0.48
+        x: 0
+        y: 5
+        outline: true
+        layerOffset: 0.0003
+      }
+
+      {
+        type: RegionPart
+        name: "scepter-weapon"
+        xScl: 0.38
+        yScl: 0.38
+        x: 0
+        y: 10
+        outline: true
+        layerOffset: 0.0005
+      }
+    ]
+
+    bullet: {
+      type: BasicBulletType
+      sprite: bullet
+      speed: 8.5
+      lifetime: 70
+      damage: 0
+      width: 1
+      height: 24
+      shrinkX: 0
+      shrinkY: 0
+      homingPower: 0.10
+      homingRange: 420
+      homingDelay: 3
+      weaveMag: 3
+      weaveScale: 20
+      weaveRandom: true
+      targetBlocks: true
+      sticky: true
+      stickyExtraLifetime: 165
+      pierce: false
+      pierceBuilding: false
+      backColor: "ff7b32"
+      frontColor: "fff4b0"
+      trailColor: "fff0a0"
+      trailLength: 30
+      trailWidth: 0.5
+      trailParam: 0.25
+      trailInterval: 1
+      trailRotation: false
+      trailEffect: none
+      trailChance: 0
+      intervalDelay: 0
+      bulletInterval: 20
+      intervalBullets: 1
+
+      intervalBullet: {
+        type: BasicBulletType
+        speed: 0
+        lifetime: 1
+        damage: 0
+        collides: false
+        collidesTiles: false
+        collidesAir: false
+        collidesGround: false
+        hittable: false
+
+        despawnEffect: {
+          type: MultiEffect
+          effects: [
+            {
+              type: WaveEffect
+              lifetime: 18
+              sizeFrom: 3
+              sizeTo: 14
+              strokeFrom: 2
+              strokeTo: 0
+              colorFrom: "ffffffff"
+              colorTo: "ff9a55ff"
+            }
+
+            {
+              type: ParticleEffect
+              particles: 6
+              length: 7
+              lifetime: 10
+              line: true
+              lenFrom: 4
+              lenTo: 0
+              strokeFrom: 1.3
+              strokeTo: 0
+              colorFrom: "fff4b0ff"
+              colorTo: "ff7b32ff"
+              cone: 360
+            }
+          ]
+        }
+
+        hitEffect: none
+        smokeEffect: none
+      }
+
+      despawnEffect: {
+        type: ExplosionEffect
+        lifetime: 50
+        waveStroke: 5
+        waveLife: 27
+        waveColor: "fff46b"
+        sparkColor: "fff46b"
+        smokeColor: "ffffff"
+        waveRad: 60
+        smokeSize: 4
+        smokeSizeBase: 1
+        smokes: 18
+        sparks: 28
+        sparkRad: 62
+        sparkLen: 6
+        sparkStroke: 1.8
+      }
+
+      despawnSound: explosion
+      despawnHit: true
+      splashDamage: 500
+      splashDamageRadius: 40
+      armorMultiplier: 1.2
+      hitShake: 4
+      despawnShake: 8
+      lightningColor: "ffe08f"
+      lightning: 5
+      lightningLength: 12
+      lightningLengthRand: 5
+      lightningDamage: 15
+      lightningCone: 360
+    }
+  }
+]

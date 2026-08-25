@@ -9,4 +9,5 @@ unit.dp-regent-unit: {
     previewRegion: "scepter"
 
     legRegion: "scepter-leg"
+    baseRegion: "scepter-base"
 }

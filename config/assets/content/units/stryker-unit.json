@@ -153,7 +153,7 @@
         collidesTeam: false
         collidesTiles: false
         createChance: 1
-        damage: 130
+        damage: 85
         delayFrags: false
         despawnEffect: none
         despawnHit: true
@@ -199,7 +199,7 @@
         hitUnder: false
         hittable: true
         homingDelay: -1
-        homingPower: 0.03
+        homingPower: 0.005
         homingRange: 50
         ignoreSpawnAngle: false
         impact: false
@@ -270,7 +270,7 @@
         spawnBulletRandomSpread: 0
         spawnBullets: []
         speed: 7
-        splashDamage: 300
+        splashDamage: 200
         splashDamagePierce: false
         splashDamageRadius: 36
         statLiquidConsumed: 0

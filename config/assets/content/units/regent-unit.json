@@ -1,9 +1,8 @@
 type: mech
 name: "Regent"
-description: "Держит строй между Scepter и Reign. Пробивная пушка reign-типа и конусный огнемёт."
-details: "Прототип на стыке поколений — ещё не Reign, но уже не Scepter."
+description: "Fires piercing bullets and a stream of flame at enemy targets"
 
-health: 15500
+health: 12500
 armor: 14
 speed: 0.37
 rotateSpeed: 1.85
@@ -11,14 +10,13 @@ hitSize: 26
 itemCapacity: 90
 buildSpeed: 0.01
 
-mechFrontSway: 1.5
-mechSideSway: 0.5
+mechFrontSway: 1.0
 mechStepParticles: true
-stepShake: 0.6
-stepSound: mechStepHeavy
-stepSoundPitch: 1.0
-stepSoundVolume: 0.5
-drownTimeMultiplier: 1.55
+stepShake: 0.15
+stepSound: mechStep
+stepSoundPitch: 0.9
+stepSoundVolume: 0.35
+drownTimeMultiplier: 1.5
 
 targetAir: false
 targetGround: true
@@ -73,7 +71,7 @@ parts: [
     type: RegionPart
     name: "scepter"
     outline: false
-    layerOffset: 0
+    layerOffset: -0.001
   }
   {
     type: RegionPart
@@ -83,7 +81,7 @@ parts: [
     xScl: 0.68
     yScl: 0.50
     outline: false
-    layerOffset: -0.001
+    layerOffset: -0.002
   }
 ]
 
@@ -97,6 +95,8 @@ weapons: [
     top: true
     rotate: true
     rotateSpeed: 3
+    rotationLimit: 35
+    shootCone: 360
     reload: 13
     recoil: 4.5
     recoilTime: 24
@@ -111,7 +111,7 @@ weapons: [
         name: "reign-weapon"
         xScl: 0.82
         yScl: 0.82
-        outline: false
+        outline: true
         layerOffset: 0.0002
       }
     ]
@@ -180,15 +180,17 @@ weapons: [
     top: true
     rotate: true
     rotateSpeed: 2.4
+    rotationLimit: 35
+    shootCone: 360
     reload: 4
     recoil: 1.5
     recoilTime: 8
-    shootCone: 26
     shootSound: loopMalign
     inaccuracy: 12
     velocityRnd: 0.6
 
     shoot: {
+      type: ShootSpread
       shots: 3
       spread: 6
     }
@@ -201,8 +203,8 @@ weapons: [
         yScl: 0.66
         x: 0
         y: -2
-        outline: false
-        layerOffset: 0
+        outline: true
+        layerOffset: 0.0001
       }
       {
         type: RegionPart
@@ -211,7 +213,7 @@ weapons: [
         yScl: 0.62
         x: 0
         y: 3
-        outline: false
+        outline: true
         layerOffset: 0.0002
       }
       {
@@ -248,7 +250,7 @@ weapons: [
 
       status: burning
       statusDuration: 180
-      incendChance: 0.8
+      incendChance: 0.1
       incendSpread: 18
       incendAmount: 4
 

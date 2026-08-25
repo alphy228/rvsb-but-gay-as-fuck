@@ -1,0 +1,11 @@
+unit.dp-dominion-unit: {
+    region: "reign"
+    cellRegion: "corvus-cell"
+
+    uiIcon: "reign"
+    fullIcon: "reign"
+    shadowRegion: "reign"
+    previewRegion: "reign"
+
+    legRegion: "reign-leg"
+}
