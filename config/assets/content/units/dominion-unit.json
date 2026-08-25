@@ -1,7 +1,7 @@
 type: mech
 name: "Dominion"
-description: "Тяжёлая осадная машина. Вооружена пробивной пушкой, шлакомётом и самонаводящимися ракетами."
-details: "Тяжёлая машина огневой поддержки, сочетающая кинетическое и термическое вооружение."
+description: "Fires missiles, piercing bullets and flames at enemy targets."
+details: ""
 
 health: 28000
 armor: 19
@@ -46,7 +46,7 @@ abilities: [
     cooldown: 480
     width: 1.8
     whenShooting: false
-    chanceDeflect: 0.5
+    chanceDeflect: 0
     pushUnits: false
     drawArc: true
   }
@@ -140,12 +140,14 @@ weapons: [
   {
     name: "dominion-cannon"
     mirror: false
-    x: 22
+    x: 20.64
     y: 1
     shootY: 13
     top: true
     rotate: true
     rotateSpeed: 2.2
+    rotationLimit: 45
+    shootCone: 360
     reload: 72
     recoil: 6
     recoilTime: 28
@@ -167,7 +169,7 @@ weapons: [
         yScl: 1.06
         x: 0
         y: -1
-        outline: false
+        outline: true
         layerOffset: 0.0002
       }
 
@@ -178,7 +180,7 @@ weapons: [
         yScl: 0.76
         x: 0
         y: 8
-        outline: false
+        outline: true
         layerOffset: 0.0004
       }
     ]
@@ -268,16 +270,17 @@ weapons: [
   {
     name: "dominion-slagthrower"
     mirror: false
-    x: -25
+    x: -23.64
     y: 0
     shootY: 12
     top: true
     rotate: true
     rotateSpeed: 2.2
+    rotationLimit: 45
     reload: 12
     recoil: 1.5
     recoilTime: 8
-    shootCone: 32
+    shootCone: 360
     shootSound: loopMalign
     inaccuracy: 9
     velocityRnd: 0.35
@@ -295,7 +298,7 @@ weapons: [
         yScl: 0.96
         x: 2
         y: -2
-        outline: false
+        outline: true
         layerOffset: 0
       }
 
@@ -306,7 +309,7 @@ weapons: [
         yScl: 0.82
         x: 1
         y: 3
-        outline: false
+        outline: true
         layerOffset: 0.0002
       }
 
@@ -328,12 +331,12 @@ weapons: [
       speed: 5.0
       lifetime: 68
       drag: 0.012
-      damage: 150
+      damage: 50
       width: 7
       height: 7
       shrinkX: 1
       shrinkY: 1
-      splashDamage: 12
+      splashDamage: 4
       splashDamageRadius: 16
       collidesTeam: false
       status: burning
@@ -381,8 +384,10 @@ weapons: [
     y: -9
     shootY: 10
     top: true
+    layerOffset: 0.02
     rotate: true
     rotateSpeed: 1.7
+    shootCone: 360
     reload: 240
     recoil: 2.5
     recoilTime: 18
@@ -405,7 +410,7 @@ weapons: [
         x: 0
         y: -1
         outline: true
-        layerOffset: 0.0001
+        layerOffset: 0.0201
       }
 
       {
@@ -416,7 +421,7 @@ weapons: [
         x: 0
         y: 5
         outline: true
-        layerOffset: 0.0003
+        layerOffset: 0.0203
       }
 
       {
@@ -427,7 +432,7 @@ weapons: [
         x: 0
         y: 10
         outline: true
-        layerOffset: 0.0005
+        layerOffset: 0.0205
       }
     ]
 
