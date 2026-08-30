@@ -960,9 +960,9 @@ block.combustion-generator.health: 320
 block.mender.health: 120
 
 block.tungsten-wall.targetable: false
-block.tungsten-wall.health: 99999
+block.tungsten-wall.health: 10000
 block.tungsten-wall-large.targetable: false
-block.tungsten-wall-large.health: 99999
+block.tungsten-wall-large.health: 10000
 
 //generators consumption
 block.combustion-generator.itemDuration: 2400
