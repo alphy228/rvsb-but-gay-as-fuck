@@ -1,5 +1,12 @@
 name: rvsb
 
+//item capacity for everyone
+unit.locus.itemCapacity: 40
+unit.precept.itemCapacity: 80
+unit.avert.itemCapacity: 30
+unit.obviate.itemCapacity: 80
+
+
 //precept "buff"
 unit.precept.hitSize: 19.9
 

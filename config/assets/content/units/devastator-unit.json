@@ -13,7 +13,8 @@
   envDisabled: 0
   outlineColor: "2d2f39"
   researchCostMultiplier: 10
-
+  itemCapacity: 140
+  
   fullIcon: dp-devastator-full
   uiIcon: dp-devastator-ui
   shadowRegion: dp-devastator-shadow

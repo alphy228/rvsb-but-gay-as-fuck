@@ -13,7 +13,7 @@
   envDisabled: 0
   outlineColor: "2d2f39"
   researchCostMultiplier: 0
-  itemCapacity: 0
+  itemCapacity: 60
 
   region: vanquish
   cellRegion: vanquish-cell
@@ -270,7 +270,7 @@
         spawnBulletRandomSpread: 0
         spawnBullets: []
         speed: 7
-        splashDamage: 200
+        splashDamage: 225
         splashDamagePierce: false
         splashDamageRadius: 36
         statLiquidConsumed: 0
