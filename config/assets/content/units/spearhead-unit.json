@@ -1,1 +1,408 @@
-{"abilities":[{"type":"MoveLightningAbility","color":"bf92f9ff","alternate":"false","length":15.0,"minSpeed":2.0,"maxSpeed":2.9,"chance":0.3,"shootSound":"none","damage":13.0},{"type":"MoveLightningAbility","bullet":{"type":"ShrapnelBulletType","toColor":"bf92f9ff","hitLarge":"true","serrations":3.0,"damage":38.0,"length":120.0},"color":"bf92f9ff","alternate":"false","length":15.0,"chance":1.0,"maxSpeed":3.0,"minSpeed":2.4,"damage":4.0}],"flying":"true","controller":"FlyingAI","accel":0.1,"drag":0.09,"speed":1.98,"weapons":[{"type":"Weapon","shootStatus":"spearhead-surge","reload":1200.0,"ejectEffect":{"type":"MultiEffect","effects":[{"type":"WaveEffect","sizeTo":50.0,"followParent":"false","lifetime":25.0,"colorFrom":"ffcdf6ff","colorTo":"ffffff6f"},{"type":"ParticleEffect","colorFrom":"ffecb0ff","colorTo":"ff98f2ff","line":"true","cone":45.0,"particles":10.0,"lifetime":25.0,"baseRotation":180.0,"lenFrom":10.0,"lenTo":4.0,"length":45.0}],"followParent":"false"},"alternate":"false","mirror":"false","x":0.0,"bullet":{"type":"EmptyBulletType","lifetime":0.0},"name":"status-fast-ui","shootSound":"padLaunch","initialShootSound":"blockExplodeElectricBig","minShootVelocity":1.584,"shootStatusDuration":480.0,"cooldownTime":1200.0,"shootCone":360.0,"alwaysShooting":"true","autoTarget":"false","controllable":"false"},{"bullet":{"type":"EmptyBulletType"},"shootSound":"none","display":"false","mirror":"false","x":0.0,"minShootVelocity":2.56,"reload":10.0,"continuous":"true","shoot":{"firstShotDelay":300.0},"shootCone":360.0},{"name":"quell-weapon","ejectEffect":"mineHuge","recoil":0.0,"mirror":"false","alternate":"false","baseRotation":180.0,"reload":100.0,"shootCone":360.0,"inaccuracy":90.0,"shoot":{"shots":3.0,"shotDelay":5.0},"bullet":{"backSprite":"missile","sprite":"missile","backColor":"9a19f0ff","shrinkY":0.0,"height":10.0,"width":10.0,"trailColor":"d856e5ff","trailLength":5.0,"speed":10.0,"lifetime":33.33,"followAimSpeed":10.0,"lightningColor":"bf92f9ff","fragOnAbsorb":"false","fragOnDespawn":"false","fragOnHit":"true","pierce":"false","pierceArmor":"true","splashDamagePierce":"true","damage":105.0,"splashDamageRadius":15.0,"splashDamage":80.0,"type":"BasicBulletType","despawnEffect":{"type":"MultiEffect","effects":[{"type":"RadialEffect","effect":"shootBigColor","followParent":"false","rotationOffset":45.0}],"followParent":"false"},"hitEffect":"none","fragBullet":{"type":"BasicBulletType","sprite":"missile","backSprite":"missile","backColor":"9a19f0ff","trailColor":"d856e5ff","trailLength":5.0,"width":10.0,"height":10.0,"shrinkY":0.0,"speed":10.0,"lifetime":40.0,"pierce":"true","pierceCap":4.0,"pierceArmor":"true","splashDamagePierce":"true","damage":55.0,"splashDamage":40.0,"splashDamageRadius":15.0,"lightningColor":"bf92f9ff","hitEffect":{"type":"MultiEffect","effects":[{"type":"RadialEffect","effect":"shootBigColor","followParent":"false","rotationOffset":45.0}],"followParent":"false"},"despawnEffect":{"type":"MultiEffect","effects":[{"type":"RadialEffect","effect":"shootBigColor","followParent":"false","rotationOffset":45.0}],"followParent":"false"},"homingPower":0.4,"homingRange":240.0,"homingDelay":0.0,"despawnHit":"false","setDefaults":"false","followAimSpeed":0.0,"removeAfterPierce":"false","hitSound":"explosion","despawnSound":"explosion","hitSoundVolume":0.9},"despawnHit":"false","setDefaults":"false","fragBullets":1.0,"fragRandomSpread":0.0,"fragVelocityMin":1.0,"fragVelocityMax":1.0,"fragOffsetMin":0.0,"fragOffsetMax":0.0},"shootSound":"shootHorizon","x":0.0}],"health":3200.0,"parts":[{"type":"RegionPart","name":"avert","xScl":0.8,"yScl":0.8,"outline":"false"},{"type":"RegionPart","name":"avert-weapon-outline","rotation":180.0,"y":10.0,"outline":"false"},{"type":"RegionPart","name":"unit-obviate-full","rotation":180.0,"layerOffset":-1.0,"outline":"false"},{"type":"RegionPart","name":"avert-weapon-outline","rotation":180.0,"y":12.0,"outline":"false","layerOffset":-2.0},{"type":"RegionPart","name":"elude-weapon","layerOffset":2.0,"x":6.0,"outline":"false","mirror":"true","y":2.0},{"type":"RegionPart","name":"elude-weapon","layerOffset":2.0,"x":5.0,"outline":"false","mirror":"true","y":4.0},{"type":"RegionPart","name":"obviate-blade-outline","mirror":"true","x":2.0,"y":-10.0,"layerOffset":-2.0,"rotation":-45.0,"outline":"false","weaponIndex":1.0,"xScl":0.8,"yScl":0.8,"moveRot":10.0,"moveX":5.0,"moveY":2.0},{"type":"RegionPart","name":"obviate-blade-outline","mirror":"true","x":2.0,"y":-10.0,"layerOffset":-2.0,"rotation":-45.0,"outline":"false","weaponIndex":1.0,"xScl":0.8,"yScl":0.8,"moveRot":20.0,"moveX":7.0,"moveY":4.0},{"type":"RegionPart","name":"obviate-blade-outline","mirror":"true","x":2.0,"y":-10.0,"layerOffset":-2.0,"rotation":-45.0,"outline":"false","weaponIndex":1.0,"xScl":0.8,"yScl":0.8,"moveRot":30.0,"moveX":9.0,"moveY":6.0},{"type":"RegionPart","name":"obviate-blade","mirror":"true","x":2.0,"y":-10.0,"layerOffset":-1.9,"rotation":-45.0,"weaponIndex":0.0,"xScl":0.8,"yScl":0.8,"moveRot":10.0,"moveX":5.0,"moveY":2.0,"drawRegion":"false","progress":"warmup","heatProgress":"heat","heatColor":"ffb347ff","heatLayerOffset":0.0},{"type":"RegionPart","name":"obviate-blade","mirror":"true","x":2.0,"y":-10.0,"layerOffset":-1.9,"rotation":-45.0,"weaponIndex":0.0,"xScl":0.8,"yScl":0.8,"moveRot":20.0,"moveX":7.0,"moveY":4.0,"drawRegion":"false","progress":"warmup","heatProgress":"heat","heatColor":"ffb347ff","heatLayerOffset":0.0},{"type":"RegionPart","name":"obviate-blade","mirror":"true","x":2.0,"y":-10.0,"layerOffset":-1.9,"rotation":-45.0,"weaponIndex":0.0,"xScl":0.8,"yScl":0.8,"moveRot":30.0,"moveX":9.0,"moveY":6.0,"drawRegion":"false","progress":"warmup","heatProgress":"heat","heatColor":"ffb347ff","heatLayerOffset":0.0},{"type":"RegionPart","name":"avert-weapon-outline","rotation":180.0,"y":14.0,"outline":"false","layerOffset":-2.05,"drawRegion":"true","blending":"additive","progress":"heat","weaponIndex":0.0,"color":"ff6a3c00","colorTo":"ffb347ff","xScl":1.25,"yScl":1.25}],"hitSize":27.0,"armor":6.0,"buildSpeed":0.01,"faceTarget":"true"}
+//TODO add proper sfx and adjust balance
+{
+  flying: true
+  controller: FlyingAI
+  accel: 0.1
+  drag: 0.09
+  speed: 1.98
+  strafePenalty: 0.4
+  health: 3200
+  hitSize: 27
+  armor: 6
+  buildSpeed: 0.01
+  faceTarget: true
+
+  abilities: [
+    {
+      type: MoveLightningAbility
+      color: bf92f9ff
+      alternate: false
+      length: 15
+      minSpeed: 2
+      maxSpeed: 2.9
+      chance: 0.3
+      shootSound: none
+      damage: 13
+    }
+    {
+      type: MoveLightningAbility
+      color: bf92f9ff
+      alternate: false
+      length: 15
+      chance: 1
+      minSpeed: 2.4
+      maxSpeed: 3
+      damage: 4
+      shootSound: none
+      bullet: {
+        type: ShrapnelBulletType
+        toColor: bf92f9ff
+        hitLarge: true
+        serrations: 3
+        damage: 38
+        length: 120
+        hitSound: shootArc
+        hitSoundVolume: 0.5
+      }
+    }
+  ]
+
+  weapons: [
+    {
+      type: Weapon
+      name: status-fast-ui
+      shootStatus: spearhead-surge
+      shootStatusDuration: 480
+      reload: 1200
+      cooldownTime: 1200
+      minShootVelocity: 1.881
+      shootCone: 360
+      alwaysShooting: false
+      autoTarget: false
+      controllable: true
+      alternate: false
+      mirror: false
+      x: 0
+      shootSound: padLaunch
+      initialShootSound: blockExplodeElectricBig
+      bullet: {
+        type: EmptyBulletType
+        lifetime: 0
+      }
+      ejectEffect: {
+        type: MultiEffect
+        followParent: false
+        effects: [
+          {
+            type: WaveEffect
+            sizeTo: 50
+            followParent: false
+            lifetime: 25
+            colorFrom: ffcdf6ff
+            colorTo: ffffff6f
+          }
+          {
+            type: ParticleEffect
+            colorFrom: ffecb0ff
+            colorTo: ff98f2ff
+            line: true
+            cone: 45
+            particles: 10
+            lifetime: 25
+            baseRotation: 180
+            lenFrom: 10
+            lenTo: 4
+            length: 45
+          }
+        ]
+      }
+    }
+    {
+      display: false
+      mirror: false
+      x: 0
+      minShootVelocity: 3.072
+      reload: 10
+      continuous: true
+      shootCone: 360
+      shootSound: none
+      shoot: {
+        firstShotDelay: 300
+      }
+      bullet: {
+        type: EmptyBulletType
+      }
+    }
+    {
+      name: quell-weapon
+      ejectEffect: mineHuge
+      recoil: 0
+      mirror: false
+      alternate: false
+      baseRotation: 180
+      reload: 100
+      shootCone: 360
+      inaccuracy: 90
+      x: 0
+      shootSound: shootHorizon
+      shoot: {
+        shots: 3
+        shotDelay: 5
+      }
+      bullet: {
+        type: BasicBulletType
+        sprite: missile
+        backSprite: missile
+        backColor: 9a19f0ff
+        trailColor: d856e5ff
+        trailLength: 5
+        width: 10
+        height: 10
+        shrinkY: 0
+        speed: 10
+        lifetime: 33.33
+        followAimSpeed: 10
+        lightningColor: bf92f9ff
+        damage: 105
+        splashDamage: 80
+        splashDamageRadius: 15
+        splashDamagePierce: true
+        pierce: false
+        pierceArmor: true
+        despawnHit: false
+        setDefaults: false
+        hitEffect: none
+        despawnEffect: {
+          type: MultiEffect
+          followParent: false
+          effects: [
+            {
+              type: RadialEffect
+              effect: shootBigColor
+              followParent: false
+              rotationOffset: 45
+            }
+          ]
+        }
+        fragOnAbsorb: false
+        fragOnDespawn: false
+        fragOnHit: true
+        fragBullets: 1
+        fragRandomSpread: 0
+        fragVelocityMin: 1
+        fragVelocityMax: 1
+        fragOffsetMin: 0
+        fragOffsetMax: 0
+        fragBullet: {
+          type: BasicBulletType
+          sprite: missile
+          backSprite: missile
+          backColor: 9a19f0ff
+          trailColor: d856e5ff
+          trailLength: 5
+          width: 10
+          height: 10
+          shrinkY: 0
+          speed: 10
+          lifetime: 40
+          pierce: true
+          pierceCap: 4
+          pierceArmor: true
+          removeAfterPierce: false
+          splashDamagePierce: true
+          damage: 55
+          splashDamage: 40
+          splashDamageRadius: 15
+          lightningColor: bf92f9ff
+          homingPower: 0.4
+          homingRange: 240
+          homingDelay: 0
+          despawnHit: false
+          setDefaults: false
+          followAimSpeed: 0
+          hitSound: explosion
+          despawnSound: explosion
+          hitSoundVolume: 0.9
+          hitEffect: {
+            type: MultiEffect
+            followParent: false
+            effects: [
+              {
+                type: RadialEffect
+                effect: shootBigColor
+                followParent: false
+                rotationOffset: 45
+              }
+            ]
+          }
+          despawnEffect: {
+            type: MultiEffect
+            followParent: false
+            effects: [
+              {
+                type: RadialEffect
+                effect: shootBigColor
+                followParent: false
+                rotationOffset: 45
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+
+  parts: [
+    {
+      type: RegionPart
+      name: avert
+      xScl: 0.8
+      yScl: 0.8
+      outline: false
+    }
+    {
+      type: RegionPart
+      name: avert-weapon-outline
+      rotation: 180
+      y: 10
+      outline: false
+    }
+    {
+      type: RegionPart
+      name: unit-obviate-full
+      rotation: 180
+      layerOffset: -1
+      outline: false
+    }
+    {
+      type: RegionPart
+      name: avert-weapon-outline
+      rotation: 180
+      y: 12
+      outline: false
+      layerOffset: -2
+    }
+    {
+      type: RegionPart
+      name: elude-weapon
+      layerOffset: 2
+      x: 6
+      y: 2
+      outline: false
+      mirror: true
+    }
+    {
+      type: RegionPart
+      name: elude-weapon
+      layerOffset: 2
+      x: 5
+      y: 4
+      outline: false
+      mirror: true
+    }
+    {
+      type: RegionPart
+      name: obviate-blade-outline
+      mirror: true
+      x: 2
+      y: -10
+      layerOffset: -2
+      rotation: -45
+      outline: false
+      weaponIndex: 1
+      xScl: 0.8
+      yScl: 0.8
+      moveRot: 10
+      moveX: 5
+      moveY: 2
+    }
+    {
+      type: RegionPart
+      name: obviate-blade-outline
+      mirror: true
+      x: 2
+      y: -10
+      layerOffset: -2
+      rotation: -45
+      outline: false
+      weaponIndex: 1
+      xScl: 0.8
+      yScl: 0.8
+      moveRot: 20
+      moveX: 7
+      moveY: 4
+    }
+    {
+      type: RegionPart
+      name: obviate-blade-outline
+      mirror: true
+      x: 2
+      y: -10
+      layerOffset: -2
+      rotation: -45
+      outline: false
+      weaponIndex: 1
+      xScl: 0.8
+      yScl: 0.8
+      moveRot: 30
+      moveX: 9
+      moveY: 6
+    }
+    {
+      type: RegionPart
+      name: obviate-blade
+      mirror: true
+      x: 2
+      y: -10
+      layerOffset: -1.9
+      rotation: -45
+      weaponIndex: 0
+      xScl: 0.8
+      yScl: 0.8
+      moveRot: 10
+      moveX: 5
+      moveY: 2
+      drawRegion: false
+      progress: warmup
+      heatProgress: heat
+      heatColor: ffb347ff
+      heatLayerOffset: 0
+    }
+    {
+      type: RegionPart
+      name: obviate-blade
+      mirror: true
+      x: 2
+      y: -10
+      layerOffset: -1.9
+      rotation: -45
+      weaponIndex: 0
+      xScl: 0.8
+      yScl: 0.8
+      moveRot: 20
+      moveX: 7
+      moveY: 4
+      drawRegion: false
+      progress: warmup
+      heatProgress: heat
+      heatColor: ffb347ff
+      heatLayerOffset: 0
+    }
+    {
+      type: RegionPart
+      name: obviate-blade
+      mirror: true
+      x: 2
+      y: -10
+      layerOffset: -1.9
+      rotation: -45
+      weaponIndex: 0
+      xScl: 0.8
+      yScl: 0.8
+      moveRot: 30
+      moveX: 9
+      moveY: 6
+      drawRegion: false
+      progress: warmup
+      heatProgress: heat
+      heatColor: ffb347ff
+      heatLayerOffset: 0
+    }
+    {
+      type: RegionPart
+      name: avert-weapon-outline
+      rotation: 180
+      y: 14
+      outline: false
+      layerOffset: -2.05
+      drawRegion: true
+      blending: additive
+      progress: heat
+      weaponIndex: 0
+      color: ff6a3c00
+      colorTo: ffb347ff
+      xScl: 1.25
+      yScl: 1.25
+    }
+  ]
+}
