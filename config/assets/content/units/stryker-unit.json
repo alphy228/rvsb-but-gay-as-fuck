@@ -270,7 +270,7 @@
         spawnBulletRandomSpread: 0
         spawnBullets: []
         speed: 7
-        splashDamage: 225
+        splashDamage: 200
         splashDamagePierce: false
         splashDamageRadius: 36
         statLiquidConsumed: 0

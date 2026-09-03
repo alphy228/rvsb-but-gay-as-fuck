@@ -1,12 +1,3 @@
-// OMNI MEGA — Omni airframe redesign styled as an oversized Mega support tug.
-// Twin forward prongs + wide shoulders + big central mega cockpit cell + rear engine deck.
-// Gameplay stats, abilities, engines and weapons are IDENTICAL to dp-omni-unit.
-// Only green-tree (support) sprites are used:
-//   mech tree:  nova, pulsar, quasar (+ heal-shotgun-weapon, beam-weapon, cells)
-//   air tree:   poly, quad, mega (+ poly-weapon, heal-weapon-mount, repair beam, cells)
-//   naval tree: retusa, oxynoe, cyerce (+ retusa-weapon, plasma mounts, point defense, cells)
-// Unit bodies appear only as buried frame piseces, each >50% covered by shingles above.
-
 type: payload
 name: Omni
 description: "Fires plasma bullets that split into piercing lasers and damage enemy targets and repair allied structures. Occasionally fires a devastating missile barrage. Capable of carrying large ground units and blocks."
@@ -26,8 +17,6 @@ strafePenalty: 0.2
 // stats
 health: 16000
 armor: 14
-// enlarged from 38: covers the cyerce shoulder wings; hull is recentered so the
-// hitbox circle sits at the visual center of the airframe
 hitSize: 60
 range: 290
 maxRange: 310
