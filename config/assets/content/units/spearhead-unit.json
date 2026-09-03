@@ -38,7 +38,7 @@
         toColor: bf92f9ff
         hitLarge: true
         serrations: 3
-        damage: 58
+        damage: 38
         length: 120
         hitSound: shootArc
         hitSoundVolume: 0.5
